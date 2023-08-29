@@ -1,0 +1,32 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import type DefaultProps from "@models/properties";
+import type Travel from "@models/travel";
+
+export interface Props extends DefaultProps, Travel {}
+
+const {
+    date,
+    title,
+    subtitle,
+    description,
+    image,
+    video,
+    comments,
+    ads,
+    keywords,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<MainLayout
+    {id}
+    {title}
+    {description}
+    image={image.src}
+    {keywords}
+    classList={[classList, hashClass]}>
+    <slot />
+</MainLayout>

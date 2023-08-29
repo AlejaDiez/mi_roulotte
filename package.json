@@ -1,0 +1,24 @@
+{
+    "name": "mi_roulotte",
+    "description": "A user-friendly website dedicated to sharing my travel experiences with my family and our caravan.",
+    "author": "Alejandro Diez Bermejo",
+    "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License",
+    "homepage": "https://miroulotte.es",
+    "repository": "https://github.com/AlejaDiez/mi_roulotte",
+    "type": "module",
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "astro": "^2.10.14"
+    },
+    "devDependencies": {
+        "prettier": "^3.0.2",
+        "prettier-plugin-astro": "^0.12.0"
+    }
+}

@@ -1,0 +1,155 @@
+---
+import Img from "@components/Img.astro";
+import type { Image } from "@models/image";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    title: string;
+    subtitle?: string;
+    image: Image;
+}
+
+const { title, subtitle, image, id, classList, class: hashClass } = Astro.props;
+---
+
+<section {id} class:list={["header-section", classList, hashClass]}>
+    {
+        subtitle && (
+            <div class:list={["subtitle", hashClass]}>
+                <h2 class:list={hashClass}>{subtitle}</h2>
+            </div>
+        )
+    }
+    <div class:list={["title", hashClass]}>
+        <h1 class:list={hashClass}>{title}</h1>
+    </div>
+    <div class:list={["image", hashClass]}>
+        <Img {image} classList={hashClass} />
+    </div>
+</section>
+
+<style>
+    .header-section {
+        --header-section-subtitle-size: 80px;
+        --header-section-subtitle-padding: 32px;
+        --header-section-title-height: 256px;
+
+        width: 100%;
+        min-height: 376px;
+        max-height: 640px;
+        aspect-ratio: 16/9;
+        position: relative;
+        display: flex;
+        cursor: default;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .header-section .subtitle {
+        min-width: var(--header-section-subtitle-size);
+        height: var(--header-section-subtitle-size);
+        padding: 0 var(--header-section-subtitle-padding);
+        position: absolute;
+        top: 0;
+        right: calc(50% + var(--overflow-size));
+        z-index: 9;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--primary-color);
+        animation-name: subtitle-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .header-section .subtitle h2 {
+        color: var(--on-primary-color);
+        text-align: center;
+    }
+
+    .header-section .title {
+        width: 50vw;
+        height: var(--header-section-title-height);
+        padding-right: calc(var(--horizontal-padding) / 2);
+        padding-left: var(--horizontal-padding);
+        position: absolute;
+        left: calc(var(--horizontal-padding) * -1);
+        top: var(--header-section-subtitle-size);
+        z-index: 9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        background-color: var(--surface-color);
+        overflow: hidden;
+        animation-name: title-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .header-section .title h1 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+    }
+
+    .header-section .image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        animation-name: image-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .header-section .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    @keyframes subtitle-animation {
+        0% {
+            clip-path: inset(100% 0 0 0);
+        }
+
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes title-animation {
+        0% {
+            clip-path: inset(0 100% 0 0);
+        }
+
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes image-animation {
+        0%,
+        50% {
+            clip-path: inset(0 0 100% 0);
+        }
+
+        100% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+</style>

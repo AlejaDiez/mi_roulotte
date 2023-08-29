@@ -1,4 +1,5 @@
 ---
+import HeaderSection from "@components/Sections/HeaderSection.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import type DefaultProps from "@models/properties";
 import type Travel from "@models/travel";
@@ -12,8 +13,6 @@ const {
     description,
     image,
     video,
-    comments,
-    ads,
     keywords,
     id,
     classList,
@@ -28,5 +27,6 @@ const {
     image={image.src}
     {keywords}
     classList={[classList, hashClass]}>
+    <HeaderSection {title} {subtitle} {image} />
     <slot />
 </MainLayout>

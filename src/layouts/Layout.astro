@@ -1,0 +1,116 @@
+---
+import type DefaultProps from "@models/properties";
+
+// Styles
+import "@styles/global.css";
+
+// Props
+export interface Props extends DefaultProps {
+    title: string;
+    description?: string;
+    image?: string;
+    keywords?: string[];
+}
+
+// Variables
+const lang: string = "es";
+const author: string = "Alejandro Diez Bermejo";
+const {
+    title,
+    description,
+    image,
+    keywords,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<html {lang}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="canonical" href="https://miroulotte.es/" />
+        <title>
+            {title === "Mi Roulotte" ? title : `${title} | Mi Roulotte`}
+        </title>
+        {description && <meta name="description" content={description} />}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta http-equiv="Content-Language" content={lang} />
+        <meta name="author" content={author} />
+        <meta property="og:site_name" content="Mi Roulotte" />
+        <meta name="twitter:domain" content="https://miroulotte.es" />
+        <meta
+            property="og:title"
+            content={title === "Mi Roulotte" ? title : `${title} | Mi Roulotte`}
+        />
+        <meta
+            name="twitter:title"
+            content={title === "Mi Roulotte" ? title : `${title} | Mi Roulotte`}
+        />
+        {
+            description && (
+                <meta property="og:description" content={description} />
+            )
+        }{
+            description && (
+                <meta name="twitter:description" content={description} />
+            )
+        }
+        {image && <meta property="og:image" content={image} />}
+        {image && <meta property="twitter:image" content={image} />}
+        {image && <meta property="og:image:alt" content={title} />}
+        {image && <meta name="twitter:image:alt" content={title} />}
+        <meta property="og:url" content={Astro.url.href} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {
+            keywords && (
+                <meta
+                    name="keywords"
+                    content={[...new Set(keywords)].join(", ")}
+                />
+            )
+        }
+        {
+            keywords ? (
+                <meta name="robots" content="follow, index" />
+            ) : (
+                <meta name="robots" content="nofollow, noindex" />
+            )
+        }
+        {
+            keywords ? (
+                <meta name="googlebot" content="all" />
+            ) : (
+                <meta name="googlebot" content="none" />
+            )
+        }
+        <meta name="color-scheme" content="light dark" />
+        <script>
+            if (
+                window.location.hostname === "mi-roulotte-2017.web.app" ||
+                window.location.hostname === "mi-roulotte-2017.firebaseapp.com"
+            ) {
+                window.location.replace(
+                    `https://miroulotte.es${window.location.pathname}${window.location.search}${window.location.hash}`
+                );
+            }
+        </script>
+    </head>
+    <body {id} class:list={[classList, hashClass]}>
+        <slot />
+    </body>
+</html>
+
+<script>
+    document.addEventListener("copy", (event) => {
+        event.clipboardData!.setData(
+            "text/plain",
+            document.getSelection() +
+                "\n\nTexto copiado de https://miroulotte.es"
+        );
+        event.preventDefault();
+    });
+</script>

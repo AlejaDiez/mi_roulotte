@@ -2,6 +2,7 @@
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Main from "@components/Main.astro";
+import ScrollToTop from "@components/ScrollToTop.astro";
 import Layout from "@layouts/Layout.astro";
 import type DefaultProps from "@models/properties";
 
@@ -12,6 +13,7 @@ export interface Props extends DefaultProps {
     keywords?: string[];
     floatingHeader?: boolean;
     floatingFooter?: boolean;
+    floatingScrollToTop?: boolean;
 }
 
 const {
@@ -21,6 +23,7 @@ const {
     keywords,
     floatingHeader = false,
     floatingFooter = false,
+    floatingScrollToTop = true,
     id,
     classList,
     class: hashClass,
@@ -47,4 +50,5 @@ const {
         transparent={floatingFooter}
         classList={hashClass}
     />
+    {floatingScrollToTop && <ScrollToTop classList={hashClass} />}
 </Layout>

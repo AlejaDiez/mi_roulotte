@@ -1,0 +1,59 @@
+---
+import Button from "@components/Button.astro";
+import { icon_chevron_up } from "@models/icons";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {}
+
+const { id, classList, class: hashClass } = Astro.props;
+---
+
+<Button
+    {id}
+    style="fill"
+    icon
+    classList={["scroll-to-top", classList, hashClass]}>
+    {icon_chevron_up}
+</Button>
+
+<style>
+    .scroll-to-top {
+        --scroll-to-top-bottom-position: 128px;
+
+        position: fixed;
+        right: 0;
+        bottom: var(--scroll-to-top-bottom-position);
+        z-index: 999;
+        clip-path: inset(0 0 0 100%);
+        transition-property: color, background-color, clip-path !important;
+        transition-duration: var(--animation-duration-1),
+            var(--animation-duration-1), var(--animation-duration-2) !important;
+    }
+
+    /* Show */
+    .scroll-to-top.show {
+        clip-path: inset(0 0 0 0) !important;
+    }
+</style>
+
+<script>
+    const scrollToTopButtons: NodeListOf<HTMLButtonElement> =
+        document.querySelectorAll(".scroll-to-top");
+
+    scrollToTopButtons.forEach((e) => {
+        e.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > window.innerHeight / 3) {
+                e.classList.add("show");
+            } else {
+                e.classList.remove("show");
+            }
+        });
+    });
+</script>

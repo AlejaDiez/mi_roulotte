@@ -1,0 +1,64 @@
+---
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {}
+
+const { id, classList, class: hashClass } = Astro.props;
+---
+
+<section {id} class:list={["content-section", classList, hashClass]}>
+    <slot />
+</section>
+
+<style>
+    .content-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        animation-name: content-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    @keyframes content-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+
+        60% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<style is:global>
+    .content-section > p,
+    .content-section > ul {
+        margin-top: var(--text-spacing);
+        margin-bottom: var(--text-spacing);
+    }
+
+    .content-section > h3 {
+        margin-top: var(--headline-spacing);
+        margin-bottom: var(--text-spacing);
+    }
+
+    .content-section > .mosaic,
+    .content-section > .photo,
+    .content-section > .player {
+        margin-top: var(--media-spacing);
+        margin-bottom: var(--media-spacing);
+    }
+
+    .content-section > :first-child {
+        margin-top: 0 !important;
+    }
+
+    .content-section > :last-child {
+        margin-bottom: 0 !important;
+    }
+</style>

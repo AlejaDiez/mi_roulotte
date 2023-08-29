@@ -1,4 +1,5 @@
 ---
+import ContentSection from "@components/Sections/ContentSection.astro";
 import HeaderSection from "@components/Sections/HeaderSection.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import type DefaultProps from "@models/properties";
@@ -28,5 +29,7 @@ const {
     {keywords}
     classList={[classList, hashClass]}>
     <HeaderSection {title} {subtitle} {image} />
-    <slot />
+    <ContentSection>
+        <slot />
+    </ContentSection>
 </MainLayout>

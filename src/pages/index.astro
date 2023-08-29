@@ -1,7 +1,12 @@
 ---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
 import Player from "@components/Player.astro";
 import Layout from "@layouts/Layout.astro";
+import { LocalImage, RemoteImage } from "@models/image";
 import { YoutubeVideo } from "@models/video";
+
+import IMG_20200825_185010 from "@assets/IMG_20200825_185010.jpg";
 ---
 
 <Layout
@@ -28,9 +33,68 @@ import { YoutubeVideo } from "@models/video";
         "brico-cv",
         "bricolaje",
     ]}>
-    <Player
-        video={new YoutubeVideo(
-            "https://www.youtube.com/watch?v=kxNnnyv0tvM&t=9s"
-        )}
-    />
+    <Mosaic template={16}>
+        <Player
+            video={new YoutubeVideo(
+                "https://www.youtube.com/watch?v=kxNnnyv0tvM&t=9s"
+            )}
+            aspectRatio="aspect-ratio-4-3"
+            classList={["col-12", "row-9"]}
+        />
+        <Photo image={new LocalImage(IMG_20200825_185010, "Local Image")} />
+        <Photo
+            image={new RemoteImage(
+                "https://picsum.photos/1024/1024?random=874845",
+                1024,
+                1024,
+                "Remote Image"
+            )}
+            classList={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new RemoteImage(
+                "https://picsum.photos/1024/1024?random=874846",
+                1024,
+                1024,
+                "Remote Image"
+            )}
+            classList={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new RemoteImage(
+                "https://picsum.photos/1024/1024?random=874847",
+                1024,
+                1024,
+                "Remote Image"
+            )}
+            classList={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new RemoteImage(
+                "https://picsum.photos/1024/1024?random=874848",
+                1024,
+                1024,
+                "Remote Image"
+            )}
+            classList={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new RemoteImage(
+                "https://picsum.photos/1024/1024?random=874849",
+                1024,
+                1024,
+                "Remote Image"
+            )}
+            classList={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new RemoteImage(
+                "https://picsum.photos/1024/1024?random=874850",
+                1024,
+                1024,
+                "Remote Image"
+            )}
+            classList={["col-4", "row-3"]}
+        />
+    </Mosaic>
 </Layout>

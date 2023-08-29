@@ -1,0 +1,261 @@
+---
+import Img from "@components/Img.astro";
+import type { Image } from "@models/image";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    image: Image;
+    aspectRatio?:
+        | "aspect-ratio-1-1"
+        | "aspect-ratio-3-2"
+        | "aspect-ratio-4-3"
+        | "aspect-ratio-16-9"
+        | "aspect-ratio-2-3"
+        | "aspect-ratio-3-4"
+        | "aspect-ratio-9-16";
+}
+
+const {
+    image,
+    aspectRatio = "aspect-ratio-4-3",
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<div {id} class:list={["photo", aspectRatio, classList, hashClass]}>
+    <Img image={image.copyWith({ alt: "" })} classList={["image", hashClass]} />
+    <figcaption class:list={["caption", hashClass]}>{image.alt}</figcaption>
+</div>
+
+<style>
+    .photo {
+        width: 100%;
+        position: relative;
+        display: block;
+        background-color: var(--surface-color);
+        overflow: hidden;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .photo .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        position: relative;
+        z-index: 9;
+        display: block;
+        opacity: 1;
+        transform: scale(1);
+        transform-origin: center;
+        transition-property: transform, opacity;
+        transition-duration: var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .photo:hover .image {
+        opacity: 0;
+        transform: scale(calc(1 + var(--scale-factor)));
+    }
+
+    .photo .caption {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--on-surface-color);
+        text-align: center;
+    }
+
+    .lightbox {
+        padding: var(--vertical-padding);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: calc(var(--media-spacing) + var(--text-spacing));
+        background-color: var(--background-color);
+        animation-name: lightbox-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .lightbox .close {
+        box-sizing: border-box;
+        width: var(--component-size);
+        height: var(--component-size);
+        padding: 0 !important;
+        position: absolute;
+        top: calc((var(--vertical-padding) - var(--component-size)) / 2);
+        right: calc((var(--vertical-padding) - var(--component-size)) / 2);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--on-primary-color);
+        text-align: center;
+        text-decoration: none;
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: var(--border-radius);
+        appearance: none;
+        outline: none;
+        transition-property: color, background-color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        animation-name: lightbox-close-button-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .lightbox .close:hover {
+        background-color: var(--primary-hover-color);
+    }
+
+    .lightbox .image {
+        max-width: 100%;
+        width: auto;
+        max-height: calc(
+            100% -
+                (
+                    var(--media-spacing) + var(--text-spacing) +
+                        var(--body-font-line-height)
+                )
+        );
+        height: auto;
+        animation-name: lightbox-image-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .lightbox .caption {
+        color: var(--on-background-variant-color);
+        text-align: center;
+        animation-name: lightbox-caption-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    @keyframes lightbox-animation {
+        0% {
+            opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes lightbox-close-button-animation {
+        0% {
+            clip-path: inset(0 0 0 100%);
+        }
+
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes lightbox-image-animation {
+        0%,
+        50% {
+            clip-path: inset(0 0 100% 0);
+        }
+
+        100% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes lightbox-caption-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+
+        60% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    import { icon_close } from "@models/icons";
+
+    const photos: NodeListOf<HTMLDivElement> =
+        document.querySelectorAll(".photo");
+    const lightbox = (
+        img: HTMLElement,
+        alt: HTMLElement,
+        hashClass: string = ""
+    ) => {
+        const lightbox: HTMLElement = document.createElement("div");
+        const closeButton: HTMLElement = document.createElement("button");
+        const image: HTMLElement = img.cloneNode(true) as HTMLElement;
+        const caption: HTMLElement = alt.cloneNode(true) as HTMLElement;
+
+        // Lightbox
+        lightbox.classList.add("lightbox", hashClass);
+        // Close button
+        closeButton.classList.add("close", "icon", hashClass);
+        closeButton.innerHTML = icon_close;
+        lightbox.appendChild(closeButton);
+        // Image
+        image.removeAttribute("class");
+        image.classList.add("image", hashClass);
+        lightbox.appendChild(image);
+        // Caption
+        caption.removeAttribute("class");
+        caption.classList.add("caption", hashClass);
+        lightbox.appendChild(caption);
+
+        return lightbox;
+    };
+
+    photos.forEach((e) => {
+        const lightboxElement: HTMLElement = lightbox(
+            e.querySelector(".image")!,
+            e.querySelector(".caption")!,
+            Array.from(e.classList)
+                .filter((e) => e.includes("astro-"))
+                .join(" ")
+        );
+
+        e.addEventListener("click", () =>
+            document.body.appendChild(lightboxElement)
+        );
+        lightboxElement
+            .querySelector(".close")!
+            .addEventListener("click", () =>
+                document.body.removeChild(lightboxElement)
+            );
+    });
+</script>

@@ -21,6 +21,11 @@ html {
     color-scheme: var(--brightness);
 }
 
+/* Body */
+body:has(.lightbox) {
+    overflow: hidden;
+}
+
 /* Title */
 h1 {
     font-family: var(--sans-font-family);

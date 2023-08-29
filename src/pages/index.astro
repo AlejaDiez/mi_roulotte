@@ -1,5 +1,5 @@
 ---
-import Img from "@components/Img.astro";
+import Photo from "@components/Photo.astro";
 import Layout from "@layouts/Layout.astro";
 import { LocalImage, RemoteImage } from "@models/image";
 
@@ -30,9 +30,9 @@ import IMG_20200825_185010 from "@assets/IMG_20200825_185010.jpg";
         "brico-cv",
         "bricolaje",
     ]}>
-    <Img image={new LocalImage(IMG_20200825_185010, "Local Image")} />
+    <Photo image={new LocalImage(IMG_20200825_185010, "Local Image")} />
     <br />
-    <Img
+    <Photo
         image={new RemoteImage(
             "https://picsum.photos/1024/1024?random=410055",
             1024,

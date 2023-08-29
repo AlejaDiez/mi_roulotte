@@ -1,5 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import Button from "@components/Button.astro";
+
+import { icon_add } from "@models/icons";
 ---
 
 <Layout
@@ -26,5 +29,29 @@ import Layout from "@layouts/Layout.astro";
         "brico-cv",
         "bricolaje",
     ]}>
-    <h1>Mi Roulotte</h1>
+    <Button style="" href="https://miroulotte.es" target="blank">Button</Button>
+    <Button style="outline" href="https://miroulotte.es" target="blank">
+        Button
+    </Button>
+    <Button style="fill" href="https://miroulotte.es" target="blank">
+        Button
+    </Button>
+    <br />
+    <Button style="" error>Button</Button>
+    <Button style="outline" error>Button</Button>
+    <Button style="fill" error>Button</Button>
+    <br />
+    <Button style="" icon onClick="test()">{icon_add}</Button>
+    <Button style="outline" icon onClick="test()">{icon_add}</Button>
+    <Button style="fill" icon onClick="test()">{icon_add}</Button>
+    <br />
+    <Button style="" icon error>{icon_add}</Button>
+    <Button style="outline" icon error>{icon_add}</Button>
+    <Button style="fill" icon error>{icon_add}</Button>
 </Layout>
+
+<script is:inline>
+    function test() {
+        console.log("test");
+    }
+</script>

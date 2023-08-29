@@ -1,0 +1,140 @@
+---
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    onClick?: string;
+    href?: string;
+    target?: "blank" | "self" | "parent" | "top";
+    style?: "" | "fill" | "outline";
+    icon?: boolean;
+    error?: boolean;
+    submit?: boolean;
+}
+
+const {
+    onClick,
+    href,
+    target = "self",
+    style = "",
+    icon,
+    error,
+    submit,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+const onclick =
+    onClick !== undefined
+        ? onClick
+        : href !== undefined
+        ? `window.open("${href}", "_${target}")`
+        : undefined;
+---
+
+<button
+    {id}
+    {onclick}
+    type={submit ? "submit" : undefined}
+    class:list={["button", style, { icon, error }, classList, hashClass]}>
+    <slot />
+</button>
+
+<style>
+    .button {
+        --button-horizontal-padding: 24px;
+
+        box-sizing: border-box;
+        min-width: var(--component-size);
+        height: var(--component-size);
+        padding: 0 var(--button-horizontal-padding);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary-color);
+        text-align: center;
+        text-decoration: none;
+        background-color: transparent;
+        border: none;
+        border-radius: var(--border-radius);
+        appearance: none;
+        outline: none;
+        transition-property: color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .button:hover {
+        color: var(--primary-hover-color);
+    }
+
+    /* Icon */
+    .button.icon {
+        width: var(--component-size);
+        padding: 0 !important;
+    }
+
+    /* Fill */
+    .button.fill {
+        color: var(--on-primary-color);
+        background-color: var(--primary-color);
+        transition-property: color, background-color;
+    }
+
+    .button.fill:hover {
+        background-color: var(--primary-hover-color);
+    }
+
+    /* Outline */
+    .button.outline {
+        padding: 0 calc(var(--button-horizontal-padding) - var(--border-width));
+        color: var(--primary-color);
+        border-width: var(--border-width);
+        border-style: solid;
+        border-color: var(--primary-color);
+        transition-property: color, background-color, border-color;
+    }
+
+    .button.outline:hover {
+        color: var(--on-primary-color);
+        background-color: var(--primary-hover-color);
+        border-color: var(--primary-hover-color);
+    }
+
+    /* Error */
+    .button.error {
+        color: var(--error-color);
+    }
+
+    .button.error:hover {
+        color: var(--error-hover-color);
+    }
+
+    /* Error Fill */
+    .button.error.fill {
+        color: var(--on-error-color);
+        background-color: var(--error-color);
+    }
+
+    .button.error.fill:hover {
+        background-color: var(--error-hover-color);
+    }
+
+    /* Error Outline */
+    .button.error.outline {
+        color: var(--error-color);
+        border-color: var(--error-color);
+    }
+
+    .button.error.outline:hover {
+        color: var(--on-error-color);
+        background-color: var(--error-hover-color);
+        border-color: var(--error-hover-color);
+    }
+</style>

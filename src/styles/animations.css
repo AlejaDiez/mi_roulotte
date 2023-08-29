@@ -1,0 +1,9 @@
+:root {
+    /* Durations */
+    --animation-duration-1: 120ms;
+    --animation-duration-2: 240ms;
+    --animation-duration-3: 1000ms;
+
+    /* Curves */
+    --animation-curve: ease;
+}

@@ -88,10 +88,10 @@ p > a {
     text-decoration: none !important;
     color: var(--highlight-color);
     transition-property: color;
-    transition-duration: 120ms;
-    transition-timing-function: ease;
-    animation-duration: 1000ms;
-    animation-timing-function: ease;
+    transition-duration: var(--animation-duration-1);
+    transition-timing-function: var(--animation-curve);
+    animation-duration: var(--animation-duration-3);
+    animation-timing-function: var(--animation-curve);
     animation-fill-mode: both;
     cursor: pointer;
 }

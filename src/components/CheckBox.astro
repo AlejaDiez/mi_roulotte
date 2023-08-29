@@ -1,0 +1,118 @@
+---
+import { icon_checkmark } from "@models/icons";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    label?: string;
+    checked?: boolean;
+}
+
+const { label, checked = false, id, classList, class: hashClass } = Astro.props;
+---
+
+<div {id} class:list={["checkbox", classList, hashClass]}>
+    <div class:list={["container", hashClass]}>
+        <span class:list={["checkmark", "icon", hashClass]}>
+            {icon_checkmark}
+        </span>
+        <input
+            name={id}
+            type="checkbox"
+            checked={checked ? "" : undefined}
+            class:list={["input", hashClass]}
+        />
+    </div>
+    {
+        label && (
+            <label for={id} class:list={["label", hashClass]}>
+                {label}
+            </label>
+        )
+    }
+</div>
+
+<style>
+    .checkbox {
+        --checkbox-horizontal-spacing: 8px;
+        --checkbox-checkmark-scale: 0.56;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        gap: var(--checkbox-horizontal-spacing);
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .checkbox .container {
+        box-sizing: border-box;
+        width: var(--body-font-size);
+        height: var(--body-font-size);
+        margin: calc((var(--body-font-line-height) - var(--body-font-size)) / 2)
+            0;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--background-color);
+        border-width: var(--border-width);
+        border-style: solid;
+        border-color: var(--on-background-variant-color);
+        border-radius: 50%;
+        appearance: none;
+        outline: none;
+        transition-property: background-color, border-color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        cursor: pointer;
+    }
+
+    .checkbox .container:hover {
+        border-color: var(--primary-hover-color);
+    }
+
+    .checkbox .checkmark {
+        color: var(--on-primary-color);
+        opacity: 0;
+        transform: scale(
+            calc(var(--checkbox-checkmark-scale) - var(--scale-factor))
+        );
+        transition-property: opacity, transform;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .checkbox .input {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .checkbox:has(.input:checked) .container {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .checkbox:has(.input:checked) .container:hover {
+        background-color: var(--primary-hover-color);
+        border-color: var(--primary-hover-color);
+    }
+
+    .checkbox:has(.input:checked) .checkmark {
+        opacity: 1;
+        transform: scale(var(--checkbox-checkmark-scale));
+    }
+
+    .checkbox .label {
+        color: var(--on-background-variant-color);
+        text-align: start;
+    }
+</style>

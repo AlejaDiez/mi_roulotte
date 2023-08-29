@@ -1,0 +1,43 @@
+---
+import { Image as AstroImage } from "astro:assets";
+
+import { Image, LocalImage } from "@models/image";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    image: Image;
+}
+
+const { image, id, classList, class: hashClass } = Astro.props;
+---
+
+{
+    import.meta.env.DEV ? (
+        <img
+            {id}
+            src={image.src}
+            width={image.width}
+            height={image.height}
+            alt={image.alt}
+            class:list={[classList, hashClass]}
+        />
+    ) : image instanceof LocalImage ? (
+        <AstroImage
+            {id}
+            src={image}
+            alt={image.alt}
+            quality={image.quality}
+            format={image.outputFormat}
+            class:list={[classList, hashClass]}
+        />
+    ) : (
+        <AstroImage
+            {id}
+            src={image.src}
+            width={image.width}
+            height={image.height}
+            alt={image.alt}
+            class:list={[classList, hashClass]}
+        />
+    )
+}

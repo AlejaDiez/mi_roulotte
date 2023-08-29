@@ -1,6 +1,9 @@
 ---
+import Img from "@components/Img.astro";
 import Layout from "@layouts/Layout.astro";
-import Slider from "@components/Slider.astro";
+import { LocalImage, RemoteImage } from "@models/image";
+
+import IMG_20200825_185010 from "@assets/IMG_20200825_185010.jpg";
 ---
 
 <Layout
@@ -27,5 +30,14 @@ import Slider from "@components/Slider.astro";
         "brico-cv",
         "bricolaje",
     ]}>
-    <Slider />
+    <Img image={new LocalImage(IMG_20200825_185010, "Local Image")} />
+    <br />
+    <Img
+        image={new RemoteImage(
+            "https://picsum.photos/1024/1024?random=410055",
+            1024,
+            1024,
+            "Remote Image"
+        )}
+    />
 </Layout>

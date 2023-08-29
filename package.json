@@ -6,7 +6,7 @@
     "homepage": "https://miroulotte.es",
     "repository": "https://github.com/AlejaDiez/mi_roulotte",
     "type": "module",
-    "version": "3.3.0",
+    "version": "3.4.0",
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
@@ -17,6 +17,7 @@
     "dependencies": {
         "@types/youtube": "^0.0.47",
         "astro": "^2.10.14",
+        "firebase": "^10.3.0",
         "firebase-tools": "^12.5.2"
     },
     "devDependencies": {

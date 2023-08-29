@@ -1,0 +1,129 @@
+---
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {}
+
+const { id, classList, class: hashClass } = Astro.props;
+---
+
+<section {id} class:list={["ads-section", classList, hashClass]}></section>
+
+<style>
+    .ads-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        animation-name: ads-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .ads-section .ad {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ads-section .ad .desktop {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .ads-section .ad .mobile {
+        max-width: 100%;
+        height: auto;
+        display: none;
+    }
+
+    @keyframes ads-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+
+        60% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    import { FirebaseApp, initializeApp } from "firebase/app";
+    import {
+        Database,
+        DataSnapshot,
+        ref,
+        getDatabase,
+        get,
+    } from "firebase/database";
+
+    const adsSections: NodeListOf<HTMLElement> =
+        document.querySelectorAll(".ads-section");
+
+    if (adsSections.length > 0) {
+        // Firebase configuration
+        const app: FirebaseApp = initializeApp({
+            apiKey: import.meta.env.PUBLIC_GOOGLE_KEY,
+            databaseURL: import.meta.env.PUBLIC_DATABASE_URL,
+            projectId: "mi-roulotte-2017",
+            appId: "1:167670871524:web:06987fadeb16ea9bf983f1",
+        });
+        const database: Database = getDatabase(app);
+        const snapshot: DataSnapshot = await get(ref(database, "ads"));
+
+        for (const section of adsSections) {
+            const data: any = snapshot.val();
+            const hashClass: string[] = Array.from(section.classList).filter(
+                (e) => e.includes("astro-")
+            );
+
+            if (data !== null) {
+                const ad: HTMLElement = document.createElement("a");
+                const desktop: HTMLImageElement = document.createElement("img");
+                const mobile: HTMLImageElement = document.createElement("img");
+
+                // Ad
+                ad.setAttribute("href", data.url);
+                ad.setAttribute("target", "_blank");
+                ad.classList.add("ad", ...hashClass);
+
+                // Desktop
+                if (data.img.desktop !== null) {
+                    desktop.setAttribute("src", data.img.desktop.src);
+                    desktop.setAttribute(
+                        "width",
+                        `${data.img.desktop.width}px`
+                    );
+                    desktop.setAttribute(
+                        "height",
+                        `${data.img.desktop.height}px`
+                    );
+                    desktop.classList.add("desktop", ...hashClass);
+                    ad.appendChild(desktop);
+                }
+
+                // Mobile
+                if (data.img.mobile !== null) {
+                    mobile.setAttribute("src", data.img.mobile.src);
+                    mobile.setAttribute("width", `${data.img.mobile.width}px`);
+                    mobile.setAttribute(
+                        "height",
+                        `${data.img.mobile.height}px`
+                    );
+                    mobile.classList.add("mobile", ...hashClass);
+                    ad.appendChild(mobile);
+                }
+                section.appendChild(ad);
+            } else {
+                section.remove();
+            }
+        }
+    }
+</script>

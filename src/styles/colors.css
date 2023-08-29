@@ -1,0 +1,211 @@
+:root {
+    /* Brightness */
+    --brightness: normal;
+
+    /* Primary */
+    --primary-light-color: #000000;
+    --primary-dark-color: #ffffff;
+    --primary-hover-light-color: #212121;
+    --primary-hover-dark-color: #f1f1f1;
+
+    /* onPrimary */
+    --on-primary-light-color: #ffffff;
+    --on-primary-dark-color: #000000;
+
+    /* Higlight */
+    --highlight-light-color: #0f62fe;
+    --highlight-dark-color: #4589ff;
+    --highlight-hover-light-color: #0050e6;
+    --highlight-hover-dark-color: #1f70ff;
+
+    /* onHiglight */
+    --on-higlight-light-color: #ffffff;
+    --on-higlight-dark-color: #000000;
+
+    /* Error */
+    --error-light-color: #da1e28;
+    --error-dark-color: #fa4d56;
+    --error-hover-light-color: #b81922;
+    --error-hover-dark-color: #ee0713;
+
+    /* onError */
+    --on-error-light-color: #ffffff;
+    --on-error-dark-color: #000000;
+
+    /* Success */
+    --success-light-color: #198038;
+    --success-dark-color: #24a148;
+    --success-hover-light-color: #166f31;
+    --success-hover-dark-color: #208e3f;
+
+    /* onSuccess */
+    --on-success-light-color: #ffffff;
+    --on-success-dark-color: #000000;
+
+    /* Background */
+    --background-light-color: #ffffff;
+    --background-dark-color: #000000;
+
+    /* onBackground */
+    --on-background-light-color: #000000;
+    --on-background-dark-color: #ffffff;
+    --on-background-hover-light-color: #212121;
+    --on-background-hover-dark-color: #f1f1f1;
+    --on-background-variant-light-color: #525252;
+    --on-background-variant-dark-color: #a8a8a8;
+
+    /* Surface */
+    --surface-light-color: #f4f4f4;
+    --surface-dark-color: #161616;
+    --surface-variant-light-color: #e0e0e0;
+    --surface-variant-dark-color: #262626;
+
+    /* onSurface */
+    --on-surface-light-color: #a8a8a8;
+    --on-surface-dark-color: #525252;
+
+    /* Surface Error */
+    --surface-error-light-color: #fff1f1;
+    --surface-error-dark-color: #2d0709;
+
+    /* onSurface Error */
+    --on-surface-error-light-color: #ff8389;
+    --on-surface-error-dark-color: #a2191f;
+
+    /* Border */
+    --border-light-color: #8d8d8d;
+    --border-dark-color: #6f6f6f;
+
+    /* Border Error */
+    --border-error-light-color: #fa4d56;
+    --border-error-dark-color: #da1e28;
+
+    /* Gradients */
+    --mi-roulotte-gradient: linear-gradient(45deg, #375ba6, #3498db);
+}
+
+/* Light */
+@media (prefers-color-scheme: light) {
+    :root {
+        /* Brightness */
+        --brightness: light;
+
+        /* Primary */
+        --primary-color: var(--primary-light-color);
+        --primary-hover-color: var(--primary-hover-light-color);
+
+        /* onPrimary */
+        --on-primary-color: var(--on-primary-light-color);
+
+        /* Higlight */
+        --highlight-color: var(--highlight-light-color);
+        --highlight-hover-color: var(--highlight-hover-light-color);
+
+        /* onHiglight */
+        --on-higlight-color: var(--on-higlight-light-color);
+
+        /* Error */
+        --error-color: var(--error-light-color);
+        --error-hover-color: var(--error-hover-light-color);
+
+        /* onError */
+        --on-error-color: var(--on-error-light-color);
+
+        /* Success */
+        --success-color: var(--success-light-color);
+        --success-hover-color: var(--success-hover-light-color);
+
+        /* onSuccess */
+        --on-success-color: var(--on-success-light-color);
+
+        /* Background */
+        --background-color: var(--background-light-color);
+
+        /* onBackground */
+        --on-background-color: var(--on-background-light-color);
+        --on-background-hover-color: var(--on-background-hover-light-color);
+        --on-background-variant-color: var(--on-background-variant-light-color);
+
+        /* Surface */
+        --surface-color: var(--surface-light-color);
+        --surface-variant-color: var(--surface-variant-light-color);
+
+        /* onSurface */
+        --on-surface-color: var(--on-surface-light-color);
+
+        /* Surface Error */
+        --surface-error-color: var(--surface-error-light-color);
+
+        /* onSurface Error */
+        --on-surface-error-color: var(--on-surface-error-light-color);
+
+        /* Border */
+        --border-color: var(--border-light-color);
+
+        /* Border Error */
+        --border-error-color: var(--border-error-light-color);
+    }
+}
+
+/* Dark */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Brightness */
+        --brightness: dark;
+
+        /* Primary */
+        --primary-color: var(--primary-dark-color);
+        --primary-hover-color: var(--primary-hover-dark-color);
+
+        /* onPrimary */
+        --on-primary-color: var(--on-primary-dark-color);
+
+        /* Higlight */
+        --highlight-color: var(--highlight-dark-color);
+        --highlight-hover-color: var(--highlight-hover-dark-color);
+
+        /* onHiglight */
+        --on-higlight-color: var(--on-higlight-dark-color);
+
+        /* Error */
+        --error-color: var(--error-dark-color);
+        --error-hover-color: var(--error-hover-dark-color);
+
+        /* onError */
+        --on-error-color: var(--on-error-dark-color);
+
+        /* Success */
+        --success-color: var(--success-dark-color);
+        --success-hover-color: var(--success-hover-dark-color);
+
+        /* onSuccess */
+        --on-success-color: var(--on-success-dark-color);
+
+        /* Background */
+        --background-color: var(--background-dark-color);
+
+        /* onBackground */
+        --on-background-color: var(--on-background-dark-color);
+        --on-background-hover-color: var(--on-background-hover-dark-color);
+        --on-background-variant-color: var(--on-background-variant-dark-color);
+
+        /* Surface */
+        --surface-color: var(--surface-dark-color);
+        --surface-variant-color: var(--surface-variant-dark-color);
+
+        /* onSurface */
+        --on-surface-color: var(--on-surface-dark-color);
+
+        /* Surface Error */
+        --surface-error-color: var(--surface-error-dark-color);
+
+        /* onSurface Error */
+        --on-surface-error-color: var(--on-surface-error-dark-color);
+
+        /* Border */
+        --border-color: var(--border-dark-color);
+
+        /* Border Error */
+        --border-error-color: var(--border-error-dark-color);
+    }
+}

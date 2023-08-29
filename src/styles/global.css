@@ -8,3 +8,10 @@
     scroll-behavior: smooth;
     image-rendering: optimizeQuality;
 }
+
+/* Html */
+html {
+    color: var(--on-background-variant-color);
+    background-color: var(--background-color);
+    color-scheme: var(--brightness);
+}

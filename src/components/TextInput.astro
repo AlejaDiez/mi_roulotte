@@ -1,0 +1,219 @@
+---
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    value?: string;
+    label?: string;
+    placeholder?: string;
+    style?: "" | "email" | "tel" | "password" | "text area";
+    error?: string | Object;
+}
+
+const {
+    value = "",
+    label,
+    placeholder,
+    style = "",
+    error,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<div
+    {id}
+    class:list={[
+        "text-input",
+        { error: typeof error === "string" ? "error" : "" },
+        classList,
+        hashClass,
+    ]}>
+    {
+        label && (
+            <label for={id} class:list={["label", hashClass]}>
+                {label}
+            </label>
+        )
+    }
+    {
+        style === "text area" ? (
+            <textarea
+                name={id}
+                {placeholder}
+                rows="8"
+                autocomplete="off"
+                spellcheck="true"
+                class:list={["input", hashClass]}
+            >{value}</textarea>
+        ) : (
+            <input
+                name={id}
+                {value}
+                {placeholder}
+                type={style === "" ? "text" : style}
+                autocomplete="off"
+                spellcheck="false"
+                class:list={["input", hashClass]}
+            />
+        )
+    }
+    {
+        error && (
+            typeof error === "string" ? (
+                <span class:list={["error-label", hashClass]}>{error}</span>
+            ) : (
+                <script is:inline define:vars={error}>{
+                    const patternRegExp = new RegExp(pattern);
+                    const textInput = document.currentScript.parentElement;
+
+                    const errorLabel = document.createElement("span");
+                    errorLabel.classList.add(
+                        "error-label",
+                        ...Array.from(textInput.classList).filter((e) => e.includes("astro-"))
+                    );
+                    errorLabel.textContent = message;
+
+                    const input = textInput.querySelector(".input");
+                    input.addEventListener("input", () => {
+                        if (input.value === "" || patternRegExp.test(input.value)) {
+                            textInput.classList.remove("error");
+                            errorLabel.remove();
+                        } else {
+                            textInput.classList.add("error");
+                            textInput.appendChild(errorLabel);
+                        }
+                    });
+                }</script>
+            )
+        )
+    }
+</div>
+
+<style>
+    .text-input {
+        --text-input-horizontal-padding: 16px;
+        --text-input-vertical-spacing: 8px;
+
+        min-width: var(--component-size);
+        width: 100%;
+        min-height: var(--component-size);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+
+    .text-input .input {
+        width: 100%;
+        height: var(--component-size);
+        padding: 0 var(--text-input-horizontal-padding);
+        display: block;
+        color: var(--on-background-color);
+        text-align: start;
+        text-decoration: none;
+        background-color: var(--surface-color);
+        border: none;
+        border-bottom-width: var(--border-width);
+        border-bottom-style: solid;
+        border-bottom-color: var(--border-color);
+        border-radius: var(--border-radius);
+        outline: none;
+        appearance: none;
+        transition-property: background-color, border-color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        caret-color: var(--primary-color);
+    }
+
+    .text-input .input[type="text"]::-webkit-credentials-auto-fill-button {
+        visibility: hidden;
+        position: absolute;
+        right: 0;
+    }
+
+    .text-input .input::-webkit-contacts-auto-fill-button,
+    .text-input .input::-webkit-credentials-auto-fill-button {
+        background-color: var(--primary-color);
+    }
+
+    .text-input .input[rows] {
+        height: unset !important;
+        resize: none;
+        padding: calc(
+                (
+                        var(--component-size) - var(--body-font-line-height) -
+                            var(--border-width)
+                    ) / 2
+            )
+            var(--text-input-horizontal-padding) !important;
+    }
+
+    .text-input .input:hover {
+        border-bottom-color: var(--primary-hover-color);
+    }
+
+    .text-input .input:focus {
+        border-bottom-color: var(--primary-color);
+    }
+
+    .text-input .input::placeholder {
+        color: var(--on-surface-color);
+        text-align: start;
+        transition-property: color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .text-input .label {
+        margin-bottom: var(--text-input-vertical-spacing);
+        font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
+        color: var(--on-background-variant-color);
+        text-align: start;
+        line-height: var(--label-font-line-height);
+        letter-spacing: var(--label-font-spacing);
+        cursor: default;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .text-input .error-label {
+        margin-top: calc(var(--text-input-vertical-spacing) / 2);
+        font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
+        color: var(--error-color);
+        text-align: start;
+        line-height: var(--label-font-line-height);
+        letter-spacing: var(--label-font-spacing);
+        cursor: default;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    /* Error */
+    .text-input.error .input {
+        background-color: var(--surface-error-color);
+        border-bottom-color: var(--border-error-color);
+    }
+
+    .text-input.error .input:hover {
+        border-bottom-color: var(--error-hover-color);
+    }
+
+    .text-input.error .input:focus {
+        border-bottom-color: var(--error-color);
+    }
+
+    .text-input.error .input::placeholder {
+        color: var(--on-surface-error-color);
+    }
+</style>

@@ -1,0 +1,26 @@
+---
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {}
+
+const { id, classList, class: hashClass } = Astro.props;
+---
+
+<main {id} class:list={["main", classList, hashClass]}>
+    <slot />
+</main>
+
+<style>
+    .main {
+        --main-spacing: 2.4rem;
+
+        width: 100%;
+        height: auto;
+        padding: 0 var(--horizontal-padding);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: var(--main-spacing);
+    }
+</style>

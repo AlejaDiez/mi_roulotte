@@ -1,5 +1,6 @@
 ---
 import Header from "@components/Header.astro";
+import Main from "@components/Main.astro";
 import Layout from "@layouts/Layout.astro";
 import type DefaultProps from "@models/properties";
 
@@ -35,5 +36,7 @@ const {
         transparent={floatingHeader}
         classList={hashClass}
     />
-    <slot />
+    <Main classList={hashClass}>
+        <slot />
+    </Main>
 </Layout>

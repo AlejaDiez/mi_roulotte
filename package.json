@@ -6,16 +6,17 @@
     "homepage": "https://miroulotte.es",
     "repository": "https://github.com/AlejaDiez/mi_roulotte",
     "type": "module",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
-        "build": "astro build",
+        "build": "astro build && firebase deploy",
         "preview": "astro preview",
         "astro": "astro"
     },
     "dependencies": {
-        "astro": "^2.10.14"
+        "astro": "^2.10.14",
+        "firebase-tools": "^12.5.2"
     },
     "devDependencies": {
         "prettier": "^3.0.2",

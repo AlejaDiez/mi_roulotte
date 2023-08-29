@@ -1,0 +1,24 @@
+{
+    "rules": {
+        "ads": {
+            ".read": true,
+            ".write": "auth.uid == 'Isxr2vxXeHXNqKM3qk3UxKXXT7H3'"
+        },
+        "comments": {
+            ".read": true,
+            "$travel-id": {
+                "$comment": {
+                    ".write": "!data.exists() || auth.uid == 'Isxr2vxXeHXNqKM3qk3UxKXXT7H3'"
+                }
+            }
+        },
+        "comments-email": {
+            ".read": "auth.uid == 'Isxr2vxXeHXNqKM3qk3UxKXXT7H3'",
+            "$travel-id": {
+                "$comment": {
+                    ".write": "!data.exists() || auth.uid == 'Isxr2vxXeHXNqKM3qk3UxKXXT7H3'"
+                }
+            }
+        }
+    }
+}

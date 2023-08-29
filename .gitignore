@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # vscode-specific files
 .vscode/
+
+# firebase
+.firebase/
+.firebaserc

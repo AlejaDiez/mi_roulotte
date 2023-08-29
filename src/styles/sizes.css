@@ -1,2 +1,20 @@
 :root {
+    --component-size: 56px;
+    --overflow-size: 64px;
+
+    /* Padding */
+    --vertical-padding: 80px;
+    --horizontal-padding: 8vw;
+
+    /* Spacing */
+    --headline-spacing: 0.84rem;
+    --text-spacing: 0.28rem;
+    --media-spacing: 0.53rem;
+
+    /* Border */
+    --border-width: 1.5px;
+    --border-radius: 0px;
+
+    /* Transforms */
+    --scale-factor: 0.08;
 }

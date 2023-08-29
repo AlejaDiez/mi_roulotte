@@ -1,9 +1,7 @@
 ---
-import Photo from "@components/Photo.astro";
+import Player from "@components/Player.astro";
 import Layout from "@layouts/Layout.astro";
-import { LocalImage, RemoteImage } from "@models/image";
-
-import IMG_20200825_185010 from "@assets/IMG_20200825_185010.jpg";
+import { YoutubeVideo } from "@models/video";
 ---
 
 <Layout
@@ -30,14 +28,9 @@ import IMG_20200825_185010 from "@assets/IMG_20200825_185010.jpg";
         "brico-cv",
         "bricolaje",
     ]}>
-    <Photo image={new LocalImage(IMG_20200825_185010, "Local Image")} />
-    <br />
-    <Photo
-        image={new RemoteImage(
-            "https://picsum.photos/1024/1024?random=410055",
-            1024,
-            1024,
-            "Remote Image"
+    <Player
+        video={new YoutubeVideo(
+            "https://www.youtube.com/watch?v=kxNnnyv0tvM&t=9s"
         )}
     />
 </Layout>

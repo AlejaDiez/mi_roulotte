@@ -1,0 +1,447 @@
+---
+import Button from "@components/Button.astro";
+import Slider from "@components/Slider.astro";
+import { icon_play_filled_alt, icon_fit_to_screen } from "@models/icons";
+import type DefaultProps from "@models/properties";
+import { type Video, YoutubeVideo, LazyVideo } from "@models/video";
+
+export interface Props extends DefaultProps {
+    video: Video;
+    aspectRatio?:
+        | "aspect-ratio-1-1"
+        | "aspect-ratio-4-3"
+        | "aspect-ratio-16-9"
+        | "aspect-ratio-21-9";
+}
+
+const {
+    video,
+    aspectRatio = "aspect-ratio-16-9",
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<div {id} class:list={["player", classList, hashClass]}>
+    <div class:list={["video", aspectRatio, hashClass]}>
+        {
+            video instanceof YoutubeVideo ? (
+                <source
+                    id={video.id}
+                    src={video.src}
+                    type="video/youtube"
+                    class:list={hashClass}
+                />
+            ) : video instanceof LazyVideo ? (
+                <source
+                    src={video.src}
+                    type="video/lazy"
+                    class:list={hashClass}
+                />
+            ) : (
+                <source
+                    src={video.src}
+                    type="video/mp4"
+                    class:list={hashClass}
+                />
+            )
+        }
+    </div>
+    <div class:list={["thumbnail", hashClass]}>
+        <Button style="fill" icon classList={["play", hashClass]}>
+            {icon_play_filled_alt}
+        </Button>
+    </div>
+    <div class:list={["controls", "collapsed", hashClass]}>
+        <div class:list={hashClass}>
+            <Button icon classList={["play", hashClass]}>
+                {icon_play_filled_alt}
+            </Button>
+            <Slider
+                min={0}
+                max={100}
+                step={0.1}
+                classList={["progress-slider", hashClass]}
+            />
+            <span class:list={["progress-text", hashClass]}>00:00 / 00:00</span>
+            <Button icon classList={["fullscreen", hashClass]}>
+                {icon_fit_to_screen}
+            </Button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .player {
+        --player-horizontal-spacing: 24px;
+
+        min-width: 256px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--surface-color);
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .player .video {
+        width: 100%;
+        height: auto;
+        display: inline-flex;
+    }
+
+    .player .video iframe {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        pointer-events: none;
+    }
+
+    .player .thumbnail {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .player .thumbnail .play {
+        padding: 48px !important;
+        border-radius: 50%;
+        transition-property: background-color, transform;
+        transition-duration: var(--animation-duration-1),
+            var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .player .thumbnail .play:hover {
+        transform: scale(calc(1 + var(--scale-factor)));
+    }
+
+    .player .controls {
+        width: 100%;
+        height: var(--component-size);
+        display: flex;
+        align-items: start;
+        background-color: var(--surface-color);
+        overflow: hidden;
+        transition-property: height, opacity;
+        transition-duration: var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .player .controls > div {
+        width: 100%;
+        height: var(--component-size);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .player .controls .progress-slider {
+        width: auto;
+        flex-grow: 1;
+    }
+
+    .player .controls .progress-text {
+        margin-left: var(--player-horizontal-spacing);
+        font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
+        color: var(--on-surface-color);
+        text-align: center;
+        vertical-align: middle;
+        line-height: var(--label-font-line-height);
+        letter-spacing: var(--label-font-spacing);
+    }
+
+    /* Collapsed */
+    .player .controls.collapsed {
+        height: 0 !important;
+    }
+
+    /* Fullscreen */
+    .player:fullscreen {
+        background-color: var(--background-dark-color);
+    }
+
+    .player:fullscreen .video {
+        height: 100% !important;
+        aspect-ratio: unset !important;
+    }
+
+    .player:fullscreen .controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 9;
+    }
+
+    .player:fullscreen .controls.hidden {
+        opacity: 0;
+    }
+</style>
+
+<script>
+    import {
+        icon_pause_filled,
+        icon_hourglass,
+        icon_play_filled_alt,
+        icon_rotate_360,
+        icon_shrink_screen_filled,
+        icon_fit_to_screen,
+    } from "@models/icons";
+
+    // Youtube videos
+    const youtube = (videos: Element[]) => {
+        const youtubeVideos: Element[] = videos.filter(
+            (video: Element) =>
+                video.querySelector("source[type='video/youtube']") !== null
+        );
+
+        if (youtubeVideos.length > 0) {
+            const youtubeAPI: string = "https://www.youtube.com/iframe_api";
+
+            // Load Youtube API if not loaded
+            if (!document.querySelector(`script[src="${youtubeAPI}"]`)) {
+                const youtubeAPIScript: HTMLScriptElement =
+                    document.createElement("script");
+
+                youtubeAPIScript.setAttribute("src", youtubeAPI);
+                document.head.appendChild(youtubeAPIScript);
+            }
+
+            // Youtube API is ready
+            (window as any)["onYouTubeIframeAPIReady"] = () => {
+                youtubeVideos.forEach((player: Element) => {
+                    const videoId: string =
+                        player.querySelector("source")!.getAttribute("id") ??
+                        "";
+                    const video: HTMLDivElement =
+                        player.querySelector(".video")!;
+                    const thumbnail: HTMLDivElement =
+                        player.querySelector(".thumbnail")!;
+                    const thumbnailPlay: HTMLButtonElement =
+                        thumbnail.querySelector(".play")!;
+                    const controls: HTMLDivElement =
+                        player.querySelector(".controls")!;
+                    let controlsTimeout: NodeJS.Timeout;
+                    const play: HTMLButtonElement =
+                        controls.querySelector(".play")!;
+                    const slider: HTMLInputElement = controls.querySelector(
+                        ".progress-slider .input"
+                    )!;
+                    let sliderInterval: NodeJS.Timeout;
+                    const text: HTMLSpanElement =
+                        controls.querySelector(".progress-text")!;
+                    const fullscreen: HTMLButtonElement =
+                        controls.querySelector(".fullscreen")!;
+                    const videoPlayer: YT.Player = new YT.Player(videoId, {
+                        videoId: videoId,
+                        playerVars: {
+                            autoplay: 0,
+                            controls: 0,
+                            showinfo: 0,
+                            rel: 0,
+                            fs: 0,
+                            iv_load_policy: 3,
+                            start: 0,
+                            playsinline: 1,
+                            modestbranding: 1,
+                            hl: "es",
+                            cc_lang_pref: "es",
+                            cc_load_policy: 0,
+                            autohide: 1,
+                        },
+                        events: {
+                            onReady: () => {
+                                video.addEventListener("click", togglePlay);
+                                thumbnailPlay.addEventListener(
+                                    "click",
+                                    togglePlay
+                                );
+                                play.addEventListener("click", togglePlay);
+                                videoPlayer.setVolume(100);
+                                slider.addEventListener("input", sliderChange);
+                                updateText();
+                                fullscreen.addEventListener(
+                                    "click",
+                                    toggleFullscreen
+                                );
+                            },
+                            onStateChange: () => {
+                                const state: number =
+                                    videoPlayer.getPlayerState();
+
+                                if (state === YT.PlayerState.PLAYING) {
+                                    play.innerHTML = icon_pause_filled;
+                                    sliderInterval = setInterval(
+                                        updateSlider,
+                                        240
+                                    );
+                                } else if (state === YT.PlayerState.BUFFERING) {
+                                    play.innerHTML = icon_hourglass;
+                                    clearInterval(sliderInterval);
+                                } else if (state === YT.PlayerState.PAUSED) {
+                                    play.innerHTML = icon_play_filled_alt;
+                                    clearInterval(sliderInterval);
+                                } else if (state === YT.PlayerState.ENDED) {
+                                    play.innerHTML = icon_rotate_360;
+                                    clearInterval(sliderInterval);
+                                }
+                            },
+                        },
+                    });
+
+                    // Toggle play/pause
+                    const togglePlay = () => {
+                        const state: number = videoPlayer.getPlayerState();
+
+                        if (controls.classList.contains("collapsed")) {
+                            thumbnail.remove();
+                            controls.classList.remove("collapsed");
+                        }
+                        if (state === YT.PlayerState.PLAYING) {
+                            videoPlayer.pauseVideo();
+                        } else if (
+                            state === YT.PlayerState.UNSTARTED ||
+                            state === YT.PlayerState.PAUSED ||
+                            state === YT.PlayerState.CUED
+                        ) {
+                            videoPlayer.playVideo();
+                        } else if (state === YT.PlayerState.ENDED) {
+                            videoPlayer.seekTo(0, true);
+                        }
+                    };
+
+                    // Slider change event
+                    const sliderChange = () => {
+                        const duration: number = videoPlayer.getDuration();
+                        const currentTime: number = parseInt(
+                            ((Number(slider.value) / 100) * duration).toString()
+                        );
+
+                        clearInterval(sliderInterval);
+                        updateText(currentTime);
+                        videoPlayer.seekTo(currentTime, true);
+                    };
+
+                    // Update slider
+                    const updateSlider = () => {
+                        const duration: number = videoPlayer.getDuration();
+                        const currentTime: number =
+                            videoPlayer.getCurrentTime();
+                        const currentPercent: string = (
+                            (currentTime / duration) *
+                            100
+                        ).toFixed(1);
+
+                        slider.value = currentPercent;
+                        (window as any).updateSliderProgress(slider);
+                        updateText();
+                    };
+
+                    // Update text
+                    const updateText = (
+                        currentTime: number = videoPlayer.getCurrentTime()
+                    ) => {
+                        const duration: Date = new Date(
+                            videoPlayer.getDuration() * 1000
+                        );
+
+                        text.innerHTML = `${new Date(
+                            currentTime * 1000
+                        ).toLocaleString("es-ES", {
+                            minute: "numeric",
+                            second: "numeric",
+                        })} / ${duration.toLocaleString("es-ES", {
+                            minute: "numeric",
+                            second: "numeric",
+                        })}`;
+                    };
+
+                    // Fullscreen change event
+                    const fullscreenChange = () => {
+                        if (document.fullscreenElement) {
+                            fullscreen.innerHTML = icon_shrink_screen_filled;
+                            player.addEventListener("mousemove", hideControls);
+                        } else {
+                            fullscreen.innerHTML = icon_fit_to_screen;
+                            player.removeEventListener(
+                                "mousemove",
+                                hideControls
+                            );
+                            controls.classList.remove("hidden");
+                        }
+                    };
+
+                    // Toggle fullscreen
+                    const toggleFullscreen = () => {
+                        if (document.fullscreenElement) {
+                            // Minimize
+                            if (document.exitFullscreen) {
+                                document.exitFullscreen();
+                                document.removeEventListener(
+                                    "fullscreenchange",
+                                    fullscreenChange
+                                );
+                            }
+                            fullscreen.innerHTML = icon_fit_to_screen;
+                            player.removeEventListener(
+                                "mousemove",
+                                hideControls
+                            );
+                            controls.classList.remove("hidden");
+                        } else {
+                            // Fullscreen
+                            if (player.requestFullscreen) {
+                                player.requestFullscreen();
+                                document.addEventListener(
+                                    "fullscreenchange",
+                                    fullscreenChange
+                                );
+                            }
+                        }
+                    };
+
+                    // Hide controls on mousemove
+                    const hideControls = () => {
+                        controls.classList.remove("hidden");
+                        clearTimeout(controlsTimeout);
+                        controlsTimeout = setTimeout(() => {
+                            if (
+                                videoPlayer.getPlayerState() ===
+                                YT.PlayerState.PLAYING
+                            ) {
+                                controls.classList.add("hidden");
+                            }
+                        }, 3000);
+                    };
+                });
+            };
+        }
+    };
+
+    // Videos
+    const videos: NodeListOf<Element> = document.querySelectorAll(".player");
+
+    youtube(Array.from(videos));
+
+    // Lazy videos
+    (window as any)["onLazyVideosReady"] = () => {
+        const videos: NodeListOf<Element> =
+            document.querySelectorAll(".player");
+
+        youtube(Array.from(videos));
+    };
+</script>

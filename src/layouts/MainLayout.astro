@@ -1,0 +1,31 @@
+---
+import Layout from "@layouts/Layout.astro";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    title: string;
+    description?: string;
+    image?: string;
+    keywords?: string[];
+}
+
+const {
+    title,
+    description,
+    image,
+    keywords,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<Layout
+    {id}
+    {title}
+    {description}
+    {image}
+    {keywords}
+    classList={[classList, hashClass]}>
+    <slot />
+</Layout>

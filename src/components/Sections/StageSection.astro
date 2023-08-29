@@ -1,0 +1,277 @@
+---
+import Button from "@components/Button.astro";
+import Img from "@components/Img.astro";
+import {
+    icon_chevron_left,
+    icon_home,
+    icon_chevron_right,
+} from "@models/icons";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {}
+
+const { id, classList, class: hashClass } = Astro.props;
+const travelUrl = Astro.url.pathname.replace(/etapa-(\d+).*/, "");
+const stages = (await Astro.glob("/src/pages/**/etapa-[[:digit:]].astro"))
+    .filter((e) => e.url!.includes(travelUrl))
+    .map((e: any) => {
+        const { url, travel } = e;
+        const id = parseInt(url.match(/etapa-(\d+)/)[1]);
+
+        return { id, url, ...travel };
+    })
+    .sort((a, b) => a.id - b.id);
+const currentStage = stages.find((e) => e.url === Astro.url.pathname);
+const previousStage = stages.find((e) => e.id === (currentStage?.id ?? -1) - 1);
+const nextStage = stages.find((e) => e.id === (currentStage?.id ?? -1) + 1);
+---
+
+{
+    currentStage !== undefined ? (
+        <section
+            {id}
+            class:list={["stage-section", "compact", classList, hashClass]}>
+            {previousStage !== undefined ? (
+                <Button
+                    href={previousStage.url}
+                    style="fill"
+                    icon
+                    classList={["previous", hashClass]}>
+                    {icon_chevron_left}
+                </Button>
+            ) : (
+                <Button
+                    href={travelUrl}
+                    style="fill"
+                    icon
+                    classList={["previous", hashClass]}>
+                    {icon_home}
+                </Button>
+            )}
+            <div class:list={["list", hashClass]}>
+                {stages.map((e) => (
+                    <Button
+                        href={e.url}
+                        classList={[
+                            "item",
+                            e.id === currentStage.id ? "selected" : "",
+                            hashClass,
+                        ]}>
+                        {e.id}
+                    </Button>
+                ))}
+            </div>
+            {nextStage !== undefined ? (
+                <Button
+                    href={nextStage.url}
+                    style="fill"
+                    icon
+                    classList={["next", hashClass]}>
+                    {icon_chevron_right}
+                </Button>
+            ) : (
+                <div class:list={["spacer", hashClass]} />
+            )}
+        </section>
+    ) : (
+        <section
+            {id}
+            class:list={["stage-section", "expanded", classList, hashClass]}>
+            <div class:list={["scroll", hashClass]}>
+                <div class:list={["list", hashClass]}>
+                    {stages.map((e) => (
+                        <a href={e.url} class:list={["item", hashClass]}>
+                            <div class:list={["image", hashClass]}>
+                                <Img image={e.image} classList={hashClass} />
+                            </div>
+                            <span class:list={["title", hashClass]}>
+                                {e.title}
+                            </span>
+                        </a>
+                    ))}
+                </div>
+            </div>
+            <div class:list={["controls", hashClass]}>
+                <Button style="fill" icon classList={["previous", hashClass]}>
+                    {icon_chevron_left}
+                </Button>
+                <Button style="fill" icon classList={["next", hashClass]}>
+                    {icon_chevron_right}
+                </Button>
+            </div>
+        </section>
+    )
+}
+
+<style>
+    .stage-section {
+        --stage-section-spacing: calc(var(--media-spacing) * 2);
+        --stage-section-item-width: 256px;
+
+        width: 100%;
+        display: flex;
+        gap: var(--stage-section-spacing);
+        animation-name: stage-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    /* Compact */
+    .stage-section.compact {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .stage-section.compact .list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .stage-section.compact .list .item {
+        width: var(--component-size);
+        padding: 0;
+        color: var(--on-surface-color);
+    }
+
+    .stage-section.compact .list .item.selected {
+        font-weight: 500 !important;
+        color: var(--primary-color);
+    }
+
+    .stage-section.compact .list .item:hover {
+        color: var(--primary-hover-color) !important;
+    }
+
+    .stage-section.compact .spacer {
+        width: var(--component-size);
+        height: var(--component-size);
+    }
+
+    /* Expanded */
+    .stage-section.expanded {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+
+    .stage-section.expanded .scroll {
+        width: calc(100% + var(--horizontal-padding) * 2);
+        position: relative;
+        left: calc(var(--horizontal-padding) * -1);
+        display: block;
+        overflow-x: scroll;
+    }
+
+    .stage-section.expanded .scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .stage-section.expanded .scroll .list {
+        width: max-content;
+        padding: 0 var(--horizontal-padding);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: var(--stage-section-spacing);
+    }
+
+    .stage-section.expanded .scroll .list .item {
+        width: var(--stage-section-item-width);
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: calc(var(--media-spacing) + var(--text-spacing));
+        text-decoration: none;
+        border: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .stage-section.expanded .scroll .list .item .image {
+        width: 100%;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+    }
+
+    .stage-section.expanded .scroll .list .item .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1);
+        transition-property: transform;
+        transition-duration: var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .stage-section.expanded .scroll .list .item:hover .image img {
+        transform: scale(calc(1 + var(--scale-factor)));
+    }
+
+    .stage-section.expanded .scroll .list .item .title {
+        font-family: var(--body-font-family);
+        font-size: var(--body-font-size);
+        font-weight: var(--body-font-weight);
+        color: var(--on-surface-color);
+        text-align: start;
+        line-height: var(--body-font-line-height);
+        letter-spacing: var(--body-font-spacing);
+        transition-property: color;
+        transition-duration: var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .stage-section.expanded .scroll .list .item:hover .title {
+        color: var(--on-background-hover-color);
+    }
+
+    .stage-section.expanded .controls {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+    }
+
+    @keyframes stage-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+
+        60% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    const stageExpandedSections: NodeListOf<HTMLDivElement> =
+        document.querySelectorAll(".stage-section.expanded");
+
+    stageExpandedSections.forEach((e) => {
+        const scroll: HTMLDivElement = e.querySelector(".scroll")!;
+        const previous: HTMLButtonElement = e.querySelector(".previous")!;
+        const next: HTMLButtonElement = e.querySelector(".next")!;
+
+        previous.addEventListener("click", () =>
+            scroll.scrollBy({ left: -scroll.clientWidth, behavior: "smooth" })
+        );
+        next.addEventListener("click", () =>
+            scroll.scrollBy({ left: scroll.clientWidth, behavior: "smooth" })
+        );
+    });
+</script>

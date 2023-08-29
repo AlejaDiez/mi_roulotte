@@ -1,0 +1,132 @@
+---
+import { icon_logo_instagram, icon_logo_youtube } from "@models/icons";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    transparent?: boolean;
+    float?: boolean;
+}
+
+const {
+    transparent = false,
+    float = false,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<footer
+    {id}
+    class:list={["footer", { transparent, float }, classList, hashClass]}>
+    <span class:list={["author", hashClass]}>Mi Roulotte</span>
+    <nav class:list={["social-networks", hashClass]}>
+        <a
+            title="Instagram"
+            href="https://www.instagram.com/miroulotte/"
+            target="_blank"
+            class:list={["item", "icon", hashClass]}>
+            {icon_logo_instagram}
+        </a>
+        <a
+            title="Youtube"
+            href="https://www.youtube.com/channel/UCEvVP3GOATKXyfKznuNiUzQ/"
+            target="_blank"
+            class:list={["item", "icon", hashClass]}>
+            {icon_logo_youtube}
+        </a>
+    </nav>
+</footer>
+
+<style>
+    .footer {
+        --footer-size: 128px;
+        --footer-spacing: 16px;
+
+        width: 100%;
+        height: var(--footer-size);
+        padding: 0 var(--horizontal-padding);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--footer-spacing);
+        background-color: var(--background-color);
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .footer .author {
+        color: var(--on-surface-color);
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        transition-property: color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        cursor: default;
+    }
+
+    .footer .author::after {
+        content: " | Alejandro Diez Bermejo";
+    }
+
+    .footer .author:hover {
+        color: var(--on-background-hover-color);
+    }
+
+    .footer .social-networks {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: var(--footer-spacing);
+    }
+
+    .footer .social-networks .item {
+        color: var(--on-surface-color);
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        outline: none;
+        appearance: none;
+        transition-property: color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        cursor: pointer;
+    }
+
+    .footer .social-networks .item:hover {
+        color: var(--on-background-hover-color);
+    }
+
+    /* Transparent */
+    .footer.transparent {
+        background-color: transparent;
+    }
+
+    .footer.transparent .author,
+    .footer.transparent .social-networks .item {
+        color: var(--on-background-dark-color);
+        opacity: 0.4;
+        transition-property: color, opacity;
+    }
+
+    .footer.transparent .author:hover,
+    .footer.transparent .social-networks .item:hover {
+        color: var(--on-background-hover-dark-color);
+        opacity: 1;
+    }
+
+    /* Float */
+    .footer.float {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+    }
+</style>

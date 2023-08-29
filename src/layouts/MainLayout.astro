@@ -1,4 +1,5 @@
 ---
+import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
 import type DefaultProps from "@models/properties";
 
@@ -7,6 +8,7 @@ export interface Props extends DefaultProps {
     description?: string;
     image?: string;
     keywords?: string[];
+    floatingHeader?: boolean;
 }
 
 const {
@@ -14,6 +16,7 @@ const {
     description,
     image,
     keywords,
+    floatingHeader = false,
     id,
     classList,
     class: hashClass,
@@ -27,5 +30,10 @@ const {
     {image}
     {keywords}
     classList={[classList, hashClass]}>
+    <Header
+        float={floatingHeader}
+        transparent={floatingHeader}
+        classList={hashClass}
+    />
     <slot />
 </Layout>

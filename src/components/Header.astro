@@ -1,0 +1,189 @@
+---
+import { icon_logo_mi_roulotte } from "@models/icons";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {
+    transparent?: boolean;
+    float?: boolean;
+}
+
+const {
+    transparent = false,
+    float = false,
+    id,
+    classList,
+    class: hashClass,
+} = Astro.props;
+---
+
+<header
+    {id}
+    class:list={["header", { transparent, float }, classList, hashClass]}>
+    <a title="Mi Roulotte" href="/" class:list={["logo", "icon", hashClass]}>
+        {icon_logo_mi_roulotte}
+    </a>
+    <nav class:list={["navigation-menu", hashClass]}>
+        <a href="/#inicio" target="_self" class:list={["item", hashClass]}>
+            Inicio
+        </a>
+        <a href="/#viajes" target="_self" class:list={["item", hashClass]}>
+            Viajes
+        </a>
+        <a href="/#brico-cv" target="_self" class:list={["item", hashClass]}>
+            Brico-CV
+        </a>
+    </nav>
+</header>
+
+<style>
+    .header {
+        --header-size: var(--vertical-padding);
+        --header-spacing: 40px;
+
+        width: 100%;
+        height: var(--header-size);
+        padding: 0 var(--horizontal-padding);
+        position: sticky;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 999;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--header-spacing);
+        background-color: var(--background-color);
+        transition-property: background-color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .header a {
+        color: var(--on-background-color);
+        text-decoration: none;
+        outline: none;
+        appearance: none;
+        transition-property: color;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        cursor: pointer;
+    }
+
+    .header a:hover {
+        color: var(--on-background-hover-color);
+    }
+
+    .header .logo {
+        width: var(--component-size);
+        height: var(--component-size);
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--component-size);
+        line-height: var(--component-size);
+        transition-property: font-size, color, line-height;
+        transition-duration: var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .header .logo::before {
+        content: "";
+        width: var(--component-size);
+        height: var(--component-size);
+        position: absolute;
+        z-index: -9;
+        background: var(--mi-roulotte-gradient);
+        border-radius: 50%;
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: var(--animation-duration-2);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    .header .logo:active {
+        font-size: calc(var(--component-size) * 0.64);
+        color: var(--on-background-dark-color);
+        line-height: calc(var(--component-size) * 0.64);
+    }
+
+    .header .logo:active::before {
+        opacity: 1;
+    }
+
+    .header .navigation-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: var(--header-spacing);
+    }
+
+    .header .navigation-menu .item {
+        color: var(--on-surface-color);
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .header .navigation-menu .item:hover {
+        color: var(--on-background-hover-color);
+    }
+
+    .header .navigation-menu .item.active {
+        color: var(--on-background-color);
+    }
+
+    .header .navigation-menu .item.active:hover {
+        color: var(--on-background-hover-color);
+    }
+
+    /* Transparent */
+    .header.transparent {
+        background-color: transparent;
+    }
+
+    .header.transparent a {
+        color: var(--on-background-dark-color);
+    }
+
+    .header.transparent a:hover {
+        color: var(--on-background-hover-dark-color);
+    }
+
+    .header.transparent .logo:active {
+        color: var(--on-background-dark-color);
+    }
+
+    .header.transparent .navigation-menu .item {
+        color: var(--on-background-dark-color);
+        opacity: 0.4;
+        transition-property: color, opacity;
+    }
+
+    .header.transparent .navigation-menu .item:hover {
+        color: var(--on-background-hover-dark-color);
+        opacity: 1;
+    }
+
+    .header.transparent .navigation-menu .item.active {
+        color: var(--on-background-dark-color);
+        opacity: 1;
+    }
+
+    .header.transparent .navigation-menu .item.active:hover {
+        color: var(--on-background-hover-dark-color);
+        opacity: 1;
+    }
+
+    /* Float */
+    .header.float {
+        position: fixed;
+    }
+</style>

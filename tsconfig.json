@@ -7,7 +7,8 @@
             "@components/*": ["src/components/*"],
             "@layouts/*": ["src/layouts/*"],
             "@models/*": ["src/models/*"],
-            "@styles/*": ["src/styles/*"]
+            "@styles/*": ["src/styles/*"],
+            "@utils/*": ["src/utils/*"]
         },
         "types": ["youtube"]
     }

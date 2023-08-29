@@ -1,0 +1,465 @@
+---
+import Button from "@components/Button.astro";
+import CheckBox from "@components/CheckBox.astro";
+import TextInput from "@components/TextInput.astro";
+import type DefaultProps from "@models/properties";
+
+export interface Props extends DefaultProps {}
+
+const { id, classList, class: hashClass } = Astro.props;
+---
+
+<section {id} class:list={["comments-section", classList, hashClass]}>
+    <h3 class:list={["counter", hashClass]}>Cargando comentarios...</h3>
+    <div class:list={["comments", hashClass]}></div>
+    <form class:list={["form", hashClass]}>
+        <TextInput
+            id="comment"
+            label="Comentario"
+            placeholder=""
+            style="text area"
+            classList={hashClass}
+        />
+        <TextInput
+            id="author"
+            label="Nombre"
+            error={{
+                pattern: "[A-Za-zÀ-ÖØ-öø-ÿ0-9]{3}[A-Za-zÀ-ÖØ-öø-ÿ0-9s]*",
+                message: "El nombre tiene que tener al menos tres caracteres.",
+            }}
+            style=""
+            classList={hashClass}
+        />
+        <TextInput
+            id="email"
+            label="Correo electrónico"
+            error={{
+                pattern:
+                    "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+                message: "Correo electrónico incorrecto.",
+            }}
+            style="email"
+            classList={hashClass}
+        />
+        <CheckBox
+            id="notify"
+            label="¿Te gustaría recibir una notificación por correo electrónico cuando haya una respuesta a tu comentario?"
+            checked
+            classList={hashClass}
+        />
+        <Button id="submit" style="outline" submit classList={hashClass}>
+            Enviar comentario
+        </Button>
+    </form>
+</section>
+
+<style>
+    .comments-section {
+        --comments-section-comment-padding: 16px;
+        --comments-section-reply-horizontal-padding: 0.2rem;
+        --comments-section-input-width: 400px;
+
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        animation-name: comments-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    .comments-section .counter {
+        margin-bottom: var(--text-spacing);
+    }
+
+    .comments-section .comments {
+        width: 100%;
+        margin: var(--media-spacing) 0;
+        display: none;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: calc(2 * var(--media-spacing));
+    }
+
+    .comments-section .comments:has(.comment) {
+        display: flex;
+    }
+
+    .comments-section .comments .comment {
+        width: 100%;
+        padding: calc(
+                var(--comments-section-comment-padding) -
+                    ((var(--body-font-line-height) - var(--body-font-size)) / 2)
+            )
+            var(--comments-section-comment-padding);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        border-width: var(--border-width);
+        border-style: solid;
+        border-color: var(--surface-variant-color);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+    }
+
+    .comments-section .comments .comment .author {
+        margin-bottom: var(--text-spacing);
+        font-family: var(--sans-font-family);
+        font-size: var(--body-font-size);
+        font-weight: var(--headline-font-weight);
+        color: var(--on-background-color);
+        text-align: start;
+        line-height: var(--body-font-line-height);
+        letter-spacing: var(--body-font-spacing);
+        cursor: default;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .comments-section .comments .comment .author::after {
+        content: " el " attr(date);
+        font-weight: 300;
+    }
+
+    .comments-section .comments .comment .content {
+        margin-top: var(--text-spacing);
+    }
+
+    .comments-section .comments .comment .divider {
+        padding-left: var(--comments-section-comment-padding);
+        margin: calc(var(--text-spacing) * 2) 0;
+        position: relative;
+        left: calc(var(--comments-section-comment-padding) * -1);
+        font-family: var(--sans-font-family);
+        font-size: var(--body-font-size);
+        font-weight: var(--body-font-weight);
+        color: var(--surface-variant-color);
+        text-align: start;
+        line-height: var(--body-font-line-height);
+        letter-spacing: var(--body-font-spacing);
+        cursor: default;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .comments-section .comments .comment .divider::before,
+    .comments-section .comments .comment .divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        border-top-width: var(--border-width);
+        border-top-style: solid;
+        border-top-color: var(--surface-variant-color);
+    }
+
+    .comments-section .comments .comment .divider::before {
+        left: 0;
+        width: calc(
+            var(--comments-section-comment-padding) -
+                var(--comments-section-reply-horizontal-padding)
+        );
+    }
+
+    .comments-section .comments .comment .divider::after {
+        left: calc(100% + var(--comments-section-reply-horizontal-padding));
+        width: 100vw;
+    }
+
+    .comments-section .form {
+        width: 100%;
+        margin-top: calc(var(--media-spacing) * 2);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: var(--media-spacing);
+    }
+
+    .comments-section .form #author,
+    .comments-section .form #email {
+        width: var(--comments-section-input-width);
+    }
+
+    .comments-section #notify {
+        margin-top: var(--media-spacing);
+        margin-bottom: calc(var(--media-spacing) * 2);
+    }
+
+    .comments-section .form #submit {
+        align-self: flex-end;
+    }
+
+    @keyframes comments-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+
+        60% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    import { FirebaseApp, initializeApp } from "firebase/app";
+    import {
+        Database,
+        DataSnapshot,
+        DatabaseReference,
+        ref,
+        getDatabase,
+        onValue,
+        set,
+        push,
+        serverTimestamp,
+    } from "firebase/database";
+    import { setCookie, getCookie } from "@utils/cookie";
+
+    const commentsSections: NodeListOf<HTMLElement> =
+        document.querySelectorAll(".comments-section");
+    const randomMessages: string[] = [
+        "¿Aventuras divertidas en carretera? ¡Cuéntanos todo!",
+        "¡No guardes tus risas para ti! Comparte tus travesuras sobre ruedas.",
+        "¡Estamos ansiosos por leer tus travesías en caravana! ¡Adelante, escribe tu rollo!",
+        "¡No nos dejes con la intriga! ¡Comparte tus momentos épicos sobre ruedas!",
+        "¡Toca la bocina y suelta tu imaginación! ¡Queremos escuchar tus relatos en caravana!",
+        "¡Atrévete a dejar tu marca en el asfalto con tus historias sobre ruedas!",
+        "¿Vivencias graciosas o momentos ocurrentes? ¡Compártelos con la comunidad viajera!",
+        "¡Despliega tus teclas y acelera tus historias sobre ruedas!",
+        "¿Listo para desatar tu espíritu viajero? ¡Cuéntanos qué tal te va por la ruta! ",
+    ];
+
+    const comment = (
+        author: string,
+        date: Date,
+        content: string,
+        reply: string,
+        hashClass: string[] = []
+    ) => {
+        const comment: HTMLElement = document.createElement("div");
+        const authorHeading: HTMLHeadingElement = document.createElement("h4");
+        const contentParagraph: HTMLParagraphElement =
+            document.createElement("p");
+
+        // Comment
+        comment.classList.add("comment", ...hashClass);
+        // Author heading
+        authorHeading.classList.add("author", ...hashClass);
+        authorHeading.setAttribute(
+            "date",
+            date.toLocaleDateString("es-ES", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+            })
+        );
+        authorHeading.textContent = author;
+        comment.appendChild(authorHeading);
+        // Content paragraph
+        contentParagraph.classList.add("content", ...hashClass);
+        contentParagraph.textContent = content;
+        comment.appendChild(contentParagraph);
+        // Reply
+        if (reply !== "") {
+            const divider: HTMLSpanElement = document.createElement("span");
+            const replyParagraph: HTMLParagraphElement =
+                document.createElement("p");
+
+            // Divider
+            divider.classList.add("divider", ...hashClass);
+            divider.textContent = "Respuesta";
+            comment.appendChild(divider);
+            // Reply paragraph
+            replyParagraph.classList.add("reply", ...hashClass);
+            replyParagraph.textContent = reply!;
+            comment.appendChild(replyParagraph);
+        }
+        return comment;
+    };
+
+    if (commentsSections.length > 0) {
+        // Firebase configuration
+        const app: FirebaseApp = initializeApp({
+            apiKey: import.meta.env.PUBLIC_GOOGLE_KEY,
+            databaseURL: import.meta.env.PUBLIC_DATABASE_URL,
+            projectId: "mi-roulotte-2017",
+            appId: "1:167670871524:web:06987fadeb16ea9bf983f1",
+        });
+        const database: Database = getDatabase(app);
+
+        for (const section of commentsSections) {
+            const commentsId: string = window.location.pathname.split("/")[1];
+            const counter: HTMLHeadingElement =
+                section.querySelector(".counter")!;
+            const comments: HTMLDivElement =
+                section.querySelector(".comments")!;
+            const form: HTMLFormElement = section.querySelector(".form")!;
+
+            // Set random placeholder to comment textarea
+            (
+                form.querySelector("#comment .input")! as HTMLTextAreaElement
+            ).placeholder =
+                randomMessages[
+                    Math.floor(Math.random() * randomMessages.length)
+                ];
+
+            // Get name from cookies
+            const author: string | undefined = getCookie("author");
+
+            if (author !== undefined) {
+                (
+                    form.querySelector("#author .input")! as HTMLInputElement
+                ).value = author;
+            }
+
+            // Get email from cookies
+            const email: string | undefined = getCookie("email");
+
+            if (email !== undefined) {
+                (
+                    form.querySelector("#email .input")! as HTMLInputElement
+                ).value = email;
+            }
+
+            // Get notify from cookies
+            const notify: string | undefined = getCookie("notify");
+
+            if (notify !== undefined) {
+                (
+                    form.querySelector("#notify .input")! as HTMLInputElement
+                ).checked = notify === "true" ? true : false;
+            }
+
+            // Get comments from database
+            onValue(
+                ref(database, "comments/" + commentsId),
+                (snapshot: DataSnapshot) => {
+                    const hashClass: string[] = Array.from(
+                        comments.classList
+                    ).filter((e) => e.includes("astro-"));
+                    const data: any = snapshot.val();
+
+                    if (data != null) {
+                        const documents: any[] = Object.keys(data).map(
+                            (key) => data[key]
+                        );
+
+                        documents
+                            .sort((a, b) => {
+                                const dateA = new Date(a.date).getTime();
+                                const dateB = new Date(b.date).getTime();
+
+                                if (dateA > dateB) return 1;
+                                else if (dateA < dateB) return -1;
+                                else return 0;
+                            })
+                            .reverse();
+
+                        // Counter
+                        counter.textContent = `${documents.length} ${
+                            documents.length === 1
+                                ? "comentario"
+                                : "comentarios"
+                        }`;
+
+                        // Comments
+                        comments.innerHTML = "";
+                        for (const doc of documents) {
+                            comments.appendChild(
+                                comment(
+                                    doc.author,
+                                    new Date(doc.date),
+                                    doc.comment,
+                                    doc.reply,
+                                    hashClass
+                                )
+                            );
+                        }
+                    } else {
+                        // Counter
+                        counter.textContent = "No hay comentarios";
+
+                        // Comments
+                        comments.innerHTML = "";
+                    }
+                }
+            );
+
+            // Form submit
+            form.addEventListener("submit", (e: SubmitEvent) => {
+                const text: string = form["comment"].value.trim();
+                const author: string = form["author"].value.trim();
+                const email: string = form["email"].value.trim();
+                const notify: boolean = form["notify"].checked;
+
+                e.preventDefault();
+                if (
+                    form.querySelectorAll(".error").length > 0 ||
+                    text.length === 0
+                ) {
+                    window.alert(
+                        "Debe rellenar todos los campos correctamente para que se pueda enviar el comentario."
+                    );
+                } else {
+                    // Send comment
+                    push(ref(database, "comments/" + commentsId), {
+                        date: serverTimestamp(),
+                        author: author,
+                        comment: text,
+                        reply: "",
+                        url: window.location.href,
+                        notify,
+                    })
+                        .then((reference: DatabaseReference) => {
+                            // Send email if notify is checked
+                            if (notify) {
+                                set(
+                                    ref(
+                                        database,
+                                        "comments-email/" +
+                                            commentsId +
+                                            "/" +
+                                            reference.key
+                                    ),
+                                    email
+                                );
+                            }
+
+                            // Set name cookie
+                            setCookie("author", author, 365);
+
+                            // Set email cookie
+                            setCookie("email", email, 365);
+
+                            // Set notify cookie
+                            setCookie("notify", notify, 365);
+
+                            // Reset form
+                            form.reset();
+                            form["author"].value = author;
+                            form["email"].value = email;
+                            form["notify"].checked = notify;
+                        })
+                        .catch(() =>
+                            window.alert(
+                                "Oops, parece que nuestro mensaje se tropezó al intentar llegar. ¿Podrías darle otra oportunidad y enviar tu comentario nuevamente?"
+                            )
+                        );
+                }
+            });
+        }
+    }
+</script>

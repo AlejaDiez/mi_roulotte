@@ -1,5 +1,6 @@
 ---
 import AdsSection from "@components/Sections/AdsSection.astro";
+import CommentsSection from "@components/Sections/CommentsSection.astro";
 import ContentSection from "@components/Sections/ContentSection.astro";
 import HeaderSection from "@components/Sections/HeaderSection.astro";
 import StageSection from "@components/Sections/StageSection.astro";
@@ -9,6 +10,7 @@ import type Travel from "@models/travel";
 
 export interface Props extends DefaultProps, Travel {
     ads?: boolean;
+    comments?: boolean;
 }
 
 const {
@@ -20,6 +22,7 @@ const {
     video,
     keywords,
     ads = true,
+    comments = false,
     id,
     classList,
     class: hashClass,
@@ -37,6 +40,7 @@ const {
     <ContentSection>
         <slot />
     </ContentSection>
+    {comments && <CommentsSection />}
     {ads && <AdsSection />}
     <StageSection />
 </MainLayout>

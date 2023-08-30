@@ -1,38 +1,32 @@
 ---
 import { icon_logo_instagram, icon_logo_youtube } from "@models/icons";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     transparent?: boolean;
     float?: boolean;
 }
 
-const {
-    transparent = false,
-    float = false,
-    id,
-    classList,
-    class: hashClass,
-} = Astro.props;
+const { id, transparent = false, float = false } = Astro.props;
 ---
 
 <footer
     {id}
-    class:list={["footer", { transparent, float }, classList, hashClass]}>
-    <span class:list={["author", hashClass]}>Mi Roulotte</span>
-    <nav class:list={["social-networks", hashClass]}>
+    class:list={["footer", { transparent, float }, (Astro.props as any).class]}>
+    <span class:list={"author"}>Mi Roulotte</span>
+    <nav class:list={"social-networks"}>
         <a
             title="Instagram"
             href="https://www.instagram.com/miroulotte/"
             target="_blank"
-            class:list={["item", "icon", hashClass]}>
+            class:list={["item", "icon"]}>
             {icon_logo_instagram}
         </a>
         <a
             title="Youtube"
             href="https://www.youtube.com/channel/UCEvVP3GOATKXyfKznuNiUzQ/"
             target="_blank"
-            class:list={["item", "icon", hashClass]}>
+            class:list={["item", "icon"]}>
             {icon_logo_youtube}
         </a>
     </nav>

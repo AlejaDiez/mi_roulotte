@@ -1,34 +1,17 @@
 ---
-import type DefaultProps from "@models/properties";
-
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     value?: number;
     min?: number;
     max?: number;
     step?: number;
 }
 
-const {
-    value = 0,
-    min = 0,
-    max = 10,
-    step = 1,
-    id,
-    classList,
-    class: hashClass,
-} = Astro.props;
+const { id, value = 0, min = 0, max = 10, step = 1 } = Astro.props;
 ---
 
-<div class:list={["slider", classList, hashClass]}>
-    <input
-        {id}
-        {value}
-        {min}
-        {max}
-        {step}
-        type="range"
-        class:list={["input", hashClass]}
-    />
+<div class:list={["slider", (Astro.props as any).class]}>
+    <input {id} {value} {min} {max} {step} type="range" class:list={"input"} />
 </div>
 
 <style>

@@ -3,10 +3,9 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
     outDir: "./build",
     site: "https://miroulotte.es",
-    compressHTML: true,
     trailingSlash: "always",
-    scopedStyleStrategy: "class",
     output: "static",
+    scopedStyleStrategy: "where",
     build: {
         assets: "images",
     },
@@ -15,9 +14,6 @@ export default defineConfig({
         headers: {
             "Access-Control-Allow-Origin": "*",
         },
-    },
-    experimental: {
-        assets: true,
     },
     vite: {
         build: {

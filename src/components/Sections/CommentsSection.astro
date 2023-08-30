@@ -2,23 +2,23 @@
 import Button from "@components/Button.astro";
 import CheckBox from "@components/CheckBox.astro";
 import TextInput from "@components/TextInput.astro";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {}
+export interface Props {
+    id?: string;
+}
 
-const { id, classList, class: hashClass } = Astro.props;
+const { id } = Astro.props;
 ---
 
-<section {id} class:list={["comments-section", classList, hashClass]}>
-    <h3 class:list={["counter", hashClass]}>Cargando comentarios...</h3>
-    <div class:list={["comments", hashClass]}></div>
-    <form class:list={["form", hashClass]}>
+<section {id} class:list={["comments-section", (Astro.props as any).class]}>
+    <h3 class:list={"counter"}>Cargando comentarios...</h3>
+    <div class:list={"comments"}></div>
+    <form class:list={"form"}>
         <TextInput
             id="comment"
             label="Comentario"
             placeholder=""
             style="text area"
-            classList={hashClass}
         />
         <TextInput
             id="author"
@@ -28,7 +28,6 @@ const { id, classList, class: hashClass } = Astro.props;
                 message: "El nombre tiene que tener al menos tres caracteres.",
             }}
             style=""
-            classList={hashClass}
         />
         <TextInput
             id="email"
@@ -39,17 +38,13 @@ const { id, classList, class: hashClass } = Astro.props;
                 message: "Correo electrónico incorrecto.",
             }}
             style="email"
-            classList={hashClass}
         />
         <CheckBox
             id="notify"
             label="¿Te gustaría recibir una notificación por correo electrónico cuando haya una respuesta a tu comentario?"
             checked
-            classList={hashClass}
         />
-        <Button id="submit" style="outline" submit classList={hashClass}>
-            Enviar comentario
-        </Button>
+        <Button id="submit" style="outline" submit>Enviar comentario</Button>
     </form>
 </section>
 
@@ -108,13 +103,9 @@ const { id, classList, class: hashClass } = Astro.props;
 
     .comments-section .comments .comment .author {
         margin-bottom: var(--text-spacing);
-        font-family: var(--sans-font-family);
-        font-size: var(--body-font-size);
         font-weight: var(--headline-font-weight);
         color: var(--on-background-color);
         text-align: start;
-        line-height: var(--body-font-line-height);
-        letter-spacing: var(--body-font-spacing);
         cursor: default;
         user-select: none;
         -moz-user-select: none;
@@ -138,13 +129,8 @@ const { id, classList, class: hashClass } = Astro.props;
         margin: calc(var(--text-spacing) * 2) 0;
         position: relative;
         left: calc(var(--comments-section-comment-padding) * -1);
-        font-family: var(--sans-font-family);
-        font-size: var(--body-font-size);
-        font-weight: var(--body-font-weight);
         color: var(--surface-variant-color);
         text-align: start;
-        line-height: var(--body-font-line-height);
-        letter-spacing: var(--body-font-spacing);
         cursor: default;
         user-select: none;
         -moz-user-select: none;
@@ -214,11 +200,11 @@ const { id, classList, class: hashClass } = Astro.props;
 </style>
 
 <script>
-    import { FirebaseApp, initializeApp } from "firebase/app";
+    import { type FirebaseApp, initializeApp } from "firebase/app";
     import {
         Database,
         DataSnapshot,
-        DatabaseReference,
+        type DatabaseReference,
         ref,
         getDatabase,
         onValue,
@@ -307,6 +293,9 @@ const { id, classList, class: hashClass } = Astro.props;
             const comments: HTMLDivElement =
                 section.querySelector(".comments")!;
             const form: HTMLFormElement = section.querySelector(".form")!;
+            const hashClass: string[] = Array.from(comments.classList).filter(
+                (e) => e.includes("astro-")
+            );
 
             // Set random placeholder to comment textarea
             (
@@ -347,9 +336,6 @@ const { id, classList, class: hashClass } = Astro.props;
             onValue(
                 ref(database, "comments/" + commentsId),
                 (snapshot: DataSnapshot) => {
-                    const hashClass: string[] = Array.from(
-                        comments.classList
-                    ).filter((e) => e.includes("astro-"));
                     const data: any = snapshot.val();
 
                     if (data != null) {

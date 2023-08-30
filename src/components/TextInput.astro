@@ -1,7 +1,6 @@
 ---
-import type DefaultProps from "@models/properties";
-
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     value?: string;
     label?: string;
     placeholder?: string;
@@ -10,14 +9,12 @@ export interface Props extends DefaultProps {
 }
 
 const {
+    id,
     value = "",
     label,
     placeholder,
     style = "",
     error,
-    id,
-    classList,
-    class: hashClass,
 } = Astro.props;
 ---
 
@@ -26,12 +23,11 @@ const {
     class:list={[
         "text-input",
         { error: typeof error === "string" ? "error" : "" },
-        classList,
-        hashClass,
+        (Astro.props as any).class
     ]}>
     {
         label && (
-            <label for={id} class:list={["label", hashClass]}>
+            <label for={id} class:list={"label"}>
                 {label}
             </label>
         )
@@ -44,7 +40,7 @@ const {
                 rows="8"
                 autocomplete="off"
                 spellcheck="true"
-                class:list={["input", hashClass]}
+                class:list={"input"}
             >{value}</textarea>
         ) : (
             <input
@@ -54,27 +50,27 @@ const {
                 type={style === "" ? "text" : style}
                 autocomplete="off"
                 spellcheck="false"
-                class:list={["input", hashClass]}
+                class:list={"input"}
             />
         )
     }
     {
         error && (
             typeof error === "string" ? (
-                <span class:list={["error-label", hashClass]}>{error}</span>
+                <span class:list={"error-label"}>{error}</span>
             ) : (
                 <script is:inline define:vars={error}>{
                     const patternRegExp = new RegExp(pattern);
                     const textInput = document.currentScript.parentElement;
+                    const input = textInput.querySelector(".input");
 
                     const errorLabel = document.createElement("span");
                     errorLabel.classList.add(
                         "error-label",
-                        ...Array.from(textInput.classList).filter((e) => e.includes("astro-"))
+                        ...Array.from(input.classList).filter((e) => e.includes("astro-"))
                     );
                     errorLabel.textContent = message;
 
-                    const input = textInput.querySelector(".input");
                     input.addEventListener("input", () => {
                         if (input.value === "" || patternRegExp.test(input.value)) {
                             textInput.classList.remove("error");

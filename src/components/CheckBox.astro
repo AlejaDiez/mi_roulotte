@@ -1,30 +1,30 @@
 ---
 import { icon_checkmark } from "@models/icons";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     label?: string;
     checked?: boolean;
 }
 
-const { label, checked = false, id, classList, class: hashClass } = Astro.props;
+const { id, label, checked = false } = Astro.props;
 ---
 
-<div {id} class:list={["checkbox", classList, hashClass]}>
-    <div class:list={["container", hashClass]}>
-        <span class:list={["checkmark", "icon", hashClass]}>
+<div {id} class:list={["checkbox", (Astro.props as any).class]}>
+    <div class:list={"container"}>
+        <span class:list={["checkmark", "icon"]}>
             {icon_checkmark}
         </span>
         <input
             name={id}
             type="checkbox"
             checked={checked ? "" : undefined}
-            class:list={["input", hashClass]}
+            class:list={"input"}
         />
     </div>
     {
         label && (
-            <label for={id} class:list={["label", hashClass]}>
+            <label for={id} class:list={"label"}>
                 {label}
             </label>
         )

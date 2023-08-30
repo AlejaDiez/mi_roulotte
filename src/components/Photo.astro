@@ -1,9 +1,9 @@
 ---
 import Img from "@components/Img.astro";
 import type { Image } from "@models/image";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     image: Image;
     aspectRatio?:
         | "aspect-ratio-1-1"
@@ -15,18 +15,12 @@ export interface Props extends DefaultProps {
         | "aspect-ratio-9-16";
 }
 
-const {
-    image,
-    aspectRatio = "aspect-ratio-4-3",
-    id,
-    classList,
-    class: hashClass,
-} = Astro.props;
+const { id, image, aspectRatio = "aspect-ratio-4-3" } = Astro.props;
 ---
 
-<div {id} class:list={["photo", aspectRatio, classList, hashClass]}>
-    <Img image={image.copyWith({ alt: "" })} classList={["image", hashClass]} />
-    <figcaption class:list={["caption", hashClass]}>{image.alt}</figcaption>
+<div {id} class:list={["photo", aspectRatio, (Astro.props as any).class]}>
+    <Img image={image.copyWith({ alt: "" })} class:list={"image"} />
+    <figcaption class:list={"caption"}>{image.alt}</figcaption>
 </div>
 
 <style>
@@ -244,7 +238,7 @@ const {
         const lightboxElement: HTMLElement = lightbox(
             e.querySelector(".image")!,
             e.querySelector(".caption")!,
-            Array.from(e.classList)
+            Array.from(e.querySelector(".image")!.classList)
                 .filter((e) => e.includes("astro-"))
                 .join(" ")
         );

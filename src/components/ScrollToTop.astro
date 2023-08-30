@@ -1,18 +1,19 @@
 ---
 import Button from "@components/Button.astro";
 import { icon_chevron_up } from "@models/icons";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {}
+export interface Props {
+    id?: string;
+}
 
-const { id, classList, class: hashClass } = Astro.props;
+const { id } = Astro.props;
 ---
 
 <Button
     {id}
     style="fill"
     icon
-    classList={["scroll-to-top", classList, hashClass]}>
+    class:list={["scroll-to-top", (Astro.props as any).class]}>
     {icon_chevron_up}
 </Button>
 

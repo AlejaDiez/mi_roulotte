@@ -1,37 +1,25 @@
 ---
 import { icon_logo_mi_roulotte } from "@models/icons";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     transparent?: boolean;
     float?: boolean;
 }
 
-const {
-    transparent = false,
-    float = false,
-    id,
-    classList,
-    class: hashClass,
-} = Astro.props;
+const { id, transparent = false, float = false } = Astro.props;
 ---
 
 <header
     {id}
-    class:list={["header", { transparent, float }, classList, hashClass]}>
-    <a title="Mi Roulotte" href="/" class:list={["logo", "icon", hashClass]}>
+    class:list={["header", { transparent, float }, (Astro.props as any).class]}>
+    <a title="Mi Roulotte" href="/" class:list={["logo", "icon"]}>
         {icon_logo_mi_roulotte}
     </a>
-    <nav class:list={["navigation-menu", hashClass]}>
-        <a href="/#inicio" target="_self" class:list={["item", hashClass]}>
-            Inicio
-        </a>
-        <a href="/#viajes" target="_self" class:list={["item", hashClass]}>
-            Viajes
-        </a>
-        <a href="/#brico-cv" target="_self" class:list={["item", hashClass]}>
-            Brico-CV
-        </a>
+    <nav class:list={"navigation-menu"}>
+        <a href="/#inicio" target="_self" class:list={"item"}> Inicio</a>
+        <a href="/#viajes" target="_self" class:list={"item"}> Viajes</a>
+        <a href="/#brico-cv" target="_self" class:list={"item"}> Brico-CV</a>
     </nav>
 </header>
 

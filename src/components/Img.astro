@@ -2,13 +2,13 @@
 import { Image as AstroImage } from "astro:assets";
 
 import { Image, LocalImage } from "@models/image";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     image: Image;
 }
 
-const { image, id, classList, class: hashClass } = Astro.props;
+const { id, image } = Astro.props;
 ---
 
 {
@@ -19,7 +19,7 @@ const { image, id, classList, class: hashClass } = Astro.props;
             width={image.width}
             height={image.height}
             alt={image.alt}
-            class:list={[classList, hashClass]}
+            class:list={(Astro.props as any).class}
         />
     ) : image instanceof LocalImage ? (
         <AstroImage
@@ -28,7 +28,7 @@ const { image, id, classList, class: hashClass } = Astro.props;
             alt={image.alt}
             quality={image.quality}
             format={image.outputFormat}
-            class:list={[classList, hashClass]}
+            class:list={(Astro.props as any).class}
         />
     ) : (
         <AstroImage
@@ -37,7 +37,7 @@ const { image, id, classList, class: hashClass } = Astro.props;
             width={image.width}
             height={image.height}
             alt={image.alt}
-            class:list={[classList, hashClass]}
+            class:list={(Astro.props as any).class}
         />
     )
 }

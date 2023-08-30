@@ -1,7 +1,6 @@
 ---
-import type DefaultProps from "@models/properties";
-
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     onClick?: string;
     href?: string;
     target?: "blank" | "self" | "parent" | "top";
@@ -12,6 +11,7 @@ export interface Props extends DefaultProps {
 }
 
 const {
+    id,
     onClick,
     href,
     target = "self",
@@ -19,9 +19,6 @@ const {
     icon,
     error,
     submit,
-    id,
-    classList,
-    class: hashClass,
 } = Astro.props;
 const onclick =
     onClick !== undefined
@@ -35,7 +32,7 @@ const onclick =
     {id}
     {onclick}
     type={submit ? "submit" : undefined}
-    class:list={["button", style, { icon, error }, classList, hashClass]}>
+    class:list={["button", style, { icon, error }, (Astro.props as any).class]}>
     <slot />
 </button>
 

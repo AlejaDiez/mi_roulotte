@@ -1,12 +1,12 @@
 ---
-import type DefaultProps from "@models/properties";
+export interface Props {
+    id?: string;
+}
 
-export interface Props extends DefaultProps {}
-
-const { id, classList, class: hashClass } = Astro.props;
+const { id } = Astro.props;
 ---
 
-<main {id} class:list={["main", classList, hashClass]}>
+<main {id} class:list={["main", (Astro.props as any).class]}>
     <slot />
 </main>
 

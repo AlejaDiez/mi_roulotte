@@ -1,12 +1,14 @@
 ---
-import type DefaultProps from "@models/properties";
+export interface Props {
+    id?: string;
+}
 
-export interface Props extends DefaultProps {}
-
-const { id, classList, class: hashClass } = Astro.props;
+const { id } = Astro.props;
 ---
 
-<section {id} class:list={["ads-section", classList, hashClass]}></section>
+<section {id} class:list={["ads-section", (Astro.props as any).class]}>
+    <a href="" target="_blank" class:list={"ad"}></a>
+</section>
 
 <style>
     .ads-section {
@@ -55,7 +57,7 @@ const { id, classList, class: hashClass } = Astro.props;
 </style>
 
 <script>
-    import { FirebaseApp, initializeApp } from "firebase/app";
+    import { type FirebaseApp, initializeApp } from "firebase/app";
     import {
         Database,
         DataSnapshot,
@@ -80,21 +82,18 @@ const { id, classList, class: hashClass } = Astro.props;
 
         for (const section of adsSections) {
             const data: any = snapshot.val();
-            const hashClass: string[] = Array.from(section.classList).filter(
-                (e) => e.includes("astro-")
-            );
 
             if (data !== null) {
-                const ad: HTMLElement = document.createElement("a");
-                const desktop: HTMLImageElement = document.createElement("img");
-                const mobile: HTMLImageElement = document.createElement("img");
-
                 // Ad
+                const ad: HTMLElement = section.querySelector(".ad")!;
+                const hashClass: string[] = Array.from(ad.classList).filter(
+                    (e) => e.includes("astro-")
+                );
                 ad.setAttribute("href", data.url);
-                ad.setAttribute("target", "_blank");
-                ad.classList.add("ad", ...hashClass);
 
                 // Desktop
+                const desktop: HTMLImageElement = document.createElement("img");
+
                 if (data.img.desktop !== null) {
                     desktop.setAttribute("src", data.img.desktop.src);
                     desktop.setAttribute(
@@ -110,6 +109,8 @@ const { id, classList, class: hashClass } = Astro.props;
                 }
 
                 // Mobile
+                const mobile: HTMLImageElement = document.createElement("img");
+
                 if (data.img.mobile !== null) {
                     mobile.setAttribute("src", data.img.mobile.src);
                     mobile.setAttribute("width", `${data.img.mobile.width}px`);
@@ -120,7 +121,6 @@ const { id, classList, class: hashClass } = Astro.props;
                     mobile.classList.add("mobile", ...hashClass);
                     ad.appendChild(mobile);
                 }
-                section.appendChild(ad);
             } else {
                 section.remove();
             }

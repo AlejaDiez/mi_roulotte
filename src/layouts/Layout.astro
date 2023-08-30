@@ -1,6 +1,4 @@
 ---
-import type DefaultProps from "@models/properties";
-
 // Styles
 import "@styles/animations.css";
 import "@styles/colors.css";
@@ -9,7 +7,8 @@ import "@styles/global.css";
 import "@styles/sizes.css";
 
 // Props
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     title: string;
     description?: string;
     image?: string;
@@ -19,15 +18,7 @@ export interface Props extends DefaultProps {
 // Variables
 const lang: string = "es";
 const author: string = "Alejandro Diez Bermejo";
-const {
-    title,
-    description,
-    image,
-    keywords,
-    id,
-    classList,
-    class: hashClass,
-} = Astro.props;
+const { id, title, description, image, keywords } = Astro.props;
 ---
 
 <html {lang}>
@@ -103,7 +94,7 @@ const {
             }
         </script>
     </head>
-    <body {id} class:list={[classList, hashClass]}>
+    <body {id} class:list={(Astro.props as any).class}>
         <slot />
     </body>
 </html>

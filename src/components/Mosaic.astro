@@ -1,7 +1,6 @@
 ---
-import type DefaultProps from "@models/properties";
-
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     template:
         | 1
         | 2
@@ -21,10 +20,10 @@ export interface Props extends DefaultProps {
         | 16;
 }
 
-const { template, id, classList, class: hashClass } = Astro.props;
+const { id, template } = Astro.props;
 ---
 
-<div {id} class:list={["mosaic", classList, hashClass]}>
+<div {id} class:list={["mosaic", (Astro.props as any).class]}>
     <slot />
 </div>
 

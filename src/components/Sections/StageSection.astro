@@ -3,14 +3,15 @@ import Button from "@components/Button.astro";
 import Img from "@components/Img.astro";
 import {
     icon_chevron_left,
-    icon_home,
     icon_chevron_right,
+    icon_home,
 } from "@models/icons";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {}
+export interface Props {
+    id?: string;
+}
 
-const { id, classList, class: hashClass } = Astro.props;
+const { id } = Astro.props;
 const travelUrl = Astro.url.pathname.replace(/etapa-(\d+).*/, "");
 const stages = (await Astro.glob("/src/pages/**/etapa-[[:digit:]].astro"))
     .filter((e) => e.url!.includes(travelUrl))
@@ -30,13 +31,17 @@ const nextStage = stages.find((e) => e.id === (currentStage?.id ?? -1) + 1);
     currentStage !== undefined ? (
         <section
             {id}
-            class:list={["stage-section", "compact", classList, hashClass]}>
+            class:list={[
+                "stage-section",
+                "compact",
+                (Astro.props as any).class,
+            ]}>
             {previousStage !== undefined ? (
                 <Button
                     href={previousStage.url}
                     style="fill"
                     icon
-                    classList={["previous", hashClass]}>
+                    class:list={"previous"}>
                     {icon_chevron_left}
                 </Button>
             ) : (
@@ -44,18 +49,17 @@ const nextStage = stages.find((e) => e.id === (currentStage?.id ?? -1) + 1);
                     href={travelUrl}
                     style="fill"
                     icon
-                    classList={["previous", hashClass]}>
+                    class:list={"previous"}>
                     {icon_home}
                 </Button>
             )}
-            <div class:list={["list", hashClass]}>
+            <div class:list={"list"}>
                 {stages.map((e) => (
                     <Button
                         href={e.url}
-                        classList={[
+                        class:list={[
                             "item",
                             e.id === currentStage.id ? "selected" : "",
-                            hashClass,
                         ]}>
                         {e.id}
                     </Button>
@@ -66,36 +70,38 @@ const nextStage = stages.find((e) => e.id === (currentStage?.id ?? -1) + 1);
                     href={nextStage.url}
                     style="fill"
                     icon
-                    classList={["next", hashClass]}>
+                    class:list={"next"}>
                     {icon_chevron_right}
                 </Button>
             ) : (
-                <div class:list={["spacer", hashClass]} />
+                <div class:list={"spacer"} />
             )}
         </section>
     ) : (
         <section
             {id}
-            class:list={["stage-section", "expanded", classList, hashClass]}>
-            <div class:list={["scroll", hashClass]}>
-                <div class:list={["list", hashClass]}>
+            class:list={[
+                "stage-section",
+                "expanded",
+                (Astro.props as any).class,
+            ]}>
+            <div class:list={"scroll"}>
+                <div class:list={"list"}>
                     {stages.map((e) => (
-                        <a href={e.url} class:list={["item", hashClass]}>
-                            <div class:list={["image", hashClass]}>
-                                <Img image={e.image} classList={hashClass} />
+                        <a href={e.url} class:list={"item"}>
+                            <div class:list={"image"}>
+                                <Img image={e.image} />
                             </div>
-                            <span class:list={["title", hashClass]}>
-                                {e.title}
-                            </span>
+                            <span class:list={"title"}>{e.title}</span>
                         </a>
                     ))}
                 </div>
             </div>
-            <div class:list={["controls", hashClass]}>
-                <Button style="fill" icon classList={["previous", hashClass]}>
+            <div class:list={"controls"}>
+                <Button style="fill" icon class:list={"previous"}>
                     {icon_chevron_left}
                 </Button>
-                <Button style="fill" icon classList={["next", hashClass]}>
+                <Button style="fill" icon class:list={"next"}>
                     {icon_chevron_right}
                 </Button>
             </div>
@@ -222,13 +228,8 @@ const nextStage = stages.find((e) => e.id === (currentStage?.id ?? -1) + 1);
     }
 
     .stage-section.expanded .scroll .list .item .title {
-        font-family: var(--body-font-family);
-        font-size: var(--body-font-size);
-        font-weight: var(--body-font-weight);
         color: var(--on-surface-color);
         text-align: start;
-        line-height: var(--body-font-line-height);
-        letter-spacing: var(--body-font-spacing);
         transition-property: color;
         transition-duration: var(--animation-duration-2);
         transition-timing-function: var(--animation-curve);

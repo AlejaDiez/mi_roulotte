@@ -4,9 +4,9 @@ import Header from "@components/Header.astro";
 import Main from "@components/Main.astro";
 import ScrollToTop from "@components/ScrollToTop.astro";
 import Layout from "@layouts/Layout.astro";
-import type DefaultProps from "@models/properties";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     title: string;
     description?: string;
     image?: string;
@@ -17,6 +17,7 @@ export interface Props extends DefaultProps {
 }
 
 const {
+    id,
     title,
     description,
     image,
@@ -24,9 +25,6 @@ const {
     floatingHeader = false,
     floatingFooter = false,
     floatingScrollToTop = true,
-    id,
-    classList,
-    class: hashClass,
 } = Astro.props;
 ---
 
@@ -36,19 +34,11 @@ const {
     {description}
     {image}
     {keywords}
-    classList={[classList, hashClass]}>
-    <Header
-        float={floatingHeader}
-        transparent={floatingHeader}
-        classList={hashClass}
-    />
-    <Main classList={hashClass}>
+    class:list={(Astro.props as any).class}>
+    <Header float={floatingHeader} transparent={floatingHeader} />
+    <Main>
         <slot />
     </Main>
-    <Footer
-        float={floatingFooter}
-        transparent={floatingFooter}
-        classList={hashClass}
-    />
-    {floatingScrollToTop && <ScrollToTop classList={hashClass} />}
+    <Footer float={floatingFooter} transparent={floatingFooter} />
+    {floatingScrollToTop && <ScrollToTop />}
 </Layout>

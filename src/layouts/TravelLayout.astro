@@ -5,15 +5,16 @@ import ContentSection from "@components/Sections/ContentSection.astro";
 import HeaderSection from "@components/Sections/HeaderSection.astro";
 import StageSection from "@components/Sections/StageSection.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import type DefaultProps from "@models/properties";
 import type Travel from "@models/travel";
 
-export interface Props extends DefaultProps, Travel {
+export interface Props extends Travel {
+    id?: string;
     ads?: boolean;
     comments?: boolean;
 }
 
 const {
+    id,
     date,
     title,
     subtitle,
@@ -23,9 +24,6 @@ const {
     keywords,
     ads = true,
     comments = false,
-    id,
-    classList,
-    class: hashClass,
 } = Astro.props;
 ---
 
@@ -35,7 +33,7 @@ const {
     {description}
     image={image.src}
     {keywords}
-    classList={[classList, hashClass]}>
+    class:list={(Astro.props as any).class}>
     <HeaderSection {title} {subtitle} {image} />
     <ContentSection>
         <slot />

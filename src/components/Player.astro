@@ -2,10 +2,10 @@
 import Button from "@components/Button.astro";
 import Slider from "@components/Slider.astro";
 import { icon_play_filled_alt, icon_fit_to_screen } from "@models/icons";
-import type DefaultProps from "@models/properties";
 import { type Video, YoutubeVideo, LazyVideo } from "@models/video";
 
-export interface Props extends DefaultProps {
+export interface Props {
+    id?: string;
     video: Video;
     aspectRatio?:
         | "aspect-ratio-1-1"
@@ -14,58 +14,39 @@ export interface Props extends DefaultProps {
         | "aspect-ratio-21-9";
 }
 
-const {
-    video,
-    aspectRatio = "aspect-ratio-16-9",
-    id,
-    classList,
-    class: hashClass,
-} = Astro.props;
+const { id, video, aspectRatio = "aspect-ratio-16-9" } = Astro.props;
 ---
 
-<div {id} class:list={["player", classList, hashClass]}>
-    <div class:list={["video", aspectRatio, hashClass]}>
+<div {id} class:list={["player", (Astro.props as any).class]}>
+    <div class:list={["video", aspectRatio]}>
         {
             video instanceof YoutubeVideo ? (
-                <source
-                    id={video.id}
-                    src={video.src}
-                    type="video/youtube"
-                    class:list={hashClass}
-                />
+                <source id={video.id} src={video.src} type="video/youtube" />
             ) : video instanceof LazyVideo ? (
-                <source
-                    src={video.src}
-                    type="video/lazy"
-                    class:list={hashClass}
-                />
+                <source src={video.src} type="video/lazy" />
             ) : (
-                <source
-                    src={video.src}
-                    type="video/mp4"
-                    class:list={hashClass}
-                />
+                <source src={video.src} type="video/mp4" />
             )
         }
     </div>
-    <div class:list={["thumbnail", hashClass]}>
-        <Button style="fill" icon classList={["play", hashClass]}>
+    <div class:list={"thumbnail"}>
+        <Button style="fill" icon class:list={"play"}>
             {icon_play_filled_alt}
         </Button>
     </div>
-    <div class:list={["controls", "collapsed", hashClass]}>
-        <div class:list={hashClass}>
-            <Button icon classList={["play", hashClass]}>
+    <div class:list={["controls", "collapsed"]}>
+        <div>
+            <Button icon class:list={"play"}>
                 {icon_play_filled_alt}
             </Button>
             <Slider
                 min={0}
                 max={100}
                 step={0.1}
-                classList={["progress-slider", hashClass]}
+                class:list={"progress-slider"}
             />
-            <span class:list={["progress-text", hashClass]}>00:00 / 00:00</span>
-            <Button icon classList={["fullscreen", hashClass]}>
+            <span class:list={"progress-text"}>00:00 / 00:00</span>
+            <Button icon class:list={"fullscreen"}>
                 {icon_fit_to_screen}
             </Button>
         </div>
@@ -194,12 +175,12 @@ const {
 
 <script>
     import {
-        icon_pause_filled,
+        icon_fit_to_screen,
         icon_hourglass,
+        icon_pause_filled,
         icon_play_filled_alt,
         icon_rotate_360,
         icon_shrink_screen_filled,
-        icon_fit_to_screen,
     } from "@models/icons";
 
     // Youtube videos

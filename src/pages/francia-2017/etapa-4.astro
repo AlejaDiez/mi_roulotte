@@ -1,0 +1,156 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170814_204656 from "@assets/francia-2017/IMG_20170814_204656.jpg";
+import IMG_20170812_204149 from "@assets/francia-2017/IMG_20170812_204149.jpg";
+import IMG_20170812_204422 from "@assets/francia-2017/IMG_20170812_204422.jpg";
+import IMG_20170813_185835 from "@assets/francia-2017/IMG_20170813_185835.jpg";
+import IMG_20170814_185637 from "@assets/francia-2017/IMG_20170814_185637.jpg";
+import IMG_20170814_210509 from "@assets/francia-2017/IMG_20170814_210509.jpg";
+import IMG_20170814_204141 from "@assets/francia-2017/IMG_20170814_204141.jpg";
+import IMG_20170814_210723 from "@assets/francia-2017/IMG_20170814_210723.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-12"),
+    title: "Dinan y Monte Saint-Michel",
+    subtitle: "Francia",
+    description:
+        "En un recorrido por la hermosa Bretaña, llegamos al Camping International de la Hallerais. A pesar de sortear carreteras estrechas, la caravana y nosotros llegamos ilesos. Descubrimos pintorescos pueblos como Dinan, Léhon y Saint-Malo, con sus calles empedradas y murallas costeras. La visita al Monte Saint-Michel al atardecer fue inolvidable, con la Abadía iluminada. Una experiencia única en caravana en esta región francesa.",
+    image: new LocalImage(IMG_20170814_204656, "Mont Saint-Michel"),
+    video: undefined,
+    keywords: [
+        "Viajes en caravana",
+        "Camping en Bretaña",
+        "Turismo en familia",
+        "Aventuras en carretera",
+        "Destinos de viaje en caravana",
+        "Experiencias en camping",
+        "Explorando Bretaña",
+        "Lugares pintorescos en Francia",
+        "Monte Saint-Michel",
+        "Pueblos medievales",
+        "Rutas de caravana",
+        "Descubriendo Dinan",
+        "Atracciones turísticas en Léhon",
+        "Saint-Malo costero",
+        "Abadía iluminada",
+        "Camping Internacional de la Hallerais",
+        "Consejos para viajar en caravana",
+        "Escapada familiar",
+        "Aventuras al aire libre",
+        "Gastronomía local en Bretaña",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Teníamos por delante unos 240 kilómetros. El viaje lo hicimos sin coger
+        autopista con peaje pues la carretera era bastante buena. No tuvimos
+        ningún problema en el viaje, lo más complicado fue a unos 5 kilómetros
+        del camping. El navegador nos llevó por “El puerto de Dinan”, mi padre
+        paro frente a una señal de “Prohibido circular autocaravanas” se bajó
+        del coche y fue andando para inspeccionar el terreno... “No hay
+        problema, es un poco estrecho y con unas curvas un poco cerradas, pero
+        creo que pasamos”. Y así fue, pasamos un poco apurados con nuestra
+        pequeña caravana, pero sin mucho problema. A mí me daba un poco
+        vergüenza al pasar por el puerto con nuestra caravana y las terrazas de
+        los restaurantes repletos de gente, pero bueno, al final llegamos al
+        <a href="https://www.camping-lahallerais.com/fr" target="_blank"
+            >Camping International de la Hallerais</a
+        >. Recomiendo si se tiene un conjunto grande, revisar la ruta antes de
+        salir de viaje.
+    </p>
+    <p>
+        En este camping también teníamos reserva y menos mal, pues estaba
+        completo. En la recepción nos atendió una chica súper amable que hablaba
+        castellano perfectamente y nos dio todo tipo de explicaciones. El
+        camping estaba fenomenal. Parcelas grandes y planas (la nuestra era la
+        más inclinada). Los baños eran nuevos y muy limpios (no mucha agua en
+        las duchas). Tenía una pequeña piscina con agua templada donde lo
+        pasamos muy bien y un supermercado con muy pocas cosas (croissants y pan
+        sí que tenían). El camping tenía una salida por donde podías bajar al
+        rio y dar un paseo muy agradable y llegar al puerto de Dinan caminando
+        dos kilómetros. Desde aquí, visitamos varios pueblos y lugares: Dinan,
+        Léhon, Combourg, Saint-Malo y el Monte Saint-Michel.
+    </p>
+    <p>
+        Dinan es uno de los pueblos que más nos gustó, el paseo por sus calles
+        con sus bonitas casas de piedra y madera y su muralla. Desde el puerto
+        puedes subir por una bonita calle empinada hasta el centro de esta
+        ciudad medieval... fantástico. Desde el camping se podía ir dando un
+        paseo muy agradable por la orilla del rio hasta llegar a Léhon, un
+        pueblo pequeñito y «simpático» como nos dijo el chico de información y
+        turismo de Dinan.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20170812_204149, "Dinan")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170812_204422, "Dinan")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170813_185835, "Léhon")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Cuando fuimos a Saint-Malo, había muchísima gente y después de dar
+        muchas vueltas para encontrar aparcamiento nos fuimos a aparcar a las
+        afueras. Paseamos por la muralla que tiene junto al mar y vimos sus
+        playas y torreones. En este pueblo me pareció curiosa la piscina natural
+        que tienen en la playa.
+    </p>
+    <Photo
+        image={new LocalImage(
+            IMG_20170814_185637,
+            "Piscina natural en Saint-Malo"
+        )}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Un día por la tarde, fuimos a Saint-Michel. Nuestra idea era verlo de
+        noche y al día siguiente verlo por el día, parece ser que por el día se
+        pone a tope de gente y era cuestión de madrugar mucho. La tarde nos
+        salió “redonda”... Llegamos sobre las siete y media y aparcamos en el
+        parking. Desde este parking coges un autobús gratuito que te lleva a la
+        Abadía. Este autobús me hizo mucha gracia, pues tiene volante en la
+        parte delantera y volante en la parte trasera y el conductor cuando
+        termina el trayecto se baja del autobús y se monta en la parte de atrás.
+        No había mucha gente subimos poco a poco hasta arriba y decidimos entrar
+        en la Abadía. Desde lo más alto pudimos ver un espectacular atardecer y
+        recorrer el santuario sin apenas luz, es sobrecogedor. Cuando bajamos,
+        sobre las diez de la noche, las vistas del santuario eran muy chulas.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(
+                IMG_20170814_210509,
+                "Abadía del Monte Saint-Michel"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170814_204141, "Monte Saint-Michel")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170814_210723, "Monte Saint-Michel")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Decidimos no volver al día siguiente, pues lo habíamos visto de día, de
+        noche y la Abadía por dentro. El parking nos costó 0€, parece ser que a
+        partir de las 19:30 horas es gratuito.
+    </p>
+</TravelLayout>

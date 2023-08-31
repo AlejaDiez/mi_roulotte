@@ -61,3 +61,19 @@
 .aspect-ratio-9-21 {
     aspect-ratio: 9/21;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        --overflow-size: 48px;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --overflow-size: 32px;
+
+        /* Padding */
+        --horizontal-padding: 24px;
+    }
+}

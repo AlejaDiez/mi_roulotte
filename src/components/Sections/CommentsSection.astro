@@ -197,6 +197,13 @@ const { id } = Astro.props;
             opacity: 1;
         }
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .comments-section {
+            --comments-section-input-width: 100%;
+        }
+    }
 </style>
 
 <script>

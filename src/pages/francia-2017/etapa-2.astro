@@ -1,0 +1,95 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170807_180057 from "@assets/francia-2017/IMG_20170807_180057.jpg";
+import IMG_20170806_212354 from "@assets/francia-2017/IMG_20170806_212354.jpg";
+import IMG_20170807_175754 from "@assets/francia-2017/IMG_20170807_175754.jpg";
+import IMG_20170807_190904 from "@assets/francia-2017/IMG_20170807_190904.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-06"),
+    title: "La Rochelle",
+    subtitle: "Francia",
+    description:
+        "Desde Pissos, emprendimos una etapa de nuestro viaje en caravana con destino a Marans. Aunque el tráfico en las cercanías de Burdeos causó algunas demoras, finalmente llegamos al Camping Le Bois Dinot, un entorno natural con amplias parcelas. A pesar de la limitada disponibilidad de duchas, el amable personal nos brindó información en español y aprovechamos la cercana piscina municipal. No podemos olvidar los deliciosos croissants que encargamos y disfrutamos al día siguiente. Desde Marans, exploramos La Rochelle, una ciudad llena de vida con sus calles pintorescas, hermoso puerto y característicos torreones.",
+    image: new LocalImage(IMG_20170807_180057, "Torreones de La Rochelle"),
+    video: undefined,
+    keywords: [
+        "Pissos",
+        "Viaje en caravana",
+        "Marans",
+        "Camping Le Bois Dinot",
+        "Parcelas naturales",
+        "Retenciones de tráfico",
+        "Burdeos",
+        "Piscina municipal",
+        "Duchas limitadas",
+        "Personal amable",
+        "Croissants recién horneados",
+        "La Rochelle",
+        "Calles pintorescas",
+        "Puerto hermoso",
+        "Torreones icónicos",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Salimos del camping con tranquilidad y sin madrugar mucho, pues nuestra
+        idea era acercarnos a La Rochelle y conducir unos 250 km, un día cómodo.
+        Fuimos tranquilos hasta las cercanías de Burdeos donde encontramos
+        grandes retenciones. Teníamos pensado ir al Camping Carved, pues los
+        campings cercanos a La Rochelle estaban completos o eran de más de
+        caros. Al llegar al Camping Carved después de esperar media hora al
+        estar cerrada la recepción, estaba completo y decidimos seguir el viaje
+        hasta Marans.
+    </p>
+    <p>
+        El <a
+            href="http://www.ville-marans.fr/vivre-marans/camping-municipal-le-bois-dinot"
+            target="_blank">Camping Le Bois Dinot</a
+        > está en medio de un bosque, tiene buenas parcelas con hierba (en
+        verano seco). Un fallo que vi, eran las pocas duchas que había. En la
+        recepción dos chicas muy simpáticas nos informaron de todo lo necesario
+        en castellano. Frente al camping esta la piscina municipal a la que
+        fuimos. El agua es climatizada, como en la mayoría de las piscinas a las
+        que hemos ido en Francia.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20170806_212354, "Camping Le Bois Dinot")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Aquí empezó nuestra perdición con los croissants, les encargabas el día
+        anterior junto con el pan y al día siguiente les tenías recién hechos
+        buenísimos. Cerca hay un gran supermercado con gasolinera low cost.
+        Marans no tiene mucho que ver. Desde aquí visitamos La Rochelle (23 km).
+    </p>
+    <p>
+        En La Rochelle aparcamos en el parking Esplanade des Parcs que tiene una
+        zona gratuita y otra con zona azul y se encuentra cerca del centro. La
+        Rochelle merece la pena visitarla, había un gran ambiente. Callejeamos
+        por sus calles llegamos hasta el puerto y llegamos hasta sus famosos
+        torreones.
+    </p>
+    <Mosaic template={6}>
+        <Photo
+            image={new LocalImage(
+                IMG_20170807_175754,
+                "Torreones de La Rochelle"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170807_190904, "Puerta del Gran Reloj")}
+            class:list={["col-2", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

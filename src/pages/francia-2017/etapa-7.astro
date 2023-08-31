@@ -1,0 +1,89 @@
+---
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170826_252719 from "@assets/francia-2017/IMG_20170826_252719.jpg";
+import IMG_20170826_252716 from "@assets/francia-2017/IMG_20170826_252716.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-25"),
+    title: "Oradour-sur-Glane",
+    subtitle: "Francia",
+    description:
+        "En el tramo final de nuestras vacaciones con tres días por delante para regresar a casa, enfrentamos una etapa larga de 440 km sin peajes. A pesar de un chaparrón inicial y tráfico agitado, el día mejoró con un sol radiante. Llegamos al Camping Municipal de la Glane al mediodía, con un breve tiempo de espera en la recepción. Las amplias parcelas, rodeadas de naturaleza, y servicios básicos aceptables hicieron la estadía agradable. Intentamos visitar Oradour-sur-Glane, un pueblo congelado en el tiempo desde un trágico evento en 1944, pero estaba cerrado. Su historia nos recordó los horrores de la Segunda Guerra Mundial.",
+    image: new LocalImage(
+        IMG_20170826_252719,
+        "Oradour sur Glane (Foto sacada de internet)"
+    ),
+    video: undefined,
+    keywords: [
+        "Viajes en caravana",
+        "Vacaciones familiares en caravana",
+        "Experiencias de viaje",
+        "Camping y caravanismo",
+        "Rutas de viaje sin peajes",
+        "Destinos turísticos naturales",
+        "Camping Municipal de la Glane",
+        "Oradour-sur-Glane",
+        "Segunda Guerra Mundial",
+        "Turismo cultural",
+        "Historia y recuerdos de guerra",
+        "Naturaleza y paisajes",
+        "Aventuras en caravana",
+        "Exploración de pueblos históricos",
+        "Relatos de viaje",
+        "Campings y alojamiento al aire libre",
+        "Consejos de viaje en caravana",
+        "Experiencias auténticas de viaje",
+        "Descubriendo nuevos lugares",
+        "Viajes en caravana sin peajes",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nuestras vacaciones están llegando a su fin, nos quedan tres días y son
+        para regresar a casa, unos 1100 kilómetros. Hoy nos toca una etapa de
+        las más largas 440 km. El viaje lo hacemos sin usar las autovías de
+        peaje y acertamos, pues la carretera es bastante cómoda. Lo peor fueron
+        los primeros kilómetros al pillarnos un impresionante chaparrón, que
+        junto con los coches que nos rodeaban por todas partes fue un poco
+        agobiante, luego aclaro el día y salió un sol radiante.
+    </p>
+    <p>
+        Llegamos al <a
+            href="https://www.campingcarpark.com/fr_FR/sejour/camping/nouvelle-aquitaine/87-haute-vienne/st-junien"
+            target="_blank">Camping Municipal de la Glane</a
+        > a la hora de comer, pero la recepción estaba cerrada. Fueron 10
+        minutos de espera y llego el chico, que hablaba un poco de inglés. Nos
+        entendimos perfectamente. Este hombre me hacía mucha gracia, mi padre
+        decía cualquier cosa y él se meaba de risa, sin entender nada... Era muy
+        simpático y amable. Las parcelas muy grandes llanas y el camping lleno
+        de hierba, árboles y naturaleza. Los servicios básicos y aceptables.
+        Cerca estaba la piscina municipal a la que no fuimos y en el pueblo
+        existían varios supermercados.
+    </p>
+    <p>
+        Por la tarde nos acercamos a visitar Oradour sur Glane, pero estaba
+        cerrado. Fue una pena, pues lo que vimos desde fuera nos dejó
+        impresionados. Oradour sur Glane es un pueblo que se conserva tal y como
+        quedó después del 10 de junio de 1944, cuando 150 soldados de las SS
+        entraron en Oradour sur Glane y asesinaron a 642 personas, dejando atrás
+        un pueblo fantasma que para siempre recordaría al mundo el horror que se
+        vivió en la II Guerra Mundial. Los restos de ese día siguen ahí,
+        intactos, para encogerte el corazón y transportarte a unos años de
+        guerras y miserias que nunca deberíamos olvidar.
+    </p>
+    <Photo
+        image={new LocalImage(
+            IMG_20170826_252716,
+            "Oradour sur Glane (Foto sacada de internet)"
+        )}
+        aspectRatio="aspect-ratio-16-9"
+    />
+</TravelLayout>

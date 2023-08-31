@@ -123,4 +123,11 @@ const { id, transparent = false, float = false } = Astro.props;
         left: 0;
         z-index: 999;
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .footer .author::after {
+            content: "";
+        }
+    }
 </style>

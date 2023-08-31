@@ -1,0 +1,79 @@
+---
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170827_162846 from "@assets/francia-2017/IMG_20170827_162846.jpg";
+import IMG_20170827_162843 from "@assets/francia-2017/IMG_20170827_162843.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-26"),
+    title: "Duna du Pilat",
+    subtitle: "Francia",
+    description:
+        "Lo que parecía un viaje tranquilo de 240 km se convirtió en una odisea al llegar a Burdeos. El esfuerzo de rodear la ciudad nos tomó tiempo y paciencia. Al llegar al Camping le Bilos, la recepción cerrada nos hizo esperar media hora. La recepcionista, en español, nos asignó una parcela abstracta y funcional. Aunque los servicios eran básicos y el agua fría, por 22€, fue una opción aceptable para una noche. Por la tarde, exploramos la imponente Duna de Pilat, maravillados por sus 110 metros de arena. Agotados, optamos por la playa en lugar de conquistar la duna y cerramos el día con un baño refrescante.",
+    image: new LocalImage(
+        IMG_20170827_162846,
+        "Duna du Pilat (Foto sacada de internet)"
+    ),
+    video: undefined,
+    keywords: [
+        "Viajes en caravana",
+        "Experiencias de viaje",
+        "Camping le Bilos",
+        "Duna de Pilat",
+        "Turismo en Burdeos",
+        "Vacaciones en familia",
+        "Aventuras en caravana",
+        "Rutas de viaje",
+        "Viajes por carretera",
+        "Destinos de viaje",
+        "Diversión en familia",
+        "Viajes económicos",
+        "Duna más alta de Europa",
+        "Explorando Burdeos",
+        "Viajar con niños",
+        "Playas y relajación",
+        "Alojamiento en camping",
+        "Consejos de viaje en caravana",
+        "Experiencias únicas de viaje",
+        "Atascos en Burdeos",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Parecía un viaje tranquilo y corto, 240 Km, pero teníamos que pasar
+        Burdeos... Y efectivamente, todo fue muy tranquilo hasta llegar a esta
+        ciudad. Nos costó bastantes sudores y tiempo bordearla. Al llegar al
+        <a
+            href="https://lebilos.wixsite.com/camping-lebilos?lang=en"
+            target="_blank">Camping le Bilos</a
+        >, como no... la recepción estaba cerrada. Nos tocó esperar una media
+        hora. La recepcionista, en un claro castellano, nos acomodó en una
+        “abstracta” parcela más o menos grande y semi-plana. Había pocas plazas,
+        pues la mayoría estaban ocupadas por gente fija. Los servicios eran
+        básicos y más o menos limpios. Agua fría para fregar. A mí no me gustó
+        mucho, pero para una noche estuvo aceptable por el precio (22€).
+    </p>
+    <p>
+        Por la tarde nos acercamos a ver la Duna de Pilat. La carretera bastante
+        mala, menos mal que íbamos sin caravana. Paramos el coche en las faldas
+        de la Duna, nos bajamos, miramos hacia arriba e impresionante. Que
+        cantidad de arena, sus 110 metros de altura te dejaban con la boca
+        abierta. En vez de subir hasta lo alto de la duna, nos subimos al coche
+        y nos fuimos a la playa a darnos un baño, estábamos cansados para subir
+        todo eso.
+    </p>
+    <Photo
+        image={new LocalImage(
+            IMG_20170827_162843,
+            "Duna du Pilat (Foto sacada de internet)"
+        )}
+        aspectRatio="aspect-ratio-16-9"
+    />
+</TravelLayout>

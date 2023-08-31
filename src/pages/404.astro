@@ -1,0 +1,55 @@
+---
+import Button from "@components/Button.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+---
+
+<MainLayout
+    title="Página no encontrada"
+    floatingHeader
+    floatingFooter
+    floatingScrollToTop={false}>
+    <h1>404</h1>
+    <p>
+        ¡Oops! Parece que has tomado un desvío y te encuentras en un lugar algo
+        distinto al que esperabas...
+    </p>
+    <Button href="/" style="outline">Recalcular ruta</Button>
+</MainLayout>
+
+<style is:global>
+    body {
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--error-color);
+    }
+
+    main {
+        height: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0px !important;
+    }
+
+    h1 {
+        color: var(--on-background-dark-color) !important;
+    }
+
+    p {
+        width: min(512px, 100%);
+        margin-top: 16px;
+        margin-bottom: 40px;
+        color: var(--on-background-dark-color) !important;
+        text-align: center !important;
+    }
+
+    .button {
+        color: var(--on-background-dark-color) !important;
+        border-color: var(--on-background-dark-color) !important;
+    }
+
+    .button:hover {
+        color: var(--error-color) !important;
+        background-color: var(--on-background-hover-dark-color) !important;
+        border-color: var(--on-background-hover-dark-color) !important;
+    }
+</style>

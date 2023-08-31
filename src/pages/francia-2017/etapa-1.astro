@@ -1,0 +1,83 @@
+---
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170806_105717 from "@assets/francia-2017/IMG_20170806_105717.jpg";
+import IMG_20170805_193259 from "@assets/francia-2017/IMG_20170805_193259.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-05"),
+    title: "Pissos",
+    subtitle: "Francia",
+    description:
+        "En esta primera etapa de nuestra travesía, partimos de Burgos con emoción. Al entrar a la AP-1 cerca de Vitoria, aprovechamos un tramo gratuito, luego continuamos en la N-1, eludiendo autopistas de pago. Pasamos la frontera sin contratiempos, aunque en la última estación de servicio española la cola era extensa y decidimos seguir. En el acogedor Camping Municipal l'Arriu, nos acomodamos a pesar de la recepción cerrada. Con instalaciones básicas pero limpias y duchas satisfactorias, este descanso fue valioso en nuestra ruta hacia La Rochelle.",
+    image: new LocalImage(IMG_20170806_105717, "Camping Municipal l'Arriu"),
+    video: undefined,
+    keywords: [
+        "Salida desde Burgos",
+        "Viaje por carretera",
+        "N-1 sin peajes",
+        "Tramo gratuito AP-1",
+        "Autopistas de peaje evitadas",
+        "Estación de servicio española",
+        "Repostar gasóleo",
+        "Cruce de frontera sin retención",
+        "Camping Municipal l'Arriu",
+        "Recepción cerrada camping",
+        "Ubicación cerca de autovía",
+        "Alojamiento en camping",
+        "Camping en pinar",
+        "Recepción en castellano",
+        "Baños limpios",
+        "Duchas con agua suficiente",
+        "Camping básico y agradable",
+        "Piscinas municipales cercanas",
+        "Exploración del pueblo",
+        "Supermercado Carrefour",
+        "Gasolinera en el pueblo",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Salimos de Burgos sobre las nueve de la mañana, el viaje lo hicimos por
+        la N-1 hasta Ameyugo sin pasar por peajes. En Ameyugo entramos en la
+        AP-1 (este tramo hasta Vitoria es gratuito). Luego cerca de Vitoria,
+        seguimos por la N-1 sin coger autopista de peaje. Antes de llegar a la
+        frontera intentamos repostar gasóleo en la última estación de servicio
+        española, pero la cola de coches era bastante grande y seguimos con el
+        viaje. La frontera la pasamos sin ninguna retención y después de esto...
+        a pagar peajes sin parar.
+    </p>
+    <p>
+        Llegamos al
+        <a href="https://sejour-pissos.fr/le-camping-municipal/" target="_blank"
+            >Camping Municipal l'Arriu</a
+        > y la recepción estaba cerrada. Al estar las puertas abiertas, entramos
+        y nos acomodamos donde nos pareció bien. Buscamos este camping al estar
+        cerca de la autovía y solo pasamos una noche para seguir viaje hacia
+        algún camping cerca de nuestro próximo destino La Rochelle.
+    </p>
+    <p>
+        El camping se encuentra en un pinar, sin parcelas establecidas. La
+        entrada al camping se hace por una carretera estrecha, pero sin
+        problemas. En la recepción la chica habla castellano y era muy amable.
+        Los baños estaban limpios y una cosa muy importante para mí las duchas
+        daban agua en cantidad aceptable. Es un camping básico, limpio y
+        agradable. Por el precio que tiene, es recomendable.
+    </p>
+    <p>
+        Cerca del camping hay unas piscinas que parecían ser municipales. Por la
+        tarde dimos un paseo por el pueblo, pero no tiene nada que ver. En el
+        pueblo existe un Carrefour y una gasolinera.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20170805_193259, "Camping Municipal l'Arriu")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+</TravelLayout>

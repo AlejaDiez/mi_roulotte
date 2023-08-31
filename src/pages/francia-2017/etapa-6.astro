@@ -1,0 +1,251 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170821_190357 from "@assets/francia-2017/IMG_20170821_190357.jpg";
+import IMG_20170820_104557 from "@assets/francia-2017/IMG_20170820_104557.jpg";
+import IMG_20170820_110607 from "@assets/francia-2017/IMG_20170820_110607.jpg";
+import IMG_20170820_103054 from "@assets/francia-2017/IMG_20170820_103054.jpg";
+import IMG_20170820_114535 from "@assets/francia-2017/IMG_20170820_114535.jpg";
+import IMG_20170823_184708 from "@assets/francia-2017/IMG_20170823_184708.jpg";
+import IMG_20170823_224602 from "@assets/francia-2017/IMG_20170823_224602.jpg";
+import IMG_20170823_191916 from "@assets/francia-2017/IMG_20170823_191916.jpg";
+import IMG_20170823_200247 from "@assets/francia-2017/IMG_20170823_200247.jpg";
+import IMG_20170821_115001 from "@assets/francia-2017/IMG_20170821_115001.jpg";
+import IMG_20170822_125345 from "@assets/francia-2017/IMG_20170822_125345.jpg";
+import IMG_20170822_150919 from "@assets/francia-2017/IMG_20170822_150919.jpg";
+import IMG_20170824_193843 from "@assets/francia-2017/IMG_20170824_193843.jpg";
+import IMG_20170823_125647 from "@assets/francia-2017/IMG_20170823_125647.jpg";
+import IMG_20170823_121141 from "@assets/francia-2017/IMG_20170823_121141.jpg";
+import IMG_20170822_114407 from "@assets/francia-2017/IMG_20170822_114407.jpg";
+import IMG_20170821_124356 from "@assets/francia-2017/IMG_20170821_124356.jpg";
+import IMG_20170821_111657 from "@assets/francia-2017/IMG_20170821_111657.jpg";
+import IMG_20170822_180932 from "@assets/francia-2017/IMG_20170822_180932.jpg";
+import IMG_20170823_142138 from "@assets/francia-2017/IMG_20170823_142138.jpg";
+import IMG_20170824_121456 from "@assets/francia-2017/IMG_20170824_121456.jpg";
+import IMG_20170823_215223 from "@assets/francia-2017/IMG_20170823_215223.jpg";
+import IMG_20170824_114422 from "@assets/francia-2017/IMG_20170824_114422.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-19"),
+    title: "París y Versalles",
+    subtitle: "Francia",
+    description:
+        "En esta etapa, recorrimos 150 km hasta el Camping Maisons-Laffitte. Superamos el tráfico al acercarnos a la capital y nos instalamos en el camping. Parcelas amplias y césped nos dieron comodidad. Noches con sonidos de trenes y aviones, pero descansamos bien. A poca distancia, la estación de tren nos llevó a París en 20 minutos. Optamos por la Passe Navigo, usándola desde el lunes. Domingo en Versalles, a 20 km, con fácil estacionamiento debido a la falta de restricciones.",
+    image: new LocalImage(IMG_20170821_190357, "Torre Eiffel"),
+    video: undefined,
+    keywords: [
+        "Viajes en caravana",
+        "Camping Maisons-Laffitte",
+        "Aventuras familiares",
+        "Camping y caravanas",
+        "Rutas de viaje",
+        "Experiencias en caravana",
+        "Destinos de caravana",
+        "Consejos para viajar en caravana",
+        "Itinerarios familiares",
+        "Camping con comodidades",
+        "Recorridos en caravana",
+        "Vida en carretera",
+        "Lugares para acampar",
+        "Transporte en París",
+        "Camping cerca de París",
+        "Naturaleza y caravanas",
+        "Passe Navigo",
+        "Camping y naturaleza",
+        "Turismo itinerante",
+        "Experiencias de viaje en familia",
+        "Torre Eiffel",
+        "Museo del Louvre",
+        "Catedral de Notre-Dame",
+        "Arco de Triunfo",
+        "Campos Elíseos",
+        "Montmartre y la Basílica del Sagrado Corazón",
+        "Jardines de Luxemburgo",
+        "Museo de Orsay",
+        "Panteón de París",
+        "Île de la Cité y Sainte-Chapelle",
+        "Palacio de Versalles",
+        "Museo de l'Orangerie",
+        "Centro Pompidou",
+        "Ópera Garnier",
+        "Barrio de Le Marais",
+        "Museo Rodin",
+        "Paseo en barco por el río Sena",
+        "Cementerio de Père-Lachaise",
+        "La Conciergerie",
+        "Fondation Louis Vuitton",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nos levantamos con tranquilidad, pues nos esperaban 150 km de nada.
+        Después de pagar algún peaje y un viaje tranquilo, se notaba que, al
+        acercarnos a la capital, los coches a nuestro alrededor aumentaban, pero
+        no tuvimos ningún tipo de retención. El navegador nos llevó por un
+        camino por el que atravesamos un túnel el cual pasamos en altura muy
+        justitos. Al acercarnos al
+        <a
+            href="https://www.sandaya.es/nuestros-campings/paris-maisons-laffitte"
+            target="_blank">Camping Maisons-Laffitte</a
+        >, las calles empezaron a estrecharse y tuvimos que sortear alguna curva
+        de noventa grados, pero poco a poco y con tranquilidad lo superamos.
+    </p>
+    <p>
+        La chica de la recepción nos dio en castellano todo tipo de
+        explicaciones del entorno y de los transportes de la zona. Las parcelas
+        eran gigantescas, planas y con hierba. Los servicios abundantes y
+        bastante limpios. No me gusto la cantidad de arañas que había en las
+        paredes de los servicios, si madrugabas y tenías que ir al servicio te
+        encontrabas varias telarañas en tu cara que no era agradable. Por la
+        noche se escuchaban los trenes y aviones, pero yo dormí perfectamente...
+    </p>
+    <p>
+        A unos 10 minutos andando del camping teníamos una estación de tren,
+        donde cogeríamos el RER (cercanías) para ir a París en unos veinte
+        minutos. Para desplazarnos desde esta estación y luego por París
+        compramos la <i>Passe Navigo</i> que es una tarjeta electrónica, cuesta
+        5€ (la tarjeta en sí) y es válido durante 10 años, luego se puede
+        recargar por semanas de lunes a domingo. Los medios de transporte que
+        aceptan el <i>Passe Navigo</i> son: metro, autobús, RER, tranvía,
+        Montmartrobus, Noctilien y Funicular de Montmartre. Es necesario una
+        foto de carnet (a nosotros se nos olvidaron y fotocopiamos los DNI para
+        recortar las fotos), compramos para las zonas 1-4, su precio fue de 27€.
+        Al llegar al camping un sábado, compramos las tarjetas, las recargamos,
+        pero no las pudimos usar hasta el lunes. Por este motivo el domingo al
+        no tener transporte pensamos ir a Versalles con nuestro coche.
+    </p>
+    <p>
+        Versalles se encuentra a 20 Km del camping y se tarda unos 45 minutos...
+        Al ir en domingo y a una hora temprana, aparcamos cerca de la entrada en
+        zona azul, la cual los domingos no funciona.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20170820_104557, "Jardines de Versalles")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170820_110607, "Jardines de Versalles")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170820_103054, "Jardines de Versalles")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170820_114535, "Jardines de Versalles")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        A continuación, pongo varias fotos que realice en los cinco días que
+        pasamos en París.
+    </p>
+    <Mosaic template={16}>
+        <Photo
+            image={new LocalImage(IMG_20170823_184708, "París")}
+            class:list={["col-12", "row-9"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170823_224602, "Torre Eiffel")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170823_191916, "Sacré-Cœur")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170821_115001,
+                "Catedral de Notre Dame"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170823_200247, "Moulin Rouge")}
+            class:list={["col-4", "row-3"]}
+        />
+
+        <Photo
+            image={new LocalImage(IMG_20170822_150919, "Arco del triunfo")}
+            class:list={["col-8", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170822_125345,
+                "Palais Garnier (Ópera de París)"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170823_142138, "Museo del Louvre")}
+            class:list={["col-8", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170824_114422,
+                "Arco de Triunfo del Carrusel"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170822_114407,
+                "Palais Garnier (Ópera de París)"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170824_193843, "París")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170823_121141, "Statue du Tibre")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170821_111657, "Sainte Chapelle")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170823_125647, "Mona Lisa")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170821_124356,
+                "Catedral de Notre Dame"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170824_121456,
+                "Estatua de la Libertad (Museo Orsay)"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170822_180932,
+                "Iglesia de la Madeleine"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170823_215223,
+                "Palais Garnier (Ópera de París)"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

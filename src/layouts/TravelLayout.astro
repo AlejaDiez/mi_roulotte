@@ -6,6 +6,7 @@ import HeaderSection from "@components/Sections/HeaderSection.astro";
 import StageSection from "@components/Sections/StageSection.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import type Travel from "@models/travel";
+import { getTravelSubtitle } from "@utils/string";
 
 export interface Props extends Travel {
     id?: string;
@@ -34,7 +35,11 @@ const {
     image={image.src}
     {keywords}
     class:list={(Astro.props as any).class}>
-    <HeaderSection {title} {subtitle} {image} />
+    <HeaderSection
+        {title}
+        subtitle={getTravelSubtitle(subtitle, date)}
+        {image}
+    />
     <ContentSection>
         <slot />
     </ContentSection>

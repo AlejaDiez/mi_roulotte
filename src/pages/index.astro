@@ -1,5 +1,39 @@
 ---
+import { getImage } from "astro:assets";
+
+import Button from "@components/Button.astro";
+import Img from "@components/Img.astro";
+import Player from "@components/Player.astro";
 import MainLayout from "@layouts/MainLayout.astro";
+import {
+    icon_chevron_left,
+    icon_chevron_right,
+    icon_logo_instagram,
+    icon_logo_youtube,
+    icon_video,
+} from "@models/icons";
+import type Travel from "@models/travel";
+import { LazyVideo } from "@models/video";
+import { capitalizeString } from "@utils/string";
+
+// Images
+import IMG_20200825_185010 from "@assets/IMG_20200825_185010.jpg";
+const OPTIMIZED_IMG_20200825_185010 = await getImage({
+    src: IMG_20200825_185010,
+    format: "avif",
+    quality: 70,
+});
+
+// Travels
+const travels: (Travel & { url: string })[] = (
+    await Astro.glob("./**/index.astro")
+)
+    .filter((e: any) => e.travel)
+    .map((e: any) => ({
+        ...e.travel,
+        url: e.url,
+    }))
+    .sort((a: Travel, b: Travel) => b.date.getTime() - a.date.getTime());
 ---
 
 <MainLayout
@@ -25,6 +59,1336 @@ import MainLayout from "@layouts/MainLayout.astro";
         "brico caravana",
         "brico-cv",
         "bricolaje",
-    ]}>
-    <h1>Mi Roulotte</h1>
+    ]}
+    floatingHeader
+    floatingScrollToTop={false}>
+    <section
+        id="inicio"
+        style={`background: linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0)), url(${OPTIMIZED_IMG_20200825_185010.src})`}
+        class:list={"paused-animation"}>
+        <h1 class:list={"title"}>Mi Roulotte</h1>
+        <div class:list={"social-networks"}>
+            <a
+                title="Instagram"
+                href="https://www.instagram.com/miroulotte/"
+                target="_blank"
+                class:list={["item", "icon"]}>
+                {icon_logo_instagram}
+            </a>
+            <a
+                title="Youtube"
+                href="https://www.youtube.com/channel/UCEvVP3GOATKXyfKznuNiUzQ/"
+                target="_blank"
+                class:list={["item", "icon"]}>
+                {icon_logo_youtube}
+            </a>
+        </div>
+    </section>
+    <section id="viajes" class:list={"paused-animation"}>
+        <div class:list={"numbers"}>
+            {
+                travels.map((e, i) => (
+                    <h2
+                        class:list={[
+                            "number",
+                            i === 0 && "active",
+                            i + 1 === travels.length &&
+                                travels.length >= 2 &&
+                                "was-active",
+                        ]}>
+                        {i + 1}
+                    </h2>
+                ))
+            }
+        </div>
+        <div class:list={"headlines"}>
+            <div class:list={"subtitles"}>
+                {
+                    travels.map((e, i) => (
+                        <span
+                            class:list={[
+                                "subtitle",
+                                i === 0 && "active",
+                                i + 1 === travels.length &&
+                                    travels.length >= 2 &&
+                                    "was-active",
+                            ]}>
+                            {`${capitalizeString(
+                                e.date!.toLocaleDateString("es-ES", {
+                                    month: "long",
+                                })
+                            )} ${e.date!.getFullYear()}`}
+                        </span>
+                    ))
+                }
+            </div>
+            <div class:list={"titles"}>
+                {
+                    travels.map((e, i) => (
+                        <h1
+                            class:list={[
+                                "title",
+                                i === 0 && "active",
+                                i + 1 === travels.length &&
+                                    travels.length >= 2 &&
+                                    "was-active",
+                            ]}>
+                            {e.subtitle}
+                        </h1>
+                    ))
+                }
+            </div>
+        </div>
+        <div class:list={"descriptions"}>
+            {
+                travels.map((e, i) => (
+                    <p
+                        class:list={[
+                            "description",
+                            i === 0 && "active",
+                            i + 1 === travels.length &&
+                                travels.length >= 2 &&
+                                "was-active",
+                        ]}>
+                        {e.description}
+                    </p>
+                ))
+            }
+        </div>
+        <div class:list={"links"}>
+            {
+                travels.map((e, i) => (
+                    <div
+                        class:list={[
+                            "buttons",
+                            i === 0 && "active",
+                            i + 1 === travels.length &&
+                                travels.length >= 2 &&
+                                "was-active",
+                        ]}>
+                        <Button href={e.url} style="outline">
+                            Leer viaje
+                        </Button>
+                        {e.video && (
+                            <Button
+                                href={e.video.src}
+                                target="blank"
+                                style="fill"
+                                icon>
+                                {icon_video}
+                            </Button>
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+        <div class:list={"images"}>
+            <div>
+                {
+                    travels.map((e, i) => (
+                        <Img
+                            image={e.image}
+                            class:list={[
+                                "image",
+                                i === 0 && "active",
+                                i + 1 === travels.length &&
+                                    travels.length >= 2 &&
+                                    "was-active",
+                            ]}
+                        />
+                    ))
+                }
+            </div>
+            <div>
+                {
+                    travels.map((e, i) => (
+                        <Img
+                            image={e.image}
+                            class:list={[
+                                "image",
+                                i === 0 && "active",
+                                i + 1 === travels.length &&
+                                    travels.length >= 2 &&
+                                    "was-active",
+                            ]}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+        <div class:list={"controls"}>
+            <Button onClick="previousTravel()" icon>
+                <span>{icon_chevron_left}</span>
+            </Button>
+            <span>1/{travels.length}</span>
+            <Button onClick="nextTravel()" icon>
+                <span>{icon_chevron_right}</span>
+            </Button>
+        </div>
+    </section>
+    <section id="brico-cv" class:list={"paused-animation"}>
+        <Button
+            onClick="previousVideo()"
+            style="fill"
+            icon
+            class:list={"previous"}>
+            {icon_chevron_left}
+        </Button>
+        <div class:list={"videos"}>
+            <div class:list={"scroll"}>
+                <Player
+                    video={new LazyVideo()}
+                    aspectRatio="aspect-ratio-4-3"
+                />
+            </div>
+        </div>
+        <Button onClick="nextVideo()" style="fill" icon class:list={"next"}>
+            {icon_chevron_right}
+        </Button>
+    </section>
 </MainLayout>
+
+<style is:global>
+    body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    main {
+        height: 100% !important;
+        padding: unset !important;
+        display: block !important;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
+
+    main::-webkit-scrollbar {
+        display: none;
+    }
+
+    section {
+        width: 100vw;
+        height: 100vh;
+        padding: var(--vertical-padding) var(--horizontal-padding);
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        background-color: var(--background-color);
+        overflow: hidden;
+        scroll-snap-align: center;
+        scroll-snap-stop: normal;
+        cursor: default;
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+    }
+
+    .footer {
+        display: none !important;
+    }
+
+    .paused-animation * {
+        animation-play-state: paused;
+    }
+
+    /* Inicio */
+    #inicio {
+        justify-content: space-between;
+        align-items: flex-end;
+        background-size: cover !important;
+        background-position: center;
+        background-repeat: no-repeat !important;
+    }
+
+    #inicio .title {
+        color: var(--on-background-dark-color);
+        animation-name: site-name-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #inicio .social-networks {
+        padding-bottom: calc(
+            (var(--title-font-line-height) - var(--title-font-size)) / 2
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        animation-name: social-networks-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #inicio .social-networks .item {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--on-background-dark-color);
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        outline: none;
+        appearance: none;
+        opacity: 0.4;
+        transition-property: color, opacity;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+        cursor: pointer;
+    }
+
+    #inicio .social-networks .item:hover {
+        color: var(--on-background-hover-dark-color);
+        opacity: 1;
+    }
+
+    @keyframes site-name-animation {
+        0% {
+            opacity: 0;
+            transform: rotateX(90deg)
+                translateZ(calc(var(--title-font-size) / 2));
+        }
+        80% {
+            opacity: 1;
+            transform: rotateX(0deg)
+                translateZ(calc(var(--title-font-size) / 2));
+        }
+    }
+
+    @keyframes social-networks-animation {
+        0%,
+        60% {
+            opacity: 0;
+        }
+        80% {
+            opacity: 1;
+        }
+    }
+
+    /* Viajes */
+    #viajes {
+        --number-size: 80px;
+        --headline-height: 256px;
+        --headline-spacing: 8px;
+        --descriptions-margin-top: 16px;
+        --description-spacing: 16px;
+        --descriptions-margin-bottom: 32px;
+        --buttons-spacing: 16px;
+        --controls-height: 80px;
+        --controls-spacing: 24px;
+        --transition-duration-1: 250ms;
+        --transition-duration-2: 500ms;
+        --transition-curve-1: linear;
+        --transition-curve-2: cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    #viajes .numbers {
+        width: var(--number-size);
+        height: var(--number-size);
+        position: absolute;
+        top: var(--vertical-padding);
+        right: calc(50vw + var(--overflow-size));
+        z-index: 9;
+        display: inline-flex;
+        background-color: var(--primary-color);
+        animation-name: numbers-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #viajes .numbers .number {
+        width: var(--number-size);
+        height: var(--number-size);
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--on-primary-color);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-1.2rem);
+        transition: opacity, transform;
+        transition-duration: var(--transition-duration-1),
+            var(--transition-duration-2);
+        transition-delay: var(--transition-duration-1);
+        transition-timing-function: var(--transition-curve-1),
+            var(--transition-curve-2);
+    }
+
+    #viajes .numbers .number.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    #viajes .numbers .number.was-active {
+        transform: translateY(0.6rem);
+    }
+
+    #viajes .headlines {
+        width: 50vw;
+        height: var(--headline-height);
+        padding-right: calc(var(--horizontal-padding) / 2);
+        padding-left: var(--horizontal-padding);
+        position: absolute;
+        top: calc(var(--vertical-padding) + var(--number-size));
+        left: 0;
+        z-index: 9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: var(--headline-spacing);
+        background-color: var(--surface-color);
+        animation-name: headlines-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #viajes .headlines .subtitles {
+        width: 100%;
+        height: var(--body-font-line-height);
+        position: relative;
+        overflow: hidden;
+    }
+
+    #viajes .headlines .subtitles .subtitle {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        color: var(--on-surface-color);
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+        opacity: 0;
+        transition: opacity;
+        transition-duration: var(--transition-duration-1);
+        transition-delay: var(--transition-duration-1);
+        transition-timing-function: var(--transition-curve-1);
+    }
+
+    #viajes .headlines .subtitles .subtitle.active {
+        opacity: 1;
+    }
+
+    #viajes .headlines .subtitles .subtitle.was-active {
+        opacity: 0;
+    }
+
+    #viajes .headlines .titles {
+        width: 100%;
+        height: var(--title-font-line-height);
+        position: relative;
+        overflow: hidden;
+    }
+
+    #viajes .headlines .titles .title {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+        opacity: 0;
+        transform: translateX(-1.6rem);
+        transition: opacity, transform;
+        transition-duration: var(--transition-duration-1),
+            var(--transition-duration-2);
+        transition-delay: var(--transition-duration-1);
+        transition-timing-function: var(--transition-curve-1),
+            var(--transition-curve-2);
+    }
+
+    #viajes .headlines .titles .title.active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    #viajes .headlines .titles .title.was-active {
+        transform: translateX(0.8rem);
+    }
+
+    #viajes .descriptions {
+        width: calc(
+            50vw - var(--horizontal-padding) - var(--overflow-size) -
+                var(--number-size)
+        );
+        position: absolute;
+        top: calc(
+            var(--vertical-padding) + var(--number-size) +
+                var(--headline-height) + var(--descriptions-margin-top)
+        );
+        bottom: calc(
+            var(--descriptions-margin-bottom) + var(--component-size) +
+                var(--vertical-padding)
+        );
+        left: var(--horizontal-padding);
+        z-index: 9;
+        overflow: scroll;
+        animation-name: descriptions-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+        mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) var(--description-spacing),
+            rgba(0, 0, 0, 1) calc(100% - var(--description-spacing)),
+            rgba(0, 0, 0, 0) 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) var(--description-spacing),
+            rgba(0, 0, 0, 1) calc(100% - var(--description-spacing)),
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+
+    #viajes .descriptions .description {
+        width: 100%;
+        height: fit-content;
+        padding: var(--description-spacing) 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity;
+        transition-duration: var(--transition-duration-1);
+        transition-delay: var(--transition-duration-1);
+        transition-timing-function: var(--transition-curve-1);
+    }
+
+    #viajes .descriptions .description.active {
+        opacity: 1;
+    }
+
+    #viajes .descriptions .description.was-active {
+        opacity: 0;
+    }
+
+    #viajes .links {
+        width: calc(
+            50vw - var(--horizontal-padding) - var(--overflow-size) -
+                var(--number-size)
+        );
+        height: var(--component-size);
+        position: absolute;
+        bottom: var(--vertical-padding);
+        left: var(--horizontal-padding);
+        z-index: 9;
+        animation-name: links-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #viajes .links .buttons {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        gap: var(--buttons-spacing);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity;
+        transition-duration: var(--transition-duration-1);
+        transition-delay: var(--transition-duration-1);
+        transition-timing-function: var(--transition-curve-1);
+    }
+
+    #viajes .links .buttons.active {
+        opacity: 1;
+        pointer-events: unset;
+    }
+
+    #viajes .links .buttons.was-active {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #viajes .images {
+        width: calc(50vw + var(--overflow-size) - var(--horizontal-padding));
+        height: calc(100vh - (var(--vertical-padding) * 2));
+        position: absolute;
+        top: var(--vertical-padding);
+        right: var(--horizontal-padding);
+        z-index: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        gap: calc(var(--media-spacing) * 2);
+    }
+
+    #viajes .images > div {
+        height: 100%;
+        position: relative;
+        flex: 1;
+        overflow: hidden;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #viajes .images > div:first-child {
+        animation-name: images-1-animation;
+    }
+
+    #viajes .images > div:last-child {
+        height: calc(
+            100% - var(--controls-height) - (var(--media-spacing) * 2)
+        );
+        animation-name: images-2-animation;
+    }
+
+    #viajes .images > div .image {
+        width: calc(50vw + var(--overflow-size) - var(--horizontal-padding));
+        height: calc(100vh - (var(--vertical-padding) * 2));
+        position: absolute;
+        top: 0;
+        object-fit: cover;
+        transition-property: clip-path;
+        transition-duration: var(--transition-duration-2);
+        transition-timing-function: var(--transition-curve-1);
+    }
+
+    #viajes .images > div:first-child .image {
+        left: 0;
+        clip-path: inset(0 0 100% 0);
+    }
+
+    #viajes .images > div:last-child .image {
+        right: 0;
+        clip-path: inset(100% 0 0 0);
+    }
+
+    #viajes .images > div .image.active {
+        clip-path: inset(0 0 0 0);
+        transition-delay: var(--transition-duration-2);
+    }
+
+    #viajes .images > div:first-child .image.was-active {
+        clip-path: inset(0 0 100% 0);
+    }
+
+    #viajes .images > div:last-child .image.was-active {
+        clip-path: inset(100% 0 0 0);
+    }
+
+    #viajes .controls {
+        width: calc(
+            ((50vw + var(--overflow-size) - var(--horizontal-padding)) / 2) -
+                var(--media-spacing)
+        );
+        height: var(--controls-height);
+        position: absolute;
+        bottom: var(--vertical-padding);
+        right: var(--horizontal-padding);
+        z-index: 9;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: var(--controls-spacing);
+        background-color: var(--background-color);
+        animation-name: controls-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #viajes .controls > span {
+        font-family: var(--sans-font-family);
+        font-size: var(--body-font-size);
+        font-weight: var(--body-font-weight);
+        color: var(--on-surface-color);
+        text-align: center;
+        line-height: var(--body-font-line-height);
+        letter-spacing: var(--body-font-spacing);
+    }
+
+    #viajes .controls .button span {
+        font-size: var(--body-font-size);
+        color: var(--on-surface-color);
+        line-height: var(--body-font-size);
+        transition-property: transform;
+        transition-duration: var(--animation-duration-1);
+        transition-timing-function: var(--animation-curve);
+    }
+
+    #viajes .controls .button:last-child:hover span {
+        transform: translateX(0.24rem);
+    }
+
+    #viajes .controls .button:first-child:hover span {
+        transform: translateX(-0.24rem);
+    }
+
+    #viajes .controls .button:last-child:active span {
+        transform: translateX(0.48rem);
+    }
+
+    #viajes .controls .button:first-child:active span {
+        transform: translateX(-0.48rem);
+    }
+
+    @keyframes numbers-animation {
+        0% {
+            clip-path: inset(100% 0 0 0);
+        }
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes headlines-animation {
+        0% {
+            clip-path: inset(0 100% 0 0);
+        }
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes descriptions-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+        60% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes links-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+        60% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes images-1-animation {
+        0%,
+        50% {
+            clip-path: inset(0 0 100% 0);
+        }
+        100% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes images-2-animation {
+        0%,
+        50% {
+            clip-path: inset(100% 0 0 0);
+        }
+        100% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes controls-animation {
+        0%,
+        40% {
+            opacity: 0;
+        }
+        60% {
+            opacity: 1;
+        }
+    }
+
+    /* Brico CV */
+    #brico-cv {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #brico-cv .previous,
+    #brico-cv .next {
+        position: relative;
+        z-index: 9;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    #brico-cv .button.previous {
+        animation-name: previous-button-animation;
+    }
+
+    #brico-cv .button.next {
+        animation-name: next-button-animation;
+    }
+
+    #brico-cv .videos {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+    }
+
+    #brico-cv .videos::-webkit-scrollbar {
+        display: none;
+    }
+
+    #brico-cv .videos .scroll {
+        width: max-content;
+        height: 100%;
+        padding: 0 calc((100vw - min(88vh, 88vw)) / 2);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: calc(var(--media-spacing) * 2);
+    }
+
+    #brico-cv .videos .scroll .player {
+        width: min(88vh, 88vw);
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        animation-name: video-animation;
+        animation-duration: var(--animation-duration-3);
+        animation-timing-function: var(--animation-curve);
+        animation-fill-mode: backwards;
+    }
+
+    @keyframes previous-button-animation {
+        0% {
+            clip-path: inset(0 100% 0 0);
+        }
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes next-button-animation {
+        0% {
+            clip-path: inset(0 0 0 100%);
+        }
+        50% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes video-animation {
+        0%,
+        50% {
+            clip-path: inset(100% 0 0 0);
+        }
+        100% {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        body {
+            width: unset;
+            height: unset;
+            overflow: unset;
+        }
+
+        .header {
+            position: sticky !important;
+            background-color: var(--background-color) !important;
+        }
+
+        .header .logo,
+        .header .button-menu {
+            color: var(--on-background-color) !important;
+        }
+
+        .header .logo:hover,
+        .header .button-menu:hover {
+            color: var(--on-background-hover-color) !important;
+        }
+
+        .header .logo:active {
+            color: var(--on-background-dark-color) !important;
+        }
+
+        main {
+            height: auto !important;
+            padding: 0 var(--horizontal-padding) !important;
+            display: flex !important;
+            overflow-y: unset;
+            scroll-snap-type: unset;
+        }
+
+        main::-webkit-scrollbar {
+            display: unset;
+        }
+
+        section {
+            width: 100%;
+            height: unset;
+            padding: unset;
+            overflow: initial;
+            scroll-margin: var(--vertical-padding);
+            scroll-snap-align: unset;
+            scroll-snap-stop: unset;
+        }
+
+        .footer {
+            display: flex !important;
+        }
+
+        .paused-animation * {
+            animation-play-state: unset;
+        }
+
+        /* Inicio */
+        #inicio {
+            width: calc(100% + var(--horizontal-padding));
+            height: auto;
+            padding-top: calc(var(--vertical-padding) / 2);
+            padding-right: calc(var(--horizontal-padding) / 2);
+            padding-bottom: calc(var(--vertical-padding) / 2);
+            padding-left: var(--horizontal-padding);
+            left: calc(var(--horizontal-padding) * -1);
+            z-index: 9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            background: var(--surface-color) !important;
+            animation-duration: var(--animation-duration-3);
+            animation-timing-function: var(--animation-curve);
+            animation-fill-mode: backwards;
+        }
+
+        #inicio .title {
+            color: var(--on-background-color);
+            animation: unset;
+        }
+
+        #inicio .social-networks {
+            display: none;
+        }
+
+        @keyframes site-name-animation {
+            0% {
+                clip-path: inset(0 100% 0 0);
+            }
+
+            50% {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+
+        /* Viajes */
+        #viajes {
+            height: auto;
+            aspect-ratio: 3/4;
+        }
+
+        #viajes .headlines .subtitles,
+        #viajes .descriptions,
+        #viajes .images > div:last-child,
+        #viajes .controls .button:first-child,
+        #viajes .controls > span {
+            display: none;
+        }
+
+        #viajes .numbers {
+            top: 0;
+            right: unset;
+            left: 0;
+        }
+
+        #viajes .headlines {
+            width: calc(
+                (100% * 4 / 3) - var(--number-size) - var(--component-size) -
+                    (var(--media-spacing) * 4)
+            );
+            height: var(--number-size);
+            padding: unset;
+            top: unset;
+            left: var(--number-size);
+            bottom: calc(var(--component-size) + (var(--media-spacing) * 2));
+            background-color: unset;
+            transform: rotateZ(-90deg);
+            transform-origin: bottom left;
+            mask-image: linear-gradient(
+                to left,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 1) calc(var(--vertical-padding) / 2),
+                rgba(0, 0, 0, 1) 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to left,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 1) calc(var(--vertical-padding) / 2),
+                rgba(0, 0, 0, 1) 100%
+            );
+        }
+
+        #viajes .headlines .titles .title {
+            display: unset;
+            -webkit-box-orient: unset;
+            -webkit-line-clamp: unset;
+            overflow: unset;
+            overflow-wrap: unset;
+            text-overflow: unset;
+            white-space: nowrap;
+        }
+
+        #viajes .headlines .titles .title.active {
+            transform: translateY(0);
+        }
+
+        #viajes .headlines .titles .title.was-active {
+            transform: translateY(0.8rem);
+        }
+
+        #viajes .links {
+            width: calc(
+                100% - var(--component-size) - (var(--media-spacing) * 2)
+            );
+            bottom: 0;
+            left: 0;
+        }
+
+        #viajes .images {
+            width: calc(100% - var(--number-size));
+            height: calc(
+                100% - var(--component-size) - (var(--media-spacing) * 2)
+            );
+            top: 0;
+            right: 0;
+        }
+
+        #viajes .images > div {
+            width: 100%;
+            height: 100%;
+            flex: unset;
+        }
+
+        #viajes .images > div .image {
+            width: 100%;
+            height: 100%;
+        }
+
+        #viajes .controls {
+            width: var(--component-size);
+            height: var(--component-size);
+            bottom: 0;
+            right: 0;
+            justify-content: end;
+        }
+
+        #viajes .controls .button span {
+            font-size: unset;
+            color: unset;
+            line-height: unset;
+            transition: unset;
+        }
+
+        #viajes .controls .button:last-child:hover span,
+        #viajes .controls .button:last-child:active span {
+            transform: unset;
+        }
+
+        #viajes .controls .button:last-child {
+            color: var(--on-primary-color);
+            background-color: var(--primary-color);
+            transition-property: color, background-color;
+        }
+
+        #viajes .controls .button:last-child:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+        @keyframes headlines-animation {
+            0% {
+                transform: translateX(-1.6rem) rotateZ(-90deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(0) rotateZ(-90deg);
+                opacity: 1;
+            }
+        }
+
+        /* Brico CV */
+        #brico-cv {
+            width: 100vw;
+            height: auto;
+            left: calc(var(--horizontal-padding) * -1);
+        }
+
+        #brico-cv .previous,
+        #brico-cv .next {
+            position: absolute;
+            top: calc(
+                (
+                        ((100vw - var(--horizontal-padding) * 2) * 3 / 4) -
+                            var(--component-size)
+                    ) / 2
+            );
+        }
+
+        #brico-cv .previous {
+            left: var(--horizontal-padding);
+        }
+
+        #brico-cv .next {
+            right: var(--horizontal-padding);
+        }
+
+        #brico-cv .videos {
+            width: 100vw;
+            height: auto;
+            position: relative;
+        }
+
+        #brico-cv .videos .scroll {
+            height: auto;
+            padding: 0 var(--horizontal-padding);
+            align-items: start;
+            gap: calc(var(--horizontal-padding) * 2);
+        }
+
+        #brico-cv .videos .scroll .player {
+            width: calc(100vw - (var(--horizontal-padding) * 2));
+        }
+    }
+
+    @media (max-height: 644px) and (min-width: 769px) {
+        /* Viajes */
+        #viajes .numbers {
+            display: none;
+        }
+
+        #viajes .headlines {
+            top: initial;
+        }
+
+        #viajes .descriptions {
+            top: calc(
+                var(--vertical-padding) + var(--headline-height) +
+                    var(--descriptions-margin-top)
+            );
+        }
+    }
+
+    @media (max-height: 544px) and (min-width: 769px) {
+        /* Viajes */
+        #viajes .descriptions {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    import { getVideosFromPlaylist } from "@utils/video";
+
+    const scrollControl = () => {
+        const sections: NodeListOf<HTMLElement> =
+            document.querySelectorAll("section");
+        const header: HTMLElement = document.querySelector(".header")!;
+        const items: NodeListOf<HTMLElement> = header.querySelectorAll(
+            ".navigation-menu .item"
+        );
+
+        if (
+            sections[0].getBoundingClientRect().bottom >=
+            header.offsetHeight / 2
+        ) {
+            header.classList.add("transparent");
+            items[0].classList.add("active");
+            items[1].classList.remove("active");
+            items[2].classList.remove("active");
+            sections[0].classList.remove("paused-animation");
+        } else if (
+            sections[1].getBoundingClientRect().bottom >=
+            header.offsetHeight / 2
+        ) {
+            header.classList.remove("transparent");
+            items[0].classList.remove("active");
+            items[1].classList.add("active");
+            items[2].classList.remove("active");
+            sections[1].classList.remove("paused-animation");
+        } else if (
+            sections[2].getBoundingClientRect().bottom >=
+            header.offsetHeight / 2
+        ) {
+            header.classList.remove("transparent");
+            items[0].classList.remove("active");
+            items[1].classList.remove("active");
+            items[2].classList.add("active");
+            sections[2].classList.remove("paused-animation");
+        }
+    };
+    const changeTravel = (old: number, current: number, next: number) => {
+        const numbers: NodeListOf<HTMLHeadingElement> =
+            document.querySelectorAll("#viajes .number");
+        const titles: NodeListOf<HTMLHeadingElement> =
+            document.querySelectorAll("#viajes .title");
+        const subtitles: NodeListOf<HTMLSpanElement> =
+            document.querySelectorAll("#viajes .subtitle");
+        const descriptions: NodeListOf<HTMLParagraphElement> =
+            document.querySelectorAll("#viajes .description");
+        const buttons: NodeListOf<HTMLDivElement> =
+            document.querySelectorAll("#viajes .buttons");
+        const images1: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+            "#viajes .images > div:first-child .image"
+        );
+        const images2: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+            "#viajes .images > div:last-child .image"
+        );
+        const controls: HTMLDivElement = document.querySelector(
+            "#viajes .controls > span"
+        )!;
+
+        numbers[old].classList.remove("was-active");
+        titles[old].classList.remove("was-active");
+        subtitles[old].classList.remove("was-active");
+        descriptions[old].classList.remove("was-active");
+        buttons[old].classList.remove("was-active");
+        images1[old].classList.remove("was-active");
+        images2[old].classList.remove("was-active");
+        numbers[current].classList.remove("active");
+        numbers[current].classList.add("was-active");
+        titles[current].classList.remove("active");
+        titles[current].classList.add("was-active");
+        subtitles[current].classList.remove("active");
+        subtitles[current].classList.add("was-active");
+        descriptions[current].classList.remove("active");
+        descriptions[current].classList.add("was-active");
+        buttons[current].classList.remove("active");
+        buttons[current].classList.add("was-active");
+        images1[current].classList.remove("active");
+        images1[current].classList.add("was-active");
+        images2[current].classList.remove("active");
+        images2[current].classList.add("was-active");
+        numbers[next].classList.add("active");
+        titles[next].classList.add("active");
+        subtitles[next].classList.add("active");
+        descriptions[next].classList.add("active");
+        buttons[next].classList.add("active");
+        images1[next].classList.add("active");
+        images2[next].classList.add("active");
+        controls.textContent = `${next + 1}/${numbers.length}`;
+    };
+    const changeVideo = (direction: 1 | -1) => {
+        const scrollVideo: HTMLDivElement =
+            document.querySelector("#brico-cv .videos")!;
+        const videos: NodeListOf<HTMLDivElement> = document.querySelectorAll(
+            "#brico-cv .videos .scroll .player"
+        );
+
+        if (videos.length >= 2) {
+            const distance = videos[1].offsetLeft - videos[0].offsetLeft;
+
+            scrollVideo!.scrollLeft += distance * direction;
+        }
+    };
+
+    // Get Youtube videos from playlist
+    window.addEventListener("load", async () => {
+        const youtubeVideos: string[] = await getVideosFromPlaylist(
+            "PLMZqxy7ks8derwsZceqoWvkNhZDsp8TF9"
+        );
+        const videos: HTMLDivElement = document.querySelector(
+            "#brico-cv .videos .scroll"
+        )!;
+        const lazyVideo: HTMLElement = videos.querySelector(".player")!;
+        let animationDelay = 0;
+
+        videos.innerHTML = "";
+        for (const id of youtubeVideos) {
+            const video: HTMLElement = lazyVideo.cloneNode(true) as HTMLElement;
+
+            video.style.animationDelay = `${animationDelay}ms`;
+            animationDelay += 160;
+            video.querySelector("source")!.setAttribute("id", id);
+            video
+                .querySelector("source")!
+                .setAttribute("src", `https://www.youtube.com/watch?v=${id}`);
+            video
+                .querySelector("source")!
+                .setAttribute("type", "video/youtube");
+            videos.appendChild(video);
+        }
+        (window as any).onLazyVideosReady();
+    });
+
+    // Scroll
+    scrollControl();
+    window.addEventListener("scroll", scrollControl, true);
+
+    // Travels
+    (window as any)["previousTravel"] = () => {
+        const travels: HTMLElement[] = Array.from(
+            document.querySelectorAll("#viajes .number")
+        );
+        const old: number = travels.indexOf(
+            travels.find((e: HTMLElement) =>
+                e.classList.contains("was-active")
+            )!
+        );
+        const current: number = travels.indexOf(
+            travels.find((e: HTMLElement) => e.classList.contains("active"))!
+        );
+        const next: number =
+            current - 1 >= 0 ? current - 1 : travels.length - 1;
+
+        changeTravel(old, current, next);
+    };
+    (window as any)["nextTravel"] = () => {
+        const travels: HTMLElement[] = Array.from(
+            document.querySelectorAll("#viajes .number")
+        );
+        const old: number = travels.indexOf(
+            travels.find((e: HTMLElement) =>
+                e.classList.contains("was-active")
+            )!
+        );
+        const current: number = travels.indexOf(
+            travels.find((e: HTMLElement) => e.classList.contains("active"))!
+        );
+        const next: number = current + 1 < travels.length ? current + 1 : 0;
+
+        changeTravel(old, current, next);
+    };
+
+    // Videos
+    (window as any)["previousVideo"] = () => changeVideo(-1);
+    (window as any)["nextVideo"] = () => changeVideo(1);
+</script>

@@ -6,7 +6,7 @@
     "homepage": "https://miroulotte.es",
     "repository": "https://github.com/AlejaDiez/mi_roulotte",
     "type": "module",
-    "version": "5.10.0",
+    "version": "6.0.0",
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",

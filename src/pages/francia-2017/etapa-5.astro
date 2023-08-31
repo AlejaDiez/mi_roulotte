@@ -1,0 +1,192 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20170818_134209 from "@assets/francia-2017/IMG_20170818_134209.jpg";
+import IMG_20170817_125912 from "@assets/francia-2017/IMG_20170817_125912.jpg";
+import IMG_20170817_174617 from "@assets/francia-2017/IMG_20170817_174617.jpg";
+import IMG_20170818_134022 from "@assets/francia-2017/IMG_20170818_134022.jpg";
+import IMG_20170818_134101 from "@assets/francia-2017/IMG_20170818_134101.jpg";
+import IMG_20170818_200230 from "@assets/francia-2017/IMG_20170818_200230.jpg";
+import IMG_20170818_190333 from "@assets/francia-2017/IMG_20170818_190333.jpg";
+import IMG_20170818_183952 from "@assets/francia-2017/IMG_20170818_183952.jpg";
+import IMG_20170818_193645 from "@assets/francia-2017/IMG_20170818_193645.jpg";
+import IMG_20170818_184810 from "@assets/francia-2017/IMG_20170818_184810.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-16"),
+    title: "Étretat, Ruan, Honfleur...",
+    subtitle: "Francia",
+    description:
+        "Explora la hermosa región de Bretaña desde el Camping Risle et Seine, un rincón natural a menos de 250 kilómetros de la cautivadora Ruan. A pesar de instalaciones más antiguas y parcelas ajustadas, su servicio de transporte te acerca a la playa y la estación de tren. Por solo 45 euros al día, vive la fusión entre la naturaleza y la ciudad. Desde aquí, descubre Ruan y su encanto único, así como Étretat, con sus impactantes acantilados y vistas panorámicas.",
+    image: new LocalImage(IMG_20170818_134209, "Jardines de Monet"),
+    video: undefined,
+    keywords: [
+        "Camping Risle et Seine",
+        "Explorar Bretaña",
+        "Naturaleza y comodidad",
+        "Instalaciones de camping",
+        "Servicio de transporte",
+        "Ciudad de Ruan",
+        "Encanto de Ruan",
+        "Aventura en Étretat",
+        "Acantilados impresionantes",
+        "Belleza natural de Bretaña",
+        "Experiencia campestre",
+        "Rincón natural",
+        "Destino de viaje en Francia",
+        "Fusión naturaleza-ciudad",
+        "Atracciones cerca de Ruan",
+        "Descubriendo Étretat",
+        "Vacaciones en Bretaña",
+        "Escapada a la naturaleza",
+        "Turismo en Ruan",
+        "Explorar la costa francesa",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nos tocaba hacer 250 kilómetros. Elegimos el
+        <a href="https://www.camping-risle-seine.com" target="_blank"
+            >Camping Risle et Seine</a
+        >
+         al estar más o menos cerca de la autovía, y desde aquí queríamos
+        visitar Caen, Honfleur, Étretat, Giverny y Ruan.
+    </p>
+    <p>
+        El camping se encuentra al lado de un gran lago donde se pueden realizar
+        actividades acuáticas. El acceso se hace por una carretera estrecha sin
+        problemas. En la recepción no hablan nada de castellano, pero con un
+        poco de inglés o con signos, sin problemas. Las parcelas son grandes y
+        planas. Los baños son aceptables y están limpios. Tienen una pequeña
+        piscina y una cama elástica donde mi hermana se lo paso pipa. Por la
+        tarde visitamos Caen. Paseamos por sus calles y visitamos su castillo
+        medieval. No nos entusiasmó demasiado, pero la visita no estuvo mal.
+    </p>
+    <p>
+        Al día siguiente teníamos pensado visitar Étretat, El Havre y Honfleur.
+        Nos levantamos prontito para aprovechar el día y pasar un rato en las
+        playas de Étretat, pero amaneció el día lluvioso. Empezamos el viaje
+        para visitar los acantilados de Étretat.
+    </p>
+    <p>
+        Aparcamos en un parking antes de llegar al pueblo, cogemos los paraguas
+        y después de unos 10 minutos andando llegamos a los acantilados. Justo
+        al llegar deja de llover, qué suerte. No tardamos ni un minuto en
+        decidir que lo primero que visitaremos será el famoso <i
+            >Falaise d'Aval</i
+        > (Ojo de la Aguja), que es un arco natural formado por la erosión del
+        mar, que mide más de 70 metros. Subimos hacia la capilla de Notre-Dame
+        de la Garde y desde allí vimos los acantilados perfectamente. Cuando
+        terminamos nos paseamos por el pueblo viendo sus tiendas y una especie
+        de mercadillo. De camino a Homfleur pasamos por El Havre, pero desde el
+        coche no nos pareció una ciudad muy interesante, pues al ser fuertemente
+        bombardeada en la Guerra las construcciones no eran muy antiguas. Para
+        pasar el río Sena atravesamos el espectacular puente de Normandia.
+        Después de llegar a Homfleur, comimos rápidamente y visitamos este
+        pequeño pueblo. Nos encantó... Su precioso puerto, con las terrazas de
+        los bares repletas de gente y el gran ambiente con varias actuaciones
+        musicales. También nos llamó la atención la iglesia de Santa Catalina
+        que está realizada en madera en su totalidad, yo nunca había visto nada
+        igual.
+    </p>
+    <Mosaic template={6}>
+        <Photo
+            image={new LocalImage(IMG_20170817_125912, "Falaise d'Aval")}
+            class:list={["col-2", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170817_174617, "Puerto de Honfleur")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Otro día lo queríamos dedicar a visitar Giverny y Ruan. Primero llegamos
+        a Giverny para visitar el museo de los impresionismos. Este decepciono
+        un poco a mi madre, a mí no me gustó nada, la pareció pequeño y con
+        pocas obras, pero muy interesantes según ella. Luego visitamos los
+        jardines de Claude Monet, donde este artista pintó sin descanso. Hicimos
+        un recorrido por los rincones preferidos del maestro del impresionismo,
+        con el famoso puente japonés, los nenúfares y la barca. La visita
+        terminó en la casa del pintor donde se puede ver el taller donde
+        trabajaba el pintor, la cocina (que conserva las cazuelas de cobre de la
+        época), los dormitorios y demás habitaciones, así como los muebles y la
+        colección de estampas japonesas.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(
+                IMG_20170818_134022,
+                "Puente japonés (Jardines de Monet)"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170818_134101, "Jardines de Monet")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Por la tarde llegamos a Ruan, esta fue la ciudad o pueblo que más nos
+        gustó de todo el viaje. Ruan fue una de las ciudades más castigadas
+        durante la Segunda Guerra Mundial sumida en llamas durante tres largos
+        días con sus correspondientes noches, perdió el cuarenta por ciento de
+        su centro medieval. Sin embargo, unas dos mil de aquellas viejas
+        viviendas construidas con la característica técnica del entramado de
+        madera, resistieron y hoy en día son uno de los motivos que convierten a
+        esta ciudad en una de las más bonitas de Francia. La Catedral de Ruan
+        tantas veces pintada por Claude Monet, me pareció curiosa, pues una de
+        sus torres parece que está cortada y sin terminar. Es una catedral de
+        estilo Gótico, que me gusto “casi” tanto como mi fantástica Catedral de
+        Burgos. La iglesia de Saint Maclou y las calles de alrededor es otra
+        cosa que no podemos dejar de ver. El palacio de Justicia y los agujeros
+        que las bombas y metralla dejaron en sus paredes. Paseando por sus
+        calles peatonales nos encontramos con el Gran Reloj de Ruan. Este es uno
+        de los relojes más antiguos de Europa. También nos encontramos con la
+        Plaza del Viejo Mercado, donde en 1431 fue condenada a la hoguera Juana
+        de Arco, una de las heroínas históricas del pueblo francés. Una cruz nos
+        recuerda aquel episodio. Sin embargo, más curiosa es la iglesia
+        localizada justo en el centro de la plaza del Viejo Mercado y que está
+        dedicada a la misma Juana de Arco. Es curiosa la foto que hice a la
+        iglesia donde me puedo imaginar que aún sale humo de la chimenea.
+    </p>
+    <Mosaic template={6}>
+        <Photo
+            image={new LocalImage(IMG_20170818_200230, "Catedral de Ruan")}
+            class:list={["col-2", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170818_190333,
+                "Viviendas con entramado de madera"
+            )}
+            class:list={["col-2", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170818_183952, "Gran Reloj")}
+            class:list={["col-2", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170818_193645,
+                "Plaza del viejo mercado"
+            )}
+            class:list={["col-2", "row-2"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170818_184810,
+                "Palacio de la Justicia"
+            )}
+            class:list={["col-4", "row-2"]}
+        />
+    </Mosaic>
+    <p>En definitiva, Ruan un lugar para no perderse.</p>
+</TravelLayout>

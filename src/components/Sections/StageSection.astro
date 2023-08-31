@@ -257,6 +257,28 @@ const nextStage = stages.find((e) => e.id === (currentStage?.id ?? -1) + 1);
             opacity: 1;
         }
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        /* Compact */
+        .stage-section.compact {
+            justify-content: start;
+            gap: 0;
+        }
+
+        .stage-section.compact .list .item {
+            pointer-events: none;
+        }
+
+        .stage-section.compact .list .item:not(.selected) {
+            display: none;
+        }
+
+        /* Expanded */
+        .stage-section.expanded .controls {
+            justify-content: start;
+        }
+    }
 </style>
 
 <script>

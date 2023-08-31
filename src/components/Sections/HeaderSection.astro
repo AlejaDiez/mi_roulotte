@@ -152,4 +152,76 @@ const { id, title, subtitle, image } = Astro.props;
             clip-path: inset(0 0 0 0);
         }
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .header-section {
+            --header-section-title-height: 80px;
+
+            min-height: unset;
+            max-height: unset;
+            height: calc(
+                ((100vw - var(--horizontal-padding) * 2) * 4 / 3) -
+                    var(--component-size) - (var(--media-spacing) * 2)
+            );
+        }
+
+        .header-section .subtitle {
+            display: none;
+        }
+
+        .header-section .title {
+            width: calc(
+                (100% * 4 / 3) - var(--component-size) -
+                    (var(--media-spacing) * 2)
+            );
+            padding-left: unset;
+            padding-right: unset;
+            left: var(--header-section-title-height);
+            top: unset;
+            bottom: 0;
+            background-color: unset;
+            transform: rotateZ(-90deg);
+            transform-origin: bottom left;
+            mask-image: linear-gradient(
+                to left,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 1) calc(var(--vertical-padding) / 2),
+                rgba(0, 0, 0, 1) 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to left,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 1) calc(var(--vertical-padding) / 2),
+                rgba(0, 0, 0, 1) 100%
+            );
+        }
+
+        .header-section .title h1 {
+            display: unset;
+            -webkit-box-orient: unset;
+            -webkit-line-clamp: unset;
+            overflow: unset;
+            overflow-wrap: unset;
+            text-overflow: unset;
+            white-space: nowrap;
+        }
+
+        .header-section .image {
+            width: calc(100% - var(--header-section-title-height));
+            left: unset;
+            right: 0;
+        }
+
+        @keyframes title-animation {
+            0% {
+                transform: translateX(-1.6rem) rotateZ(-90deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(0) rotateZ(-90deg);
+                opacity: 1;
+            }
+        }
+    }
 </style>

@@ -1,0 +1,93 @@
+---
+import Player from "@components/Player.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+import { YoutubeVideo } from "@models/video";
+
+// Images
+import IMG_20180720_174751 from "@assets/francia-2017/IMG_20180720_174751.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-27"),
+    title: "Vuelta a casa",
+    subtitle: "Francia",
+    description:
+        "En nuestro viaje, recorrimos 3827 km en coche y 2475 km con la caravana. Gastamos 319 litros de gasoil (480€) y 160€ en peajes. Hubo una multa de 45€ por exceso de velocidad. Disfrutamos de destinos como Le Puy Du Fou, París, Ruan y Dinan. Cada uno tenía su favorito: mi madre amó los pueblos, mi padre el monte Saint-Michel, mi hermana las piscinas, y a mí me cautivaron Puy du Fou y los pueblos. Agradecemos a mi madre, hermana y padre por hacer posible este gran viaje. ¡Hasta la próxima!",
+    image: new LocalImage(IMG_20180720_174751, "Catedral de Burgos"),
+    video: undefined,
+    keywords: [
+        "Viajes en caravana",
+        "Caravana de viaje",
+        "Experiencias en caravana",
+        "Rutas en caravana",
+        "Aventuras familiares en caravana",
+        "Destinos de viaje en caravana",
+        "Consejos para viajar en caravana",
+        "Recorridos en caravana",
+        "Historias de viaje en caravana",
+        "Camping y caravanas",
+        "Viajar con la familia en caravana",
+        "Guía de caravanas",
+        "Lugares de interés en caravana",
+        "Vida en la carretera",
+        "Viajes por carretera con caravana",
+        "Experiencias de campamento en caravana",
+        "Viajes en caravana por Europa",
+        "Aventuras sobre ruedas",
+        "Explorando en caravana",
+        "Diarios de viaje en caravana",
+    ],
+};
+---
+
+<TravelLayout {...travel} comments>
+    <p>
+        Aquí dejo algunos datos de nuestro viaje. Nuestro coche ha hecho 3827
+        km. Con la caravana a cuestas hicimos 2475 km. Hemos consumido 319
+        litros de gasoil en los que nos hemos gastado 480€. En peajes nos hemos
+        gastado 160€. Hemos pagado una multa de 45€, que vimos cómo nos saltó el
+        flash en una vía rápida de doble carril al ir a 73 Km/h... y nos llegó a
+        casa un par de semanas después en un perfecto castellano. Un gasto que a
+        mi padre le ha hecho mucha gracia fueron los 80€ que nos gastamos en
+        todas las vacaciones en Croissants.
+    </p>
+    <h3>Mis últimas impresiones...</h3>
+    <p>
+        Después de pasar 23 días de vacaciones por tierras francesas, solo hay
+        que decir que me ha encantado
+        <i>Le Puy Du Fou</i>, que decir de París, Ruan, Dinan... Los pequeños
+        pueblos, las grandes ciudades. Los franceses (que, aunque mi padre antes
+        del viaje no estaba muy convencido con ellos, por sus anteriores y
+        lejanas experiencias) que con los que hemos tratado han sido muy
+        cordiales y en general todo ha sido fantástico.
+    </p>
+    <ul>
+        <p>
+            Aquí va la encuesta que he realizado a familia, preguntando qué es
+            lo que más nos gustó de todas las vacaciones...
+        </p>
+        <li>
+            A mi madre lo que más le ha gustado es ver todos los pueblos
+            franceses.
+        </li>
+        <li>A mi padre lo que más le gusto fue el monte Saint-Michel.</li>
+        <li>
+            A mi hermana lo que más le ha gustado ha sido las piscinas de los
+            campings.
+        </li>
+        <li>
+            Y a mí lo que más le ha gustado es ver el Puy du Fou, Monte
+            Saint-Michel y los pueblos franceses.
+        </li>
+    </ul>
+    <p>
+        Quiero dar la gracias a mi madre que me estaba apuntando datos durante
+        el viaje para poder poner todas estas cosas de nuestro viaje, a mi
+        hermana que me hizo compañía y a mi padre por organizar este fantástico
+        viaje y sus compañeros de web campista que le guiaron.
+    </p>
+    <p>ADIOS...</p>
+    <Player video={new YoutubeVideo("https://youtu.be/0xmc9YPgb_A")} />
+</TravelLayout>

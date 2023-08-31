@@ -1,0 +1,179 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import Player from "@components/Player.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+import { YoutubeVideo } from "@models/video";
+
+// Images
+import IMG_2017080_WA0001 from "@assets/francia-2017/IMG_2017080_WA0001.jpg";
+import IMG_20170809_180623 from "@assets/francia-2017/IMG_20170809_180623.jpg";
+import IMG_20170809_162930 from "@assets/francia-2017/IMG_20170809_162930.jpg";
+import IMG_20170809_163649 from "@assets/francia-2017/IMG_20170809_163649.jpg";
+import IMG_20170809_153348 from "@assets/francia-2017/IMG_20170809_153348.jpg";
+import IMG_20170809_153524 from "@assets/francia-2017/IMG_20170809_153524.jpg";
+import IMG_20170810_102944 from "@assets/francia-2017/IMG_20170810_102944.jpg";
+import IMG_20170810_132936 from "@assets/francia-2017/IMG_20170810_132936.jpg";
+import IMG_20170810_152233 from "@assets/francia-2017/IMG_20170810_152233.jpg";
+import IMG_20170810_221936 from "@assets/francia-2017/IMG_20170810_221936.jpg";
+import IMG_20170811_111423 from "@assets/francia-2017/IMG_20170811_111423.jpg";
+import IMG_20170811_124413 from "@assets/francia-2017/IMG_20170811_124413.jpg";
+import IMG_20170811_160417 from "@assets/francia-2017/IMG_20170811_160417.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-08"),
+    title: "Nantes y Le Puy Du Fou",
+    subtitle: "Francia",
+    description:
+        "Exploramos Nantes desde el cómodo Camping la Bretèche, tras un tranquilo viaje de unos 80 kilómetros. El camping ofrecía modernas instalaciones y personal amable, aunque faltaba sombra debido al clima cálido. Descubrimos los encantos de Nantes, desde su castillo con un tobogán hasta Las Máquinas de la Isla. También visitamos Le Puy du Fou para disfrutar de espectáculos históricos.",
+    image: new LocalImage(IMG_2017080_WA0001, "Lago en el camping La Bretèche"),
+    video: undefined,
+    keywords: [
+        "Nantes",
+        "Camping la Bretèche",
+        "Viaje en caravana",
+        "Instalaciones modernas",
+        "Atracciones en Nantes",
+        "Castillo con tobogán",
+        "Las Máquinas de la Isla",
+        "Le Puy du Fou",
+        "Espectáculos históricos",
+        "Espectáculo Cinescenie",
+        "Camping y alojamiento",
+        "Experiencia de viaje",
+        "Turismo en Francia",
+        "Exploración en familia",
+        "Aventura en caravana",
+        "Descubriendo Nantes",
+        "Entretenimiento en Le Puy du Fou",
+        "Lugares de interés en Nantes",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Viaje corto (unos 80 km) y tranquilo. Nos acercamos a uno de nuestros
+        destinos que teníamos señalados <i>Le Puy Du Fou</i>, que ganas. El <a
+            href="https://www.capfun.com/camping-france-pays_de_la_loire-breteche-FR.html"
+            target="_blank">Camping la Bretèche</a
+        >, es uno de los mejores campings en los que hemos estado estos días.
+        Teníamos hecha la reserva, pues teníamos claro los días que íbamos a
+        estar y al estar cercano al parque podíamos tener problemas de ocupación
+        (estaba lleno). En la recepción hablaban un mínimo de castellano y a la
+        entrada nos dieron un kit de bienvenida. Las instalaciones estaban
+        limpias, los baños eran mixtos y caía abundante agua en las duchas...
+        jeje. Una cosa que me pareció curiosa era que para tirar la basura
+        tenías que tener una tarjeta para abrir los contenedores. Croissants muy
+        buenos... Al lado del camping estaban las piscinas (creo que eran
+        municipales), que eran gratuitas para los campistas y estaban fenomenal
+        y el agua calentita. En las inmediaciones del camping había un lago muy
+        chulo...
+    </p>
+    <p>
+        Teníamos entradas para el parque para dos días y para ver el espectáculo
+        nocturno. Las entradas para la noche eran para el viernes por la noche,
+        pero las entradas de día no son específicas para un día, es decir, que
+        puedes ir cualquier día de la temporada. Por este motivo como al
+        levantarnos por la mañana y viendo el día que teníamos con lluvia,
+        decidimos ir a pasar el día a Nantes. Nantes se encontraba a 80 Km de La
+        Bretèche, y fuimos por buena carretera sin peajes. Aparcamos en un
+        parking cubierto (8 €). Nos gustó mucho. Vimos el castillo que tenía un
+        tobogán gratuito para tirarte desde lo alto, callejeamos y luego fuimos
+        a ver <i>Las máquinas de la Isla</i>. Pasamos un buen día. Los dos días
+        siguiente lo pasamos en...
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20170809_180623, "Plaza Real de Nantes")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170809_162930,
+                "Las máquinas de la Isla"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170809_163649,
+                "Las máquinas de la Isla"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170809_153348, "Castillo de Nantes")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170809_153524, "Nantes")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Le Puy du Fou</h3>
+    <p>
+        El parque abre sus puertas a las 10 de la mañana. El camping se
+        encuentra a unos 5 minutos en coche del parque, pero suele haber
+        caravana de coches para entrar a sus enormes parkings gratuitos. Al
+        llegar al control de acceso (arcos de seguridad), había muchísima gente
+        esperando, tuvimos una hora de espera más o menos.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20170810_102944, "Entrada Puy du Fou")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Al final entramos, dentro estaba masificado, mientras nos aclaramos un
+        poco de cómo iba la cosa se nos pasó la mañana y solo entramos a ver un
+        espectáculo y nos fuimos a comer al camping. Por la tarde volvimos y
+        mejor, aparcamos en la puerta y parecía que la gente se había marchado y
+        vimos varios espectáculos más, pero no todos. Nos quedamos hasta más de
+        las 22:00 para ver “Les Orgues De Feu” que merece mucho la pena.
+    </p>
+    <p>
+        El siguiente día, conociendo cómo iba la cosa nos cundió mucho, llevamos
+        la comida y pasamos todo el día hasta llegar al espectáculo nocturno
+        “Cinescenie” que es lo más espectacular que he visto en mi corta vida.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20170810_132936,
+                "Mousquetaire de Richelieu"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170810_152233, "Le Signe dy Triomphe")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170810_221936, "Les Orgues De Feu")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170811_111423, "Les Vikings")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20170811_124413,
+                "Le Bal des Oiseaux Fantômes"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20170811_160417, "Le Secret de la Lance")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        El parque nos costó 300 euros (dos días al parque y entrada al
+        espectáculo nocturno). Dos adultos y dos niños con dos audios guía.
+    </p>
+    <Player video={new YoutubeVideo("https://youtu.be/mxYQn06_nBA")} />
+</TravelLayout>

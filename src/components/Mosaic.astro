@@ -49,6 +49,18 @@ const { id, template } = Astro.props;
                 ) / var(--template)
         );
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .mosaic {
+            --mosaic-spacing: calc(var(--media-spacing) * 2);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+        }
+    }
 </style>
 
 <style is:global>
@@ -185,5 +197,18 @@ const { id, template } = Astro.props;
 
     .mosaic > .row-16 {
         grid-row: span 16 !important;
+    }
+
+    /* Responsive */
+    @media (min-width: 769px) {
+        .mosaic > * {
+            aspect-ratio: unset !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .mosaic > * {
+            height: auto;
+        }
     }
 </style>

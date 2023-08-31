@@ -1,0 +1,79 @@
+---
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+import { YoutubeVideo } from "@models/video";
+
+// Images
+import IMG_20170814_204141 from "@assets/francia-2017/IMG_20170814_204141.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2017-08-05"),
+    title: "Antes de nada...",
+    subtitle: "Francia",
+    description:
+        '¡Explorando Francia sobre Ruedas! Únete a nuestra aventura hasta París, pasando por lugares mágicos como el Monte Saint-Michel y el asombroso parque temático "Puy Du Fou". Viaja con nosotros en caravana y descubre campings únicos. ¡Una travesía llena de paisajes, decisiones y recuerdos inolvidables! ¿Evitar peajes o abrazar la velocidad? ¡Te contamos todo en esta emocionante odisea francesa!',
+    image: new LocalImage(IMG_20170814_204141, "Mont Saint-Michel"),
+    video: new YoutubeVideo("https://youtu.be/0xmc9YPgb_A"),
+    keywords: [
+        "Viaje en caravana",
+        "Travesía por Francia",
+        "Destinos en Francia",
+        "Monte Saint-Michel",
+        "Parque temático Puy Du Fou",
+        "Explorando Europa",
+        "Aventura en carretera",
+        "Campings únicos",
+        "Viaje familiar",
+        "Experiencia de viaje",
+        "Paisajes franceses",
+        "Ruta de viaje",
+        "Decisiones de viaje",
+        "Caravana y peajes",
+        "Verano en Francia",
+        "Experiencia de campamento",
+        "Inspiración de viaje",
+        "Descubriendo lugares",
+        "Viaje desde España",
+        "París y alrededores",
+    ],
+};
+console.log(travel);
+---
+
+<TravelLayout {...travel} ads={false}>
+    <p>
+        Este viaje empezó a finales de agosto del año 2016, cuando al terminar
+        nuestras vacaciones en Portugal, decidimos que nuestras próximas
+        vacaciones veraniegas fueran por Francia. Teníamos algunos destinos que
+        no nos queríamos perder... El parque temático “Puy Du Fou”, el Monte
+        Saint-Michel y por ultimo París.
+    </p>
+    <p>
+        Con todo esto mi padre organizo nuestras tres semanas de vacaciones para
+        hacer un recorrido por el país vecino y visitar a parte de estos tres
+        lugares... otros cuantos más.
+    </p>
+    <p>
+        Salimos de nuestra ciudad, Burgos, el día 5 de Agosto y regresamos el
+        día 27. No queríamos hacer muchos kilómetros seguidos con la caravana,
+        no más de 400 por trayecto, por lo que acampamos en 8 campings distintos
+        y desde estos campings visitábamos varios lugares. En Francia si vas con
+        caravana los peajes son un cincuenta por ciento más caros que si vas
+        solo con el coche, por este motivo en algunas ocasiones intentábamos
+        evitar estos peajes, aunque algunas veces no merecía la pena.
+    </p>
+    <p>
+        Al dar información sobre los campings, los precios son para una caravana
+        + coche + electricidad + dos adultos, mi hermana de 11 años y yo que
+        tengo 14. Los precios de los carburantes varía mucho según donde
+        repostes, lo más caro era en las autopistas y lo más económico en las
+        gasolineras de los supermercados.
+    </p>
+    <p>
+        Al final nuestro recorrido y nuestros campings-paradas fueron: Burgos,
+        Pissos, Marans, Les Epesses, Taden, Pont-Audemer, París, Saint-Julien,
+        Salles y de vuelta a casa (Burgos).
+    </p>
+</TravelLayout>

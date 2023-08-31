@@ -1,5 +1,5 @@
 ---
-import { icon_logo_mi_roulotte } from "@models/icons";
+import { icon_logo_mi_roulotte, icon_menu } from "@models/icons";
 
 export interface Props {
     id?: string;
@@ -17,10 +17,13 @@ const { id, transparent = false, float = false } = Astro.props;
         {icon_logo_mi_roulotte}
     </a>
     <nav class:list={"navigation-menu"}>
-        <a href="/#inicio" target="_self" class:list={"item"}> Inicio</a>
-        <a href="/#viajes" target="_self" class:list={"item"}> Viajes</a>
-        <a href="/#brico-cv" target="_self" class:list={"item"}> Brico-CV</a>
+        <a href="/#inicio" target="_self" class:list={"item"}>Inicio</a>
+        <a href="/#viajes" target="_self" class:list={"item"}>Viajes</a>
+        <a href="/#brico-cv" target="_self" class:list={"item"}>Brico-CV</a>
     </nav>
+    <a class:list={["button-menu", "icon"]}>
+        {icon_menu}
+    </a>
 </header>
 
 <style>
@@ -132,6 +135,15 @@ const { id, transparent = false, float = false } = Astro.props;
         color: var(--on-background-hover-color);
     }
 
+    .header .button-menu {
+        padding: 2px;
+        display: none;
+        transform: rotate(0deg);
+        transition-property: color, transform;
+        transition-duration: var(--animation-duration-1),
+            var(--animation-duration-2);
+    }
+
     /* Transparent */
     .header.transparent {
         background-color: transparent;
@@ -174,4 +186,100 @@ const { id, transparent = false, float = false } = Astro.props;
     .header.float {
         position: fixed;
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .header .navigation-menu {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -99;
+            flex-direction: column;
+            background-color: var(--background-color);
+            clip-path: inset(0 0 100% 0);
+            pointer-events: none;
+            transition-property: clip-path;
+            transition-duration: var(--animation-duration-2);
+            transition-timing-function: var(--animation-curve);
+        }
+
+        .header .navigation-menu .item {
+            font-size: var(--headline-font-size);
+            line-height: var(--headline-font-line-height);
+        }
+
+        .header .navigation-menu .item.active {
+            color: var(--on-surface-color);
+        }
+
+        .header .navigation-menu .item.active:hover {
+            color: var(--on-background-hover-color);
+        }
+
+        .header .button-menu {
+            display: unset;
+        }
+
+        /* Transparent */
+        .header.transparent .navigation-menu .item,
+        .header.transparent .navigation-menu .item.active {
+            color: var(--on-surface-color);
+            opacity: 1;
+            transition-property: color;
+        }
+
+        .header.transparent .navigation-menu .item:hover,
+        .header.transparent .navigation-menu .item.active:hover {
+            color: var(--on-background-hover-color);
+        }
+
+        /* Expanded */
+        .header.expanded .navigation-menu {
+            clip-path: inset(0 0 0 0);
+            pointer-events: all;
+        }
+
+        .header.expanded .button-menu {
+            transform: rotateZ(90deg);
+        }
+
+        /* Expanded Transparent */
+        .header.expanded.transparent a {
+            color: var(--on-background-color);
+        }
+
+        .header.expanded.transparent a:hover {
+            color: var(--on-background-hover-color);
+        }
+
+        .header.expanded.transparent .logo:active {
+            color: var(--on-background-dark-color);
+        }
+    }
 </style>
+
+<script>
+    const headers: NodeListOf<HTMLElement> =
+        document.querySelectorAll(".header");
+
+    headers.forEach((e) => {
+        const buttonMenu: HTMLElement = e.querySelector(".button-menu")!;
+        const items: NodeListOf<HTMLElement> = e.querySelectorAll(
+            ".navigation-menu .item"
+        );
+
+        buttonMenu.addEventListener("click", () =>
+            e.classList.toggle("expanded")
+        );
+        items.forEach((i) =>
+            i.addEventListener("click", () => e.classList.remove("expanded"))
+        );
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+                e.classList.remove("expanded");
+            }
+        });
+    });
+</script>

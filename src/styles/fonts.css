@@ -242,3 +242,16 @@
     /* Icon */
     --icon-font-size: 1.25rem;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        /* Title */
+        --title-font-size: 3.375rem;
+        --title-font-line-height: 4rem;
+
+        /* Subtitle */
+        --subtitle-font-size: 1.25rem;
+        --subtitle-font-line-height: 1.75rem;
+    }
+}

@@ -54,6 +54,17 @@ const { id } = Astro.props;
             opacity: 1;
         }
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .ads-section .ad .desktop {
+            display: none;
+        }
+
+        .ads-section .ad .mobile {
+            display: block;
+        }
+    }
 </style>
 
 <script>

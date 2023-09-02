@@ -1,0 +1,95 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180824_0922 from "@assets/francia-2018/IMG_20180824_0922.jpg";
+import IMG_20180824_0896 from "@assets/francia-2018/IMG_20180824_0896.jpg";
+import IMG_20180824_0912 from "@assets/francia-2018/IMG_20180824_0912.jpg";
+import IMG_20180824_0921 from "@assets/francia-2018/IMG_20180824_0921.jpg";
+import IMG_20180824_0909 from "@assets/francia-2018/IMG_20180824_0909.jpg";
+import IMG_20180824_0905 from "@assets/francia-2018/IMG_20180824_0905.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-24"),
+    title: "San Sebastián",
+    subtitle: "Francia",
+    description:
+        "De vuelta a España desde Francia, mis padres nos llevaron a San Sebastián, una ciudad desconocida para mí y mi hermana. Tras recorrer unos 300 km, llegamos al camping Orio Kanpina en Orio, cerca de la playa. A pesar de las parcelas algo descuidadas, exploramos la hermosa ciudad durante nuestra estancia.",
+    image: new LocalImage(IMG_20180824_0922, "Barrio de Olaberria"),
+    video: undefined,
+    keywords: [
+        "Croissants del verano",
+        "Volver a España",
+        "Padres enseñar San Sebastián",
+        "Recorrido 300 km",
+        "Zona Francia carreteras anchas",
+        "Frontera sin problemas",
+        "Orio Kanpina camping cerca de San Sebastián",
+        "Playa y piscina en camping",
+        "Parcelas sin hierba por plásticos",
+        "Explorar San Sebastián",
+        "Experiencia de viaje",
+        "Playa de La Concha",
+        "Parte Vieja",
+        "Monte Urgull",
+        "Paseo Nuevo",
+        "Palacio de Miramar",
+        "Basílica de Santa María del Coro",
+        "Monte Igueldo",
+        "Catedral del Buen Pastor",
+        "Barrio de Olaberria",
+        "Parque Alderdi Elder",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Desayunamos nuestros últimos croissants del verano y cogimos la
+        carretera para volver a España. Antes de volver a casa mis padres nos
+        querían enseñar San Sebastián, pues mi hermana y yo no lo conocíamos.
+        Recorrimos unos 300 km, antes de llegar a nuestro destino. Por esta zona
+        de Francia las carreteras eran otra cosa, más anchas y parte de
+        autovías. La frontera la pasamos sin ningún problema. Nuestro destino
+        era el <a href="https://oriokanpina.com" target="_blank">Orio Kanpina</a
+        > en Orio, cerca de San Sebastián. El camping está bastante bien, cerca
+        de la playa a la que no fuimos y con piscina que uso mi hermana. Nuestra
+        parcela era justa y me pareció una pena que muchas parcelas estaban sin
+        hierba a causa de los plásticos que ponen algunos campistas. Nos pareció
+        algo caro. Nos dedicamos a visitar San Sebastián.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20180824_0912, "Playa de la Concha")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180824_0896, "Monte Igueldo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180824_0921,
+                "Catedral del Buen Pastor"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180824_0922, "Barrio de Olaberria")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180824_0909, "Parque Alderdi Elder")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180824_0905, "Ayuntamiento")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

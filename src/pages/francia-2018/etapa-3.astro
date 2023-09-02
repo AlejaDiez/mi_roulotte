@@ -1,0 +1,96 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180810_0463 from "@assets/francia-2018/IMG_20180810_0463.jpg";
+import IMG_20180810_0444 from "@assets/francia-2018/IMG_20180810_0444.jpg";
+import IMG_20180810_0461 from "@assets/francia-2018/IMG_20180810_0461.jpg";
+import IMG_20180810_0472 from "@assets/francia-2018/IMG_20180810_0472.jpg";
+import IMG_20180810_0475 from "@assets/francia-2018/IMG_20180810_0475.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-08"),
+    title: "Gerona",
+    subtitle: "Francia",
+    description:
+        "Tras días agotadores en Barcelona, buscábamos tranquilidad en Eurocamping Calonge en Gerona, a unos 110 km. El camping era amplio y bien equipado, con buenas piscinas y acceso a la playa. Hubo algo de ruido nocturno, pero en general, la estancia fue placentera, con tiempo para disfrutar de la piscina y visitar pueblos cercanos.",
+    image: new LocalImage(IMG_20180810_0463, "L'Escala"),
+    video: undefined,
+    keywords: [
+        "Descanso después de Barcelona",
+        "Eurocamping Calonge en Gerona",
+        "Playa y piscina en Calonge",
+        "Distancia corta de 110 km",
+        "Recorrido en caravana",
+        "Tres noches reservadas",
+        "Instalaciones del camping",
+        "Piscina y spa en el camping",
+        "Limpieza y servicios en el camping",
+        "Acceso a la playa",
+        "Supermercado Día en la salida",
+        "Supermercado Mercadona cercano",
+        "Experiencia nocturna en el camping",
+        "Disfrute en la piscina",
+        "Exploración de pueblos cercanos",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Después de pasar tres días agotadores en Barcelona nos tocaba un poco de
+        tranquilidad y disfrute, sobre todo para nosotros los “peques” de la
+        caravana y nuestro destino era la playa y la piscina del
+        <a href="https://www.euro-camping.com" target="_blank">Eurocamping</a>
+         de Calonge en Gerona y pegando a Palamós. La distancia para recorrer
+        era corta, unos 110 km y pagamos unos 5 euros de peaje.
+    </p>
+    <p>
+        Nos levantamos con tranquilidad y después de desayunar, recogimos y
+        empezamos la marcha. Sobre las doce llegamos al camping, teníamos tres
+        noches reservadas. El precio es un poco elevado, pero está muy bien. El
+        camping es gigante y estaba casi lleno. En la recepción nos atendió un
+        chico francés que nos informó de todo lo necesario. Un trabajador nos
+        acompañó hasta nuestra parcela y nos ayudó a poner la caravana en el
+        lugar adecuado. Nos dieron parcela y media para poder dejar el coche,
+        pues eran pequeñas. Este camping ha tenido las mejores instalaciones de
+        todas las vacaciones. Muy buenas piscinas con la zona de spa que nos
+        gustó mucho. Los servicios muy bien y súper limpios, estaban
+        continuamente limpiándoles. Limpieza en el camping un 10. La playa está
+        a unos cinco minutos andando y está muy bien. En la salida del camping
+        está el supermercado Día, que está hecho un desastre, con todo tirado
+        por todos sitios. Y a un km tenemos un Mercadona. Lo que menos me gusto
+        es que a altas horas de la noche algunos jóvenes de otros países
+        llegaban un poco contentos y daban algo de ruido sin que la seguridad
+        del camping dijera nada. La estancia fue muy buena. Algunos días
+        mientras mis padres paseaban por la orilla del mar, nosotros
+        disfrutábamos en la piscina... todos felices. Otros días visitamos
+        algunos pueblos cercanos.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20180810_0444, "L'Escala")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180810_0461,
+                "Monumento a La Cobla (L'Escala)"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180810_0472, "L'Escala")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180810_0475, "L'Escala")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

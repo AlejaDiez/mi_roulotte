@@ -1,0 +1,91 @@
+---
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180804_205641 from "@assets/francia-2018/IMG_20180804_205641.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-04"),
+    title: "Zaragoza",
+    subtitle: "Francia",
+    description:
+        "En nuestra travesía hacia Barcelona, hicimos una parada en el Camping Ciudad de Zaragoza, después de recorrer alrededor de 296 km desde casa. Llegamos al mediodía y a pesar del calor, nos instalamos en una parcela con poca sombra. Disfrutamos de la piscina y exploramos Zaragoza antes de una noche calurosa en el camping. Al día siguiente, continuamos nuestro viaje tras desayunar y recoger.",
+    image: new LocalImage(
+        IMG_20180804_205641,
+        "Basílica de Nuestra Señora del Pilar"
+    ),
+    video: undefined,
+    keywords: [
+        "Destino Barcelona",
+        "Punto intermedio para hacer noche",
+        "300 km por día",
+        "Carretera de Logroño",
+        "Ola de calor en España",
+        "Camping Ciudad de Zaragoza",
+        "Reserva de parcela",
+        "Entrada al camping",
+        "Baños y duchas en el camping",
+        "Instalación en la parcela",
+        "Piscina en el camping",
+        "Paseo a Zaragoza",
+        "Experiencia de calor en el camping",
+        "Aire acondicionado en camping",
+        "Experiencia de viaje",
+        "Recorrido a Barcelona",
+        "Parada en Camping Ciudad de Zaragoza",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nuestro primer destino era Barcelona, pero al encontrarse esta ciudad a
+        unos 600 km de nuestra casa, decidimos buscar un punto intermedio para
+        hacer noche y no darnos la paliza el primer día. Nos gusta hacer unos
+        300 km por día. Salimos de casa sobre las nueve de la mañana y nos
+        esperaban 296 km. Fuimos tranquilamente por la carretera de Logroño y no
+        tuvimos ningún contratiempo, nos encontramos cerca de Burgos con un par
+        de tractores que nos ralentizaron un poco la marcha. El día antes de
+        salir vimos en el telediario que se esperaba en España la primera ola de
+        calor del verano... y efectivamente, el calor era sofocante.
+    </p>
+    <p>
+        Llegamos al <a href="http://www.campingzaragoza.com" target="_blank"
+            >Camping Ciudad de Zaragoza</a
+        > sobre la una del mediodía. Como teníamos claro que este era nuestro
+        destino mi padre reservo la parcela, aunque no hubiera sido necesario.
+        La entrada del camping no tiene ninguna complicación. Frente a recepción
+        existe un espacio para dejar el conjunto y entra andando a recepción,
+        donde la chica era muy amable. Las calles de entrada a las parcelas
+        estaban llenas de arena y piedras. Los baños estaban limpios, pero las
+        duchas daban muy poca agua y el agua fría estaba caliente, sería por la
+        temperatura ambiente. Nos instalamos en la parcela que era grande de
+        arena y pedruscos con un pequeño árbol que no daba casi sombra. Sacamos
+        el toldo nos pusimos a comer a la sombra... el calor era asfixiante.
+        Terminamos rápidamente y nos fuimos a la piscina que era lo mejor del
+        lugar. A media tarde nos fuimos a dar un paseo a Zaragoza y a cenar. Era
+        necesario coger el coche. Después de cenar regresamos al camping, sobre
+        las doce de la noche la temperatura casi no había bajado... BUFFFF que
+        infierno. Esta era una de las primeras veces que echamos de menos el
+        aire acondicionado, para el próximo año lo compramos... Mi padre casi no
+        pudo dormir por el calor, yo como me duermo en cualquier sitio y
+        circunstancias, pues pase buena noche.
+    </p>
+    <Photo
+        image={new LocalImage(
+            IMG_20180804_205641,
+            "Basílica de Nuestra Señora del Pilar"
+        )}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Nos despertamos a las nueve de la mañana y aún no había refrescado como
+        suele pasar en Burgos. Desayunamos, nos duchamos de nuevo con la poca
+        agua que salía de las duchas y sus economizadores de caudal y recogimos
+        todo.
+    </p>
+</TravelLayout>

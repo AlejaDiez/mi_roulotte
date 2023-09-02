@@ -1,0 +1,97 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180824_0051 from "@assets/francia-2018/IMG_20180824_0051.jpg";
+import IMG_20180824_0055 from "@assets/francia-2018/IMG_20180824_0055.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-20"),
+    title: "Lectoure",
+    subtitle: "Francia",
+    description:
+        "En esta etapa de nuestro viaje, cubrimos 150 km hasta llegar al Camping Le Lac des 3 Vallées, parte de la cadena Yelloh! Village. Este camping especial ofrecía emocionantes piscinas y actividades acuáticas para el disfrute de mi hermana. A pesar de algunas tarifas adicionales por ciertas actividades que no realizamos, nos relajamos y nadamos en las instalaciones. Aunque los alrededores carecían de atracciones notables, una visita a Lectoure no cumplió nuestras expectativas en cuanto a su encanto.",
+    image: new LocalImage(IMG_20180824_0051, "Camping Le Lac des 3 Vallées"),
+    video: undefined,
+    keywords: [
+        "Camping Le Lac des 3 Vallées",
+        "Yelloh! Village",
+        "Piscinas con toboganes",
+        "Actividades acuáticas",
+        "Viaje en carretera",
+        "Viaje de camping",
+        "Atracciones en camping",
+        "Experiencia en camping",
+        "Turismo en camping",
+        "Ocupación de camping",
+        "Deportes acuáticos en camping",
+        "Supermercado en camping",
+        "Paseo en Lectoure",
+        "Atracciones turísticas en Lectoure",
+        "Descanso en camping",
+        "Baño en piscina",
+        "Recreación en camping",
+        "Pueblo encantador en Francia",
+        "Vacaciones de verano",
+        "Atractivos de camping",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nos esperaban unos 150 kilómetros. Dejamos el camping con mucha menos
+        ocupación que cuando entramos, se notaba que el mes avanzaba y a los
+        franceses se les acababan las vacaciones. Después de buscar rutas para
+        camiones, el viaje fue tranquilo. Las carreteras en algunos tramos
+        estrechas, pero sin problemas. Tardamos algo menos de tres horas.
+        Nuestro siguiente camping era el <a
+            href="https://www.yellohvillage.es/camping/le_lac_des_3_vallees"
+            target="_blank">Camping Le Lac des 3 Vallées</a
+        > de la cadena Yelloh! Village. Era un regalo para mi hermana, tenía
+        unas piscinas muy divertidas con toboganes y esas cosas que le gustan a
+        mi hermana… En la recepción una chica muy amable nos informó en
+        castellano de todo lo necesario. El camping es gigante y tiene un montón
+        de parcelas, casetas y tiendas de campaña. Nuestra parcela era de tamaño
+        normal, para meter la caravana nos costó un poco, pero gracias a la
+        ayuda de nuestro vecino forzudo holandés, la dejamos perfecta. Los baños
+        estaban siempre limpios y de las duchas salía una cantidad de agua
+        “aceptable” sin más. Tenían un gran lago donde se practicaban deportes
+        acuáticos y la gente se bañaba, pero a nosotros no nos apetecía mucho,
+        pues el agua tenía un color verdoso un poco sospechoso. Una cosa que no
+        nos pareció nada bien fue que para practicar algunos deportes o entrar a
+        algunos lugares tenías que pagar un extra que ni preguntamos cuanto era.
+        Esto después de que este camping no es nada barato. Nosotros el día que
+        llegamos empezaba la temporada media y bajaba el precio, mi padre está
+        en todo. En el camping también tienen un supermercado que no estaba mal
+        y una panadería donde comprábamos el pan de mala calidad y la bollería
+        aceptable. Nosotros comprábamos en Lectoure, que era el pueblo cercano y
+        tenía un gran supermercado. Los días que estuvimos aquí nos dedicamos a
+        descansar y bañarnos. En los alrededores no había nada interesante para
+        visitar. Una tarde fuimos a Lectoure para dar un paseo y es un pueblo
+        con no mucho encanto. Mis padres acostumbrados a visitar todos días
+        pueblos con encanto y hacer cosas nuevas aquí se aburrieron un poco y se
+        les hizo un poco pesado tanta piscina.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180824_0051,
+                "Camping Le Lac des 3 Vallées"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180824_0055,
+                "Camping Le Lac des 3 Vallées"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

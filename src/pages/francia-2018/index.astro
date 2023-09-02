@@ -1,0 +1,95 @@
+---
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180814_0672 from "@assets/francia-2018/IMG_20180814_0672.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-04"),
+    title: "Antes de nada...",
+    subtitle: "Francia",
+    description:
+        "¡De Regreso a la Carretera! Tras descubrir joyas como La Rochelle y París, no resistimos volver. Con intereses diversos en mente (piscinas, Barcelona, pueblos únicos y la naturaleza de Périgord) partimos en agosto desde Burgos, evitando tramos largos y costosos peajes. Siguiendo el patrón del año pasado, 8 campings nos aguardaban junto a sorpresas como Caldas de Montbui. Así, tejimos una travesía llena de recuerdos compartidos y nuevas experiencias. ¿Te lo vas a perder?",
+    image: new LocalImage(IMG_20180814_0672, "Conques"),
+    video: undefined,
+    keywords: [
+        "Viaje por Francia",
+        "La Rochelle",
+        "Ruan",
+        "Parque temático Puy Du Fou",
+        "Monte Saint-Michel",
+        "París",
+        "Lugares turísticos en Francia",
+        "Vacaciones en caravana",
+        "Próximo destino de vacaciones",
+        "Piscina con toboganes",
+        "Barcelona turismo",
+        "Pueblos espectaculares en Francia",
+        "Naturaleza en Périgord",
+        "Viaje desde Burgos",
+        "Campings en Francia",
+        "Precios de campings",
+        "Carburantes en caravana",
+        "Alimentación en viajes",
+        "Itinerario de viaje",
+        "Cambio de planes en el viaje",
+        "Recorrido por España y Francia",
+    ],
+};
+---
+
+<TravelLayout {...travel} ads={false}>
+    <p>
+        Después del viaje del año pasado por Francia, visitando la Rochelle,
+        Ruan, el parque temático “Puy Du Fou”, Monte Saint-Michel, París y
+        algunos lugares más, este país no nos defraudo para nada y nos dejó con
+        ganas de visitarlo de nuevo. El último día de vacaciones del año pasado
+        antes de llegar a Burgos y con mucha pena por terminar nuestro viaje en
+        nuestra caravana por Francia nos reunimos la familia (mi madre, padre,
+        hermana y yo) y empezamos a pensar en el próximo verano... Mi hermana lo
+        único que quería para las próximas vacaciones era “piscina”, si podía
+        ser con toboganes de esos largos, yo estaba muy interesado en pasar por
+        Barcelona para ver una cosa muy interesante para mí, a mi madre la
+        interesaba mucho ver esos pueblos tan espectaculares que tiene Francia y
+        mi padre quería disfrutar con la caravana y la naturaleza, nos habló de
+        una zona muy bonita donde nos podríamos bañar en un rio y visitar una
+        gran cueva, esta zona era el Périgord. A nosotros lo del rio nos sonaba
+        muy bien. Pues nada, como todos años le hicimos el encargo a mi padre
+        para que nos preparase un viaje que a todos nos gustara.
+    </p>
+    <p>
+        Salimos de nuestra ciudad, Burgos, el día 4 de agosto y regresamos el
+        día 26. No queríamos hacer muchos kilómetros seguidos con la caravana,
+        no más de 400 por trayecto. En Francia si vas con caravana los peajes
+        son un cincuenta por ciento más caros que si vas solo con el coche, por
+        este motivo en algunas ocasiones intentábamos evitar estos peajes,
+        aunque algunas veces no merecía la pena.
+    </p>
+    <p>
+        Al dar información sobre los campings, los precios son para una caravana
+        + coche + electricidad + dos adultos, mi hermana de 12 años y yo que
+        tengo 15. Los precios de los carburantes varían mucho según donde
+        repostes, lo más caro era en las autopistas y lo más económico en las
+        gasolineras de los supermercados.
+    </p>
+    <p>
+        Igual que el año anterior acampamos en 8 campings distintos y desde
+        estos campings visitábamos varios lugares. Como en años anteriores en
+        nuestros viajes fuera de España, llevamos el frigorífico lleno de
+        comida, sobre todo embutido. También cargamos con algunas cosas que nos
+        gustan y en Francia no encontramos igual que en España. Unos días antes
+        de salir mi padre tenía todo listo, con todos lugares a visitar y los
+        itinerarios, pero a mi madre se la ocurrió abrir google y pudo ver
+        imágenes de unos pueblos espectaculares... “Cambio de planes y
+        recorridos”.
+    </p>
+    <p>
+        Al final nuestro recorrido fue: Burgos, Zaragoza, Caldas de Montbui
+        (Barcelona), Calonge (Gerona), Carcasona, Bagnac-sur-Célé (Conques,
+        Saint-Cirq-Lapopie), La Roque-Gageac, Lectoure (Toboganes acuáticos),
+        Orio y de vuelta a casa (Burgos).
+    </p>
+</TravelLayout>

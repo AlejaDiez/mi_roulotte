@@ -1,0 +1,219 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180807_0403 from "@assets/francia-2018/IMG_20180807_0403.jpg";
+import IMG_20180805_0012 from "@assets/francia-2018/IMG_20180805_0012.jpg";
+import IMG_20180805_0016 from "@assets/francia-2018/IMG_20180805_0016.jpg";
+import IMG_20180805_0019 from "@assets/francia-2018/IMG_20180805_0019.jpg";
+import IMG_20180807_0327 from "@assets/francia-2018/IMG_20180807_0327.jpg";
+import IMG_20180806_0030 from "@assets/francia-2018/IMG_20180806_0030.jpg";
+import IMG_20180807_0340 from "@assets/francia-2018/IMG_20180807_0340.jpg";
+import IMG_20180805_0007 from "@assets/francia-2018/IMG_20180805_0007.jpg";
+import IMG_20180807_0395 from "@assets/francia-2018/IMG_20180807_0395.jpg";
+import IMG_20180807_0198 from "@assets/francia-2018/IMG_20180807_0198.jpg";
+import IMG_20180807_0424 from "@assets/francia-2018/IMG_20180807_0424.jpg";
+import IMG_20180807_0209 from "@assets/francia-2018/IMG_20180807_0209.jpg";
+import IMG_20180806_0107 from "@assets/francia-2018/IMG_20180806_0107.jpg";
+import IMG_20180806_0105 from "@assets/francia-2018/IMG_20180806_0105.jpg";
+import IMG_20180806_0047 from "@assets/francia-2018/IMG_20180806_0047.jpg";
+import IMG_20180807_0433 from "@assets/francia-2018/IMG_20180807_0433.jpg";
+import IMG_20180806_0069 from "@assets/francia-2018/IMG_20180806_0069.jpg";
+import IMG_20180806_0097 from "@assets/francia-2018/IMG_20180806_0097.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-05"),
+    title: "Barcelona",
+    subtitle: "Francia",
+    description:
+        "En esta etapa de nuestro viaje, recorrimos 334 km hasta Caldas de Montbui, cerca de Barcelona. Optamos por la autopista de peaje, luego tomamos la autovía A-2 y pagamos peajes cercanos a la ciudad. Elegimos el Camping El Pasqualet como base para tres días de exploración en Barcelona. Aunque más caros, los campings cercanos a la ciudad no parecían valer la pena debido a la necesidad de transporte extra. En el camping, encontramos comodidad a pesar de algunos desafíos en el acceso. Disfrutamos de la piscina, exploramos Barcelona usando una aplicación de estacionamiento y cumplimos un sueño visitando un concesionario de Tesla. Nuestra amiga local nos mostró la ciudad y disfrutamos de su ambiente y gente.",
+    image: new LocalImage(IMG_20180807_0403, "Parque Guell"),
+    video: undefined,
+    keywords: [
+        "Viaje 334 km",
+        "Autopista de peaje",
+        "Autovía A-2",
+        "Peajes cerca de Barcelona",
+        "Camping El Pasqualet",
+        "Caldas de Montbui",
+        "Visita a Barcelona",
+        "Campings cercanos a la ciudad",
+        "Acceso al camping",
+        "Reserva de parcela",
+        "Comodidades del camping",
+        "Baños y duchas en el camping",
+        "Tienda en el camping",
+        "Piscina del camping",
+        "Transporte público en Barcelona",
+        "Aplicación de estacionamiento WesmartPark",
+        "Aparcamiento cerca de la Sagrada Familia",
+        "Experiencia en Barcelona",
+        "Visita a concesionario Tesla",
+        "Exploración de la ciudad",
+        "Experiencia en la Sagrada Familia",
+        "Amistad local en Barcelona",
+        "La Sagrada Familia",
+        "Parque Güell",
+        "Las Ramblas",
+        "Barrio Gótico",
+        "Catedral de Barcelona",
+        "La Boquería",
+        "Paseo de Gracia",
+        "Montjuïc",
+        "Museo Picasso",
+        "Barceloneta",
+        "Palacio de la Música Catalana",
+        "Museo Nacional de Arte de Cataluña (MNAC)",
+        "Parque de la Ciutadella",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        El viaje de hoy tenía 334 km. Fuimos hasta Fraga por autopista de peaje
+        (11,25 euros) y allí cogimos la autovía A-2 que es libre. Cerca de
+        Barcelona pagamos de nuevo 2,45 euros en otro peaje. Nuestro camping
+        elegido fue
+        <a href="https://elpasqualet.com" target="_blank">El Pasqualet</a> en
+        Caldas de Montbui. Nuestra intención era utilizar este camping para
+        visitar Barcelona un par de días. Los campings más cercanos a la ciudad
+        eran muy caros y necesitábamos transporte público o coche para
+        acercarnos a la ciudad y creíamos que no compensaba.
+    </p>
+    <p>
+        Antes de llegar al camping en sus inmediaciones nos encontramos con una
+        carretera estrecha con coches de usuarios del camping aparcados a ambos
+        lados, y luego una barrera con una garita donde no había nadie. Mi padre
+        entro andando y llego hasta la recepción, que se encontraba a unos
+        trescientos metros, para que nos abrieran la barrera. Una vez dentro las
+        calles también eran estrechas, pero al no encontrarnos con nadie de
+        frente no tuvimos problemas. Teníamos reserva hecha para tres noches y
+        creo que fue un acierto reservar, pues estaba lleno en el momento de ir
+        nosotros. Era un camping pequeño y familiar con bastantes fijos. La
+        parcela era justa... tenía sombra que daban algunos árboles y algo de
+        hierba en el suelo. Los baños estaban bien tal vez escasos para la gente
+        que estábamos allí y lo poco que estuvimos en el camping yo los vi
+        bastante limpios, las duchas tenían agua en abundancia. Tenían una
+        pequeña tienda con algunas cosas y pan. En el pueblo existía un
+        Mercadona. En el camping estaba la piscina que usamos poco, pero que no
+        debía tener buena depuradora, pues el agua después de unas horas de uso
+        se veía bastante turbia. Llegamos al camping, nos acomodamos, comimos la
+        comida que mis padres habían preparado en casa y nos fuimos a la
+        piscina... Estaba cerrada, tenía horario de mañana-tarde y cerraban al
+        medio día. Nos dimos un chapuzón y más tarde nos fuimos a Barcelona. En
+        la recepción nos atendieron bien y nos dieron información para ir a
+        Barcelona en autobús. El autobús salía del camping a las 8:50 y 9:50 y
+        luego salía de Barcelona, dirección camping a las 19:00 y 20:30. El
+        precio de 10 viajes era de 27,40 euros. Nosotros teníamos pensado ir con
+        nuestro coche sin necesidad de horarios.
+    </p>
+    <p>
+        Para aparcar en Barcelona nosotros usamos una aplicación de móvil
+        llamada WesmartPark. Con esta aplicación puedes aparcar en varios
+        parkings de la ciudad, suelen ser aparcamiento de hoteles que tienen
+        algunas plazas para esta aplicación. Nosotros aparcamos cerca de la
+        Sagrada Familia por 12 euros 24 horas o poder aparcar por horas a buen
+        precio. Lo recomiendo totalmente. Esa tarde en Barcelona cenamos en un
+        McDonald's y luego vimos las fuentes de Montjuic y sus juegos de luces y
+        agua... muy bonito y el agua pulverizada nos fue fenomenal y nos
+        refresco. Volvimos al camping para descansar y dormir, al día siguiente
+        era uno de los días que yo tenía marcado en mi calendario hace tiempo
+        con una X bien grande...
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180805_0012, "Fuentes de Montjuic")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180805_0016, "Fuentes de Montjuic")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180805_0019, "Fuentes de Montjuic")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Al día siguiente no madrugamos mucho y nos fuimos a la Citi, aparcamos
+        cerca de la Sagrada Familia y fuimos en busca de uno de mis sueños. La
+        Sagrada Familia, el Parque Güell, ¿las casas de Gaudí?... NO yo estoy
+        enamorado de TESLA y sus coches. Fuimos a un concesionario y vimos los
+        autos. Me dejaron montarme y tocar todo lo que quise e hice unas cuantas
+        fotos, que emoción. Bueno se hizo la hora de comer y nos tuvimos que ir.
+        Habíamos quedado con nuestra amiga Mariola, que vive en esta ciudad y
+        nos enseñó un montón de cosas y lugares. Nos gustó mucho Barcelona, su
+        ambiente y sus gentes.
+    </p>
+    <p>
+        A continuación, dejo unas cuantas fotos de algunas cosas que vimos en
+        esta bella ciudad.
+    </p>
+    <Mosaic template={16}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180807_0327,
+                "Palau de la Música de Sant Pau"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180806_0030, "Sagrada Família")}
+            class:list={["col-12", "row-9"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180807_0340, "Estatua de Colón")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180805_0007, "Fuentes de Montjuic")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180807_0395, "Barcelona")}
+            class:list={["col-12", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180807_0198, "Sagrada Família")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180807_0424, "Parque Guell")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180807_0209, "Sagrada Família")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180806_0107, "Las Ramblas")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180806_0105, "Mercado de La Boqueria")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180806_0047, "Tienda Tesla")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180807_0433, "Sagrada Família")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180806_0069, "Arco de Triunfo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180806_0097, "Plaza Sant Jaume")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

@@ -1,0 +1,284 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180814_0695 from "@assets/francia-2018/IMG_20180814_0695.jpg";
+import IMG_20180813_0628 from "@assets/francia-2018/IMG_20180813_0628.jpg";
+import IMG_20180813_0629 from "@assets/francia-2018/IMG_20180813_0629.jpg";
+import IMG_20180813_0636 from "@assets/francia-2018/IMG_20180813_0636.jpg";
+import IMG_20180813_0626 from "@assets/francia-2018/IMG_20180813_0626.jpg";
+import IMG_20180813_0633 from "@assets/francia-2018/IMG_20180813_0633.jpg";
+import IMG_20180813_0619 from "@assets/francia-2018/IMG_20180813_0619.jpg";
+import IMG_20180813_0641 from "@assets/francia-2018/IMG_20180813_0641.jpg";
+import IMG_20180813_0664 from "@assets/francia-2018/IMG_20180813_0664.jpg";
+import IMG_20180813_0655 from "@assets/francia-2018/IMG_20180813_0655.jpg";
+import IMG_20180814_0671 from "@assets/francia-2018/IMG_20180814_0671.jpg";
+import IMG_20180814_0674 from "@assets/francia-2018/IMG_20180814_0674.jpg";
+import IMG_20180814_0683 from "@assets/francia-2018/IMG_20180814_0683.jpg";
+import IMG_20180814_0688 from "@assets/francia-2018/IMG_20180814_0688.jpg";
+import IMG_20180814_0676 from "@assets/francia-2018/IMG_20180814_0676.jpg";
+import IMG_20180814_0690 from "@assets/francia-2018/IMG_20180814_0690.jpg";
+import IMG_20180814_0692 from "@assets/francia-2018/IMG_20180814_0692.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-12"),
+    title: "Saint-Cirq-Lapopie, Cahors y Conques",
+    subtitle: "Francia",
+    description:
+        "En esta fase del viaje, partimos desde Montolieu hacia el Camping Les Berges du Célé, sorteando desafíos en el camino. Disfrutamos del camping junto al riachuelo y exploramos lugares como Saint-Cirq-Lapopie, Cahors y el impresionante Conques. Estos destinos nos cautivaron con su belleza histórica y escenarios naturales únicos.",
+    image: new LocalImage(IMG_20180814_0695, "Conques"),
+    video: undefined,
+    keywords: [
+        "Viaje en coche",
+        "Camping Les Berges du Célé",
+        "Explorando pueblos",
+        "Saint-Cirq-Lapopie",
+        "Cahors",
+        "Paisajes naturales",
+        "Turismo en Francia",
+        "Conques y su abadía",
+        "Camino de Santiago",
+        "Experiencia de viaje",
+        "Aventuras en carretera",
+        "Destinos turísticos",
+        "Viaje por Europa",
+        "Ruta de viaje",
+        "Recorriendo pueblos históricos",
+        "Experiencias de camping",
+        "Exploración de aldeas",
+        "Turismo rural",
+        "Itinerario de viaje",
+        "Viaje en familia",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Después de pasar una buena noche, recogimos todo, compramos el pan con
+        los croissants correspondientes y emprendimos la marcha. Eran solo unos
+        doscientos kilómetros, pero nuestro navegador nos decía que tardaríamos
+        unas cuatro horas. Esto nos decía que la carretera no sería buena. Y así
+        fue, al poco de salir de Montolieu el TomTom no llevó por una especie de
+        puerto con los carriles muy estrechos. Para empezar el viaje, no estuvo
+        mal. Curvas y más curvas, y la carretera cada vez más cerrada. Si mi
+        padre paso esto con nuestra caravana, podemos ir con ella al fin del
+        mundo. Papa estuvo todo el camino acordándose de los familiares del
+        navegador. “Esto no es ni medio normal” Todo el camino no fue tan malo,
+        pero unos cuantos kilómetros antes de llegar a nuestro destino la
+        carretera empeoro de nuevo, llegamos sanos y salvos sin ningún
+        contratiempo más. En los siguientes viajes mi padre busco rutas para el
+        TomTom para camiones y la cosa no fue mal. Sabíamos que por esta zona y
+        en nuestro siguiente destino las carreteras nos serían complicadas, pero
+        las esperábamos tan malas. Con muchas curvas, estrechas y bastantes
+        bacheadas.
+    </p>
+    <p>
+        Llegamos a nuestro destino <a
+            href="https://www.lesbergesducele.com"
+            target="_blank">Camping Les Berges du Célé</a
+        > y como no, la recepción cerrada. Entramos dentro y preguntamos en el
+        bar. Los dueños se hacían cargo de todo y la recepción estaba siempre
+        cerrada, el dueño vivía en el bar y era súper agradable. Hablaba muy
+        poco castellano y se esforzó un montón en darnos todas indicaciones y
+        comentarnos que eran las fiestas del pueblo y tal vez por la noche se
+        podía oír la música, no fue ningún problema. El día anterior
+        intercambiamos correos y respondió rápidamente a nuestras preguntas. El
+        camping estaba muy bien, nos pusimos a diez metros de un riachuelo. Las
+        parcelas no estaban delimitadas y el terreno era de hierba y plano. Los
+        baños eran viejos, pero estaban bastante limpios, los limpiaban a
+        manguerazos, pero era efectivo. A un kilómetro del camping estaba un
+        supermercado Intermarché, donde compramos algunas cosas. En el camping
+        estaba la piscina municipal en la que podíamos entrar. Nos sorprendió lo
+        limpia que tenían la piscina, todos los días desinfectaban el suelo de
+        alrededor. Comimos y pasamos la tarde en la piscina, fenomenal.
+    </p>
+    <p>
+        Dormimos fenomenal, mi padre fue a comprar algunas cosas, mi hermana y
+        yo nos fuimos a la piscina y mi madre se quedó en la parcela haciendo
+        algunas cosillas, desde la parcela se veía la piscina perfectamente.
+        Comimos pronto porque parecía que iba a llover y así fue cayó una
+        tormenta bastante grande con granizo. Nosotros nos montamos en el coche
+        y nos fuimos a visitar algún pueblo. Fuimos a Saint-Cirq-Lapopie, este
+        pueblo es unos de los más bonitos de Francia. El pueblo se encuentra
+        sobre un acantilado a cien metros por encima del rio Lot.
+    </p>
+    <p>
+        Llegamos al pueblo y aparcamos en uno de sus aparcamientos (4 €).
+        Empezamos a recorrer sus estrechas calles empedradas con unas grandes
+        cuestas, y llegamos al punto más alto donde se encuentran las ruinas del
+        castillo. Estas ruinas no tienen mucho que ver, pero las vistas desde lo
+        alto son impresionantes.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180813_0628,
+                "Calle de Saint-Cirq-Lapopie"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180813_0629,
+                "Calle de Saint-Cirq-Lapopie"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180813_0636,
+                "Iglesia de Saint-Cirq-Lapopie"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Luego seguimos paseando y bajamos hasta la parte de abajo del pueblo
+        asomándonos en nuestro paseo por sus terrazas para observar el paisaje y
+        deteniéndonos en algunos jardines… lo tienen muy cuidado. Teníamos un
+        problema, estábamos abajo del pueblo y nuestro coche se encontraba en un
+        parking en lo más alto y estábamos cansados de tantas cuestas. Papa se
+        ofreció a ir a por el coche mientras nosotros hacíamos algunas fotos.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180813_0626,
+                "Casa de Saint-Cirq-Lapopie"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180813_0633, "Saint-Cirq-Lapopie")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Cogimos el coche y fuimos a visitar otro pueblo, Cahors. Hasta Cahors
+        hay que recorrer nada más que 30 km y es muy recomendable ir por la
+        orilla del rio Lot para asegurarte un viaje que jamás olvidarás. El
+        trayecto ofrece unos paisajes de hermosos acantilados, la carretera va
+        siguiendo el paso del río Lot y a veces se “mete” literalmente en la
+        roca para salir y continuar junto al trayecto del agua, por la cual
+        navegan barcos. Este trayecto nos encantó.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20180813_0619, "Valles de Quercy")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        A Cahors llegamos sobre la ocho de la tarde y casi paseábamos solos por
+        el pueblo, los franceses se recogen enseguida. Fuimos a ver el Puente
+        Valentré, un antiguo puente medieval de piedra que cruza el rio Lot y es
+        el símbolo de la ciudad. La construcción de este se inició en 1308 y
+        llevó unos 70 años acabarlo. Hoy en día se conserva en perfecto estado.
+        Las vistas desde el mismo son muy bonitas y es interesante cruzar el
+        rio.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180813_0641, "Puente Valentré")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180813_0664, "Puente Valentré")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180813_0655, "Rio Lot")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        El pueblo en sí no tiene nada más que ver para completar la visita. Se
+        nos hizo tarde y cenamos en un McDonald cercano y después nos fuimos al
+        camping, teníamos unos 90 km y tardamos más de hora y media. Era noche
+        cerrada, carretera estrecha y con curvas. En estos 90 kilómetros solo
+        nos encontramos con un par de coches y al pasar por los pueblos, estos
+        parecían abandonados. Mi hermana hizo todo el camino durmiendo, aprendió
+        que así se llega antes…
+    </p>
+    <p>
+        Al día siguiente teníamos pensada otra visita a un pueblo que nos habían
+        hablado muy bien de él, Conques. Luego teníamos previsto ir a Estaing y
+        Bozouls, pero se nos alargó la visita a Conques y estos dos lugares los
+        dejaremos para otra vez. Llegamos a Conques y pasamos el pueblo, había
+        algún aparcamiento que estaba completo y nos obligaron a ir a otro que
+        parecía que estaba bastante lejos, pero al final estaba cercano. Lo
+        tenían bien organizado, había que pagar 4 € y te daban una pequeña
+        pegatina que nosotros pegamos en una esquina de nuestro auto y aún no
+        hemos quitado por el buen recuerdo que nos dejó este pueblo (es la única
+        pegatina en nuestro parabrisas a parte de la itv). Nos adentramos por la
+        calle principal. La imagen parecía sacada de un decorado. Las casas se
+        amontonaban a lo largo de la ladera, casas de piedra roja con pequeñas
+        porciones de blanca caliza, estructuras de madera y tejados de pizarra
+        azul.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20180814_0692, "Conques")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180814_0674, "Calles de Conques")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180814_0683, "Calle de Conques")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180814_0688, "Calles de Conques")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Caminando a través de la calle principal fuimos a parar al gran
+        monumento de Conques, la Abadía románica de la Santa Fe, que tiene sus
+        orígenes en el año 1052. Es un importante centro de peregrinación desde
+        la Edad Media. Y por aquí pasa el camino de Santiago, es el conocido
+        Camino Francés que lleva hasta Roncesvalles, en Navarra, dentro del
+        Camino de Santiago. Y la etapa que comienza en Le Puy-en-Velay y termina
+        en Conques es una de las más transitadas. Comimos unos estupendos
+        bocadillos de embutido ibérico, sentados a la sombra de un hermoso árbol
+        que se encontraba en una plaza y luego nos comimos un pastel en una
+        pastelería del pueblo. Pasamos casi todo el día paseando por las calles
+        de este espectacular pueblo, para nosotros el más bonito de los
+        visitados en todas nuestras vacaciones.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180814_0671, "Abadía de Santa Fe")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180814_0676, "Abadía de Santa Fe")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180814_0690, "Abadía de Santa Fe")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Cogimos el coche y nos acercamos a ver La Vinzelle. El pueblo es bonito,
+        pero después de ver Conques, este nos pareció mucho menos interesante,
+        claro es mucho menos turístico. Tiene una gran pendiente que después de
+        todo el día andando se me hizo muy pesada. Las vistas desde arriba eran
+        muy bonitas. Se nos hizo tarde y fuimos al camping a cenar, ver una
+        película y a dormir.
+    </p>
+    <p>
+        Al día siguiente nos tocaba cambiar de camping. Recogimos y nos
+        despedimos de los dueños del lugar. Fue curioso, pues nos hicieron
+        firmar en el “tablón” de visitantes, parece ser que éramos los primeros
+        españoles que pisábamos sus instalaciones. Había mensajes de chinos,
+        rusos, argentinos y de mi padre… jajaja.
+    </p>
+</TravelLayout>

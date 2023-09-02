@@ -1,0 +1,73 @@
+---
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180720_163747 from "@assets/francia-2018/IMG_20180720_163747.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-26"),
+    title: "Vuelta a casa",
+    subtitle: "Francia",
+    description:
+        "En el último día del viaje, sentimos nostalgia al despedir las vacaciones pero también emoción por regresar a casa sin problemas. Recorrimos unos 230 kilómetros, pasando por lugares como Miranda de Ebro y la AP-1. Las vacaciones han sido fantásticas, disfrutamos de Francia y exploramos nuevas ciudades como Barcelona y San Sebastián. ¡Volveremos!",
+    image: new LocalImage(IMG_20180720_163747, "Catedral de Burgos"),
+    video: undefined,
+    keywords: [
+        "Último día de vacaciones",
+        "Emociones al regresar a casa",
+        "Recorrido de 230 kilómetros",
+        "N-1 y AP-1 en el viaje de regreso",
+        "Experiencia de vacaciones en Francia",
+        "Descubrimiento de nuevas ciudades",
+        "Barcelona",
+        "San Sebastián",
+        "Opiniones familiares sobre los aspectos destacados",
+        "Gouffre de Padirac",
+        "Saint-Cirq-Lapopie",
+        "Conques",
+        "Camping Le Lac des 3 Vallées",
+        "pueblos visitados",
+        "Barcelona",
+        "Tesla",
+    ],
+};
+---
+
+<TravelLayout {...travel} comments>
+    <p>
+        Este ultimo día, poco tengo que contar. Teníamos pena porque se
+        terminaban las vacaciones y a la vez ganas y alegría por llegar a casa
+        sin ningún contratiempo y volver a nuestras cosas. A algunos aun nos
+        quedaban unos días de vacaciones en casa o por Cantabria. Recorrimos
+        unos 230 kilómetros. Primero por la N-1 hasta Miranda de Ebro y luego
+        cogimos la AP-1 para llegar a casa. Hemos pasado unas vacaciones
+        fantásticas. Francia nos encanta y volveremos. Además, hemos conocido
+        nuevas ciudades en España como son Barcelona y San Sebastián
+        fantásticas.
+    </p>
+    <ul>
+        <p>
+            He realizado una pequeña encuesta entre la familia preguntando qué
+            es lo que más nos gustó de todas las vacaciones...
+        </p>
+        <li>
+            A mi padre lo que más le gusto/impresiono fue la Gouffre de Padirac,
+            luego Saint-Cirq-Lapopie y Conques.
+        </li>
+        <li>
+            A mi hermana fueron los toboganes del camping Camping Le Lac des 3
+            Vallées.
+        </li>
+        <li>
+            A mi madre le encantaron todos los pueblecitos por los que pasamos,
+            menos Carcasona, que se lo imaginaba menos comercial.
+        </li>
+        <li>
+            Y a mí por supuesto fue Barcelona y en especial aquella magnífica
+            tienda de Tesla.
+        </li>
+    </ul>
+</TravelLayout>

@@ -1,0 +1,332 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180817_0757 from "@assets/francia-2018/IMG_20180817_0757.jpg";
+import IMG_20180816_0697 from "@assets/francia-2018/IMG_20180816_0697.jpg";
+import IMG_20180815_195212 from "@assets/francia-2018/IMG_20180815_195212.jpg";
+import IMG_20180815_201227 from "@assets/francia-2018/IMG_20180815_201227.jpg";
+import IMG_20180816_0698 from "@assets/francia-2018/IMG_20180816_0698.jpg";
+import IMG_20180816_0716 from "@assets/francia-2018/IMG_20180816_0716.jpg";
+import IMG_20180816_0708 from "@assets/francia-2018/IMG_20180816_0708.jpg";
+import IMG_930362471 from "@assets/francia-2018/IMG_930362471.jpg";
+import IMG_20180817_0733 from "@assets/francia-2018/IMG_20180817_0733.jpg";
+import IMG_20180817_0767 from "@assets/francia-2018/IMG_20180817_0767.jpg";
+import IMG_20180817_0750 from "@assets/francia-2018/IMG_20180817_0750.jpg";
+import IMG_20180817_0729 from "@assets/francia-2018/IMG_20180817_0729.jpg";
+import IMG_20180817_0726 from "@assets/francia-2018/IMG_20180817_0726.jpg";
+import IMG_20180817_0719 from "@assets/francia-2018/IMG_20180817_0719.jpg";
+import IMG_20180817_0737 from "@assets/francia-2018/IMG_20180817_0737.jpg";
+import IMG_20180817_0768 from "@assets/francia-2018/IMG_20180817_0768.jpg";
+import IMG_20180817_0723 from "@assets/francia-2018/IMG_20180817_0723.jpg";
+import IMG_20180817_0753 from "@assets/francia-2018/IMG_20180817_0753.jpg";
+import IMG_20180817_0772 from "@assets/francia-2018/IMG_20180817_0772.jpg";
+import IMG_20180817_0786 from "@assets/francia-2018/IMG_20180817_0786.jpg";
+import IMG_20180817_0823 from "@assets/francia-2018/IMG_20180817_0823.jpg";
+import IMG_20180817_0829 from "@assets/francia-2018/IMG_20180817_0829.jpg";
+import IMG_20180817_0793 from "@assets/francia-2018/IMG_20180817_0793.jpg";
+import IMG_20180817_0796 from "@assets/francia-2018/IMG_20180817_0796.jpg";
+import IMG_20180817_0840 from "@assets/francia-2018/IMG_20180817_0840.jpg";
+import IMG_20180817_0844 from "@assets/francia-2018/IMG_20180817_0844.jpg";
+import IMG_20180817_0891 from "@assets/francia-2018/IMG_20180817_0891.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-15"),
+    title: "La Roque-Gageac, Sarlat-la-Canéda, Rocamadour y Gouffre de Padirac",
+    subtitle: "Francia",
+    description:
+        "Tras 100 km de carreteras en mal estado y 3 horas de viaje llegamos al Camping La Plage, junto al río Dordoña. A pesar de la barrera del idioma en la recepción, disfrutamos de una parcela sombreada y de baños en el río. Utilizamos el camping como base para explorar lugares cercanos como Sarlat-la-Canéda, Rocamadour y las impresionantes cuevas Gouffre de Padirac. Estos cinco días nos dejaron recuerdos inolvidables.",
+    image: new LocalImage(IMG_20180817_0757, "Rocamadour"),
+    video: undefined,
+    keywords: [
+        "Carreteras en mal estado",
+        "Camping La Plage",
+        "Río Dordoña",
+        "Recepción camping",
+        "Baños en el río",
+        "Sarlat-la-Canéda",
+        "Mercadillo Sarlat",
+        "Rocamadour",
+        "Santuarios Rocamadour",
+        "Cuevas Gouffre de Padirac",
+        "Descenso en canoa",
+        "Paisajes espectaculares",
+        "Turismo en Francia",
+        "Actividades al aire libre",
+        "Atracciones turísticas",
+        "Experiencia de viaje",
+        "Exploración de lugares cercanos",
+        "Vacaciones en camping",
+        "Aventuras de viaje",
+        "Recuerdos de viaje",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nos esperaban unos 100 km de carreteras bastante malas. Así fue, las
+        carreteras eran estrechas, bacheadas y con infinidad de curvas. El
+        navegador nos volvió a pasar alguna mala jugada, pero llegamos sin
+        contratiempos después de algo menos de tres horas de viaje. Esta vez el
+        camping elegido fue el <a
+            href="https://camping-laplage.fr"
+            target="_blank">Camping La Plage</a
+        >, a las orillas del río Dordoña. Teníamos reservadas cinco noches (el
+        camping estaba lleno). La recepción no estaba en la entrada, se
+        encontraba al lado de la piscina a unos doscientos metros de la puerta.
+        No hablaban nada de castellano y como nosotros no teníamos ni idea de
+        francés… no tuvimos problemas para entendernos. La parcela era amplia,
+        llana y con la sombra de un gran árbol. Los baños eran pocos para la
+        ocupación del camping y no estaban muy limpios. Tenía una pequeña
+        piscina que nos dio un buen servicio, pero lo mejor era el río Dordoña
+        que estaba a 20 metros. Nos dimos unos baños fantásticos en este gran
+        río con el agua cristalina y no mucha corriente. Por la noche algún día
+        en el bar tenían música en directo, una de estas noches actuó una banda
+        que imitaban a Scorpions y a mi padre le gustó mucho. La primera tarde
+        la dedicamos a holgazanear, bueno algo hicimos de provecho, nos dimos un
+        baño en el río y luego en la piscina. Por la tarde noche nos acercamos
+        andando al pueblo La Roque-Gageac, que se encuentra sobre un kilómetro y
+        es muy bonito para ver como las casas se meten en las rocas.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180816_0697, "Fotos desde el camping")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180815_195212, "La Roque-Gageac")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180815_201227, "La Roque-Gageac")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Este camping fue nuestra base para hacer y ver varios lugares cercanos.
+        Sarlat-la-Canéda fue una de nuestras visitas. Al estar a 12 kilómetros
+        del camping, nos acercamos varias veces. Es algo complicado aparcar,
+        tiene zona de pago, pero nosotros nos las apañamos para aparcar en otros
+        sitios cercanos, como algún supermercado (Lidl). El sábado por la mañana
+        fuimos a ver el famoso mercadillo. La ciudad estaba abarrotada, pero
+        merece la pena ver la cantidad de cosas que tienen y sobre todo la zona
+        de productos frescos con los quesos y sobre todo el foie gras que es el
+        producto estrella. Otro día nos acercamos por la noche para ver las
+        actuaciones que había por toda la ciudad y estuvo divertido, en cada
+        esquina encontrabas a alguien tocando un instrumento o haciendo algún
+        espectáculo. Me llamo la atención un grupo de música country que tocaba.
+        Vi como los franceses se animaban y un montón de parejas se pusieron a
+        bailar como locos, bueno tal vez fueran franceses y de otras muchas
+        nacionalidades pues es una ciudad muy turística. Merece la pena darse
+        una vuelta por esta ciudad.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180816_0698, "Sarlat-la-Canéda")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180816_0708, "Catedral Saint-Sacerdos")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180816_0716, "Sarlat-la-Canéda")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Un día hicimos el descenso del río Dordoña en canoa. Lo reservamos desde
+        el mismo camping y nos aplicaron un descuento. Un autobús nos recogió en
+        la puerta del camping y al terminar la actividad nos dejó de nuevo en la
+        puerta. Nosotros recorrimos 16 kilómetros en la canoa y fuimos de dos en
+        dos. Fue muy divertido y los paisajes son espectaculares, pasando cerca
+        de castillos y pueblos muy chulos.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_930362471, "Descenso del río Dordoña")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Al día siguiente madrugamos un poco y nos fuimos a Rocamadour, que es
+        una ciudad religiosa y en ella hay varios santuarios. El pueblo se sitúa
+        en tres alturas aprovechando un acantilado de 120 metros. En la parte
+        baja se encuentran las viviendas, comercios, restaurantes y hoteles; en
+        la segunda se encuentran los santuarios, a los cuales llegan los
+        peregrinos a través de la gran escalinata o por un ascensor. Finalmente,
+        en la parte alta se encuentra un castillo, al que se puede acceder en
+        coche y fue donde nosotros aparcamos gratuitamente. Desde aquí empezamos
+        a descender a través de un calvario donde vimos a un grupo de gente
+        pasar por sus estaciones rezando. También se puede subir y bajar en
+        ascensor de pago. Paseamos por sus calles y entramos en sus santuarios,
+        nos gustó mucho.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0733,
+                "Santuario Notre-Dame de Rocamadour"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0767,
+                "Villa medieval de Rocamadour"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180817_0750, "Calle Roland le Preux")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0729,
+                "Plaza del Santuario Notre-Dame de Rocamadour"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0726,
+                "Santuario Notre-Dame de Rocamadour"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180817_0719, "Château de Rocamadour")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180817_0737, "Calle Roland le Preux")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0768,
+                "Villa medieval de Rocamadour"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180817_0723, "Rocamadour")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Después de comer en la parte baja del pueblo, nos tocaba subir a por el
+        coche, que pereza. Los chicos decidimos subir a por el coche mientras,
+        mi hermana y madre visitaban las tiendas del pueblo. En la carretera de
+        bajada al pueblo pudimos ver una panorámica del pueblo espectacular.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20180817_0753, "Rocamadour")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Por la tarde teníamos reservada una visita a unas cuevas Gouffre de
+        Padirac. Habíamos comprado las entradas por internet unos días antes,
+        esto es imprescindible pues es un lugar muy visitado. La entrada nos
+        costó unos 15 € y tenía incluida un audio guía en español poco
+        detallada. Nosotros teníamos la entrada a las cinco de la tarde y la
+        visita duraba unas dos horas. El Gouffre de Padirac tiene una
+        profundidad de 75 metros y un diámetro de 35, actualmente es una de las
+        cuevas más visitadas de toda Francia y cuenta con 2,2 kilómetros
+        abiertos al público. La entrada a la cueva es impresionante, es un gran
+        agujero y se puede hacer por escaleras o en ascensor. Yo recomiendo
+        bajar en escaleras y hacer la salida en ascensor. Después de bajar las
+        escaleras entras en la cueva en sí y caminas por el interior hasta
+        llegar al embarcadero, una vez allí cogimos una barca en la que caben
+        alrededor de 20 personas para navegar por el río subterráneo, aquí el
+        audio guía no te cuenta nada e intentan poner a la gente según su
+        idioma… pero ningún “gondolero” hablaba castellano. Tuvimos la suerte
+        que una chica sevillana casada con un francés nos traducía los
+        comentarios. El trayecto dura unos 10 minutos y termina en el Lago de la
+        Lluvia donde como su nombre indica llueve y te mojas, en medio de este
+        se encuentra una gran estalactita (Gran Pendeloque) que mide 60 metros
+        de alto. En este punto también os harán una foto que más tarde podéis
+        comprar al precio de 10 €.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0772,
+                "Entrada Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0786,
+                "Entrada Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0823,
+                "Galerias Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0829,
+                "Galerias Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0793,
+                "Galerias Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0796,
+                "Galerias Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Tras el paseo en barca nos dirigimos caminando al Lago Gours, de color
+        azul cristalino y a la Sala del Gran Domo que tiene una impresionante
+        cúpula de 94 metros de altura y un bonito lago con caprichosas formas,
+        la más rara es una que parece una pila de platos, volvimos a la barca y
+        regresamos de nuevo al punto de partida. Esta visita es imprescindible
+        si te encuentras cerca del lugar.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0840,
+                "Galerias Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180817_0844, "Sala del Gran Domo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180817_0891,
+                "Galerias Gouffre de Padirac"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Y se pasaron los cinco días de estancia en este camping. La zona es
+        fantástica y los baños en el rio no los olvidaremos.
+    </p>
+</TravelLayout>

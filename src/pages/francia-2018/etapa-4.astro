@@ -1,0 +1,134 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20180811_0617 from "@assets/francia-2018/IMG_20180811_0617.jpg";
+import IMG_20180811_0616 from "@assets/francia-2018/IMG_20180811_0616.jpg";
+import IMG_20180811_0587 from "@assets/francia-2018/IMG_20180811_0587.jpg";
+import IMG_20180811_0490 from "@assets/francia-2018/IMG_20180811_0490.jpg";
+import IMG_20180811_0536 from "@assets/francia-2018/IMG_20180811_0536.jpg";
+import IMG_20180811_0565 from "@assets/francia-2018/IMG_20180811_0565.jpg";
+import IMG_20180811_0596 from "@assets/francia-2018/IMG_20180811_0596.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2018-08-11"),
+    title: "Carcasona",
+    subtitle: "Francia",
+    description:
+        "Tras relajarnos en el Eurocamping de Calonge, cruzamos a Francia para explorar Carcasona. Aunque el camping inicial estaba lleno, llegamos al Montolieu. A pesar de un inicio retrasado por manifestantes en la frontera, disfrutamos de la ciudad medieval y su historia. Regresamos al camping para cenar y descansar tras un día lleno de experiencias.",
+    image: new LocalImage(IMG_20180811_0617, "Ciudadela de Carcasona"),
+    video: undefined,
+    keywords: [
+        "Eurocamping de Calonge",
+        "Cruzar frontera a Francia",
+        "Carcasona viaje",
+        "Camping Montolieu",
+        "Experiencia de viaje",
+        "Frontera caótica",
+        "Ciudad medieval Carcasona",
+        "Fortificación medieval Europa",
+        "Turismo en Carcasona",
+        "Recepción camping Montolieu",
+        "Instalaciones camping",
+        "Explorar ciudadela Carcasona",
+        "Pinturas amarillas en murallas",
+        "Experiencia turística Carcasona",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Después de unos días relajados en el Eurocamping de Calonge, nos tocaba
+        pasar la frontera y entrar en Francia. Teníamos previsto ir a Carcasona.
+        El día anterior intentamos reservar en el camping La Cité que se
+        encuentra cercano a esta ciudad, pero estaba completo y recurrimos al
+        camping Montolieu, que se encontraba a unos 15 kilómetros (20 minutos)
+        de Carcasona. Como nuestra idea era llegar al camping para comer y luego
+        visitar la ciudad por la tarde decidimos madrugar, pero la cosa se nos
+        atrasó un poco y salimos de Calonge sobre las 10. Teníamos previsto unas
+        cuatro horas de viaje. El principio del viaje fue normal, cuando nos
+        acercábamos a la frontera tuvimos el primer susto, sobre un puente vimos
+        a unas diez personas moviendo los brazos sin parar. Mi padre ralentizo
+        la marcha pensando que estas personas nos estaban indicando que más
+        adelante nos encontraríamos con un accidente o algo parecido... pero
+        llegamos a otro puente y lo mismo, esta vez pudimos ver que las personas
+        estaban vestidas de amarillo y tenían pancartas políticas. Bueno yo en
+        esto no entiendo mucho y prefiero no hablar de ello, pero nos dieron un
+        buen susto. Nosotros en nuestros viajes llevamos el TomTom para guiarnos
+        por estas carreteras que no conocemos, y este aparato nos indica la hora
+        de llegada y los atascos. Pues lo que en un principio nos indicaba como
+        llegada las 2 de la tarde, se fue alargando más y más por los atascos de
+        la frontera. El paso de la frontera fue caótico, coches por todo sitio y
+        un montón de tiempo parados. A mi padre se le veía nervioso, largas
+        cuestas parando cada dos metros y mucho calor. Esto al coche le venía
+        fatal. Al final pasamos este infierno y la carretera se despejo. Poco
+        después cogimos la autopista de peaje y nos relajamos un poco.
+    </p>
+    <p>
+        Llegamos al <a href="https://www.campingdemontolieu.com" target="_blank"
+            >Camping Montolieu</a
+        > dos horas más tarde de lo que teníamos pensado y la recepción se
+        encontraba cerrada. Llamamos a un timbre y la dueña salió y nos dio una
+        parcela. No teníamos reserva (no era necesario) pero el día anterior
+        intercambiamos emails con el camping y nos esperaban. En la recepción
+        fueron amables y hablaban algo en castellano. Las instalaciones eran
+        viejas, pero estaban limpias. Las parcelas grandes planas y de hierba
+        seca. Las duchas daban poca cantidad de agua y algo fría para mi gusto.
+        La carretera pasaba al lado del camping, pero por la noche no nos
+        molestaron los coches.
+    </p>
+    <p>
+        Llegamos sobre las cuatro y nos pusimos a comer, menos mal que aun
+        teníamos comida preparada en el congelador. Luego nos fuimos a ver la
+        ciudad medieval Carcasona. Esta ciudad es una de las más visitadas de
+        Francia y es la mayor fortificación medieval de Europa. Con todo esto
+        teníamos muchas ganas de verlo. Dejamos el coche a unos cien metros de
+        unas escaleras que te llevaban a una de las puertas de la ciudad.
+        Subimos unas cuantas escaleras y... “pero esto que es” no me lo creía.
+        Los torreones y las murallas estaban pintadas con unos círculos
+        amarillos fosforitos. Menudo chasco, esto no me gustó nada. Paseamos por
+        la ciudadela y nos acercamos al castillo para entrar y verlo. Era un
+        poco tarde, la entrada nos pareció cara por el poco tiempo que
+        estaríamos dentro y decidimos no entrar. La ciudadela tenía unas calles
+        muy bonitas y a mi parecer era muy comercial y éramos muchos los
+        turistas. Cuando se hizo de noches nos fuimos al camping a cenar. No
+        pudimos cenar fuera de la caravana por la enorme cantidad de hormigas
+        voladoras que pululaban por los alrededores. Y al final del día nos
+        fuimos a dormir.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20180811_0616, "Ciudadela de Carcasona")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180811_0587, "Ciudad Baja")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180811_0490, "Ciudadela de Carcasona")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20180811_0536,
+                "Basílica de Saint-Nazaire"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180811_0565, "Fortificación medieval")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20180811_0596, "Fortificación medieval")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

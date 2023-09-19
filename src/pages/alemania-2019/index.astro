@@ -1,0 +1,121 @@
+---
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+import { YoutubeVideo } from "@models/video";
+
+// Images
+import IMG_20190818_793 from "@assets/alemania-2019/IMG_20190818_793.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-03"),
+    title: "Antes de nada...",
+    subtitle: "Alemania",
+    description:
+        "¡Únete a nuestra emocionante travesía por tierras alemanas y francesas! Desde Burgos, España, nos lanzamos a explorar las maravillas de Alsacia y la Selva Negra. Kaysersberg, Colmar, Estrasburgo y Friburgo nos recibieron con su encanto único. No faltaron risas en campings pintorescos y momentos de asombro en cada rincón visitado. ¿Vía-T o Sin Peajes? ¡Te contamos cómo enfrentamos las carreteras! Acompáñanos en esta apasionante odisea llena de descubrimientos, experiencias y conexiones familiares. ¡Vive la caravana como nunca antes en este viaje inolvidable!",
+    image: new LocalImage(IMG_20190818_793, "Lago de Annecy"),
+    video: new YoutubeVideo("https://youtu.be/fQ02pYTUxeM"),
+    keywords: [
+        "Caravana",
+        "Francia",
+        "Alsacia",
+        "Selva Negra",
+        "Burgos",
+        "Burdeos",
+        "Dompierre-sur-Bersbre",
+        "Kaysersberg",
+        "Kirchzarten",
+        "Pont-D'Ain",
+        "Remoulins",
+        "San Pedro Pescador",
+        "Valfarta",
+        "Campings",
+        "Vía-T",
+        "Peajes",
+        "Experiencia de viaje",
+        "Emocionante travesía",
+        "Destinos",
+        "Encanto",
+        "Exploración",
+        "Conexión familiar",
+        "Descubrimientos",
+        "Rutas",
+        "Aventura",
+        "Paisajes",
+        "Cultura",
+        "Vehículo recreativo",
+    ],
+};
+---
+
+<TravelLayout {...travel} ads={false}>
+    <p>
+        Después del viaje del año pasado por Francia, este año queríamos visitar
+        de nuevo este magnífico país. La zona elegida sería Alsacia y también
+        nos adentraríamos en Alemania visitando la Selva Negra.
+    </p>
+    <p>
+        Los lugares que hemos visitado más significativos han sido: Burdeos,
+        Kaysersberg, Colmar, Estrasburgo, Friburgo, Lyon, Annecy, Aviñón,
+        Nimes... Salimos de nuestra ciudad, Burgos, el día 3 de agosto y
+        regresamos el día 25. No queríamos hacer muchos kilómetros seguidos con
+        la caravana, no más de 400 por trayecto. En Francia si vas con caravana
+        los peajes son un cincuenta por ciento más caros que si vas solo con el
+        coche, por este motivo en algunas ocasiones intentábamos evitar estos
+        peajes, aunque algunas veces no merecía la pena.
+    </p>
+    <p>
+        Al dar información sobre los campings, los precios son para una caravana
+        + coche + electricidad + dos adultos, mi hermana de 13 años y yo que
+        tengo 16, al fin de cuentas nos hemos hecho mayores y en casi todos los
+        campings pagamos como adultos. Los precios de los carburantes varían
+        mucho según donde repostes, lo más caro era en las autopistas y lo más
+        económico en las gasolineras de los supermercados.
+    </p>
+    <p>
+        Igual que el año anterior acampamos en 8 campings distintos y desde
+        estos campings visitábamos varios lugares. Como en años anteriores en
+        nuestros viajes fuera de España, llevamos el frigorífico lleno de
+        comida, sobre todo embutido. También cargamos con algunas cosas que nos
+        gustan y en Francia no encontramos igual que en España.
+    </p>
+    <p>
+        Unos días antes de salir mi padre tenía todo listo, con todos lugares a
+        visitar y los itinerarios. Este año teníamos dos novedades para
+        ayudarnos en la conducción.
+    </p>
+    <p>
+        Una era el
+        <a href="https://www.viat.es" target="_blank">Vía-T</a>
+         o Bip&Drive. Esto es un aparato que sirve para pasar por los peajes sin
+        tener que pagar con dinero en efectivo o tarjeta y pasar por la barrera
+        del peaje sin tener que parar, con solo reducir la marcha. El aparato se
+        coloca en la parte superior del parabrisas al lado del espejo retrovisor
+        (mi padre no le pego en ningún sitio, cuando se acercaba a la barrera le
+        cogía y le colocaba en la parte superior y luego le guardaba). Nosotros
+        nos poníamos en la fila de los camiones. Lo contratamos a través de La
+        Caixa. Se puede contratar en la web de vía-t pagando solo por los meses
+        que le uses más los peajes que utilices. Fue una buena opción, no
+        tuvimos ningún problema ni en España ni en Francia. En los peajes
+        franceses tenías que pasar más lento que en los españoles. En Alemania
+        no era aceptado y no pasamos por ningún peaje.
+    </p>
+    <p>
+        Otra de las novedades era unos
+        <a href="https://s.click.aliexpress.com/e/_DBdlckj" target="_blank"
+            >sensores de presión</a
+        > para los neumáticos. El aparato te mide la presión y temperatura de
+        cuatro neumáticos, nosotros le pusimos dos a la caravana y los otros dos
+        a las ruedas traseras del coche. Al aparato le pones unos parámetros
+        máximo-mínimo de presión de los neumáticos y si la rueda se sale de esos
+        parámetros, te avisa con un pitido. Se coloca en el salpicadero y es
+        solar. Con esto se viaja mucho más tranquilo ante un posible pinchazo de
+        la rueda.
+    </p>
+    <p>
+        Al final nuestro recorrido y nuestros campings-paradas fueron: Burgos,
+        Burdeos, Dompierre-sur-Bersbre, Kaysersberg, Kirchzarten, Pont-D'Ain,
+        Remoulins, San Pedro Pescador, Valfarta y de vuelta a casa (Burgos).
+    </p>
+</TravelLayout>

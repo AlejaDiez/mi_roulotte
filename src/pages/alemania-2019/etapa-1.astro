@@ -1,0 +1,155 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190804_8 from "@assets/alemania-2019/IMG_20190804_8.jpg";
+import IMG_20190804_2 from "@assets/alemania-2019/IMG_20190804_2.jpg";
+import IMG_20190804_19 from "@assets/alemania-2019/IMG_20190804_19.jpg";
+import IMG_20190804_24 from "@assets/alemania-2019/IMG_20190804_24.jpg";
+import IMG_20190804_26 from "@assets/alemania-2019/IMG_20190804_26.jpg";
+import IMG_20190804_32 from "@assets/alemania-2019/IMG_20190804_32.jpg";
+import IMG_20190804_35 from "@assets/alemania-2019/IMG_20190804_35.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-03"),
+    title: "Burdeos",
+    subtitle: "Alemania",
+    description:
+        "Empezamos nuestras vacaciones el 3 de agosto, con rumbo a la Alsacia Francesa y una parada prevista en Burdeos. Tras 450 km y una pausa en Irún, llegamos al camping en Burdeos. Tras instalarnos y relajarnos a la sombra, aprovechamos el transporte público para llegar al centro de la ciudad. A pesar del calor, la ciudad nos dejó una impresión muy positiva.",
+    image: new LocalImage(IMG_20190804_8, "Burdeos"),
+    video: undefined,
+    keywords: [
+        "Vacaciones",
+        "Alsacia Francesa",
+        "Kaysersberg",
+        "Paradas de viaje",
+        "Distribución de kilómetros",
+        "Burdeos",
+        "Gasolina en Irún",
+        "Áreas de servicio francesas",
+        "Retenciones de tráfico",
+        "Camping Beau Soleil",
+        "Camping Village du Lac",
+        "Completamente reservado",
+        "Recepción del camping",
+        "Parcela vacía",
+        "Aire acondicionado pingüino",
+        "Nevera de compresor",
+        "Instalaciones de camping",
+        "Duchas e inodoros",
+        "Descanso a la sombra",
+        "Supermercado cercano",
+        "Transporte público en Burdeos",
+        "Parada de autobús",
+        "Tranvía en Burdeos",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Iniciamos nuestras vacaciones el sábado día 3 de agosto. Nuestro destino
+        era la Alsacia Francesa y nuestro campo base en esta región fue
+        Kaysersberg. Este bonito pueblo se encuentra a 1300 kilómetros de
+        nuestra ciudad. Antes de llegar decidimos hacer un par de paradas para
+        distribuir los kilómetros y no estar muchas horas de viaje. La primera
+        parada la hicimos en Burdeos.
+    </p>
+    <p>
+        Teníamos por delante 450 kilómetros. Salimos de nuestra ciudad a las
+        8:30 de la mañana (todo un récord para nosotros, menudo madrugón). Antes
+        de salir de España repostamos gasolina en Irún y luego una vez en
+        Francia hicimos una pequeña parada para almorzar un poco y descargar
+        aguas menores en las estupendas áreas de servicio francesas, que
+        envidia, en nuestro país no tenemos nada de esto.
+    </p>
+    <p>
+        En años anteriores siempre que hemos pasado por Burdeos hemos tenido o
+        visto en sentido contrario retenciones kilométricas y teníamos miedo por
+        encontrarnos algo parecido. Este año no fue así, nuestro camping se
+        encontraba a las afueras de la ciudad y el TomTom nos llevó sin
+        problemas y sin ningún tipo de retención.
+    </p>
+    <p>
+        En Burdeos queríamos pasar un par de días, aunque conocíamos la ciudad
+        de hace unos años nos dejó con mal sabor de boca por la huelga de
+        recogida de basuras que en esas fechas había en la ciudad, estaba todo
+        hecho un asco. El camping escogido por mi padre era el
+        <a href="https://www.camping-beausoleil-gradignan.fr" target="_blank"
+            >Beau Soleil</a
+        >. Unos días antes intentamos contactar con la recepción del camping por
+        email y por teléfono para reservar, pero nos fue imposible contactar. No
+        teníamos claro que hubiera plazas libres por ser un camping pequeño.
+        Teníamos en la recamara el camping Village du Lac, que para reservar lo
+        mínimo eran tres noches, pero era un camping con muchas más parcelas.
+    </p>
+    <p>
+        Los pensamientos de mi padre se hicieron realidad y al llegar al camping
+        con ganas de descansar y comer nos encontramos en la entrada con el
+        cartel “COMPLÉTE”, no sabemos mucho francés, pero la cosa estaba
+        clara... Mi padre bajo y se acercó a recepción, pero estaba cerrada, era
+        la hora de comer. Pues nada al otro camping. Cuando arrancamos el coche
+        se nos acercó una mujer con delantal que era la dueña y nos dijo que
+        tenía una parcela vacía por una anulación de última hora, que alegría.
+        Nos instalamos y comimos a la sombra, hacia un calor asfixiante.
+    </p>
+    <p>
+        Unas semanas antes de salir de viaje mi padre compro un pingüino (aire
+        acondicionado) para poner en casa y en la caravana en casos de calor.
+        Pero en este viaje el pingüino se quedó en casa pues según los
+        comentarios de mi padre en los próximos días no nos haría falta y por su
+        peso y volumen no merecía la pena. Para el próximo año tenemos pensado
+        poner una pequeña nevera de compresor (la nevera trivalente que tiene la
+        caravana cuando hace mucho calor en el exterior, no funciona en
+        condiciones y no enfría).
+    </p>
+    <p>
+        El camping era pequeño, unas 20 parcelas. Tenía un módulo mixto de 4
+        duchas y unos seis inodoros junto con los fregaderos. Todo muy limpio.
+        Un camping de paso con los servicios justos para pasar noche y visitar
+        la ciudad. Pasamos la tarde a la sombra descansando y mis padres fueron
+        a un supermercado cercano a compra algunos víveres.
+    </p>
+    <p>
+        El día siguiente lo dedicamos a visitar Burdeos. Desde el camping, a
+        unos 300 metros había una parada de bus que te acercaba a una parada de
+        tranvía, el cual te dejaba en el centro. El precio del billete era de
+        1,70 euros y con él durante una hora podías coger varios autobuses o
+        tranvías. Pasamos todo el día en la ciudad y no nos decepciono pese al
+        calor que hacía.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190804_2, "Río Garona")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190804_19, "Catedral de San Andrés")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190804_24, "Burdeos")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190804_26, "Puerta de Aquitania")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190804_32, "Ópera Nacional de Burdeos")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190804_35,
+                "Monumento a los Girondinos"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

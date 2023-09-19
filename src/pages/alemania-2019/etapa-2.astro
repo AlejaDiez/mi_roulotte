@@ -1,0 +1,83 @@
+---
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190805_165604 from "@assets/alemania-2019/IMG_20190805_165604.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-05"),
+    title: "Dompierre-sur-Besbre",
+    subtitle: "Alemania",
+    description:
+        "En esta etapa, fuimos al camping Les Bords de Besbre, a 480 km de Burdeos. Elegimos una ruta sin peajes, recorriendo 400 km por autovía y 80 km por carretera nacional. A pesar de ver un grupo de caravanas al llegar, encontramos el camping. Aunque la recepción tenía problemas de idioma, usamos un traductor telefónico. Aunque habíamos reservado, resultó innecesario. El camping tenía parcelas grandes y servicios bien cuidados. Pasamos la tarde allí, paseamos, cenamos y descansamos por 19 euros.",
+    image: new LocalImage(IMG_20190805_165604, "Camping Les Bords de Besbre"),
+    video: undefined,
+    keywords: [
+        "Camping municipal Les Bords de Besbre",
+        "Opciones de ruta",
+        "Clermont-Ferrand",
+        "Ahorro en peajes",
+        "Recorrido por autovía",
+        "Carretera nacional de doble sentido",
+        "Caravanas acampadas",
+        "Asentamiento de caravanas",
+        "Recepción del camping",
+        "Traductor telefónico",
+        "Reserva de parcela",
+        "Parcelas grandes y planas",
+        "Servicios antiguos y limpios",
+        "Piscina municipal",
+        "Tarifa de 19 euros",
+        "Viaje sin problemas",
+        "Paseo por las inmediaciones",
+        "Buen camping en relación calidad-precio",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        El siguiente destino era el camping municipal
+        <a href="https://camping.mairie-dsb.fr" target="_blank"
+            >Les Bords de Besbre</a
+        >, que se encontraba a 480 kilómetros de Burdeos. Para llegar a Alsacia,
+        que era nuestro destino, teníamos varias opciones. Una era pasar por
+        Clermont-Ferrand. Descartamos esta ruta por el alto número de peajes que
+        tenía. En nuestro camino solo pasamos por un peaje de 4,20 euros.
+        Recorrimos 400 kilómetros por autovía y solo 80 kilómetros por carretera
+        nacional de doble sentido... Merece la pena por el ahorro en peajes.
+    </p>
+    <p>
+        El viaje transcurrió sin problemas. Junto antes de llegar nos
+        encontramos con un montón de caravanas acampadas. No veíamos ninguna
+        puerta ni valla y estaba todo un poco desordenado. No nos creíamos que
+        eso pudiera ser el camping. Seguimos más adelante y al final vimos
+        nuestro destino. Lo anterior parecía ser un asentamiento de caravanas,
+        no sé si legal o no, en Burdeos vimos un par de estos poblados más. El
+        caso es que nuestro camping se encontraba pegado a este asentamiento.
+    </p>
+    <p>
+        En la recepción no hablaban castellano ni inglés y funcionaban con el
+        traductor del teléfono. En este camping habíamos mandado un email el día
+        anterior, el cual nos respondió y nos reservó una parcela que no hubiera
+        sido necesario reservarla.
+    </p>
+    <p>
+        El camping era bastante grande, con parcelas grandes y planas. Los
+        servicios eran antiguos y limpios. Al lado del camping se encontraba la
+        piscina municipal que no usamos. Pasamos la tarde en el camping y dando
+        un paseo por las inmediaciones cenamos y nos fuimos a la cama. Un buen
+        camping en relación con el precio que tenía, 19 euros.
+    </p>
+    <Photo
+        image={new LocalImage(
+            IMG_20190805_165604,
+            "Camping Les Bords de Besbre"
+        )}
+        aspectRatio="aspect-ratio-16-9"
+    />
+</TravelLayout>

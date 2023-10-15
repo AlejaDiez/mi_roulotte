@@ -1,0 +1,448 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190809_282 from "@assets/alemania-2019/IMG_20190809_282.jpg";
+import IMG_20190808_141 from "@assets/alemania-2019/IMG_20190808_141.jpg";
+import IMG_20190808_147 from "@assets/alemania-2019/IMG_20190808_147.jpg";
+import IMG_20190808_166 from "@assets/alemania-2019/IMG_20190808_166.jpg";
+import IMG_20190807_76 from "@assets/alemania-2019/IMG_20190807_76.jpg";
+import IMG_20190807_42 from "@assets/alemania-2019/IMG_20190807_42.jpg";
+import IMG_20190807_43 from "@assets/alemania-2019/IMG_20190807_43.jpg";
+import IMG_20190807_79 from "@assets/alemania-2019/IMG_20190807_79.jpg";
+import IMG_20190807_86 from "@assets/alemania-2019/IMG_20190807_86.jpg";
+import IMG_20190807_120 from "@assets/alemania-2019/IMG_20190807_120.jpg";
+import IMG_20190807_101 from "@assets/alemania-2019/IMG_20190807_101.jpg";
+import IMG_20190807_115 from "@assets/alemania-2019/IMG_20190807_115.jpg";
+import IMG_20190807_116 from "@assets/alemania-2019/IMG_20190807_116.jpg";
+import IMG_20190810_341 from "@assets/alemania-2019/IMG_20190810_341.jpg";
+import IMG_20190810_344 from "@assets/alemania-2019/IMG_20190810_344.jpg";
+import IMG_20190810_354 from "@assets/alemania-2019/IMG_20190810_354.jpg";
+import IMG_20190810_357 from "@assets/alemania-2019/IMG_20190810_357.jpg";
+import IMG_20190810_364 from "@assets/alemania-2019/IMG_20190810_364.jpg";
+import IMG_20190810_371 from "@assets/alemania-2019/IMG_20190810_371.jpg";
+import IMG_20190810_382 from "@assets/alemania-2019/IMG_20190810_382.jpg";
+import IMG_20190810_374 from "@assets/alemania-2019/IMG_20190810_374.jpg";
+import IMG_20190809_241 from "@assets/alemania-2019/IMG_20190809_241.jpg";
+import IMG_20190809_251 from "@assets/alemania-2019/IMG_20190809_251.jpg";
+import IMG_20190809_303 from "@assets/alemania-2019/IMG_20190809_303.jpg";
+import IMG_20190809_299 from "@assets/alemania-2019/IMG_20190809_299.jpg";
+import IMG_20190809_298 from "@assets/alemania-2019/IMG_20190809_298.jpg";
+import IMG_20190809_287 from "@assets/alemania-2019/IMG_20190809_287.jpg";
+import IMG_20190809_277 from "@assets/alemania-2019/IMG_20190809_277.jpg";
+import IMG_20190809_264 from "@assets/alemania-2019/IMG_20190809_264.jpg";
+import IMG_20190809_323 from "@assets/alemania-2019/IMG_20190809_323.jpg";
+import IMG_20190808_193 from "@assets/alemania-2019/IMG_20190808_193.jpg";
+import IMG_20190808_224 from "@assets/alemania-2019/IMG_20190808_224.jpg";
+import IMG_20190808_217 from "@assets/alemania-2019/IMG_20190808_217.jpg";
+import IMG_20190808_198 from "@assets/alemania-2019/IMG_20190808_198.jpg";
+import IMG_20190808_191 from "@assets/alemania-2019/IMG_20190808_191.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-06"),
+    title: "Colmar, Estrasburgo, Struthof-Natzweiler, Kaysersberg...",
+    subtitle: "Alemania",
+    description:
+        "En esta fase de nuestro viaje, nos dirigimos al Camping de Kaysersberg, a 410 kilómetros de nuestro punto de partida. Optamos por una ruta de 400 km por autovía y 80 km por carretera nacional. A pesar de una recepción con barreras de idioma, el camping ofrecía parcelas amplias y servicios de calidad. Pasamos la tarde explorando los alrededores y visitamos Estrasburgo, Obernai, Ribeauvillé, Riquewihr, el campo de concentración Struthof-Natzweiler y la Abadía Mont Saint Odile. Esta etapa combinó la historia, la belleza natural y la cultura de la región de Alsacia en un viaje inolvidable.",
+    image: new LocalImage(IMG_20190809_282, "La Petite Venise, Colmar"),
+    video: undefined,
+    keywords: [
+        "Camping en Alsacia",
+        "Viaje por carretera en Francia",
+        "Rutas de viaje en Alsacia",
+        "Experiencia de camping",
+        "Atracciones de Alsacia",
+        "Catedral de Notre Dame de Estrasburgo",
+        "Historia de Alsacia",
+        "Pueblos alsacianos",
+        "Naturaleza en Alsacia",
+        "Rutas turísticas en Alsacia",
+        "Abadía Mont Saint Odile",
+        "Campo de concentración Struthof-Natzweiler",
+        "Cultura alsaciana",
+        "Belleza natural de Alsacia",
+        "Viaje inolvidable",
+        "Recorrido en coche en Francia",
+        "Camping Kaysersberg",
+        "Alojamiento en camping",
+        "Exploración de ciudades históricas",
+        "Turismo en Alsacia",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        410 kilómetros nos separaban de uno de nuestros principales destinos,
+        Kaysersberg. Este año no hemos tenido ningún problema con malas
+        carreteras. En este viaje pasamos por dos peajes en los que nos dejamos
+        32 euros. Según nos acercamos al destino me sorprendió como cambiaba el
+        color del paisaje, estaba todo muy verde y se podían ver los campos de
+        viñas bien alineadas que no tenían fin. Era curioso que con el calor que
+        hacía y dando los rayos del sol de plano no estaría todo seco. Al llegar
+        al <a href="https://www.camping-kaysersberg.com" target="_blank"
+            >Camping de Kaysersberg</a
+        >, el cual habíamos reservado por email y con un coste nulo un par de
+        meses antes nos encontramos que en la recepción no hablan castellano,
+        pero nos entendimos en inglés. La chica hablaba bastante rápido y le
+        tuve que traducir a mi padre que parece ser que ha perdido practica y se
+        le da mejor el lenguaje de signos que el inglés, pero no tuvimos
+        problema. Como llegamos sobre la una del mediodía nos dejaron elegir
+        entre tres o cuatro parcelas y nos instalamos, por la tarde el camping
+        se llenó. Tuvimos un problema con nuestro cable eléctrico y mi padre fue
+        a recepción y con cuatro gestos se hizo con alargador de 25 metros de
+        cable y nos enchufamos. El camping tenía dos módulos de baños que
+        estaban bastante bien. Por las mañanas a partir de las 8 llegaba la
+        panadera y vendía su pan y bollería en una caseta, tenías que andarte
+        con ojo que en seguida se marchaba y te quedabas sin pan. En esta misma
+        caseta algunos días por la tarde venían los bomberos del pueblo y se
+        ponían a cocinar pizzas y las vendían junto a vinos alsacianos. Después
+        de comer nos fuimos dando un paseo hasta el pueblo de Kaysersberg que su
+        centro se encuentra sobre un kilómetro. Un pueblo muy bonito como podéis
+        ver en las fotos que pongo por aquí.
+    </p>
+    <p>
+        Cuando volvíamos a nuestra casita empezó a llover y nosotros sin
+        paraguas... mi padre fue corriendo a por el coche y nos acercó pues la
+        cosa se puso... que no paraba.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190808_141, "Mansión Faller-Brief")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190808_147, "Puente Fortificado")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190808_166, "Fontine Constantin")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Luego por la tarde noche me di cuenta cual era el motivo de estos
+        paisajes tan verdes. Se preparo una tormenta impresionante y empezó a
+        caer agua sin parar toda la noche. Cenamos dentro y nos pusimos a ver
+        una película y luego a dormir. Según nos contó mi padre estuvo toda la
+        noche sin parar de llover y sobre las 4 de la madrugada debieron caer
+        unos rayos con sus truenos impresionantes, yo ni me entere. También nos
+        contó que el vecino de enfrente estuvo toda la noche entrando y saliendo
+        de la caravana preocupado con el toldo y los ríos de agua que corrían
+        bajo sus pies. Por lo que se ve mi padre tampoco pego ojo. A unos tres
+        metros de nuestra caravana se encontraba un rio y esto le puso nervioso.
+        Por esta zona están preparados para estas lluvias y el rio ni se inmutó.
+        Durante los seis días que pasamos por la zona el tiempo fue muy
+        cambiante sol, lluvia, calor y frio, algún día pusimos la calefacción
+        por la noche.
+    </p>
+    <p>
+        Una agradable sorpresa que tuvimos en este camping fue encontrarnos con
+        Paco y Chelo una fantástica pareja de valencia. Unos días antes de salir
+        de Burgos y preparando el viaje, Paco comento por la pagina de
+        webcampista la necesidad de llevar la pegatina medioambiental si
+        queríamos pasar por nuestro siguiente destino, Friburgo. Y casualidades
+        del destino nos encontramos en este camping. Que ilusión. Pasamos junto
+        a ellos unos momentos muy agradables comentando nuestros viajes y
+        peripecias en este mundo del campismo. Desde este camping fuimos a
+        visitar varios lugares...
+    </p>
+    <h3>Estrasburgo</h3>
+    <p>
+        Al levantarnos el día estaba muy oscuro y de vez en cuando caía un
+        chaparrón. Decidimos ir a pasar el día a Estrasburgo. Esta ciudad se
+        encuentra a 80 kilómetros de Kaisersberg. Durante el viaje estuvo
+        lloviendo sin parar, en algunos tramos la carretera no se veía por la
+        cantidad de agua y había tramos inundados. Fue curioso ver como en
+        ocasiones algún motorista nos adelantaba, que peligro. Dejamos el auto
+        en el aparcamiento Centro-Histórico Petite-France que nos salió por unos
+        seis euros. El casco histórico de Estrasburgo fue declarado Patrimonio
+        de la Humanidad por la Unesco y desde luego es una ciudad muy bonita.
+        Fue una pena que el tiempo no nos acompañó. No podíamos dejar de ver uno
+        de los monumentos más emblemáticos de la ciudad: la Catedral de Notre
+        Dame de Estrasburgo. La catedral fue construida entre 1015 y 1439 y es
+        de estilo gótico tardío. El campanario tiene una altura de 142 metros.
+        La entrada es gratuita. Dentro de la catedral lo que más llama la
+        atención es el reloj astronómico. Este reloj es una obra maestra del
+        Renacimiento y es el resultado del trabajo de diferentes artistas,
+        relojeros y matemáticos. Además de su gran tamaño es bonito ver su
+        decoración y mecanismo. Justo cunado pasábamos por el eran la una menos
+        cinco y había un montón de gente arremolinada. Esperamos hasta la una
+        empunto y el reloj dio unas campanadas y no se movió ni una sola parte
+        del aparato, que desilusión. La catedral me gusto mas por fuera que por
+        dentro. Otra visita imprescindible es el barrio de la Petite France,
+        antes de llegar pasamos por la Barrage Vauban, una presa cuyo uso era el
+        de defensa, mediante esta presa se podía inundar la ciudad en caso de
+        necesidad. Cerca de la presa se encuentran los Puentes Cubiertos son
+        tres puentes que pese a haber desaparecido sus tejados conservan el
+        nombre. Estos puentes se encuentran junto a unas torres en las antiguas
+        murallas de la ciudad. Después de comer y dar un ultimo paseo por las
+        calles de esta ciudad cogimos el coche y nos fuimos al barrio europeo.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190807_76, "Catedral de Notre Dame")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190807_42, "La Petit France")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190807_43, "Plaza Kléber")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Estrasburgo tiene la sede de importantes Instituciones europeas por lo
+        que merece ver estos edificios, como son el Consejo de Europa y el
+        Parlamento Europeo. Dimos un paseo por los jardines cercanos y nos
+        fuimos hacia...
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190807_79, "Parlamento Europeo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190807_86, "Parlamento Europeo")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Obernai</h3>
+    <p>
+        Obernai se encuentra a unos treinta kilómetros de Estrasburgo. Aparcamos
+        en este <a
+            href="https://www.google.com/maps/place/48°27'38.2%22N+7°29'13.5%22E"
+            target="_blank">parking gratuito</a
+        >. Desde aquí se accede a la ciudad atravesando la muralla. Al final
+        salió el sol, el tiempo estaba muy cambiante. No era muy tarde y las
+        calles se empezaron a vaciar, aquí la gente se recoge pronto. Dimos una
+        vuelta cenamos algo y a nuestra casita.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20190807_101,
+                "Iglesia de San Pedro y San Pablo"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190807_115, "Obernai")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190807_116, "Fuente de Santa Odile")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190807_120,
+                "Cigüeñas, símbolo de Alsacia"
+            )}
+            class:list={["col-12", "row-6"]}
+        />
+    </Mosaic>
+    <h3>Struthof-Natzweiler y la Abadía Mont Saint Odile</h3>
+    <p>
+        Otra escapada que hicimos desde Kaysersberg fue para ver el <b
+            >campo de concentración de Struthof-Natzweiler</b
+        >. La entrada nos costó 18 euros cuatro personas. Fue el único de los
+        campos de la muerte alemanes en tierras francesas. Se encuentra a pocos
+        kilómetros de Estrasburgo entre frondosos bosques. Se calcula que en el
+        lugar fueron internadas unas 45.000 personas: unas 37.000 murieron
+        ejecutados, agotados por los trabajos forzados, de hambre o como
+        víctimas de macabros experimentos médicos de los ocupantes alemanes...
+        80 españoles estuvieron internados en este campo, la mayoría prisioneros
+        de guerra y miembros de la Resistencia Francesa. En el lugar se
+        encuentran unos cuatro barracones que se pueden visitar. En uno de ellos
+        se pueden ver fotos de cómo eran las cosas en aquellos tiempos. Cuando
+        pasamos por una foto donde se podía ver una montaña de cuerpos
+        amontonados puede ver como a mi padre se le ponían los pelos de punta y
+        los ojos vidriosos. También pude ver como un grupo de personas francesas
+        con su guía hacían un minuto de silencio y a muchas personas se les
+        caían las lágrimas. Después de ver esto me doy cuenta de la suerte que
+        tengo de vivir junto a mis padres en mi ciudad y en este momento. Mi
+        padre y yo bajamos a ver la cámara de gas que se encuentra fuera del
+        recinto a unos mil metros, pero no hay nada que ver. Es una casa que se
+        encuentra cerrada, casi fue mejor no ver más.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20190810_364,
+                "Puerta del campo de concentración"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190810_341, "Campo de concentración")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190810_344,
+                "Literas de los prisioneros"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190810_354, "Celdas de castigo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190810_357, "Horno crematorio")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190810_371, "Cámara de gas")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Después de esto, regresamos a comer al camping pero antes, aunque
+        teníamos bastante hambre, fuimos a ver la <b>Abadía Mont Saint Odile</b
+        >. Es una parada recomendable cuando se visita esta región. Es
+        interesante ver la capilla dónde está enterrada la propia Santa y la que
+        está al lado, en la que está el sarcófago de su padre. Otra cosa
+        interesante es la capilla de los Ángeles. Además del monasterio, hay que
+        disfrutar las vistas desde esta altura que son espectaculares. Alrededor
+        del monasterio hay un camino de vía crucis que nosotros recorrimos una
+        parte para ir al aparcamiento. En él hay un pequeño cementerio muy
+        curioso de ver.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190810_382, "Capilla de los Ángeles")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190810_374,
+                "Vistas desde el monasterio"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Colmar</h3>
+    <p>
+        Uno de los días que estuvimos en Kaysersberg pasamos todo el día fuera
+        también tocaba cambio de clima. Ayer fresco y lluvia a mares, hoy sol y
+        calor de justicia. Colmar era un pueblo que teníamos muchas ganas de
+        ver. Dejamos el coche en el <a
+            href="https://www.google.com/maps/place/48°04'48.2%22N+7°21'29.4%22E"
+            target="_blank">parking Mairie</a
+        >. Al salir del parking vimos una plaza donde estaba el tren turístico
+        de la ciudad y decidimos cogerle, nos costó 6,50 euros por persona. El
+        paseo duro unos cuarenta minutos y pasamos varias veces por el mismo
+        sitio, nos hicimos una buena idea de la ciudad y sus lugares importantes
+        para ver, teníamos audio guía en español. Algunos lugares que visitamos
+        fueron... La famosa Maison des Têtes o casa de las cabezas. Esta casa
+        debe su nombre a las numerosas cabezas o máscaras que la componen 106
+        para ser exactos. La Casa Adolph es considerada la más antigua de Colmar
+        y de ella destacan su bonita estructura de entramado de madera y una
+        preciosa ventana gótica, en mitad de su fachada. La Casa Pfister es
+        considerada la más bonita de la ciudad, con su tejado de color verde, su
+        balcón de madera cubierto y lleno de grabados y su entramado de madera
+        bien conservado. Por fin nos acercamos a uno de los puntos más
+        fotografiados de todo Colmar, el barrio de la pequeña Venecia. Este
+        barrio tiene canales y algunas góndolas, unas fotos muy bonitas. Para
+        nosotros unos de los pueblos más bonitos visitados este verano.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190809_287, "Petite Venise")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_303, "Rue de Marchands")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_251, "Colegiata de San Martín")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_264, "Colmar")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_299, "Fontaine Roesselmann")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_298, "Colmar")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_277, "Casa Pfister")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190809_241, "Maison des Têtes")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Eguisheim</h3>
+    <p>
+        Después de comer, dar un último paseo y tomar un café y unos helados nos
+        fuimos a Eguisheim. El pueblo está rodeado de viñedos y es un pueblo
+        curioso porque las calles se disponen en manera circular, era una manera
+        de defenderse de los ataques enemigos. Después de pasear y ver algunas
+        casas espectaculares llegamos a la plaza más bonita del pueblo y de las
+        que hemos visto nunca, la plaza del castillo, donde podemos encontrar
+        una fuente octogonal con el Papa León IX y detrás una iglesia que lleva
+        su nombre. Un pueblo que no hay que perderse.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190809_323, "Plaza del castillo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190808_193, "Viñedos")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Ribeauvillé y Riquewihr</h3>
+    <p>
+        Otros pueblos que visitamos fueron Ribeauvillé y Riquewihr. Este último
+        pueblo nos pareció uno de los pueblos con más encanto y uno de los más
+        bonitos de la Alsacia. Un pueblo de cuento rodeado de viñedos que sirvió
+        a los Estudios Disney de inspiración, junto con Eguisheim, para crear el
+        pueblo de Bella en la conocida película <i>«La Bella y la Bestia»</i>.
+        El aparcamiento en el pueblo es de pago en todo el pueblo. Nosotros
+        aparcamos en la parte alta del pueblo y entramos a él por la Torre
+        Dolder, esta torre mide 25 metros de altura, esta construcción es el
+        punto más elevado de la ciudad, no en vano en alsaciano la palabra
+        <i>«Dolder»</i> significa punto más elevado o la cima. Luego paseamos
+        por la Rue du Général de Gaulle que es la más importante, una bonita
+        calle llena de restaurantes, tiendas de souvenirs, con vistosas casas de
+        colores típicas alsacianas de entramado de madera, que comienza en el
+        Ayuntamiento y finaliza en la Torre Dolder.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190808_217, "Torre des Bouchers")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190808_224, "Plaza de la Sinne")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190808_191, "Torre Dolder")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190808_198, "Rue du Général de Gaulle")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

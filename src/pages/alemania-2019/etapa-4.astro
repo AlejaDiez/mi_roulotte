@@ -1,0 +1,495 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190812_447 from "@assets/alemania-2019/IMG_20190812_447.jpg";
+import IMG_20190813_487 from "@assets/alemania-2019/IMG_20190813_487.jpg";
+import IMG_20190813_506 from "@assets/alemania-2019/IMG_20190813_506.jpg";
+import IMG_20190813_483 from "@assets/alemania-2019/IMG_20190813_483.jpg";
+import IMG_20190813_476 from "@assets/alemania-2019/IMG_20190813_476.jpg";
+import IMG_20190813_472 from "@assets/alemania-2019/IMG_20190813_472.jpg";
+import IMG_20190813_552 from "@assets/alemania-2019/IMG_20190813_552.jpg";
+import IMG_20190813_554 from "@assets/alemania-2019/IMG_20190813_554.jpg";
+import IMG_20190813_561 from "@assets/alemania-2019/IMG_20190813_561.jpg";
+import IMG_20190813_550 from "@assets/alemania-2019/IMG_20190813_550.jpg";
+import IMG_20190813_516 from "@assets/alemania-2019/IMG_20190813_516.jpg";
+import IMG_20190813_536 from "@assets/alemania-2019/IMG_20190813_536.jpg";
+import IMG_20190813_510 from "@assets/alemania-2019/IMG_20190813_510.jpg";
+import IMG_20190812_463 from "@assets/alemania-2019/IMG_20190812_463.jpg";
+import IMG_20190812_467 from "@assets/alemania-2019/IMG_20190812_467.jpg";
+import IMG_20190812_456 from "@assets/alemania-2019/IMG_20190812_456.jpg";
+import IMG_20190812_435 from "@assets/alemania-2019/IMG_20190812_435.jpg";
+import IMG_20190812_405 from "@assets/alemania-2019/IMG_20190812_405.jpg";
+import IMG_20190812_403 from "@assets/alemania-2019/IMG_20190812_403.jpg";
+import IMG_20190812_400 from "@assets/alemania-2019/IMG_20190812_400.jpg";
+import IMG_20190812_393 from "@assets/alemania-2019/IMG_20190812_393.jpg";
+import IMG_20190812_392 from "@assets/alemania-2019/IMG_20190812_392.jpg";
+import IMG_20190812_389 from "@assets/alemania-2019/IMG_20190812_389.jpg";
+import IMG_20190815_598 from "@assets/alemania-2019/IMG_20190815_598.jpg";
+import IMG_20190815_599 from "@assets/alemania-2019/IMG_20190815_599.jpg";
+import IMG_20190812_391 from "@assets/alemania-2019/IMG_20190812_391.jpg";
+import IMG_20190812_414 from "@assets/alemania-2019/IMG_20190812_414.jpg";
+import IMG_20190812_422 from "@assets/alemania-2019/IMG_20190812_422.jpg";
+import IMG_20190812_448 from "@assets/alemania-2019/IMG_20190812_448.jpg";
+import IMG_20190814_575 from "@assets/alemania-2019/IMG_20190814_575.jpg";
+import IMG_20190814_572 from "@assets/alemania-2019/IMG_20190814_572.jpg";
+import IMG_20190814_578 from "@assets/alemania-2019/IMG_20190814_578.jpg";
+import IMG_20190814_112605 from "@assets/alemania-2019/IMG_20190814_112605.jpg";
+import IMG_20190815_583 from "@assets/alemania-2019/IMG_20190815_583.jpg";
+import IMG_20190815_589 from "@assets/alemania-2019/IMG_20190815_589.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-11"),
+    title: "Friburgo, Schiltach, Todtnau...",
+    subtitle: "Alemania",
+    description:
+        "En esta etapa de nuestro viaje a Alemania, llegamos a la hermosa Selva Negra y nos instalamos en el Camping Kirchzarten, cerca de Friburgo. Exploramos la ciudad de Friburgo, con su peculiar restricción de acceso, y aprovechamos el transporte gratuito proporcionado por el camping. Además, visitamos encantadores lugares como Schiltach, Alpirsbach, Triberg, Todtnau, el Lago Titisee y disfrutamos de aventuras como un emocionante descenso en trineo. El viaje nos dejó maravillados por la Selva Negra y sus sorpresas culinarias y culturales.",
+    image: new LocalImage(IMG_20190812_447, "Friburgo"),
+    video: undefined,
+    keywords: [
+        "Alemania",
+        "Selva Negra",
+        "Camping Kirchzarten",
+        "Friburgo",
+        "Pegatina de acceso",
+        "Schiltach",
+        "Casco histórico",
+        "Alpirsbach",
+        "Abadía",
+        "Cerveza Alpirsbach",
+        "Triberg",
+        "Cascadas",
+        "Tobogán en Todtnau",
+        "Lago Titisee",
+        "Tren de cercanías",
+        "Transporte gratuito",
+        "Experiencia culinaria",
+        "Supermercados alemanes",
+        "Reciclaje de botellas",
+        "Gastronomía local",
+        "Paseo en trineo",
+        "Maravillosos paisajes",
+        "Cultura alemana",
+        "Patrimonio histórico",
+        "Salchichas alemanas",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Hoy llegábamos a un nuevo país para mí, Alemania. Queríamos tener
+        nuestro campo base para visitar parte de Selva Negra cerca de Friburgo.
+        El camping elegido era el <a
+            href="https://camping-kirchzarten.de"
+            target="_blank">Camping Kirchzarten</a
+        > en el pueblo de Kirchzarten. Fueron tan solo 75 kilómetros por
+        carretera nacional y bastantes rotondas, pero fácil de conducir. El rio
+        Rin hace de frontera entre Francia y Alemania. Antes de llegar al
+        destino teníamos que pasar por Friburgo, la ciudad verde de Alemania, le
+        <i>«ha declarado la guerra»</i> a los coches, podrás meterte en ella con
+        tu coche, siempre y cuando tengas la pegatina que acredita que puedes
+        conducir por el centro de la ciudad <i>“pegatina verde”</i>. A la
+        entrada de la ciudad encontrarás una señal, que indica la prohibición de
+        entrada a todos los coches que no dispongan de esa pegatina. Se puede
+        ver que existen cámaras. Nosotros pedimos la pegatina por si acaso y nos
+        enviaron la pegatina verde la cual no se corresponde con nuestro coche
+        diésel de unos 14 años. Yo creo que esta pegatina no es necesaria para
+        los extranjeros que quieran circular por esta ciudad, pero nosotros la
+        teníamos y la pegamos en nuestro parabrisas, a mi padre le hacía gracia.
+        El camping le teníamos reservado unas semanas antes de nuestra salida.
+        Cuando reservamos nos asignaron una parcela que nos gustó, no tuvimos
+        que pagar reserva y la podíamos anular sin ningún problema. Todo esto
+        por email en un perfecto castellano. Es un camping fantástico.
+        Instalaciones muy buenas y siempre limpias, los baños con calefacción si
+        era necesario que algún día lo fue. Buenas piscinas, el vaso de estas
+        era de acero inoxidable, esto que me pareció curioso. Se podían hacer
+        barbacoas, ideal para centro base Selva Negra. En la recepción se
+        encuentra Susana, que habla un perfecto castellano, es muy eficaz en su
+        trabajo y además super amable también hablaban inglés y francés. Después
+        de comer nos fuimos a dar un paseo a Friburgo. En el camping te dan una
+        tarjeta transporte que te da la opción de coger gratuitamente los
+        transportes para llegar a Friburgo y moverse por la ciudad y también
+        para llegar hasta el lago Titisee. La estación de tren se encuentra a
+        unos 10 minutos andando del camping. Después se tarda unos 15 minutos y
+        tras hacer tres paradas llegas a la ciudad. El mismo sitio donde te deja
+        el tren es donde luego le tienes que coger, pero claro en sentido
+        contrario. Nosotros por culpa del idioma tuvimos alguna duda a la
+        vuelta... Desde este camping hicimos varias visitas.
+    </p>
+    <h3>Schiltach</h3>
+    <p>
+        El viaje por la Selva Negra hasta llegar a este pueblo fue espectacular,
+        montañas y montañas llenas de abetos. De aquí su nombre, hay dos teorías
+        sobre este nombre, una de ellas es por el paisaje oscuro proveniente de
+        los densos abetos que pueblan la selva o puede ser por que los romanos
+        por lo oscuro de sus caminos le pusieron este nombre <i>Populus nigra</i
+        >. Schiltach destaca por su maravilloso casco histórico medieval muy
+        bien conservado repleto de casas con entramados de madera. Tal vez lo
+        más bonito y curioso es la plaza principal, Marktplatz, es una plaza
+        triangular e inclinada dónde también está el edificio del ayuntamiento.
+        Los ríos Schiltach y Kinzig cruzan el pueblo formando agradables paseos
+        por sus orillas.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190813_487, "Río Schiltach")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190813_506, "Marktplatz")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190813_483, "Río Kinzig")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Alpirsbach</h3>
+    <p>
+        Después de ver este maravilloso pueblo fuimos a Alpirsbach, este pueblo
+        no tenia mucho que ver, lo único que se encuentra aquí y que debió ser
+        por lo que mi padre nos acerco al lugar es la Abadia Alpirsbach donde
+        está la fabrica y tienda de la cerveza Alpirsbach. Mi padre conocía un
+        lugar o almacén (<a
+            href="https://www.google.com/maps/place/48°20'33.1%22N+8°23'51.8%22E"
+            target="_blank">Klumpp</a
+        >) donde vendían muchas variedades de cervezas alemanas. De todas las
+        que degusto dice que la mejor la Alpirsbach.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190813_476, "Monasterio de San Blas")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190813_472, "Abadia Alpirsbach")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Triberg</h3>
+    <p>
+        Otra excursión que hicimos fue la visita a Triberg. De nuevo los 60
+        kilómetros aproximadamente del recorrido para llegar a este bonito
+        pueblo fueron espectaculares. Antes de llegar al pueblo pasamos por un
+        pequeño lago y decidimos parar para dar un paseo. Andando unos cuantos
+        metros entramos en el camino que llevaba a las cascadas de Triberg.
+        Probablemente esta cascada sea el atractivo más importante de la Selva
+        Negra. El motivo es que es uno de los saltos de agua más grandes de toda
+        Alemania. Son 163 metros de caída, repartidas en varios tramos. Puedes
+        caminar cerca del agua y hay caminos que te llevan desde abajo hasta lo
+        más alto, además nos encontramos con varias ardillas en nuestro camino.
+        Después de varias horas paseando y haciendo fotos llegamos a la entrada
+        “oficial” de las cascadas... El <a
+            href="https://www.google.com/maps/place/48°07'53.0%22N+8°13'21.1%22E"
+            target="_blank">lugar por donde entramos</a
+        > nosotros era “gratuito”, bueno el precio por la entrada era asequible
+        (5 euros), pero nos lo ahorramos.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20190813_552,
+                "Camino para llegar a las cascadas"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190813_554, "Cascadas de Triberg")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190813_561, "Cascadas de Triberg")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Volvimos a por el coche y llegamos al pueblo. En el mismo pueblo está la
+        entrada oficial a las cascadas. Nos dimos una vuelta por el pueblo y
+        entramos en la tienda de los 1000 Relojes (de cuco), era una pasada la
+        cantidad de relojes que pudimos ver dentro, desde pocos euros hasta
+        varios miles de euros. Yo me compre un imán para mi colección.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190813_550, "Triberg")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190813_516,
+                "Tienda de los 1000 Relojes"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190813_536, "Triberg")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        De vuelta a casa paramos en el reloj de cuco más grande del mundo, el
+        cual al introducir un euro en una caja sus partes móviles empezaban a
+        moverse.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20190813_510, "Reloj de cuco gigante")}
+        aspectRatio="aspect-ratio-4-3"
+        class:list={["col-4", "row-3"]}
+    />
+    <h3>Friburgo</h3>
+    <p>
+        Friburgo al estar cerca de nuestro camping y podernos desplazar en tren
+        gratuitamente lo visitamos varios días. Uno de estos días reservamos un
+        <i>“Free tour”</i> desde esta <a
+            href="https://www.caminandoentrebosques.com"
+            target="_blank">página web</a
+        > de Fernando, un madrileño que lleva viviendo por la zona unos cuantos
+        años. Fue todo un acierto, nos explicaron un montón de cosas de esta
+        ciudad y muchas curiosidades. Esta ciudad tiene más de 220.000
+        habitantes, y esta al suroeste de Alemania, es la «Puerta de entrada a
+        la Selva Negra». Es una Ciudad universitaria, cosa que hace de Friburgo
+        un lugar con mucha vida los 365 días del año. Situada a orillas del río
+        Dreisam «La capital ecológica de Alemania», es el mejor modelo en
+        utilización de la energía solar pues sus habitantes dicen que es la
+        ciudad alemana donde tienen más días de sol al año... Se conforman con
+        pocos días de sol, a nosotros nos llovió día si día no. Pudimos ver la
+        Casa de la Ballena, el viejo y nuevo ayuntamiento y el guía nos llevó
+        dentro de una oficina bancaria para ver este curioso edificio. También
+        vimos la puerta de los Suabos y la catedral donde en la fachada de
+        entrada se encuentran unas curiosas marcas gravadas que eran utilizadas
+        por los mercaderes de la época como referencia de medida de los
+        productos que compraban. En la plaza donde está la catedral ponen un
+        mercado donde nos comimos unos estupendos perritos calientes con la
+        auténtica salchicha alemana, buenísimos. Vimos los mosaicos de las
+        aceras y los diseños que vimos en el empedrado de las calzadas del
+        centro de la ciudad. Estos dibujos, normalmente puestos a la entrada de
+        las casas, sirven o servían para identificar el tipo de persona o
+        negocio que se puede hallar en su interior. Una bota de un zapatero, un
+        pastel de una pastelería... Fue curioso ver una casa con un mosaico de
+        un gato negro que en su día fue la vivienda del verdugo, esta persona
+        era odiada por el pueblo y no podía tocar a nadie, tenía que llevar
+        siempre guantes. Numerosos canales de agua (Bächle) recorren la ciudad
+        donde los niños juegan con sus barcos de madera. Si algún turista se cae
+        accidentalmente en alguno de estos, significa que se va a casar aquí.
+        Hay una escultura de un cocodrilo en el río que recuerda a los alemanes
+        que no deben tirar basura a este. La ciudad está llena de recuerdos del
+        holocausto para demostrar que no volverá a pasar nada así. Otra tarde
+        mientras mi hermana y mi padre disfrutaban de la piscina del camping, mi
+        madre y yo nos fuimos de nuevo a Friburgo. Esta vez hicimos nosotros de
+        guía de nuestros amigos Paco y Chelo, con los cuales coincidimos de
+        nuevo, lo pasamos muy bien. Los paseos por esta ciudad eran muy
+        tranquilos dado que por el centro los coches tienen prohibido la
+        circulación y lo único que se ven son bicicletas y el tranvía.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190812_467, "Estación de tren")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_447, "Friburgo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190812_448,
+                "Puerta Medieval Martinstor"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_393, "Friburgo")}
+            class:list={["col-8", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_400, "Torre de la catedral")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_403, "Marcas de medida")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_405, "Entrada a la catedral")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_391, "Puesto de salchichas")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190815_599, "Plaza de la catedral")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_435, "Casa de la Ballena")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_463, "Teatro")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_414, "Almacén Histórico")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190815_598, "Friburgo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_392, "Rau-Brunnen")}
+            class:list={["col-8", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_389, "Friburgo")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190812_422,
+                "Viejo y nuevo ayuntamiento"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190812_456, "Biblioteca Universitaria")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Todtnau</h3>
+    <p>
+        Una de las cosas que más nos gusto fue la visita a Todtnau y su tobogán.
+        Todtnau es un precioso pueblo en la ladera sur del monte Feldberg y a
+        unos 30 kilómetros de la ciudad de Friburgo. Lo primero es compra las
+        entradas (38 euros cuatro personas, que merece mucho la pena) puedes
+        comprar solo la subida en el telesilla, o la subida en telesilla y bajar
+        en el trineo. Lo normal es coger todo. Te montas en el telesilla y en
+        unos 10 minutos estas arriba si no se para este, como nos ocurrió a
+        nosotros y nos tuvieron otros diez minutos con las piernas colgando a
+        una altura considerable. Nosotros aprovechamos para hacer fotos y
+        admirar el paisaje espectacular.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20190814_575, "Visita desde el telesilla")}
+        aspectRatio="aspect-ratio-16-9"
+        class:list={["col-4", "row-3"]}
+    />
+    <p>
+        Una vez arriba, toca esperar observando el pueblo de Todtnau, la montaña
+        del Schauinsland, el monte Feldberg, preciosos valles... nosotros
+        esperamos sobre hora y media que se nos paso rápido junto con los
+        típicos nervios por la nueva aventura. Llego el momento… Primero mi
+        padre solo, luego mi hermana y yo y por ultimo mi madre. Te subes al
+        trineo, te pones el cinturón de seguridad y ves como los de delante
+        salen y se lanzan.
+    </p>
+    <ul>
+        <p>
+            Cuando te toca a ti salir, el trabajador te explica en inglés o
+            alemán cómo funciona:
+        </p>
+        <li>
+            Tienes dos palancas, una a cada lado. Son el freno y el acelerador.
+            Si las presionas hacia abajo acelerarás, cuanto más abajo más
+            velocidad. En cambio si las subes el trineo frenará, fácil.
+        </li>
+        <li>
+            Distancia de seguridad de 25 metros con el trineo que llevas
+            delante.
+        </li>
+        <li>
+            Y al llegar abajo ir frenando poco a poco según los carteles que te
+            vayas encontrando.
+        </li>
+    </ul>
+    <p>
+        Y entonces aceleras y te lanzas. Mi padre se tiro y no vimos la luz roja
+        del freno en ningún momento, luego mi hermana y yo con un poco de miedo
+        al principio que se fue quitando rápidamente. Fueron tres kilómetros de
+        bajada buaaa, una pasada. A mi madre que fue la que mas precauciones
+        tomo, la tuvimos que esperar unos cuantos minutos a que bajara y detrás
+        de ella vinieron unas cuantas personas que me imagino que no les hizo
+        mucha gracia la poca velocidad de mi madre, pero para ella fue una
+        prueba superada el tirarse por este aparato y lo disfruto un montón como
+        nosotros. La sensación que sientes es mejor que la descubras por ti
+        mismo a que te lo cuente yo. Son tres kilómetros de pura diversión y
+        adrenalina.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190814_572, "Telesilla")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190814_112605, "Railes del tobogán")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190814_578, "Trineos de Todtnau")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Lago Titisee</h3>
+    <p>
+        Uno de los días que salió el tiempo frio y lluvioso nos fuimos junto a
+        Paco y Chelo a ver el Lago Titisee. Nos fuimos en el tren de cercanías
+        gratuitamente gracias a la tarjeta que te facilita el camping para el
+        transporte. En unos veinte minutos estábamos en Titisee, mirando desde
+        la ventana del tren el paisaje se pasó volando. Salimos de la estación y
+        por una calle repleta de tiendas de souvenirs llegamos al lago, era un
+        lago grandísimo y tenía varios embarcaderos. Pudimos ver fotos del lago
+        completamente helado y la gente patinando sobre él. El día era bastante
+        malo, hacia frio, viento y una lluvia fina que no nos dejó disfrutar de
+        lo que me imagino que con un día soleado, el lugar nos hubiera encantado
+        pero nos dejó un mal sabor de boca sobre todo por el viaje de vuelta. No
+        tardamos mucho en visitar el lugar y nos volvimos al camping. De vuelta
+        en una de las paradas que hizo el tren escuchamos por la megafonía unas
+        palabras en alemán… Claro nosotros ni idea de lo que nos estaba
+        contando, pero de repente todos los pasajeros empezaron a descender de
+        los vagones y claro, nosotros detrás. Estando en el andén a unos
+        doscientos metros un alemán empezó a dar gritos y soltar un discurso en
+        una lengua desconocida para nosotros… y todos los pasajeros se movieron
+        y montaron en un autobús, nosotros por supuesto detrás. En el autobús
+        estaba puesta la calefacción a tope, y yo entre el calor, el hambre y
+        que veía en el Google Maps que cada vez nos alejábamos más de nuestro
+        camping me empecé a marear. Al final después de más de una hora llegamos
+        a nuestro dulce hogar. Tendremos que volver a Titisee en otra ocasión,
+        pero con mejor tiempo.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20190815_583, "Lago Titisee")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190815_589, "Titisee")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Con esto se terminó nuestra estancia en Alemania. Me ha gustado mucho lo
+        que he visto de este país y algunas cosas me han sorprendido… Allí en
+        los supermercados y centros comerciales hay máquinas de reciclaje en las
+        que, si se introduce una botella de plástico vacía, la máquina devuelve
+        25 céntimos para gastar en ese supermercado. Nosotros compramos alguna
+        botella de plástico que tenía un precio de 15 céntimos y te cobraban
+        otros 25 por el envase luego al día siguiente le introducías en la
+        máquina de reciclaje y te daban un tique con el descuento para la
+        siguiente compra. También me sorprendió el precio de la barra de pan
+        2.40 euros y el precio del gasóleo que era similar al precio en España.
+        Nos encantaron las tartas que compramos en una pastelería del pueblo del
+        camping, a mis padres la tarta Selva Negra y a mí la tarta Sacher,
+        buenísimas. También las salchichas eran especiales y riquísimas y al
+        parecer de mi padre la cerveza Alpirsbach de lo mejor. En este punto nos
+        despedimos de Paco y Chelo. Fue un placer pasar unos buenos momentos por
+        estas tierras con esta pareja, nos volveremos a ver algún día sin
+        dudarlo.
+    </p>
+</TravelLayout>

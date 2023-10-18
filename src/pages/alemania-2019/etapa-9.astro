@@ -1,0 +1,80 @@
+---
+import Player from "@components/Player.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+import { YoutubeVideo } from "@models/video";
+
+// Images
+import IMG_20190928_202036 from "@assets/alemania-2019/IMG_20190928_202036.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-25"),
+    title: "Vuelta a casa",
+    subtitle: "Alemania",
+    description:
+        "En el último día de nuestro viaje, tomamos la ruta más directa para volver a casa, pagando peajes. En nuestra encuesta familiar, destacaron Friburgo, la Selva Negra, los toboganes de Todtnau, la Alsacia y la compañía de mi padre como lo más destacado del viaje. El próximo año planeamos viajar en ferry a Italia si todo va bien.",
+    image: new LocalImage(IMG_20190928_202036, "Catedral de Burgos"),
+    video: undefined,
+    keywords: [
+        "Último día de viaje",
+        "370 kilómetros",
+        "Casa",
+        "Peajes",
+        "Francia",
+        "Alemania",
+        "Encuesta",
+        "Preferencias familiares",
+        "Friburgo",
+        "Selva Negra",
+        "Toboganes de Todtnau",
+        "Tarta Selva Negra",
+        "Cervezas alemanas",
+        "Alsacia",
+        "Viñas",
+        "Ferry",
+        "Italia",
+    ],
+};
+---
+
+<TravelLayout {...travel} comments>
+    <p>
+        Último día de viaje. Con ganas de ver mi casa, 370 kilómetro para llegar
+        a nuestra casa. Como teníamos ganas de llegar y teníamos pensado comer
+        sentados a la mesa de nuestra cocina en casa fuimos lo más directo
+        posible pagando unos peajes de 26 euros. Como en años anteriores,
+        Francia nos encanta y conocer un nuevo país como es Alemania me
+        emociono.
+    </p>
+    <ul>
+        <p>
+            Aquí va la encuesta como la que he realizado entre la familia en
+            años anteriores, preguntando qué es lo que más nos gustó de todas
+            las vacaciones...
+        </p>
+        <li>
+            A mi padre lo que más le gusto/impresiono fue Friburgo y los
+            paisajes de la Selva Negra, los toboganes de Todtnau y la Tarta
+            Selva Negra además de las cervezas alemanas.
+        </li>
+        <li>
+            A mi hermana lo que más le ha gustado ha sido montarse conmigo en
+            los toboganes de Todtnau.
+        </li>
+        <li>
+            A mi madre lo que más le ha gustado es ver todos los pueblos de la
+            Alsacia y las viñas que rodeaban a estos.
+        </li>
+        <li>
+            Y a mi lo que más le ha gustado es poder disfrutar de los sitios a
+            donde me lleva mi padre.
+        </li>
+    </ul>
+    <p>
+        Bueno pues esto es todo amigos... El próximo año, si todo sigue bien,
+        iremos en Ferry a ITALIA.
+    </p>
+    <Player video={new YoutubeVideo("https://youtu.be/fQ02pYTUxeM")} />
+</TravelLayout>

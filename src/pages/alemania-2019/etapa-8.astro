@@ -1,0 +1,65 @@
+---
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190825_091112 from "@assets/alemania-2019/IMG_20190825_091112.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-24"),
+    title: "Valfarta",
+    subtitle: "Alemania",
+    description:
+        "El año pasado, tuvimos una mala experiencia en el Camping Municipal de Zaragoza debido a su descuido y altos precios. Este año, optamos por el Camping La Estepa en Valfarta, que ofrece una tarifa de 10 euros por noche y está siendo renovado por una nueva pareja. Aunque la piscina tiene un costo adicional, consideramos que es un buen lugar para una parada en ruta.",
+    image: new LocalImage(IMG_20190825_091112, "Camping La Estepa"),
+    video: undefined,
+    keywords: [
+        "Camping Municipal de Zaragoza",
+        "Mala experiencia",
+        "Camping La Estepa",
+        "Tarifa asequible",
+        "Renovación de instalaciones",
+        "Piscina con costo adicional",
+        "Gasolinera Bujaraloz",
+        "Repostaje económico",
+        "Valfarta",
+        "Parada en ruta",
+        "Viaje en coche",
+        "Experiencia de viaje",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Para hacer la vuelta a casa más llevadera y no conducir muchos
+        kilómetros en un mismo día buscamos un punto intermedio. El año pasado
+        paramos a pasar noche en el Camping Municipal de Zaragoza y la
+        experiencia fue mala, el camping falta de mantenimiento y muy caro para
+        lo que ofrecían. Esta vez fuimos al <a
+            href="https://www.campinglaestepa.es"
+            target="_blank">Camping La Estepa</a
+        > en Valfarta. No teníamos muy claro cómo era este camping pues su
+        precio, tarifa “plana” de 10 euros noche nos parecía un poco raro. El
+        camping llevaba cerrado unos cuantos años y una pareja le había abierto
+        no hace mucho y están actualizado las instalaciones poco a poco. Tiene
+        un servicio para hombres y otro para mujeres con sus duchas. A mí me
+        pareció un lugar excelente para hacer una parada en ruta y pasar la
+        noche por el precio que tiene. Nosotros si tenemos en los próximos años
+        que hacer una parada cerca del lugar volveríamos sin dudarlo. El truco
+        está en que la piscina del camping no está incluida en el precio y que
+        para ser una piscina de pueblo tiene un precio excesivo, y claro, con el
+        calor que hace por la zona es indispensable darse un chapuzón como el
+        que nos dimos y disfrutamos a tope. Otra cosa interesante fue el
+        repostar en una gasolinera low cost, “Gasolina Bujaraloz” en el pueblo
+        cercano que fue el lugar donde era la gasolina más económica de todo el
+        viaje y de los últimos meses en nuestros repostajes.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20190825_091112, "Camping La Estepa")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+</TravelLayout>

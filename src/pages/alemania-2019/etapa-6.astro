@@ -1,0 +1,204 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190820_827 from "@assets/alemania-2019/IMG_20190820_827.jpg";
+import IMG_20190819_802 from "@assets/alemania-2019/IMG_20190819_802.jpg";
+import IMG_20190819_803 from "@assets/alemania-2019/IMG_20190819_803.jpg";
+import IMG_20190819_804 from "@assets/alemania-2019/IMG_20190819_804.jpg";
+import IMG_20190820_847 from "@assets/alemania-2019/IMG_20190820_847.jpg";
+import IMG_20190820_871 from "@assets/alemania-2019/IMG_20190820_871.jpg";
+import IMG_20190820_883 from "@assets/alemania-2019/IMG_20190820_883.jpg";
+import IMG_20190820_887 from "@assets/alemania-2019/IMG_20190820_887.jpg";
+import IMG_20190820_853 from "@assets/alemania-2019/IMG_20190820_853.jpg";
+import IMG_20190820_851 from "@assets/alemania-2019/IMG_20190820_851.jpg";
+import IMG_20190820_814 from "@assets/alemania-2019/IMG_20190820_814.jpg";
+import IMG_20190820_822 from "@assets/alemania-2019/IMG_20190820_822.jpg";
+import IMG_20190820_834 from "@assets/alemania-2019/IMG_20190820_834.jpg";
+import IMG_20190820_826 from "@assets/alemania-2019/IMG_20190820_826.jpg";
+import IMG_20190820_830 from "@assets/alemania-2019/IMG_20190820_830.jpg";
+import IMG_20190820_844 from "@assets/alemania-2019/IMG_20190820_844.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-19"),
+    title: "Aviñón y Nimes",
+    subtitle: "Alemania",
+    description:
+        "Después de pagar en efectivo en el camping, viajamos tres horas y 290 kilómetros hasta llegar al Camping la Sousta cerca de Remoulins. Desde allí, visitamos Aviñón y Nimes. A pesar de haber reservado tres noches, el camping tenía muchas parcelas disponibles. Pagamos 30 euros por noche. Nos impresionó el Pont du Gard, un antiguo acueducto romano. Luego, exploramos Aviñón y Nimes antes de dirigirnos a nuestro próximo destino en España.",
+    image: new LocalImage(IMG_20190820_827, "Arena de Nimes"),
+    video: undefined,
+    keywords: [
+        "Camping La Sousta",
+        "Remoulins",
+        "Peajes de pago",
+        "Aviñón",
+        "Nimes",
+        "Exposición Van Gogh",
+        "Carrières des Lumières",
+        "Temporada alta",
+        "Pont du Gard",
+        "Anfiteatro romano",
+        "Arena de Nimes",
+        "Maison Carrée",
+        "Turismo en Francia",
+        "Paseo por la muralla",
+        "Palacio papal",
+        "Catedral",
+        "Pizzería",
+        "Noche en Aviñón",
+        "Centro histórico",
+        "Tormenta y lluvia",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Después de pagar “en metálico” en el camping, en tres horas y después de
+        290 kilómetros y pasando por un par de peajes de pago que nos supuso
+        pagar 38 euros llegamos a nuestro siguiente destino el <a
+            href="https://www.lasousta.com"
+            target="_blank">Camping la Sousta</a
+        >
+         cercano al pueblo de Remoulins. Desde este camping visitamos Aviñón y
+        Nimes, también teníamos pensado ver una exposición de Van Gogh que tenía
+        muy buena pinta llamada <a
+            href="https://www.carrieres-lumieres.com/en"
+            target="_blank">Carrières des Lumières</a
+        > en el pueblo de Les Baux-de-Provence pero no conseguimos entradas y
+        nos quedamos sin verlo. Unos días antes reservamos tres noches, aunque
+        no hubiera sido necesario pues tenían bastantes parcelas libres. Unos
+        días antes de ir al camping se terminó la temporada alta en este camping
+        y nosotros pagamos 30 euros por día que me pareció un buen precio, pero
+        viendo los precios en temporada alta creo que eran excesivos para lo que
+        te ofrece el camping. En la puerta de entrada del camping siempre tenían
+        a una persona que controlaba la entrada y salida de personas y
+        automóviles. En la recepción no hablaban castellano, yo me entendí con
+        la recepcionista en ingles pues mi padre parecía que estaba un poco
+        espeso y no se enteraba de mucho. El camping estaba dentro de un pinar y
+        tenía un montón de bungalós, las parcelas eran grandes y estaban sin
+        delimitar. Los baños estando limpios eran anticuados. Nos dieron unas
+        pulseras para la piscina (pequeña) y para entrar y salir del camping.
+        Nos las tuvimos que poner, pues fuimos a dar un paseo fuera del camping
+        y sin la pulsera no podías entrar de nuevo dentro. Salimos del camping a
+        dar un paseo, y a un kilómetro más o menos se encontraba el Pont du
+        Gard, me pareció impresionante ver allí ese acueducto que fue construido
+        por los romanos en el siglo I de nuestra era. Es excepcional por sus
+        dimensiones ya que, con sus 49 metros de altitud, es el puente antiguo
+        más alto del mundo. Está compuesto por 3 filas de arcos superpuestos (6
+        arcos en el primer nivel, 11 arcos en el segundo nivel y 47 arcos
+        originalmente), lo que es asimismo una realización rarísima para la
+        época. Cerca de un millar de hombres trabajaron en esta obra colosal
+        terminada en solo 5 años y que esta estupendamente conservado. Desde sus
+        arcos puedes ver como pasa el rio por debajo y la gente se baña en él.
+        Al lado se pueden ver unos olivos muy bonitos que tendrán sus años.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190819_802, "Pont du Gard")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190819_803, "Río Gardon")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190819_804, "Olivos")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Aviñón</h3>
+    <p>
+        Desde este camping visitamos Aviñón que se encuentra a unos treinta
+        kilómetros. Aparcamos dentro de la muralla en un lugar en zona azul,
+        estábamos un poco cansado de ver ciudades y en una tarde lo vimos todo.
+        Paseamos por el centro histórico protegido por la Unesco, llegamos a una
+        gran plaza donde se encuentra el palacio papal y la catedral... Cenamos
+        en una pizzería donde nos llamaban “amigos españoles” y nos fuimos para
+        casa. Es interesante ver la ciudad por la noche con la muralla
+        iluminada.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190820_871, "Palacio Papal")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_847, "Plaza del palacio")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_851, "Catedral de Aviñón")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_883, "Basilica de San Pedro")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_887, "Mairie d'Avignon")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_853, "Río Rhône")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Nimes</h3>
+    <p>
+        Nimes se encontraba a unos 30 kilómetros del camping. Aparcamos en un
+        parking subterráneo en el centro de la ciudad. Lo primero que visitamos
+        fue el famoso anfiteatro romano de Nimes, la Arena de Nimes, del año 27
+        a.C. Este anfiteatro es nada más y nada menos que el mejor conservado
+        del mundo y es digno de ver, aunque si has visto el de Roma este te
+        parecerá poca cosa. El segundo gran atractivo de Nimes es la Maison
+        Carrée, un templo romano construido en el año 16 a.C. y perfectamente
+        conservado. Para visitarlo no hay nada mejor que darle un par de vueltas
+        y fijarse en las columnas, el frontón, la escalinata donde sus escaleras
+        son especialmente empinadas. La entrada incluye un visionado en el
+        interior de un vídeo en 3D que repasa la historia de Nimes en tiempos
+        romanos. Si vais faltos de tiempo y presupuesto quizá os podéis ahorrar
+        los seis euros que cuesta la entrada y las colas para entrar. Parece ser
+        que no hace mucho le han limpiado y me pareció demasiado blanco.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190820_814, "Maison Carrée")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_822, "Arena de Nimes")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_834, "Iglesia de Saint-Baudile")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190820_826,
+                "Explanada Charles de Gaulle"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_830, "Iglesia Santa Perpetua")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190820_844, "Puerta de Augusto")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Nos fuimos a dormir y se nos presentó una tormenta con algo de lluvia y
+        viento que con los pinos cercanos parecía un huracán que no fue tanto,
+        nos despertamos y aunque teníamos un día más reservado decidimos irnos a
+        nuestro siguiente destino de relax en España.
+    </p>
+</TravelLayout>

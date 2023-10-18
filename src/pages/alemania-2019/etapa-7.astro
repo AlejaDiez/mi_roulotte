@@ -1,0 +1,103 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190822_896 from "@assets/alemania-2019/IMG_20190822_896.jpg";
+import IMG_20190822_895 from "@assets/alemania-2019/IMG_20190822_895.jpg";
+import IMG_20190822_897 from "@assets/alemania-2019/IMG_20190822_897.jpg";
+import IMG_20190822_900 from "@assets/alemania-2019/IMG_20190822_900.jpg";
+import IMG_20190823_182520 from "@assets/alemania-2019/IMG_20190823_182520.jpg";
+import IMG_20190823_182824 from "@assets/alemania-2019/IMG_20190823_182824.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-21"),
+    title: "Sant Pere Pescador",
+    subtitle: "Alemania",
+    description:
+        "Llegamos a España tras 300 km y un peaje de 33,50 euros. Elegimos el costoso Camping la Dunas para relajarnos. Aunque no hicimos reserva, tomamos una parcela económica, que carecía de sombra y espacio. El camping tenía acceso a la playa y buenas instalaciones, pero la piscina era pequeña. No aceptaban tarjetas y hubo desperdicio de agua. Decidimos buscar campings más económicos y tranquilos en el futuro.",
+    image: new LocalImage(IMG_20190822_896, "Sant Pere Pescador"),
+    video: undefined,
+    keywords: [
+        "Camping La Dunas",
+        "Parcelas económicas",
+        "Playa en España",
+        "Instalaciones de camping",
+        "Piscina",
+        "Precios de camping",
+        "Acceso a la playa",
+        "Reserva de camping",
+        "Desperdicio de agua",
+        "Pago en efectivo",
+        "Vacaciones en camping",
+        "Descanso en camping",
+        "Camping costoso",
+        "Camping tranquilo",
+        "Familiares y económicos",
+        "Camping en España",
+        "Kilómetros en carretera",
+        "Viaje en coche",
+        "Servicios de camping",
+        "Supermercado en camping",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Después de 300 kilómetros y un pago de 33,50 euros en un peaje llegamos
+        a España. Para terminar las vacaciones queríamos pasar unos días sin
+        hacer nada y sin cosas que visitar. Nuestro camping elegido fue el
+        <a href="https://www.campinglasdunas.com" target="_blank"
+            >Camping las Dunas</a
+        >. No teníamos nada reservado y teníamos pensado coger una de las
+        parcelas “económicas” de este macro camping que de baratas no tenían
+        nada, fue la estancia más cara de todas las vacaciones. El camping
+        estaba casi completo y nos tocó una parcela que era un poco mie***,
+        aunque todas las mas económicas eran parecidas. La mayoría sin sombra
+        justas de espacio, las fuentes estaban bastante lejos y los fregaderos y
+        servicios más lejos aún. El camping tenía acceso directo a la playa que
+        a nosotros nos quedaba a un kilómetro más o menos de nuestra parcela.
+        Las instalaciones eran estupendas, todo muy limpio, un buen supermercado
+        con precios no muy caros, la piscina a mi parecer estaba muy bien con
+        sus toboganes, pero se quedaba pequeña para la gente que estaba en ese
+        momento en el camping. Los trabajadores muy amables. Si quieres tener
+        sombra y todos los servicios del camping a mano tienes que pagar más de
+        120 euros al día. No me pareció nada bien la zona de lavadero de coches
+        donde la gente limpiaba todo tipo de objetos y se desperdiciaba el agua
+        sin conocimiento y lo nunca visto en un gran camping como este, no
+        aceptaban tarjeta de crédito, tenías que abonar todo en metálico.
+        Después de pasar unos días en el lugar hemos decidido que nunca más... No
+        volveremos a este tipo de macro campings, buscaremos otros más
+        tranquilos, familiares y económicos.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190822_895, "Sant Pere Pescador")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190822_900, "Iglesia de Sant Martí")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190823_182520, "Camping las Dunas")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190822_897,
+                "Centro medieval de Sant Marti de Empúries"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190823_182824, "Camping las Dunas")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

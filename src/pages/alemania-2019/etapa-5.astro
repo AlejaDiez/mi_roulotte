@@ -1,0 +1,206 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_20190817_632 from "@assets/alemania-2019/IMG_20190817_632.jpg";
+import IMG_20190817_628 from "@assets/alemania-2019/IMG_20190817_628.jpg";
+import IMG_20190817_688 from "@assets/alemania-2019/IMG_20190817_688.jpg";
+import IMG_20190817_705 from "@assets/alemania-2019/IMG_20190817_705.jpg";
+import IMG_20190817_703 from "@assets/alemania-2019/IMG_20190817_703.jpg";
+import IMG_20190817_627 from "@assets/alemania-2019/IMG_20190817_627.jpg";
+import IMG_20190817_637 from "@assets/alemania-2019/IMG_20190817_637.jpg";
+import IMG_20190817_678 from "@assets/alemania-2019/IMG_20190817_678.jpg";
+import IMG_20190817_668 from "@assets/alemania-2019/IMG_20190817_668.jpg";
+import IMG_20190817_692 from "@assets/alemania-2019/IMG_20190817_692.jpg";
+import IMG_20190817_630 from "@assets/alemania-2019/IMG_20190817_630.jpg";
+import IMG_20190817_706 from "@assets/alemania-2019/IMG_20190817_706.jpg";
+import IMG_20190817_660 from "@assets/alemania-2019/IMG_20190817_660.jpg";
+import IMG_20190818_711 from "@assets/alemania-2019/IMG_20190818_711.jpg";
+import IMG_20190818_769 from "@assets/alemania-2019/IMG_20190818_769.jpg";
+import IMG_20190818_780 from "@assets/alemania-2019/IMG_20190818_780.jpg";
+import IMG_20190818_757 from "@assets/alemania-2019/IMG_20190818_757.jpg";
+import IMG_20190818_747 from "@assets/alemania-2019/IMG_20190818_747.jpg";
+import IMG_20190818_793 from "@assets/alemania-2019/IMG_20190818_793.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2019-08-16"),
+    title: "Lyon y Annecy",
+    subtitle: "Alemania",
+    description:
+        "Hicimos un viaje de 400 kilómetros por carreteras con peajes caros hasta llegar al Camping de L'Oiselon en Pont-d'Ain, un lugar estratégico entre Lyon y Annecy. Lyon nos sorprendió con su encanto, explorando la Place Bellecour y el casco antiguo con Bouchons y Traboules. Luego, fuimos a Annecy, conocida como \"La pequeña Venecia de los Alpes\", disfrutando de su hermoso lago y casco antiguo a pesar de la gran cantidad de turistas.",
+    image: new LocalImage(IMG_20190817_632, "Lyon"),
+    video: undefined,
+    keywords: [
+        "Viaje en carretera",
+        "Camping en Pont-d'Ain",
+        "Lyon",
+        "Annecy",
+        "Peajes en carretera",
+        "Encanto de Lyon",
+        "Casco antiguo de Lyon",
+        "Bouchons en Lyon",
+        "Traboules en Lyon",
+        "La pequeña Venecia de los Alpes",
+        "Lago de Annecy",
+        "Turismo en Annecy",
+        "Rutas turísticas en Francia",
+        "Caravana de viaje",
+        "Camping en Francia",
+        "Atracciones turísticas en Francia",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Fueron unos 400 kilómetros por buenas carreteras y pasando por varios
+        peajes de los más caros de todas las vacaciones, 42 euros, pero no
+        existían otras opciones. Nuestro siguiente camping era el <a
+            href="http://campingpontdain.e-monsite.com"
+            target="_blank">Camping de L'Oiselon</a
+        > en el pueblo de Pont-d'Ain. Este camping está a medio camino entre dos
+        lugares que teníamos pensado visitar, Annecy y Lyon. En la recepción de
+        este camping la mujer que nos atendió fue muy amable y nos habló en
+        castellano bastante bien. Teníamos una piscina donde nos dimos algún
+        chapuzón y al lado estaba un rio bastante caudaloso. Tenían dos módulos
+        de baños y mi consejo es ir a los que están más alejados del rio y poner
+        la caravana cerca de este módulo en alguna parcela... el módulo mejor y
+        más limpio es el que se encuentra según entras en el camping a la
+        derecha. Tienes una persona que te indica donde tienes que acampar, pero
+        mejor decirle que quieres ir a la zona de la derecha, las parcelas
+        estaban sin delimitar. En este camping no aceptan tarjeta de crédito
+        para pagar, así que es importante tener algo de dinero en metálico para
+        pagar. A unos dos kilómetros se encuentra un buen supermercado con
+        gasolinera para poder repostar. El día siguiente de llegar a Pont-d'Ain
+        hicimos una visita de un día a Lyon. Para salir del pueblo e ir a Lyon o
+        Annecy debíamos de entrar en la autopista y pagar unos 10 euros entre la
+        ida y la vuelta.
+    </p>
+    <h3>Lyon</h3>
+    <p>
+        Desde el camping recorrimos una distancia de 60 kilómetros. Al ser
+        agosto aparcamos gratuitamente en una zona azul que en este mes era
+        libre. No todas las zonas azules en agosto son gratuitas, es necesario
+        verlo en el parquímetro. Lyon la tercera ciudad más grande de Francia.
+        Fue Capital de la Galia durante el Imperio Romano y centro neurálgico
+        mundial del comercio de la seda, fue capital mundial de la seda.
+        Recorrimos la Place Bellecour, que es la plaza peatonal más grande de
+        Europa. Paseamos por las orillas de los ríos Ródano y Saona. Entramos en
+        la catedral de Lyon que es una mezcla de románico y gótico. Y luego
+        paseamos por el viejo Lyon o casco viejo de Lyon donde pudimos ver los
+        <i>Bouchons</i>, que son los típicos restaurantes de esta ciudad y nos
+        adentramos en los <i>Traboules</i> que son pasajes secretos que conectan
+        una calle a la otra usando los patios de los edificios. Están por todo
+        el viejo Lyon y algunos son de difícil acceso. Los artesanos los
+        utilizaban para transportar telas (seda) por la ciudad y poder
+        refugiarse en caso de lluvia. Lyon es una gran ciudad con encanto.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20190817_628, "Río Saona")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_627, "Place Bellecour")}
+            class:list={["col-8", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_688, "Place des Terreaux")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_705, "Palais de la Bourse")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_668, "Viejo Lyon")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_703, "Le Nouveau Grand Bazar")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20190817_637,
+                "Catedral de San Juan Bautista"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_678, "Murales en Lyon")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_692, "Église Saint-Nizier")}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_706, "Río Ródano")}
+            class:list={["col-8", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_630, "Viejo Lyon")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190817_660, "Viejo Lyon")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <h3>Annecy</h3>
+    <p>
+        Al día siguiente sin tiempo a descansar nos acercamos después de pagar
+        el correspondiente peaje a Annecy. Llegamos al centro de este pueblo e
+        intentamos aparcar, pero fue imposible por la cantidad de gente que
+        había, además todo era zona azul o parking privado que estaban
+        completos. Al final aparcamos <a
+            href="https://www.google.com/maps/place/45°54'22.9%22N+6°07'47.8%22E"
+            target="_blank">aquí</a
+        >, que no se encuentra lejos de lo interesante de este lugar. Llamada
+        «La pequeña Venecia de los Alpes» es una ciudad francesa (casi en el
+        límite con Suiza) llena de encanto, con una luz especial, sobre todo por
+        el día espectacular que tuvimos y unos paisajes con el lago y las
+        montañas que resultan impresionantes. Las casas, sus canales y su casco
+        viejo son irresistibles. Subir hasta el castillo en lo alto y pasear por
+        el magnífico lago de aguas turquesas rodeado de montañas y sentarte en
+        un jardín a la sombra es un plan perfecto. Puedes alquilar una barca a
+        pedales, remos o un viaje en barca de motor. La zona está a tope de
+        turistas, pero es espectacular y si estas cerca no te lo puedes perder a
+        nosotros nos encantó y nos pareció un lugar fantástico.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(
+                IMG_20190818_711,
+                "Iglesia de Notre Damme de Liesse"
+            )}
+            class:list={["col-4", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190818_769, "Castillo de Annecy")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190818_780, "Annecy")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190818_757, "Le Palais de I'Île")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190818_747, "Annecy")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20190818_793, "Lago de Annecy")}
+            class:list={["col-12", "row-9"]}
+        />
+    </Mosaic>
+</TravelLayout>

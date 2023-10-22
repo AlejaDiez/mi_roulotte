@@ -1,0 +1,146 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_1655032141241 from "@assets/italia-2021/IMG_1655032141241.jpg";
+import IMG_20210813_202455 from "@assets/italia-2021/IMG_20210813_202455.jpg";
+import IMG_20210814_121230 from "@assets/italia-2021/IMG_20210814_121230.jpg";
+import IMG_20210814_125859 from "@assets/italia-2021/IMG_20210814_125859.jpg";
+import IMG_20210815_120759 from "@assets/italia-2021/IMG_20210815_120759.jpg";
+import IMG_20210815_121207 from "@assets/italia-2021/IMG_20210815_121207.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2021-08-13"),
+    title: "Sur Toscana",
+    subtitle: "Italia",
+    description:
+        "En medio de la encantadora Toscana, nuestro viaje nos llevó al agricamping Il Vecchio Fienile, donde el calor no nos dio tregua. A pesar de la falta de sombra, exploramos encantadores lugares como Sorano y Pitigliano, y nos relajamos en las Termas de Saturnia. Saboreamos delicias toscanas como costrini y pici, y descubrimos la Pizzería Il Sileno en Savona, donde probamos las mejores pizzas del viaje. Una experiencia única en Italia en compañía de nuestra caravana.",
+    image: new LocalImage(IMG_1655032141241, "Cipreces en la Toscana"),
+    video: undefined,
+    keywords: [
+        "Toscana",
+        "Agricamping",
+        "Il Vecchio Fienile",
+        "Sorano",
+        "Pitigliano",
+        "Termas de Saturnia",
+        "Cocina típica toscana",
+        "Costrini",
+        "Pici",
+        "Raviolis rellenos",
+        "Cascada caliente",
+        "Savona",
+        "Ruinas históricas",
+        "Pizzería il Sileno",
+        "Deliciosas pizzas",
+        "Experiencias de viaje en caravana",
+        "Aventuras en Italia",
+        "Explorando la Toscana",
+        "Destinos únicos en Italia",
+        "Descubriendo la cultura italiana",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        Nuestra intención era visitar varios lugares de la Toscana y dado que la
+        región es bastante grande pensamos hacer varias paradas-campamento para
+        mover la caravana lo menos posible e ir subiendo hacia el norte de
+        Italia.
+    </p>
+    <p>
+        La primera parada fue en el agricamping <a
+            href="https://www.agriturismoilvecchiofienile.it/it/agricampeggio/"
+            target="_blank">Il Vecchio Fienile</a
+        >. Este camping estaba en medio de la nada, pero teníamos cerca varios
+        sitios interesantes que queríamos visitar. Sorano, Pitigliano,
+        Montemerano, Termas de Saturnia y alguna sorpresa más.
+    </p>
+    <p>
+        El camping tenía unas diez parcelas y un pequeño módulo de baños con dos
+        duchas para hombres y dos para mujeres que funcionaban con fichas a
+        cincuenta céntimos, para ducharte eran necesarias dos fichas. Después de
+        pasar unos días calurosos de narices en Roma, aquí el calor no nos dio
+        tregua. En el camping no existía una sola sombra. Los baños les
+        limpiaban una sola vez al día. Uno de los días que el camping se llenó
+        de autocaravanas le hizo falta limpieza.
+    </p>
+    <p>
+        ¿Volveríamos a este camping? Pues no, buscaríamos otro por la zona con
+        sombras. Los dueños del camping tenían un muy buen restaurante. Tuvimos
+        algún problema para elegir los platos para comer por la falta de
+        entendimiento con el camarero y los platos que no conocíamos.
+    </p>
+    <p>
+        Por la zona pudimos comer los típicos costrini que son rebanadas de pan
+        tostado con una capa de pate, tomate u otras muchas cosas que no
+        conocíamos. También comimos la pasta típica de la zona llamada pici que
+        son semejantes al spaguetti y los acompañan con jabalí, liebre, hongos,
+        ragú... También probamos por la zona la típica salsa de trufa, la
+        toscana es una de las mayores productoras de trufa. Yo empecé a probar
+        mi plato preferido... los raviolis rellenos de lo que fuera, deliciosos.
+    </p>
+    <p>
+        Después de comer fenomenal en el restaurante del camping fuimos a
+        visitar Sorano, un pueblo muy bonito que merece la pena visitar.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20210814_121230, "Sorano")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210814_125859, "Sorano")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Pero lo que más nos interesaba era ir a refrescarnos a las Termas de
+        Saturnia. Sabíamos que las termas se ponían a tope de gente y por eso
+        fuimos a última hora de la tarde. Aparcamos en el parking que se
+        encuentra a unos quinientos metros de las termas. El parking nos
+        enteramos más tarde de que es de pago. Llegamos al rio y nos impresiono,
+        que gozada, rápidamente nos quitamos la ropa y al agua patos. Bufff de
+        refrescarnos nada, el agua estaba caliente caliente, a 37 grados según
+        ponía en algún cartel, pero se estaba genial. Lo más característico de
+        estas termas son por un lado el antiguo molino que está en lo alto y el
+        efecto cascada que hace el agua, es mejor verlo en estas fotos. El olor
+        a azufre era fuerte. Se nos hizo de noche allí dentro de nuestra piscina
+        familiar.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20210813_202455, "Termas de Saturnia")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Otro día visitamos Pitigliano. También pasamos por Savona, pues mi padre
+        vio desde la carretera unas ruinas y quiso hacer unas fotos para un
+        concurso de fotografía que al final gano.
+    </p>
+    <p>
+        En Savona cabe mencionar una pizzería donde fuimos a cenar. <i
+            >Pizzeria il Sileno</i
+        >
+         comimos las mejores pizzas de todo nuestro viaje y eso que más adelante
+        en nuestro viaje también probamos las pizzas del premio a la mejor pizza
+        del año en Italia. Las de Savona estaban deliciosas, aunque también fue
+        donde vimos más mosquitos durante todo el viaje, todo no iba a ser
+        bueno.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20210815_120759, "Pitigliano")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210815_121207, "Pitigliano")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+</TravelLayout>

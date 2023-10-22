@@ -1,0 +1,307 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import Player from "@components/Player.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+import { YoutubeVideo } from "@models/video";
+
+// Images
+import DSC_0039 from "@assets/italia-2021/DSC_0039.jpg";
+import DSC_0225 from "@assets/italia-2021/DSC_0225.jpg";
+import IMG_20210809_114718 from "@assets/italia-2021/IMG_20210809_114718.jpg";
+import IMG_20210809_123051 from "@assets/italia-2021/IMG_20210809_123051.jpg";
+import IMG_20210809_140629 from "@assets/italia-2021/IMG_20210809_140629.jpg";
+import IMG_20210809_163454 from "@assets/italia-2021/IMG_20210809_163454.jpg";
+import IMG_20210809_173725 from "@assets/italia-2021/IMG_20210809_173725.jpg";
+import IMG_20210809_173823 from "@assets/italia-2021/IMG_20210809_173823.jpg";
+import IMG_20210810_185053 from "@assets/italia-2021/IMG_20210810_185053.jpg";
+import IMG_20210810_190245 from "@assets/italia-2021/IMG_20210810_190245.jpg";
+import IMG_20210811_WA0009 from "@assets/italia-2021/IMG_20210811_WA0009.jpg";
+import IMG_20210812_110846 from "@assets/italia-2021/IMG_20210812_110846.jpg";
+import IMG_20210812_111401 from "@assets/italia-2021/IMG_20210812_111401.jpg";
+import IMG_20210812_112921 from "@assets/italia-2021/IMG_20210812_112921.jpg";
+import IMG_20210812_115036 from "@assets/italia-2021/IMG_20210812_115036.jpg";
+import IMG_20210812_120238 from "@assets/italia-2021/IMG_20210812_120238.jpg";
+import IMG_20210812_121401 from "@assets/italia-2021/IMG_20210812_121401.jpg";
+import IMG_20210812_175031 from "@assets/italia-2021/IMG_20210812_175031.jpg";
+import IMG_20210812_181805 from "@assets/italia-2021/IMG_20210812_181805.jpg";
+import IMG_20210829_141600 from "@assets/italia-2021/IMG_20210829_141600.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2021-08-08"),
+    title: "Roma, Pompeya y Nápoles",
+    subtitle: "Italia",
+    description:
+        "Durante esta etapa fascinante de nuestro viaje en familia, partimos desde Civitavecchia con nuestra caravana, recorriendo 60 kilómetros hasta llegar al camping a altas horas de la madrugada. A pesar de la confusión por las obras y el calor, nos instalamos rápidamente y vivimos días llenos de emociones en Roma. Exploramos lugares emblemáticos, degustamos la exquisita comida italiana y nos dejamos llevar por la historia de Pompeya. También nos aventuramos en una excursión a Nápoles, descubriendo su caótica belleza. ¡El siguiente destino de nuestra inolvidable travesía en caravana por Italia nos aguarda en Toscana!",
+    image: new LocalImage(IMG_20210809_173823, "Coliseo de Roma"),
+    video: undefined,
+    keywords: [
+        "Viaje en caravana por Italia",
+        "Civitavecchia",
+        "Camping en Roma",
+        "Aventuras en Roma",
+        "Lugares emblemáticos de Roma",
+        "Comida italiana",
+        "Historia de Pompeya",
+        "Excursión a Nápoles",
+        "Belleza caótica de Nápoles",
+        "Toscana",
+        "Experiencia de viaje en familia",
+        "Instalaciones de camping",
+        "Gastronomía italiana",
+        "Excursiones culturales",
+        "Viaje en caravana con niños",
+        "Recorrido por Italia",
+        "Experiencias de viaje en caravana",
+        "Visitas turísticas en Italia",
+        "Paseos por la ciudad de Roma",
+        "Coliseo Romano",
+        "Foro Romano",
+        "Plaza de San Pedro",
+        "Basílica de San Pedro",
+        "Ciudad del Vaticano",
+        "Plaza de España",
+        "Fontana di Trevi (Fuente de Trevi)",
+        "Panteón de Agripa",
+        "Plaza Navona",
+        "Castillo de Sant'Angelo",
+        "Plaza del Campidoglio",
+        "Termas de Caracalla",
+        "Capilla Sixtina",
+        "Galería Borghese",
+        "Villa Borghese",
+        "Arco de Constantino",
+        "Catacumbas de Roma",
+        "Monumento a Vittorio Emanuele II (Altare della Patria)",
+        "Trastevere",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        La salida del puerto en Civitavecchia era bastante confusa por las obras
+        existentes, al fin salimos a la autopista y después de recorrer 60
+        kilómetros llegamos al camping a las dos de la mañana. Pensábamos que
+        nos iban a dejar la primera noche en un lugar provisional para no
+        molestar y luego al día siguiente coger la parcela, pero no fue así, nos
+        dieron una buena parcela y nos instalamos lo más rápidamente posible
+        intentando hacer el menor ruido, pero la toma de corriente estaba
+        bastante lejos y nos tuvimos que pasear por varias parcelas para pasar
+        el cable... un desastre. El calor a las tres de la madrugada era
+        generoso, la que nos espera mañana, pensé.
+    </p>
+    <p>
+        Dormimos bastante bien y nos despertamos tarde. Terminamos de
+        acomodarnos, pusimos nuestro pingüino y mi hermana y yo nos fuimos a la
+        piscina. La piscina tenía aforo reducido por la pandemia y nos tocó
+        hacer cola. Mis padres fueron a comprar al supermercado que estaba
+        cruzando la carretera, algo más de cinco minutos andando. Era un buen
+        supermercado. Por la tarde fuimos a dar una vuelta al centro de Roma.
+        Para ir a Roma compramos los tickets del autobús en la recepción,
+        cogimos el autobús a veinte metros de la puerta del camping, después de
+        cuatro paradas nos bajábamos y cogíamos el metro que nos dejaba en el
+        centro con el mismo billete. Total, una media hora más o menos.
+    </p>
+    <p>
+        El camping <a href="https://roma.huopenair.com" target="_blank"
+            >Roma Camping in Town</a
+        >
+         cuenta con unas instalaciones muy buenas y cuidadas. Las parcelas son
+        generosas de espacio y el mayor inconveniente es la falta de sombras. El
+        precio, una pasada, 80 euros día, pero no había otra cosa. ¿Volveríamos
+        a este camping? Pues sí.
+    </p>
+    <p>
+        Estuvimos cinco noches en Roma. Era la tercera vez que visitábamos la
+        ciudad. Roma nos encanta y disfrutamos mucho paseando por sus calles.
+    </p>
+    <p>
+        Visitamos nuestros restaurantes preferidos y empezamos a saborear los
+        helados italianos. Algunos de los restaurantes que nos gustan son
+        L'antica Birreria Peroni, Ristotante 433. En Trastevere está el
+        Impiccetta donde para mi gusto ponen la mejor carbonara de Italia y para
+        mi padre el segundo mejor tiramisú que ha probado, el mejor el de mi
+        madre. Y los helados, que decir en Italia son espectaculares, los
+        mejores los saboreamos en Frigidarium y Sweet Life.
+    </p>
+    <Mosaic template={16}>
+        <Photo
+            image={new LocalImage(IMG_20210809_173725, "Coliseum")}
+            class:list={["col-12", "row-9"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210810_185053, "Vaticano")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(DSC_0039, "Ruinas Romanas")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210809_123051, "Panteón de Agripa")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20210809_163454,
+                "Monumento a Víctor Manuel II"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20210810_190245,
+                "Castillo de Sant'Angelo"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210809_114718, "Fontana di Trevi")}
+            class:list={["col-8", "row-6"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210829_141600, "Pizza Italiana")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210809_140629, "Helado Frigidarium")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Uno de los días que estuvimos en Roma mi padre quedo con Luciano, un
+        romano que conoció en un foro italiano de gente con caravana. Mi padre
+        cuando preparo el viaje ingreso en este foro para preguntar dudas y
+        posibles destinos. Luciano tuvo el detalle de acercarse al camping y
+        pasar un rato hablando de sus cosas de viajes y caravanas con mi padre,
+        ahora tiene un amigo romano...
+    </p>
+    <Photo
+        image={new LocalImage(
+            IMG_20210811_WA0009,
+            "Mi padre con su amigo romano"
+        )}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Por aquí dejo un breve video que creé durante mi primera visita a Roma.
+        Aunque en esa ocasión no conté con la compañía de mi caravana, el viaje
+        estuvo lleno de asombro y descubrimientos, lo que convirtió a Roma en
+        una de mis ciudades favoritas.
+    </p>
+    <Player
+        video={new YoutubeVideo("https://www.youtube.com/watch?v=rF5cDrW_efI")}
+    />
+    <p>
+        Una de las visitas que yo quería hacer en este viaje era Pompeya.
+        Estuvimos viendo la posibilidad de bajar con la caravana hacia el sur de
+        Italia y visitar la zona, que tiene muy buena pinta, pero solo teníamos
+        un mes y queríamos ir subiendo poco a poco y ver otras muchas cosas
+        interesantes. Así que hicimos una excursión de un día a Pompeya.
+    </p>
+    <p>
+        Madrugamos para recorrer los 250 kilómetros que separaban el camping de
+        las ruinas. Fuimos por autopista pagando 15 euros. Aparcamos junto a una
+        de las entradas en un parking que me pareció ideal y a buen precio (Eden
+        Park Games), esto del precio lo digo por lo que nos esperaba por la
+        tarde. Las entradas las cogimos unos días antes por internet.
+    </p>
+    <p>
+        El parque Arqueológico me pareció impresionante, pero las pocas sombras
+        y el calor asfixiante nos dio pie a hacer un tour rápido. Vimos las
+        cosas más llamativas y nos fuimos a comer.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20210812_115036, "Monte Vesubio")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210812_112921, "Mosaicos")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(
+                IMG_20210812_120238,
+                "Descubrimientos arqueológico"
+            )}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210812_111401, "Calles Pompeya")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210812_121401, "Pompeya")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210812_110846, "Casa de Pompeya")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Por la tarde teníamos visita guiada a Nápoles... Mi padre no estaba muy
+        por la labor de entrar en la ciudad, había leído algunos comentarios
+        sobre la inseguridad y la conducción que no le gustaban, pero estando
+        tan cerca no podíamos pasar de largo. Busco un parking “céntrico” y allí
+        fuimos.
+    </p>
+    <p>
+        La entrada a la ciudad era bastante fea y en mal estado. Me llamo la
+        atención que varias personas estaban en la carretera con carteles de
+        “PARKING ➟”. Enseguida nos dimos cuenta como se conducía allí. Como no
+        espabiles te comen. El GPS nos iba acercando al parking y metiéndonos en
+        el centro, las calles cada vez más estrechas, llenas de personas y
+        nosotros con nuestro coche... al fondo dos personas sentadas en ambos
+        lados de lo que supuestamente era la carretera-acera, madre mía donde
+        vamos, por ahí no pasamos, pensaba yo. Los hombres no se levantaban, así
+        que pasamos. Miré hacia atrás y vi como uno de ellos hacía gestos con
+        las manos y daba gritos haciendo comentarios que no entendía. Por fin
+        llegamos al destino según el navegador, allí no había ni parking ni
+        nada, mi padre se bajó del coche y vio el parking a unos doscientos
+        metros, pero era dirección prohibida. Se montó en el coche y se metió
+        directo, no hacia ni un kilómetro más.
+    </p>
+    <p>
+        El parking era curioso, tenías que dejarle las llaves y el aparcaba el
+        coche y se quedaba con las llaves hasta la vuelta y ase fue, 30 euros
+        por una tarde que nos cobró y parece ser que esos son los precios
+        normales allí. Tienen buen negocio montado con la inseguridad y la
+        guarda de coches.
+    </p>
+    <p>
+        En fin, por la tarde hicimos un free tour y vimos la ciudad en un par de
+        horas, nos gustó ver el caos total que es la ciudad y el incumplimiento
+        de las normas y leyes que allí se da. Luego nos comimos unas ricas
+        pizzas napolitanas y vuelta a Roma.
+    </p>
+    <Mosaic template={9}>
+        <Photo
+            image={new LocalImage(IMG_20210812_175031, "Nápoles")}
+            class:list={["col-3", "row-4"]}
+        />
+        <Photo
+            image={new LocalImage(DSC_0225, "Nápoles")}
+            class:list={["col-3", "row-4"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210812_181805, "Nápoles")}
+            class:list={["col-3", "row-4"]}
+        />
+    </Mosaic>
+    <p>
+        En roma nos hicimos nuestro segundo test. Mientras esperábamos
+        pacientemente, se nos acercó una persona con una cámara y entrevisto a
+        mis padres para salir en las noticias de varias cadenas de televisión,
+        mi padre estaba emocionado jajajaja.
+    </p>
+    <p>
+        Pasamos unos días muy amenos paseando por los lugares más significativos
+        de la ciudad. Nuestro siguiente destino Toscana.
+    </p>
+</TravelLayout>

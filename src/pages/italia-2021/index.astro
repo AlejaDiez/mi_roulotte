@@ -1,0 +1,110 @@
+---
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import DSC_0319 from "@assets/italia-2021/DSC_0319.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2021-08-07"),
+    title: "Antes de nada...",
+    subtitle: "Italia",
+    description:
+        "¡Cumpliendo el Sueño Italiano! Descubre nuestra emocionante travesía con caravana desde España hasta Roma, Firenze, Venezia y más. ¡Ni la pandemia nos detuvo! Ferry vs Carretera ¿Cuál ganó? No te pierdas esta increíble odisea llena de emoción e historias únicas. ¡Prepárate para vivir Italia de una manera única y apasionante!",
+    image: new LocalImage(DSC_0319, "Manarola"),
+    video: undefined,
+    keywords: [
+        "Aventura en ferry a Italia",
+        "Viaje en caravana a Italia",
+        "Travesía en ferry desde España",
+        "Campings en Italia",
+        "Comida italiana en el viaje",
+        "Turismo en Roma, Firenze, Venezia",
+        "Experiencia en viaje en carretera",
+        "Odisea en Italia",
+        "Anécdotas de viaje en Italia",
+        "Historias de viaje en ferry",
+        "Viaje emocionante a Italia",
+        "Consejos para viajar en caravana",
+        "Experiencia de viaje en ferry",
+        "Itinerario de viaje en Italia",
+        "Comparativa ferry vs. carretera",
+        "Diversión en el viaje a Italia",
+        "Descubriendo Italia en caravana",
+        "Sueño italiano hecho realidad",
+        "Viaje en ferry durante la pandemia",
+        "Emoción en el viaje a Italia",
+    ],
+};
+---
+
+<TravelLayout {...travel} ads={false}>
+    <p>
+        Después de intentar el pasado año este viaje a Italia y cancelarle a
+        última hora por causa de la pandemia, este año si... Teníamos muchas
+        ganas y al final lo pudimos hacer. El pasado verano tres semanas antes
+        de coger el barco con destino a Italia por algún cambio en las
+        condiciones por parte de Grimaldi Lines, nos dieron la opción de la
+        devolución del dinero de nuestros billetes y por la incertidumbre del
+        viaje le cancelamos y nos fuimos a Portugal de relax.
+    </p>
+    <p>
+        En el relato que hago de nuestras vacaciones cuento las cosas que más me
+        llamaron la atención y algunas anécdotas que me parecen interesantes.
+        También doy algunos datos sobre una cosa que a mí me gusta mucho y fue
+        una de mis razones para hacer este viaje... La comida italiana. Al dar
+        información sobre los campings, los precios son para una caravana +
+        coche + electricidad + cuatro adultos, nos hemos hecho mayores y en casi
+        todos los campings pagamos como adultos. Los precios de los carburantes
+        varían mucho según donde repostes, lo más caro era en las autopistas y
+        lo más económico en las gasolineras de los supermercados.
+    </p>
+    <p>
+        Hemos acampado en 9 campings distintos y desde estos campings
+        visitábamos varios lugares. En años anteriores en nuestros viajes fuera
+        de España, llevábamos el frigorífico lleno de comida, este año al coger
+        el ferry y tener la caravana muchas horas sin electricidad el frigo fue
+        vacío... Nos llevamos una <a
+            href="https://www.amazon.es/Alpicool-El%C3%A9ctrica-Frigor%C3%ADficos-Refrigerador-congelador/dp/B08HLJMK11?ref_=ast_sto_dp&th=1&psc=1&_encoding=UTF8&tag=miroulotte01-21&linkCode=ur2&linkId=a83a72cc899348ab4203503929a4008d&camp=3638&creative=24630"
+            target="_blank">nevera a compresor</a
+        > de 20 litros que nos vino genial, la subimos al camarote del barco con
+        nuestra comida para el viaje y luego durante las vacaciones nos sirvió
+        de frigorífico, pues nuestra nevera trivalente de la caravana nos falló
+        por las altas temperaturas.
+    </p>
+    <p>
+        Unos días antes de salir mi padre tenía todo listo, con todos lugares a
+        visitar y los itinerarios. Es la primera vez que íbamos con reservas en
+        la mayoría de los campings, al no cobrar reserva y poder anular y
+        cambiar fechas por la pandemia.
+    </p>
+    <p>
+        En este viaje metimos en el maletero nuestro pingüino que nos vino
+        fenomenal en la primera parte del viaje.
+    </p>
+    <h3>¿Ir a Italia en ferry o hacer el viaje por carretera?</h3>
+    <p>
+        Después de ver los gastos del viaje por carretera hasta Barcelona más el
+        precio del ferry a la ida y los gastos en peajes, gasóleo y campings (a
+        la vuelta pernoctamos en dos campings de Francia) podemos decir que
+        económicamente sale parecido, pierdes un día si vas por carretera
+        haciendo el viaje en tres etapas como fue nuestro caso, en ferry llegas
+        con unos cuantos kilómetros menos a la espalda. Nosotros si repetimos el
+        viaje alguna vez intentaríamos viajar en barco pese a lo aburrido que
+        es.
+    </p>
+    <p>
+        El precio de nuestro ferry fue de 394 euros. El gasto de la vuelta desde
+        Deiva Marina (nuestra última parada en Italia) fueron 190 euros en
+        combustible, 164 euros en peajes más el coste de los dos campings de
+        Francia.
+    </p>
+    <p>
+        Al final nuestro recorrido y nuestros campings-paradas fueron: Burgos,
+        Barcelona (cogimos el ferry), Roma, Cerveteri, Sovicille, Firenze,
+        Venezia, Alpo, Deiva Marina, Saint-Martin-de-Crau, Gardères y de vuelta
+        a casa (Burgos).
+    </p>
+</TravelLayout>

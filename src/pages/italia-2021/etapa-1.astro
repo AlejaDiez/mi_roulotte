@@ -1,0 +1,164 @@
+---
+import Mosaic from "@components/Mosaic.astro";
+import Photo from "@components/Photo.astro";
+import TravelLayout from "@layouts/TravelLayout.astro";
+import { LocalImage } from "@models/image";
+import type Travel from "@models/travel";
+
+// Images
+import IMG_1655297528829 from "@assets/italia-2021/IMG_1655297528829.jpg";
+import IMG_20210807_210411 from "@assets/italia-2021/IMG_20210807_210411.jpg";
+import IMG_20210807_221026 from "@assets/italia-2021/IMG_20210807_221026.jpg";
+import IMG_20210807_234546 from "@assets/italia-2021/IMG_20210807_234546.jpg";
+import IMG_20210808_120230 from "@assets/italia-2021/IMG_20210808_120230.jpg";
+import IMG_20210808_123510 from "@assets/italia-2021/IMG_20210808_123510.jpg";
+import IMG_20210808_222642 from "@assets/italia-2021/IMG_20210808_222642.jpg";
+
+// Metadata
+export const travel: Travel = {
+    date: new Date("2021-08-07"),
+    title: "Nuestra caravana en un barco...",
+    subtitle: "Italia",
+    description:
+        "En el inicio de nuestra aventura, nos lanzamos a bordo de un ferry en Barcelona, rumbo a Civitavecchia, Italia. Con una planificación meticulosa y aprovechando una oferta especial, mi padre aseguró billetes para nuestra caravana, coche y cuatro personas en un camarote interior. A pesar de un pequeño retraso en la salida, superamos las pruebas de antígenos necesarias y nos embarcamos sin problemas. Aunque el día en el barco resultó algo largo y monótono, finalmente arribamos a Civitavecchia, marcando el emocionante comienzo de nuestra exploración en Roma y más allá.",
+    image: new LocalImage(IMG_20210807_234546, "Garaje del Ferry"),
+    video: undefined,
+    keywords: [
+        "Viaje en familia",
+        "Billetes de ferry",
+        "Caravana y coche",
+        "Camarote interior",
+        "Barcelona",
+        "Viaje por carretera",
+        "Retraso en la salida",
+        "Pruebas de antígenos",
+        "Experiencia a bordo",
+        "Cruz Roja italiana",
+        "Piscina a bordo",
+        "Civitavecchia",
+        "Camping en Roma",
+        "Experiencia de embarque",
+        "Actividades en el ferry",
+        "Parada en Cerdeña",
+        "Aventura de viaje",
+        "Experiencia en el ferry",
+        "Viaje en ferry desde España",
+        "Primera vez en un ferry",
+    ],
+};
+---
+
+<TravelLayout {...travel}>
+    <p>
+        En el mes de abril, mi padre compro los billetes del ferry. Después de
+        estar mirando los precios durante unas cuantas semanas se decidió y les
+        pago. Aprovecho una oferta que salió un viernes, no era mucho más barato
+        que otros días, pero algo se notó. Compró billetes para caravana, coche
+        y cuatro personas en camarote interior.
+    </p>
+    <p>
+        Llego el día siete de agosto. Mi madre quería madrugar por si teníamos
+        algún percance y no tener problemas para llegar a la hora y mi padre
+        esta vez no tenía prisa, decía que teníamos tiempo de sobra en todo el
+        día para llegar. De Burgos a Barcelona teníamos unos 600 kilómetros.
+        Salimos de Burgos sobre la diez de la mañana, el viaje fue sin
+        problemas. Cuando paramos a comer en un área de servicio nos llegó un
+        mensaje avisando de un retraso de hora y media en la salida del barco.
+        Era lo normal según lo que pudimos leer en algunas reseñas. Así que en
+        teoría saldríamos de Barcelona a la una y media de la madrugada. Nos
+        sobraba bastante tiempo y paramos a merendar y llenar el depósito de
+        gasóleo unos kilómetros antes de llegar.
+    </p>
+    <p>
+        Por fin llegamos, dimos la vuelta al edificio de oficinas de Grimaldi
+        Lines y allí una persona nos leyó los billetes y nos indicó donde
+        aparcar la caravana para esperar.
+    </p>
+    <p>
+        Dejamos aparcado el conjunto pegado a más autocaravanas, motos y un par
+        de chicas con sus bicicletas y nos fuimos a hacer nuestro primer test de
+        antígenos para mi hermana y un servidor. En las oficinas de la compañía
+        tenían un servicio médico que nos hacían las pruebas. Mientras
+        esperábamos los resultados, mi padre estaba muy muy nervioso, como de
+        positivo me da algo, decía. Al final dio negativo igual que los
+        siguientes cinco test más que nos hicimos durante el mes de vacaciones.
+        Para viajar en el barco era necesario, pero nadie nos los pidió en
+        ningún momento. Luego durante las vacaciones para entrar a algunos
+        museos o lugares públicos o si querías comer en el interior de algún
+        restaurante también te los pedían. El primero lo tuvimos que pagar, pero
+        luego en la mayoría de las ciudades donde fuimos la “Croce Rossa” (cruz
+        roja) italiana los hacia gratuitamente esperando unas veces más que
+        otras a las colas.
+    </p>
+    <Mosaic template={8}>
+        <Photo
+            image={new LocalImage(IMG_20210807_210411, "Puerto de Barcelona")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210807_221026, "Puerto de Barcelona")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        Después de tener los test negativos en nuestras manos nos pusimos a
+        cenar junto a nuestra caravana mientras vimos cómo se llenaba el parking
+        donde estábamos. Por fin llego el barco, atraco y empezaron a baja
+        coches y camiones y más camiones... No me podía creer todo lo que
+        entraba allí dentro. Por fin nos tocó entrar a nosotros, por un lado los
+        camiones, luego nosotros y finalmente los coches. En el silencio dentro
+        de nuestro coche se notaban los nervios de lo desconocido, pero todo fue
+        rodado y aparcamos al fondo del barco sin ninguna complicación.
+    </p>
+    <Photo
+        image={new LocalImage(IMG_20210808_123510, "Ferry Grimaldi Lines")}
+        aspectRatio="aspect-ratio-16-9"
+    />
+    <p>
+        Cogimos nuestras bolsas, mi padre la nevera de compresor que habíamos
+        comprado unos meses antes y subimos a nuestro camarote. Nos costó un
+        rato encontrarle.
+    </p>
+    <p>
+        El camarote era un poco cutre, eran dos literas y un baño. Dejamos las
+        cosas y salimos a cubierta para ver cómo nos íbamos de España. Volvimos
+        al camarote después de dar unas cuantas vueltas, nos pusimos el pijama y
+        a dormir, serían más de las dos de la madrugada. La noche la pasamos
+        bien, yo dormí perfectamente como siempre, mi padre que es el que más
+        problemas tiene, se puso los tapones, se tomó una pastilla y bien.
+    </p>
+    <Mosaic template={12}>
+        <Photo
+            image={new LocalImage(IMG_20210808_120230, "Restaurante del ferry")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_20210808_222642, "Cubierta del ferry")}
+            class:list={["col-4", "row-3"]}
+        />
+        <Photo
+            image={new LocalImage(IMG_1655297528829, "Camarote del ferry")}
+            class:list={["col-4", "row-3"]}
+        />
+    </Mosaic>
+    <p>
+        El día en el barco fue bastante pesado y aburrido, dimos vueltas por
+        todo el barco y por la tarde mi madre y hermana, siesta, yo serie en la
+        Tablet y mi padre estuvo por ahí no sé dónde... Creo que estuvo más
+        tiempo buscando nuestro camarote que otra cosa. El ferry tenía una
+        piscina que daba risa, sería como una docena de bañeras juntas. Por el
+        barco vi algún cartel de prohibido acampar en los pasillos... vimos a
+        gente con su colchón hinchable por allí tirados. Nosotros comimos la
+        comida que teníamos en nuestra nevera.
+    </p>
+    <p>
+        Después de parar en Cerdeña donde aprovechamos para bajar a la caravana
+        a por unas cosas, por fin llegamos a Civitavecchia tardísimo, serian la
+        una de la madrugada. A mi padre de nuevo se le veía algo alterado y
+        nervioso, pero salimos del barco sin ningún tipo de problemas. Tanto al
+        entrar como al salir los operarios del barco te dan todo tipo de
+        indicaciones de por dónde te tienes que mover. Al salir tuvimos que dar
+        marcha atrás un par de metros y luego girar y dar la vuelta... chupado.
+        Nuestro primer camping en roma era el Roma camping in Town.
+    </p>
+</TravelLayout>

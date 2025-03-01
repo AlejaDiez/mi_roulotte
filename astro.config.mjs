@@ -1,5 +1,6 @@
-import { defineConfig } from "astro/config";
 import path from "path";
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
     site: "https://miroulotte.es",
@@ -34,6 +35,7 @@ export default defineConfig({
                 },
             },
         },
+        plugins: [tailwindcss()],
     },
     build: {
         assets: "images",

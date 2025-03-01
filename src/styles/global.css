@@ -1,10 +1,7 @@
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font: inherit;
-    scroll-behavior: smooth;
-    image-rendering: optimizeQuality;
+@import "tailwindcss";
+
+@theme {
+}
+
+@layer components {
 }

@@ -1,9 +1,12 @@
 @import "tailwindcss";
+@import "./components.css" layer(components);
+@import "./theme.css" layer(theme);
+@import "./typography.css";
 
-@theme {
-    --font-sans: "IBM Plex Sans", sans-serif;
-    --font-serif: "IBM Plex Serif", serif;
-}
-
-@layer components {
+@layer base {
+    *,
+    ::before,
+    ::after {
+        color-scheme: light dark;
+    }
 }

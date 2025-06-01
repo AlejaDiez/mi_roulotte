@@ -1,4 +1,9 @@
 @theme {
+    /* Fonts */
+    --font-sans: "IBM Plex Sans", sans-serif;
+    --font-serif: "IBM Plex Serif", serif;
+    --font-icon: "IBM Carbon Icons";
+
     /* Colors */
     --color-red-*: initial;
     --color-red-10: #fff1f1;
@@ -324,4 +329,8434 @@
         var(--color-white),
         var(--color-white)
     );
+}
+
+/* Fonts */
+@font-face {
+    font-style: normal;
+    font-weight: 100;
+    src: url("/fonts/IBMPlexSans/Thin.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 100;
+    src: url("/fonts/IBMPlexSans/ThinItalic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 200;
+    src: url("/fonts/IBMPlexSans/ExtraLight.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 200;
+    src: url("/fonts/IBMPlexSans/ExtraLightItalic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 300;
+    src: url("/fonts/IBMPlexSans/Light.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 300;
+    src: url("/fonts/IBMPlexSans/LightItalic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/IBMPlexSans/Regular.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 400;
+    src: url("/fonts/IBMPlexSans/Italic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/IBMPlexSans/Medium.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 500;
+    src: url("/fonts/IBMPlexSans/MediumItalic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/IBMPlexSans/SemiBold.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 600;
+    src: url("/fonts/IBMPlexSans/SemiBoldItalic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/IBMPlexSans/Bold.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 700;
+    src: url("/fonts/IBMPlexSans/BoldItalic.ttf") format("truetype");
+    font-family: "IBM Plex Sans";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 100;
+    src: url("/fonts/IBMPlexSerif/Thin.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 100;
+    src: url("/fonts/IBMPlexSerif/ThinItalic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 200;
+    src: url("/fonts/IBMPlexSerif/ExtraLight.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 200;
+    src: url("/fonts/IBMPlexSerif/ExtraLightItalic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 300;
+    src: url("/fonts/IBMPlexSerif/Light.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 300;
+    src: url("/fonts/IBMPlexSerif/LightItalic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/IBMPlexSerif/Regular.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 400;
+    src: url("/fonts/IBMPlexSerif/Italic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/IBMPlexSerif/Medium.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 500;
+    src: url("/fonts/IBMPlexSerif/MediumItalic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/IBMPlexSerif/SemiBold.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 600;
+    src: url("/fonts/IBMPlexSerif/SemiBoldItalic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/IBMPlexSerif/Bold.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+@font-face {
+    font-style: italic;
+    font-weight: 700;
+    src: url("/fonts/IBMPlexSerif/BoldItalic.ttf") format("truetype");
+    font-family: "IBM Plex Serif";
+}
+
+/* Icons */
+@font-face {
+    font-style: normal;
+    font-weight: normal;
+    src: url("/fonts/IBMCarbonIcons/Regular.ttf") format("truetype");
+    font-family: "IBM Carbon Icons";
+    font-display: block;
+}
+
+.ibm-accessibility::before {
+    content: "\e900";
+}
+
+.ibm-accessibility-alt::before {
+    content: "\e901";
+}
+
+.ibm-accessibility-color::before {
+    content: "\e902";
+}
+
+.ibm-filled-accessibility-color::before {
+    content: "\e903";
+}
+
+.ibm-account::before {
+    content: "\e904";
+}
+
+.ibm-accumulation-ice::before {
+    content: "\e905";
+}
+
+.ibm-accumulation-precipitation::before {
+    content: "\e906";
+}
+
+.ibm-accumulation-rain::before {
+    content: "\e907";
+}
+
+.ibm-accumulation-snow::before {
+    content: "\e908";
+}
+
+.ibm-activity::before {
+    content: "\e909";
+}
+
+.ibm-add::before {
+    content: "\e90a";
+}
+
+.ibm-add-alt::before {
+    content: "\e90b";
+}
+
+.ibm-add-comment::before {
+    content: "\e90c";
+}
+
+.ibm-filled-add::before {
+    content: "\e90d";
+}
+
+.ibm-agriculture-analytics::before {
+    content: "\e90e";
+}
+
+.ibm-ai-results::before {
+    content: "\e90f";
+}
+
+.ibm-ai-results-high::before {
+    content: "\e910";
+}
+
+.ibm-ai-results-low::before {
+    content: "\e911";
+}
+
+.ibm-ai-results-medium::before {
+    content: "\e912";
+}
+
+.ibm-ai-results-urgent::before {
+    content: "\e913";
+}
+
+.ibm-ai-results-very-high::before {
+    content: "\e914";
+}
+
+.ibm-ai-status::before {
+    content: "\e915";
+}
+
+.ibm-ai-status-complete::before {
+    content: "\e916";
+}
+
+.ibm-ai-status-failed::before {
+    content: "\e917";
+}
+
+.ibm-ai-status-in-progress::before {
+    content: "\e918";
+}
+
+.ibm-ai-status-queued::before {
+    content: "\e919";
+}
+
+.ibm-ai-status-rejected::before {
+    content: "\e91a";
+}
+
+.ibm-airline-digital-gate::before {
+    content: "\e91b";
+}
+
+.ibm-airline-manage-gates::before {
+    content: "\e91c";
+}
+
+.ibm-airline-passenger-care::before {
+    content: "\e91d";
+}
+
+.ibm-airline-rapid-board::before {
+    content: "\e91e";
+}
+
+.ibm-airplay::before {
+    content: "\e91f";
+}
+
+.ibm-filled-airplay::before {
+    content: "\e920";
+}
+
+.ibm-airport-01::before {
+    content: "\e921";
+}
+
+.ibm-airport-02::before {
+    content: "\e922";
+}
+
+.ibm-airport-location::before {
+    content: "\e923";
+}
+
+.ibm-alarm::before {
+    content: "\e924";
+}
+
+.ibm-alarm-add::before {
+    content: "\e925";
+}
+
+.ibm-alarm-subtract::before {
+    content: "\e926";
+}
+
+.ibm-align-box-bottom-center::before {
+    content: "\e927";
+}
+
+.ibm-align-box-bottom-left::before {
+    content: "\e928";
+}
+
+.ibm-align-box-bottom-right::before {
+    content: "\e929";
+}
+
+.ibm-align-box-middle-center::before {
+    content: "\e92a";
+}
+
+.ibm-align-box-middle-left::before {
+    content: "\e92b";
+}
+
+.ibm-align-box-middle-right::before {
+    content: "\e92c";
+}
+
+.ibm-align-box-top-center::before {
+    content: "\e92d";
+}
+
+.ibm-align-box-top-left::before {
+    content: "\e92e";
+}
+
+.ibm-align-box-top-right::before {
+    content: "\e92f";
+}
+
+.ibm-align-horizontal-center::before {
+    content: "\e930";
+}
+
+.ibm-align-horizontal-left::before {
+    content: "\e931";
+}
+
+.ibm-align-horizontal-right::before {
+    content: "\e932";
+}
+
+.ibm-align-vertical-bottom::before {
+    content: "\e933";
+}
+
+.ibm-align-vertical-center::before {
+    content: "\e934";
+}
+
+.ibm-align-vertical-top::before {
+    content: "\e935";
+}
+
+.ibm-analytics::before {
+    content: "\e936";
+}
+
+.ibm-analytics-custom::before {
+    content: "\e937";
+}
+
+.ibm-analytics-reference::before {
+    content: "\e938";
+}
+
+.ibm-angle::before {
+    content: "\e939";
+}
+
+.ibm-annotation-visibility::before {
+    content: "\e93a";
+}
+
+.ibm-aperture::before {
+    content: "\e93b";
+}
+
+.ibm-api::before {
+    content: "\e93c";
+}
+
+.ibm-api-1::before {
+    content: "\e93d";
+}
+
+.ibm-app::before {
+    content: "\e93e";
+}
+
+.ibm-app-connectivity::before {
+    content: "\e93f";
+}
+
+.ibm-apple::before {
+    content: "\e940";
+}
+
+.ibm-apple-dash::before {
+    content: "\e941";
+}
+
+.ibm-application::before {
+    content: "\e942";
+}
+
+.ibm-application-mobile::before {
+    content: "\e943";
+}
+
+.ibm-application-virtual::before {
+    content: "\e944";
+}
+
+.ibm-application-web::before {
+    content: "\e945";
+}
+
+.ibm-apps::before {
+    content: "\e946";
+}
+
+.ibm-archive::before {
+    content: "\e947";
+}
+
+.ibm-area::before {
+    content: "\e948";
+}
+
+.ibm-area-custom::before {
+    content: "\e949";
+}
+
+.ibm-arrival::before {
+    content: "\e94a";
+}
+
+.ibm-arrow-annotation::before {
+    content: "\e94b";
+}
+
+.ibm-arrow-down::before {
+    content: "\e94c";
+}
+
+.ibm-arrow-down-left::before {
+    content: "\e94d";
+}
+
+.ibm-arrow-down-right::before {
+    content: "\e94e";
+}
+
+.ibm-arrow-left::before {
+    content: "\e94f";
+}
+
+.ibm-arrow-right::before {
+    content: "\e950";
+}
+
+.ibm-arrow-shift-down::before {
+    content: "\e951";
+}
+
+.ibm-arrow-up::before {
+    content: "\e952";
+}
+
+.ibm-arrow-up-left::before {
+    content: "\e953";
+}
+
+.ibm-arrow-up-right::before {
+    content: "\e954";
+}
+
+.ibm-arrows-horizontal::before {
+    content: "\e955";
+}
+
+.ibm-arrows-vertical::before {
+    content: "\e956";
+}
+
+.ibm-asleep::before {
+    content: "\e957";
+}
+
+.ibm-filled-asleep::before {
+    content: "\e958";
+}
+
+.ibm-assembly::before {
+    content: "\e959";
+}
+
+.ibm-assembly-cluster::before {
+    content: "\e95a";
+}
+
+.ibm-assembly-reference::before {
+    content: "\e95b";
+}
+
+.ibm-asset::before {
+    content: "\e95c";
+}
+
+.ibm-asset-confirm::before {
+    content: "\e95d";
+}
+
+.ibm-asset-digital-twin::before {
+    content: "\e95e";
+}
+
+.ibm-asset-view::before {
+    content: "\e95f";
+}
+
+.ibm-asterisk::before {
+    content: "\e960";
+}
+
+.ibm-at::before {
+    content: "\e961";
+}
+
+.ibm-attachment::before {
+    content: "\e962";
+}
+
+.ibm-audio-console::before {
+    content: "\e963";
+}
+
+.ibm-augmented-reality::before {
+    content: "\e964";
+}
+
+.ibm-auto-scroll::before {
+    content: "\e965";
+}
+
+.ibm-automatic::before {
+    content: "\e966";
+}
+
+.ibm-autoscaling::before {
+    content: "\e967";
+}
+
+.ibm-awake::before {
+    content: "\e968";
+}
+
+.ibm-badge::before {
+    content: "\e969";
+}
+
+.ibm-baggage-claim::before {
+    content: "\e96a";
+}
+
+.ibm-bar::before {
+    content: "\e96b";
+}
+
+.ibm-barcode::before {
+    content: "\e96c";
+}
+
+.ibm-bare-metal-server::before {
+    content: "\e96d";
+}
+
+.ibm-bare-metal-server-01::before {
+    content: "\e96e";
+}
+
+.ibm-bare-metal-server-02::before {
+    content: "\e96f";
+}
+
+.ibm-barrier::before {
+    content: "\e970";
+}
+
+.ibm-basketball::before {
+    content: "\e971";
+}
+
+.ibm-bastion-host::before {
+    content: "\e972";
+}
+
+.ibm-bat::before {
+    content: "\e973";
+}
+
+.ibm-batch-job::before {
+    content: "\e974";
+}
+
+.ibm-batch-job-step::before {
+    content: "\e975";
+}
+
+.ibm-battery-charging::before {
+    content: "\e976";
+}
+
+.ibm-battery-empty::before {
+    content: "\e977";
+}
+
+.ibm-battery-full::before {
+    content: "\e978";
+}
+
+.ibm-battery-half::before {
+    content: "\e979";
+}
+
+.ibm-battery-low::before {
+    content: "\e97a";
+}
+
+.ibm-battery-quarter::before {
+    content: "\e97b";
+}
+
+.ibm-bee::before {
+    content: "\e97c";
+}
+
+.ibm-bee-bat::before {
+    content: "\e97d";
+}
+
+.ibm-beta::before {
+    content: "\e97e";
+}
+
+.ibm-bicycle::before {
+    content: "\e97f";
+}
+
+.ibm-binoculars::before {
+    content: "\e980";
+}
+
+.ibm-bloch-sphere::before {
+    content: "\e981";
+}
+
+.ibm-block-storage::before {
+    content: "\e982";
+}
+
+.ibm-block-storage-alt::before {
+    content: "\e983";
+}
+
+.ibm-blockchain::before {
+    content: "\e984";
+}
+
+.ibm-blog::before {
+    content: "\e985";
+}
+
+.ibm-bluetooth::before {
+    content: "\e986";
+}
+
+.ibm-bluetooth-off::before {
+    content: "\e987";
+}
+
+.ibm-book::before {
+    content: "\e988";
+}
+
+.ibm-bookmark::before {
+    content: "\e989";
+}
+
+.ibm-bookmark-add::before {
+    content: "\e98a";
+}
+
+.ibm-filled-bookmark::before {
+    content: "\e98b";
+}
+
+.ibm-boolean::before {
+    content: "\e98c";
+}
+
+.ibm-boot::before {
+    content: "\e98d";
+}
+
+.ibm-boot-volume::before {
+    content: "\e98e";
+}
+
+.ibm-boot-volume-alt::before {
+    content: "\e98f";
+}
+
+.ibm-border-bottom::before {
+    content: "\e990";
+}
+
+.ibm-border-full::before {
+    content: "\e991";
+}
+
+.ibm-border-left::before {
+    content: "\e992";
+}
+
+.ibm-border-none::before {
+    content: "\e993";
+}
+
+.ibm-border-right::before {
+    content: "\e994";
+}
+
+.ibm-border-top::before {
+    content: "\e995";
+}
+
+.ibm-bot::before {
+    content: "\e996";
+}
+
+.ibm-bottles-01::before {
+    content: "\e997";
+}
+
+.ibm-bottles-01-dash::before {
+    content: "\e998";
+}
+
+.ibm-bottles-02::before {
+    content: "\e999";
+}
+
+.ibm-bottles-02-dash::before {
+    content: "\e99a";
+}
+
+.ibm-bottles-container::before {
+    content: "\e99b";
+}
+
+.ibm-box::before {
+    content: "\e99c";
+}
+
+.ibm-box-extra-large::before {
+    content: "\e99d";
+}
+
+.ibm-box-large::before {
+    content: "\e99e";
+}
+
+.ibm-box-medium::before {
+    content: "\e99f";
+}
+
+.ibm-box-plot::before {
+    content: "\e9a0";
+}
+
+.ibm-box-small::before {
+    content: "\e9a1";
+}
+
+.ibm-branch::before {
+    content: "\e9a2";
+}
+
+.ibm-breaking-change::before {
+    content: "\e9a3";
+}
+
+.ibm-brightness-contrast::before {
+    content: "\e9a4";
+}
+
+.ibm-bring-forward::before {
+    content: "\e9a5";
+}
+
+.ibm-bring-to-front::before {
+    content: "\e9a6";
+}
+
+.ibm-brush-freehand::before {
+    content: "\e9a7";
+}
+
+.ibm-brush-polygon::before {
+    content: "\e9a8";
+}
+
+.ibm-build-tool::before {
+    content: "\e9a9";
+}
+
+.ibm-building::before {
+    content: "\e9aa";
+}
+
+.ibm-building-insights-1::before {
+    content: "\e9ab";
+}
+
+.ibm-building-insights-2::before {
+    content: "\e9ac";
+}
+
+.ibm-building-insights-3::before {
+    content: "\e9ad";
+}
+
+.ibm-bullhorn::before {
+    content: "\e9ae";
+}
+
+.ibm-buoy::before {
+    content: "\e9af";
+}
+
+.ibm-bus::before {
+    content: "\e9b0";
+}
+
+.ibm-button-centered::before {
+    content: "\e9b1";
+}
+
+.ibm-button-flush-left::before {
+    content: "\e9b2";
+}
+
+.ibm-cabin-care::before {
+    content: "\e9b3";
+}
+
+.ibm-cabin-care-alert::before {
+    content: "\e9b4";
+}
+
+.ibm-cabin-care-alt::before {
+    content: "\e9b5";
+}
+
+.ibm-cad::before {
+    content: "\e9b6";
+}
+
+.ibm-cafe::before {
+    content: "\e9b7";
+}
+
+.ibm-calculation::before {
+    content: "\e9b8";
+}
+
+.ibm-calculation-alt::before {
+    content: "\e9b9";
+}
+
+.ibm-calculator::before {
+    content: "\e9ba";
+}
+
+.ibm-calculator-check::before {
+    content: "\e9bb";
+}
+
+.ibm-calendar::before {
+    content: "\e9bc";
+}
+
+.ibm-calendar-add::before {
+    content: "\e9bd";
+}
+
+.ibm-calendar-add-alt::before {
+    content: "\e9be";
+}
+
+.ibm-calendar-heat-map::before {
+    content: "\e9bf";
+}
+
+.ibm-calendar-settings::before {
+    content: "\e9c0";
+}
+
+.ibm-calendar-tools::before {
+    content: "\e9c1";
+}
+
+.ibm-calibrate::before {
+    content: "\e9c2";
+}
+
+.ibm-camera::before {
+    content: "\e9c3";
+}
+
+.ibm-camera-action::before {
+    content: "\e9c4";
+}
+
+.ibm-campsite::before {
+    content: "\e9c5";
+}
+
+.ibm-car::before {
+    content: "\e9c6";
+}
+
+.ibm-car-front::before {
+    content: "\e9c7";
+}
+
+.ibm-carbon::before {
+    content: "\e9c8";
+}
+
+.ibm-carbon-accounting::before {
+    content: "\e9c9";
+}
+
+.ibm-carbon-for-ibm-dotcom::before {
+    content: "\e9ca";
+}
+
+.ibm-carbon-for-ibm-product::before {
+    content: "\e9cb";
+}
+
+.ibm-carbon-ui-builder::before {
+    content: "\e9cc";
+}
+
+.ibm-caret-down::before {
+    content: "\e9cd";
+}
+
+.ibm-caret-left::before {
+    content: "\e9ce";
+}
+
+.ibm-caret-right::before {
+    content: "\e9cf";
+}
+
+.ibm-caret-sort::before {
+    content: "\e9d0";
+}
+
+.ibm-caret-sort-down::before {
+    content: "\e9d1";
+}
+
+.ibm-caret-sort-up::before {
+    content: "\e9d2";
+}
+
+.ibm-caret-up::before {
+    content: "\e9d3";
+}
+
+.ibm-carousel-horizontal::before {
+    content: "\e9d4";
+}
+
+.ibm-carousel-vertical::before {
+    content: "\e9d5";
+}
+
+.ibm-catalog::before {
+    content: "\e9d6";
+}
+
+.ibm-catalog-publish::before {
+    content: "\e9d7";
+}
+
+.ibm-categories::before {
+    content: "\e9d8";
+}
+
+.ibm-category::before {
+    content: "\e9d9";
+}
+
+.ibm-category-add::before {
+    content: "\e9da";
+}
+
+.ibm-category-and::before {
+    content: "\e9db";
+}
+
+.ibm-category-new::before {
+    content: "\e9dc";
+}
+
+.ibm-category-new-each::before {
+    content: "\e9dd";
+}
+
+.ibm-ccx::before {
+    content: "\e9de";
+}
+
+.ibm-cd-archive::before {
+    content: "\e9df";
+}
+
+.ibm-cd-create-archive::before {
+    content: "\e9e0";
+}
+
+.ibm-cd-create-exchange::before {
+    content: "\e9e1";
+}
+
+.ibm-cda::before {
+    content: "\e9e2";
+}
+
+.ibm-cell-tower::before {
+    content: "\e9e3";
+}
+
+.ibm-center-circle::before {
+    content: "\e9e4";
+}
+
+.ibm-center-square::before {
+    content: "\e9e5";
+}
+
+.ibm-center-to-fit::before {
+    content: "\e9e6";
+}
+
+.ibm-certificate::before {
+    content: "\e9e7";
+}
+
+.ibm-certificate-check::before {
+    content: "\e9e8";
+}
+
+.ibm-change-catalog::before {
+    content: "\e9e9";
+}
+
+.ibm-character-decimal::before {
+    content: "\e9ea";
+}
+
+.ibm-character-fraction::before {
+    content: "\e9eb";
+}
+
+.ibm-character-integer::before {
+    content: "\e9ec";
+}
+
+.ibm-character-lower-case::before {
+    content: "\e9ed";
+}
+
+.ibm-character-negative-number::before {
+    content: "\e9ee";
+}
+
+.ibm-character-patterns::before {
+    content: "\e9ef";
+}
+
+.ibm-character-sentence-case::before {
+    content: "\e9f0";
+}
+
+.ibm-character-upper-case::before {
+    content: "\e9f1";
+}
+
+.ibm-character-whole-number::before {
+    content: "\e9f2";
+}
+
+.ibm-charging-station::before {
+    content: "\e9f3";
+}
+
+.ibm-filled-charging-station::before {
+    content: "\e9f4";
+}
+
+.ibm-chart-3d::before {
+    content: "\e9f5";
+}
+
+.ibm-chart-area::before {
+    content: "\e9f6";
+}
+
+.ibm-chart-area-smooth::before {
+    content: "\e9f7";
+}
+
+.ibm-chart-area-stepper::before {
+    content: "\e9f8";
+}
+
+.ibm-chart-average::before {
+    content: "\e9f9";
+}
+
+.ibm-chart-bar::before {
+    content: "\e9fa";
+}
+
+.ibm-chart-bar-floating::before {
+    content: "\e9fb";
+}
+
+.ibm-chart-bar-overlay::before {
+    content: "\e9fc";
+}
+
+.ibm-chart-bar-stacked::before {
+    content: "\e9fd";
+}
+
+.ibm-chart-bar-target::before {
+    content: "\e9fe";
+}
+
+.ibm-chart-bubble::before {
+    content: "\e9ff";
+}
+
+.ibm-chart-bubble-packed::before {
+    content: "\ea00";
+}
+
+.ibm-chart-bullet::before {
+    content: "\ea01";
+}
+
+.ibm-chart-candlestick::before {
+    content: "\ea02";
+}
+
+.ibm-chart-cluster-bar::before {
+    content: "\ea03";
+}
+
+.ibm-chart-column::before {
+    content: "\ea04";
+}
+
+.ibm-chart-column-floating::before {
+    content: "\ea05";
+}
+
+.ibm-chart-column-target::before {
+    content: "\ea06";
+}
+
+.ibm-chart-combo::before {
+    content: "\ea07";
+}
+
+.ibm-chart-combo-stacked::before {
+    content: "\ea08";
+}
+
+.ibm-chart-custom::before {
+    content: "\ea09";
+}
+
+.ibm-chart-error-bar::before {
+    content: "\ea0a";
+}
+
+.ibm-chart-error-bar-alt::before {
+    content: "\ea0b";
+}
+
+.ibm-chart-evaluation::before {
+    content: "\ea0c";
+}
+
+.ibm-chart-high-low::before {
+    content: "\ea0d";
+}
+
+.ibm-chart-histogram::before {
+    content: "\ea0e";
+}
+
+.ibm-chart-line::before {
+    content: "\ea0f";
+}
+
+.ibm-chart-line-data::before {
+    content: "\ea10";
+}
+
+.ibm-chart-line-smooth::before {
+    content: "\ea11";
+}
+
+.ibm-chart-marimekko::before {
+    content: "\ea12";
+}
+
+.ibm-chart-maximum::before {
+    content: "\ea13";
+}
+
+.ibm-chart-median::before {
+    content: "\ea14";
+}
+
+.ibm-chart-minimum::before {
+    content: "\ea15";
+}
+
+.ibm-chart-multi-line::before {
+    content: "\ea16";
+}
+
+.ibm-chart-multitype::before {
+    content: "\ea17";
+}
+
+.ibm-chart-network::before {
+    content: "\ea18";
+}
+
+.ibm-chart-parallel::before {
+    content: "\ea19";
+}
+
+.ibm-chart-pie::before {
+    content: "\ea1a";
+}
+
+.ibm-chart-point::before {
+    content: "\ea1b";
+}
+
+.ibm-chart-population::before {
+    content: "\ea1c";
+}
+
+.ibm-chart-radar::before {
+    content: "\ea1d";
+}
+
+.ibm-chart-radial::before {
+    content: "\ea1e";
+}
+
+.ibm-chart-relationship::before {
+    content: "\ea1f";
+}
+
+.ibm-chart-ring::before {
+    content: "\ea20";
+}
+
+.ibm-chart-river::before {
+    content: "\ea21";
+}
+
+.ibm-chart-rose::before {
+    content: "\ea22";
+}
+
+.ibm-chart-scatter::before {
+    content: "\ea23";
+}
+
+.ibm-chart-spiral::before {
+    content: "\ea24";
+}
+
+.ibm-chart-stacked::before {
+    content: "\ea25";
+}
+
+.ibm-chart-stepper::before {
+    content: "\ea26";
+}
+
+.ibm-chart-sunburst::before {
+    content: "\ea27";
+}
+
+.ibm-chart-t-sne::before {
+    content: "\ea28";
+}
+
+.ibm-chart-treemap::before {
+    content: "\ea29";
+}
+
+.ibm-chart-venn-diagram::before {
+    content: "\ea2a";
+}
+
+.ibm-chart-violin-plot::before {
+    content: "\ea2b";
+}
+
+.ibm-chart-waterfall::before {
+    content: "\ea2c";
+}
+
+.ibm-chart-win-loss::before {
+    content: "\ea2d";
+}
+
+.ibm-chat::before {
+    content: "\ea2e";
+}
+
+.ibm-chat-bot::before {
+    content: "\ea2f";
+}
+
+.ibm-chat-launch::before {
+    content: "\ea30";
+}
+
+.ibm-chat-off::before {
+    content: "\ea31";
+}
+
+.ibm-chat-operational::before {
+    content: "\ea32";
+}
+
+.ibm-checkbox::before {
+    content: "\ea33";
+}
+
+.ibm-checkbox-checked::before {
+    content: "\ea34";
+}
+
+.ibm-filled-checkbox-checked::before {
+    content: "\ea35";
+}
+
+.ibm-checkbox-indeterminate::before {
+    content: "\ea36";
+}
+
+.ibm-filled-checkbox-indeterminate::before {
+    content: "\ea37";
+}
+
+.ibm-checkmark::before {
+    content: "\ea38";
+}
+
+.ibm-filled-checkmark::before {
+    content: "\ea39";
+}
+
+.ibm-filled-checkmark-error::before {
+    content: "\ea3a";
+}
+
+.ibm-filled-checkmark-warning::before {
+    content: "\ea3b";
+}
+
+.ibm-checkmark-outline::before {
+    content: "\ea3c";
+}
+
+.ibm-checkmark-outline-error::before {
+    content: "\ea3d";
+}
+
+.ibm-checkmark-outline-warning::before {
+    content: "\ea3e";
+}
+
+.ibm-chemistry::before {
+    content: "\ea3f";
+}
+
+.ibm-chemistry-reference::before {
+    content: "\ea40";
+}
+
+.ibm-chevron-down::before {
+    content: "\ea41";
+}
+
+.ibm-chevron-left::before {
+    content: "\ea42";
+}
+
+.ibm-chevron-mini::before {
+    content: "\ea43";
+}
+
+.ibm-chevron-right::before {
+    content: "\ea44";
+}
+
+.ibm-chevron-sort::before {
+    content: "\ea45";
+}
+
+.ibm-chevron-sort-down::before {
+    content: "\ea46";
+}
+
+.ibm-chevron-sort-up::before {
+    content: "\ea47";
+}
+
+.ibm-chevron-up::before {
+    content: "\ea48";
+}
+
+.ibm-chip::before {
+    content: "\ea49";
+}
+
+.ibm-choices::before {
+    content: "\ea4a";
+}
+
+.ibm-choose-item::before {
+    content: "\ea4b";
+}
+
+.ibm-choropleth-map::before {
+    content: "\ea4c";
+}
+
+.ibm-cics-cmas::before {
+    content: "\ea4d";
+}
+
+.ibm-cics-db2-connection::before {
+    content: "\ea4e";
+}
+
+.ibm-cics-explorer::before {
+    content: "\ea4f";
+}
+
+.ibm-cics-program::before {
+    content: "\ea50";
+}
+
+.ibm-cics-region::before {
+    content: "\ea51";
+}
+
+.ibm-cics-region-alt::before {
+    content: "\ea52";
+}
+
+.ibm-cics-region-routing::before {
+    content: "\ea53";
+}
+
+.ibm-cics-region-target::before {
+    content: "\ea54";
+}
+
+.ibm-cics-sit::before {
+    content: "\ea55";
+}
+
+.ibm-cics-sit-overrides::before {
+    content: "\ea56";
+}
+
+.ibm-cics-system-group::before {
+    content: "\ea57";
+}
+
+.ibm-cics-transaction-server-zos::before {
+    content: "\ea58";
+}
+
+.ibm-cics-wui-region::before {
+    content: "\ea59";
+}
+
+.ibm-cicsplex::before {
+    content: "\ea5a";
+}
+
+.ibm-circle-dash::before {
+    content: "\ea5b";
+}
+
+.ibm-filled-circle::before {
+    content: "\ea5c";
+}
+
+.ibm-circle-measurement::before {
+    content: "\ea5d";
+}
+
+.ibm-circle-packing::before {
+    content: "\ea5e";
+}
+
+.ibm-circle-solid::before {
+    content: "\ea5f";
+}
+
+.ibm-circuit-composer::before {
+    content: "\ea60";
+}
+
+.ibm-classification::before {
+    content: "\ea61";
+}
+
+.ibm-classifier-language::before {
+    content: "\ea62";
+}
+
+.ibm-clean::before {
+    content: "\ea63";
+}
+
+.ibm-close::before {
+    content: "\ea64";
+}
+
+.ibm-filled-close::before {
+    content: "\ea65";
+}
+
+.ibm-close-outline::before {
+    content: "\ea66";
+}
+
+.ibm-closed-caption::before {
+    content: "\ea67";
+}
+
+.ibm-closed-caption-alt::before {
+    content: "\ea68";
+}
+
+.ibm-filled-closed-caption::before {
+    content: "\ea69";
+}
+
+.ibm-cloud::before {
+    content: "\ea6a";
+}
+
+.ibm-cloud-alerting::before {
+    content: "\ea6b";
+}
+
+.ibm-cloud-app::before {
+    content: "\ea6c";
+}
+
+.ibm-cloud-auditing::before {
+    content: "\ea6d";
+}
+
+.ibm-cloud-ceiling::before {
+    content: "\ea6e";
+}
+
+.ibm-cloud-data-ops::before {
+    content: "\ea6f";
+}
+
+.ibm-cloud-download::before {
+    content: "\ea70";
+}
+
+.ibm-cloud-foundry-1::before {
+    content: "\ea71";
+}
+
+.ibm-cloud-foundry-2::before {
+    content: "\ea72";
+}
+
+.ibm-cloud-logging::before {
+    content: "\ea73";
+}
+
+.ibm-cloud-monitoring::before {
+    content: "\ea74";
+}
+
+.ibm-cloud-offline::before {
+    content: "\ea75";
+}
+
+.ibm-cloud-registry::before {
+    content: "\ea76";
+}
+
+.ibm-cloud-satellite::before {
+    content: "\ea77";
+}
+
+.ibm-cloud-satellite-config::before {
+    content: "\ea78";
+}
+
+.ibm-cloud-satellite-link::before {
+    content: "\ea79";
+}
+
+.ibm-cloud-satellite-services::before {
+    content: "\ea7a";
+}
+
+.ibm-cloud-service-management::before {
+    content: "\ea7b";
+}
+
+.ibm-cloud-services::before {
+    content: "\ea7c";
+}
+
+.ibm-cloud-upload::before {
+    content: "\ea7d";
+}
+
+.ibm-cloudy::before {
+    content: "\ea7e";
+}
+
+.ibm-cobb-angle::before {
+    content: "\ea7f";
+}
+
+.ibm-code::before {
+    content: "\ea80";
+}
+
+.ibm-code-hide::before {
+    content: "\ea81";
+}
+
+.ibm-code-reference::before {
+    content: "\ea82";
+}
+
+.ibm-code-signing-service::before {
+    content: "\ea83";
+}
+
+.ibm-cognitive::before {
+    content: "\ea84";
+}
+
+.ibm-collaborate::before {
+    content: "\ea85";
+}
+
+.ibm-collapse-all::before {
+    content: "\ea86";
+}
+
+.ibm-collapse-categories::before {
+    content: "\ea87";
+}
+
+.ibm-color-palette::before {
+    content: "\ea88";
+}
+
+.ibm-color-switch::before {
+    content: "\ea89";
+}
+
+.ibm-column::before {
+    content: "\ea8a";
+}
+
+.ibm-column-delete::before {
+    content: "\ea8b";
+}
+
+.ibm-column-dependency::before {
+    content: "\ea8c";
+}
+
+.ibm-column-insert::before {
+    content: "\ea8d";
+}
+
+.ibm-commit::before {
+    content: "\ea8e";
+}
+
+.ibm-communication-unified::before {
+    content: "\ea8f";
+}
+
+.ibm-compare::before {
+    content: "\ea90";
+}
+
+.ibm-compass::before {
+    content: "\ea91";
+}
+
+.ibm-composer-edit::before {
+    content: "\ea92";
+}
+
+.ibm-concept::before {
+    content: "\ea93";
+}
+
+.ibm-condition-point::before {
+    content: "\ea94";
+}
+
+.ibm-condition-wait-point::before {
+    content: "\ea95";
+}
+
+.ibm-connect::before {
+    content: "\ea96";
+}
+
+.ibm-connect-recursive::before {
+    content: "\ea97";
+}
+
+.ibm-connect-reference::before {
+    content: "\ea98";
+}
+
+.ibm-connect-source::before {
+    content: "\ea99";
+}
+
+.ibm-connect-target::before {
+    content: "\ea9a";
+}
+
+.ibm-connection-receive::before {
+    content: "\ea9b";
+}
+
+.ibm-connection-send::before {
+    content: "\ea9c";
+}
+
+.ibm-connection-signal::before {
+    content: "\ea9d";
+}
+
+.ibm-connection-signal-off::before {
+    content: "\ea9e";
+}
+
+.ibm-connection-two-way::before {
+    content: "\ea9f";
+}
+
+.ibm-construction::before {
+    content: "\eaa0";
+}
+
+.ibm-container-registry::before {
+    content: "\eaa1";
+}
+
+.ibm-container-services::before {
+    content: "\eaa2";
+}
+
+.ibm-container-software::before {
+    content: "\eaa3";
+}
+
+.ibm-content-delivery-network::before {
+    content: "\eaa4";
+}
+
+.ibm-content-view::before {
+    content: "\eaa5";
+}
+
+.ibm-continue::before {
+    content: "\eaa6";
+}
+
+.ibm-filled-continue::before {
+    content: "\eaa7";
+}
+
+.ibm-continuous-deployment::before {
+    content: "\eaa8";
+}
+
+.ibm-continuous-integration::before {
+    content: "\eaa9";
+}
+
+.ibm-contour-draw::before {
+    content: "\eaaa";
+}
+
+.ibm-contour-edit::before {
+    content: "\eaab";
+}
+
+.ibm-contour-finding::before {
+    content: "\eaac";
+}
+
+.ibm-contrast::before {
+    content: "\eaad";
+}
+
+.ibm-convert-to-cloud::before {
+    content: "\eaae";
+}
+
+.ibm-cookie::before {
+    content: "\eaaf";
+}
+
+.ibm-copy::before {
+    content: "\eab0";
+}
+
+.ibm-copy-file::before {
+    content: "\eab1";
+}
+
+.ibm-copy-link::before {
+    content: "\eab2";
+}
+
+.ibm-corn::before {
+    content: "\eab3";
+}
+
+.ibm-corner::before {
+    content: "\eab4";
+}
+
+.ibm-coronavirus::before {
+    content: "\eab5";
+}
+
+.ibm-cost::before {
+    content: "\eab6";
+}
+
+.ibm-cost-total::before {
+    content: "\eab7";
+}
+
+.ibm-cough::before {
+    content: "\eab8";
+}
+
+.ibm-course::before {
+    content: "\eab9";
+}
+
+.ibm-covariate::before {
+    content: "\eaba";
+}
+
+.ibm-credentials::before {
+    content: "\eabb";
+}
+
+.ibm-crop::before {
+    content: "\eabc";
+}
+
+.ibm-crop-growth::before {
+    content: "\eabd";
+}
+
+.ibm-crop-health::before {
+    content: "\eabe";
+}
+
+.ibm-cross-reference::before {
+    content: "\eabf";
+}
+
+.ibm-cross-tab::before {
+    content: "\eac0";
+}
+
+.ibm-crossroads::before {
+    content: "\eac1";
+}
+
+.ibm-crowd-report::before {
+    content: "\eac2";
+}
+
+.ibm-filled-crowd-report::before {
+    content: "\eac3";
+}
+
+.ibm-csv::before {
+    content: "\eac4";
+}
+
+.ibm-cu1::before {
+    content: "\eac5";
+}
+
+.ibm-cu3::before {
+    content: "\eac6";
+}
+
+.ibm-cube::before {
+    content: "\eac7";
+}
+
+.ibm-cube-view::before {
+    content: "\eac8";
+}
+
+.ibm-currency::before {
+    content: "\eac9";
+}
+
+.ibm-currency-baht::before {
+    content: "\eaca";
+}
+
+.ibm-currency-dollar::before {
+    content: "\eacb";
+}
+
+.ibm-currency-euro::before {
+    content: "\eacc";
+}
+
+.ibm-currency-lira::before {
+    content: "\eacd";
+}
+
+.ibm-currency-pound::before {
+    content: "\eace";
+}
+
+.ibm-currency-ruble::before {
+    content: "\eacf";
+}
+
+.ibm-currency-rupee::before {
+    content: "\ead0";
+}
+
+.ibm-currency-shekel::before {
+    content: "\ead1";
+}
+
+.ibm-currency-won::before {
+    content: "\ead2";
+}
+
+.ibm-currency-yen::before {
+    content: "\ead3";
+}
+
+.ibm-cursor-1::before {
+    content: "\ead4";
+}
+
+.ibm-cursor-2::before {
+    content: "\ead5";
+}
+
+.ibm-cut::before {
+    content: "\ead6";
+}
+
+.ibm-cut-in-half::before {
+    content: "\ead7";
+}
+
+.ibm-cut-out::before {
+    content: "\ead8";
+}
+
+.ibm-cy::before {
+    content: "\ead9";
+}
+
+.ibm-cyclist::before {
+    content: "\eada";
+}
+
+.ibm-cz::before {
+    content: "\eadb";
+}
+
+.ibm-d-cursor::before {
+    content: "\eadc";
+}
+
+.ibm-d-cursor-alt::before {
+    content: "\eadd";
+}
+
+.ibm-d-curve-auto-colon::before {
+    content: "\eade";
+}
+
+.ibm-d-curve-auto-vessels::before {
+    content: "\eadf";
+}
+
+.ibm-d-curve-manual::before {
+    content: "\eae0";
+}
+
+.ibm-d-ica::before {
+    content: "\eae1";
+}
+
+.ibm-d-mpr-toggle::before {
+    content: "\eae2";
+}
+
+.ibm-d-print-mesh::before {
+    content: "\eae3";
+}
+
+.ibm-d-software::before {
+    content: "\eae4";
+}
+
+.ibm-dashboard::before {
+    content: "\eae5";
+}
+
+.ibm-dashboard-reference::before {
+    content: "\eae6";
+}
+
+.ibm-data-1::before {
+    content: "\eae7";
+}
+
+.ibm-data-2::before {
+    content: "\eae8";
+}
+
+.ibm-data-accessor::before {
+    content: "\eae9";
+}
+
+.ibm-data-backup::before {
+    content: "\eaea";
+}
+
+.ibm-data-base::before {
+    content: "\eaeb";
+}
+
+.ibm-data-base-alt::before {
+    content: "\eaec";
+}
+
+.ibm-data-bin::before {
+    content: "\eaed";
+}
+
+.ibm-data-blob::before {
+    content: "\eaee";
+}
+
+.ibm-data-center::before {
+    content: "\eaef";
+}
+
+.ibm-data-check::before {
+    content: "\eaf0";
+}
+
+.ibm-data-class::before {
+    content: "\eaf1";
+}
+
+.ibm-data-collection::before {
+    content: "\eaf2";
+}
+
+.ibm-data-connected::before {
+    content: "\eaf3";
+}
+
+.ibm-data-definition::before {
+    content: "\eaf4";
+}
+
+.ibm-data-diode::before {
+    content: "\eaf5";
+}
+
+.ibm-data-enrichment::before {
+    content: "\eaf6";
+}
+
+.ibm-data-enrichment-add::before {
+    content: "\eaf7";
+}
+
+.ibm-data-error::before {
+    content: "\eaf8";
+}
+
+.ibm-data-format::before {
+    content: "\eaf9";
+}
+
+.ibm-data-player::before {
+    content: "\eafa";
+}
+
+.ibm-data-quality-definition::before {
+    content: "\eafb";
+}
+
+.ibm-data-reference::before {
+    content: "\eafc";
+}
+
+.ibm-data-refinery::before {
+    content: "\eafd";
+}
+
+.ibm-data-refinery-reference::before {
+    content: "\eafe";
+}
+
+.ibm-data-set::before {
+    content: "\eaff";
+}
+
+.ibm-data-share::before {
+    content: "\eb00";
+}
+
+.ibm-data-structured::before {
+    content: "\eb01";
+}
+
+.ibm-data-table::before {
+    content: "\eb02";
+}
+
+.ibm-data-table-reference::before {
+    content: "\eb03";
+}
+
+.ibm-data-unstructured::before {
+    content: "\eb04";
+}
+
+.ibm-data-view::before {
+    content: "\eb05";
+}
+
+.ibm-data-view-alt::before {
+    content: "\eb06";
+}
+
+.ibm-data-vis-1::before {
+    content: "\eb07";
+}
+
+.ibm-data-vis-2::before {
+    content: "\eb08";
+}
+
+.ibm-data-vis-3::before {
+    content: "\eb09";
+}
+
+.ibm-data-vis-4::before {
+    content: "\eb0a";
+}
+
+.ibm-data-volume::before {
+    content: "\eb0b";
+}
+
+.ibm-data-volume-alt::before {
+    content: "\eb0c";
+}
+
+.ibm-database-datastax::before {
+    content: "\eb0d";
+}
+
+.ibm-database-elastic::before {
+    content: "\eb0e";
+}
+
+.ibm-database-enterprise-db2::before {
+    content: "\eb0f";
+}
+
+.ibm-database-etcd::before {
+    content: "\eb10";
+}
+
+.ibm-database-mongodb::before {
+    content: "\eb11";
+}
+
+.ibm-database-postgresql::before {
+    content: "\eb12";
+}
+
+.ibm-database-rabbit::before {
+    content: "\eb13";
+}
+
+.ibm-database-redis::before {
+    content: "\eb14";
+}
+
+.ibm-datastore::before {
+    content: "\eb15";
+}
+
+.ibm-db2-buffer-pool::before {
+    content: "\eb16";
+}
+
+.ibm-db2-data-sharing-group::before {
+    content: "\eb17";
+}
+
+.ibm-db2-database::before {
+    content: "\eb18";
+}
+
+.ibm-debug::before {
+    content: "\eb19";
+}
+
+.ibm-decision-tree::before {
+    content: "\eb1a";
+}
+
+.ibm-delivery::before {
+    content: "\eb1b";
+}
+
+.ibm-delivery-add::before {
+    content: "\eb1c";
+}
+
+.ibm-delivery-parcel::before {
+    content: "\eb1d";
+}
+
+.ibm-delivery-truck::before {
+    content: "\eb1e";
+}
+
+.ibm-denominate::before {
+    content: "\eb1f";
+}
+
+.ibm-departure::before {
+    content: "\eb20";
+}
+
+.ibm-deploy::before {
+    content: "\eb21";
+}
+
+.ibm-deploy-rules::before {
+    content: "\eb22";
+}
+
+.ibm-deployment-pattern::before {
+    content: "\eb23";
+}
+
+.ibm-deployment-policy::before {
+    content: "\eb24";
+}
+
+.ibm-deployment-unit-data::before {
+    content: "\eb25";
+}
+
+.ibm-deployment-unit-execution::before {
+    content: "\eb26";
+}
+
+.ibm-deployment-unit-installation::before {
+    content: "\eb27";
+}
+
+.ibm-deployment-unit-presentation::before {
+    content: "\eb28";
+}
+
+.ibm-deployment-unit-technical-data::before {
+    content: "\eb29";
+}
+
+.ibm-deployment-unit-technical-execution::before {
+    content: "\eb2a";
+}
+
+.ibm-deployment-unit-technical-installation::before {
+    content: "\eb2b";
+}
+
+.ibm-deployment-unit-technical-presentation::before {
+    content: "\eb2c";
+}
+
+.ibm-desk-adjustable::before {
+    content: "\eb2d";
+}
+
+.ibm-development::before {
+    content: "\eb2e";
+}
+
+.ibm-devices::before {
+    content: "\eb2f";
+}
+
+.ibm-dew-point::before {
+    content: "\eb30";
+}
+
+.ibm-filled-dew-point::before {
+    content: "\eb31";
+}
+
+.ibm-diagram::before {
+    content: "\eb32";
+}
+
+.ibm-diagram-reference::before {
+    content: "\eb33";
+}
+
+.ibm-dicom-6000::before {
+    content: "\eb34";
+}
+
+.ibm-dicom-overlay::before {
+    content: "\eb35";
+}
+
+.ibm-direct-link::before {
+    content: "\eb36";
+}
+
+.ibm-direction-bear-right-01::before {
+    content: "\eb37";
+}
+
+.ibm-filled-direction-bear-right-01::before {
+    content: "\eb38";
+}
+
+.ibm-direction-bear-right-02::before {
+    content: "\eb39";
+}
+
+.ibm-filled-direction-bear-right-02::before {
+    content: "\eb3a";
+}
+
+.ibm-direction-curve::before {
+    content: "\eb3b";
+}
+
+.ibm-filled-direction-curve::before {
+    content: "\eb3c";
+}
+
+.ibm-direction-fork::before {
+    content: "\eb3d";
+}
+
+.ibm-filled-direction-fork::before {
+    content: "\eb3e";
+}
+
+.ibm-direction-loop-left::before {
+    content: "\eb3f";
+}
+
+.ibm-filled-direction-loop-left::before {
+    content: "\eb40";
+}
+
+.ibm-direction-loop-right::before {
+    content: "\eb41";
+}
+
+.ibm-filled-direction-loop-right::before {
+    content: "\eb42";
+}
+
+.ibm-direction-merge::before {
+    content: "\eb43";
+}
+
+.ibm-filled-direction-merge::before {
+    content: "\eb44";
+}
+
+.ibm-direction-right-01::before {
+    content: "\eb45";
+}
+
+.ibm-filled-direction-right-01::before {
+    content: "\eb46";
+}
+
+.ibm-direction-right-02::before {
+    content: "\eb47";
+}
+
+.ibm-filled-direction-right-02::before {
+    content: "\eb48";
+}
+
+.ibm-direction-rotary-first-right::before {
+    content: "\eb49";
+}
+
+.ibm-filled-direction-rotary-first-right::before {
+    content: "\eb4a";
+}
+
+.ibm-direction-rotary-right::before {
+    content: "\eb4b";
+}
+
+.ibm-filled-direction-rotary-right::before {
+    content: "\eb4c";
+}
+
+.ibm-direction-rotary-straight::before {
+    content: "\eb4d";
+}
+
+.ibm-filled-direction-rotary-straight::before {
+    content: "\eb4e";
+}
+
+.ibm-direction-sharp-turn::before {
+    content: "\eb4f";
+}
+
+.ibm-filled-direction-sharp-turn::before {
+    content: "\eb50";
+}
+
+.ibm-direction-straight::before {
+    content: "\eb51";
+}
+
+.ibm-filled-direction-straight::before {
+    content: "\eb52";
+}
+
+.ibm-direction-straight-right::before {
+    content: "\eb53";
+}
+
+.ibm-filled-direction-straight-right::before {
+    content: "\eb54";
+}
+
+.ibm-direction-u-turn::before {
+    content: "\eb55";
+}
+
+.ibm-filled-direction-u-turn::before {
+    content: "\eb56";
+}
+
+.ibm-directory-domain::before {
+    content: "\eb57";
+}
+
+.ibm-distribute-horizontal-center::before {
+    content: "\eb58";
+}
+
+.ibm-distribute-horizontal-left::before {
+    content: "\eb59";
+}
+
+.ibm-distribute-horizontal-right::before {
+    content: "\eb5a";
+}
+
+.ibm-distribute-vertical-bottom::before {
+    content: "\eb5b";
+}
+
+.ibm-distribute-vertical-center::before {
+    content: "\eb5c";
+}
+
+.ibm-distribute-vertical-top::before {
+    content: "\eb5d";
+}
+
+.ibm-dna::before {
+    content: "\eb5e";
+}
+
+.ibm-dns-services::before {
+    content: "\eb5f";
+}
+
+.ibm-doc::before {
+    content: "\eb60";
+}
+
+.ibm-document::before {
+    content: "\eb61";
+}
+
+.ibm-document-add::before {
+    content: "\eb62";
+}
+
+.ibm-document-attachment::before {
+    content: "\eb63";
+}
+
+.ibm-document-audio::before {
+    content: "\eb64";
+}
+
+.ibm-document-blank::before {
+    content: "\eb65";
+}
+
+.ibm-document-download::before {
+    content: "\eb66";
+}
+
+.ibm-document-epdf::before {
+    content: "\eb67";
+}
+
+.ibm-document-export::before {
+    content: "\eb68";
+}
+
+.ibm-document-horizontal::before {
+    content: "\eb69";
+}
+
+.ibm-document-import::before {
+    content: "\eb6a";
+}
+
+.ibm-document-pdf::before {
+    content: "\eb6b";
+}
+
+.ibm-document-preliminary::before {
+    content: "\eb6c";
+}
+
+.ibm-document-protected::before {
+    content: "\eb6d";
+}
+
+.ibm-document-security::before {
+    content: "\eb6e";
+}
+
+.ibm-document-sentiment::before {
+    content: "\eb6f";
+}
+
+.ibm-document-signed::before {
+    content: "\eb70";
+}
+
+.ibm-document-sketch::before {
+    content: "\eb71";
+}
+
+.ibm-document-subtract::before {
+    content: "\eb72";
+}
+
+.ibm-document-tasks::before {
+    content: "\eb73";
+}
+
+.ibm-document-unknown::before {
+    content: "\eb74";
+}
+
+.ibm-document-unprotected::before {
+    content: "\eb75";
+}
+
+.ibm-document-vertical::before {
+    content: "\eb76";
+}
+
+.ibm-document-video::before {
+    content: "\eb77";
+}
+
+.ibm-document-view::before {
+    content: "\eb78";
+}
+
+.ibm-document-word-processor::before {
+    content: "\eb79";
+}
+
+.ibm-document-word-processor-reference::before {
+    content: "\eb7a";
+}
+
+.ibm-dog-walker::before {
+    content: "\eb7b";
+}
+
+.ibm-dot-mark::before {
+    content: "\eb7c";
+}
+
+.ibm-double-integer::before {
+    content: "\eb7d";
+}
+
+.ibm-down-to-bottom::before {
+    content: "\eb7e";
+}
+
+.ibm-download::before {
+    content: "\eb7f";
+}
+
+.ibm-download-study::before {
+    content: "\eb80";
+}
+
+.ibm-drag-horizontal::before {
+    content: "\eb81";
+}
+
+.ibm-drag-vertical::before {
+    content: "\eb82";
+}
+
+.ibm-draggable::before {
+    content: "\eb83";
+}
+
+.ibm-draw::before {
+    content: "\eb84";
+}
+
+.ibm-drill-back::before {
+    content: "\eb85";
+}
+
+.ibm-drill-down::before {
+    content: "\eb86";
+}
+
+.ibm-drill-through::before {
+    content: "\eb87";
+}
+
+.ibm-drink-01::before {
+    content: "\eb88";
+}
+
+.ibm-drink-02::before {
+    content: "\eb89";
+}
+
+.ibm-driver-analysis::before {
+    content: "\eb8a";
+}
+
+.ibm-drone::before {
+    content: "\eb8b";
+}
+
+.ibm-drone-delivery::before {
+    content: "\eb8c";
+}
+
+.ibm-drone-front::before {
+    content: "\eb8d";
+}
+
+.ibm-drone-video::before {
+    content: "\eb8e";
+}
+
+.ibm-drop-photo::before {
+    content: "\eb8f";
+}
+
+.ibm-filled-drop-photo::before {
+    content: "\eb90";
+}
+
+.ibm-drought::before {
+    content: "\eb91";
+}
+
+.ibm-dvr::before {
+    content: "\eb92";
+}
+
+.ibm-earth::before {
+    content: "\eb93";
+}
+
+.ibm-earth-americas::before {
+    content: "\eb94";
+}
+
+.ibm-filled-earth-americas::before {
+    content: "\eb95";
+}
+
+.ibm-earth-europe-africa::before {
+    content: "\eb96";
+}
+
+.ibm-filled-earth-europe-africa::before {
+    content: "\eb97";
+}
+
+.ibm-filled-earth::before {
+    content: "\eb98";
+}
+
+.ibm-earth-southeast-asia::before {
+    content: "\eb99";
+}
+
+.ibm-filled-earth-southeast-asia::before {
+    content: "\eb9a";
+}
+
+.ibm-earthquake::before {
+    content: "\eb9b";
+}
+
+.ibm-edge-cluster::before {
+    content: "\eb9c";
+}
+
+.ibm-edge-device::before {
+    content: "\eb9d";
+}
+
+.ibm-edge-enhancement::before {
+    content: "\eb9e";
+}
+
+.ibm-edge-enhancement-01::before {
+    content: "\eb9f";
+}
+
+.ibm-edge-enhancement-02::before {
+    content: "\eba0";
+}
+
+.ibm-edge-enhancement-03::before {
+    content: "\eba1";
+}
+
+.ibm-edge-node::before {
+    content: "\eba2";
+}
+
+.ibm-edge-node-alt::before {
+    content: "\eba3";
+}
+
+.ibm-edge-service::before {
+    content: "\eba4";
+}
+
+.ibm-edit::before {
+    content: "\eba5";
+}
+
+.ibm-edit-off::before {
+    content: "\eba6";
+}
+
+.ibm-edt-loop::before {
+    content: "\eba7";
+}
+
+.ibm-education::before {
+    content: "\eba8";
+}
+
+.ibm-email::before {
+    content: "\eba9";
+}
+
+.ibm-email-new::before {
+    content: "\ebaa";
+}
+
+.ibm-encryption::before {
+    content: "\ebab";
+}
+
+.ibm-energy-renewable::before {
+    content: "\ebac";
+}
+
+.ibm-enterprise::before {
+    content: "\ebad";
+}
+
+.ibm-equalizer::before {
+    content: "\ebae";
+}
+
+.ibm-erase::before {
+    content: "\ebaf";
+}
+
+.ibm-erase-3d::before {
+    content: "\ebb0";
+}
+
+.ibm-error::before {
+    content: "\ebb1";
+}
+
+.ibm-filled-error::before {
+    content: "\ebb2";
+}
+
+.ibm-error-outline::before {
+    content: "\ebb3";
+}
+
+.ibm-event::before {
+    content: "\ebb4";
+}
+
+.ibm-event-schedule::before {
+    content: "\ebb5";
+}
+
+.ibm-events::before {
+    content: "\ebb6";
+}
+
+.ibm-events-alt::before {
+    content: "\ebb7";
+}
+
+.ibm-exam-mode::before {
+    content: "\ebb8";
+}
+
+.ibm-executable-program::before {
+    content: "\ebb9";
+}
+
+.ibm-exit::before {
+    content: "\ebba";
+}
+
+.ibm-expand-all::before {
+    content: "\ebbb";
+}
+
+.ibm-expand-categories::before {
+    content: "\ebbc";
+}
+
+.ibm-explore::before {
+    content: "\ebbd";
+}
+
+.ibm-export::before {
+    content: "\ebbe";
+}
+
+.ibm-eyedropper::before {
+    content: "\ebbf";
+}
+
+.ibm-face-activated::before {
+    content: "\ebc0";
+}
+
+.ibm-face-activated-add::before {
+    content: "\ebc1";
+}
+
+.ibm-filled-face-activated::before {
+    content: "\ebc2";
+}
+
+.ibm-face-add::before {
+    content: "\ebc3";
+}
+
+.ibm-face-cool::before {
+    content: "\ebc4";
+}
+
+.ibm-face-dissatisfied::before {
+    content: "\ebc5";
+}
+
+.ibm-filled-face-dissatisfied::before {
+    content: "\ebc6";
+}
+
+.ibm-face-dizzy::before {
+    content: "\ebc7";
+}
+
+.ibm-filled-face-dizzy::before {
+    content: "\ebc8";
+}
+
+.ibm-face-mask::before {
+    content: "\ebc9";
+}
+
+.ibm-face-neutral::before {
+    content: "\ebca";
+}
+
+.ibm-filled-face-neutral::before {
+    content: "\ebcb";
+}
+
+.ibm-face-pending::before {
+    content: "\ebcc";
+}
+
+.ibm-filled-face-pending::before {
+    content: "\ebcd";
+}
+
+.ibm-face-satisfied::before {
+    content: "\ebce";
+}
+
+.ibm-filled-face-satisfied::before {
+    content: "\ebcf";
+}
+
+.ibm-face-wink::before {
+    content: "\ebd0";
+}
+
+.ibm-filled-face-wink::before {
+    content: "\ebd1";
+}
+
+.ibm-factor::before {
+    content: "\ebd2";
+}
+
+.ibm-fade::before {
+    content: "\ebd3";
+}
+
+.ibm-favorite::before {
+    content: "\ebd4";
+}
+
+.ibm-filled-favorite::before {
+    content: "\ebd5";
+}
+
+.ibm-favorite-half::before {
+    content: "\ebd6";
+}
+
+.ibm-fetch-upload::before {
+    content: "\ebd7";
+}
+
+.ibm-fetch-upload-cloud::before {
+    content: "\ebd8";
+}
+
+.ibm-file-storage::before {
+    content: "\ebd9";
+}
+
+.ibm-filter::before {
+    content: "\ebda";
+}
+
+.ibm-filter-edit::before {
+    content: "\ebdb";
+}
+
+.ibm-filter-remove::before {
+    content: "\ebdc";
+}
+
+.ibm-filter-reset::before {
+    content: "\ebdd";
+}
+
+.ibm-finance::before {
+    content: "\ebde";
+}
+
+.ibm-fingerprint-recognition::before {
+    content: "\ebdf";
+}
+
+.ibm-fire::before {
+    content: "\ebe0";
+}
+
+.ibm-firewall::before {
+    content: "\ebe1";
+}
+
+.ibm-firewall-classic::before {
+    content: "\ebe2";
+}
+
+.ibm-fish::before {
+    content: "\ebe3";
+}
+
+.ibm-fish-multiple::before {
+    content: "\ebe4";
+}
+
+.ibm-fit-to-height::before {
+    content: "\ebe5";
+}
+
+.ibm-fit-to-screen::before {
+    content: "\ebe6";
+}
+
+.ibm-fit-to-width::before {
+    content: "\ebe7";
+}
+
+.ibm-flag::before {
+    content: "\ebe8";
+}
+
+.ibm-filled-flag::before {
+    content: "\ebe9";
+}
+
+.ibm-flagging-taxi::before {
+    content: "\ebea";
+}
+
+.ibm-flash::before {
+    content: "\ebeb";
+}
+
+.ibm-filled-flash::before {
+    content: "\ebec";
+}
+
+.ibm-flash-off::before {
+    content: "\ebed";
+}
+
+.ibm-filled-flash-off::before {
+    content: "\ebee";
+}
+
+.ibm-flight-international::before {
+    content: "\ebef";
+}
+
+.ibm-flight-roster::before {
+    content: "\ebf0";
+}
+
+.ibm-flight-schedule::before {
+    content: "\ebf1";
+}
+
+.ibm-floating-ip::before {
+    content: "\ebf2";
+}
+
+.ibm-flood::before {
+    content: "\ebf3";
+}
+
+.ibm-flood-warning::before {
+    content: "\ebf4";
+}
+
+.ibm-floorplan::before {
+    content: "\ebf5";
+}
+
+.ibm-flow::before {
+    content: "\ebf6";
+}
+
+.ibm-flow-connection::before {
+    content: "\ebf7";
+}
+
+.ibm-flow-data::before {
+    content: "\ebf8";
+}
+
+.ibm-flow-logs-vpc::before {
+    content: "\ebf9";
+}
+
+.ibm-flow-modeler::before {
+    content: "\ebfa";
+}
+
+.ibm-flow-modeler-reference::before {
+    content: "\ebfb";
+}
+
+.ibm-flow-stream::before {
+    content: "\ebfc";
+}
+
+.ibm-flow-stream-reference::before {
+    content: "\ebfd";
+}
+
+.ibm-fog::before {
+    content: "\ebfe";
+}
+
+.ibm-folder::before {
+    content: "\ebff";
+}
+
+.ibm-folder-add::before {
+    content: "\ec00";
+}
+
+.ibm-folder-details::before {
+    content: "\ec01";
+}
+
+.ibm-folder-details-reference::before {
+    content: "\ec02";
+}
+
+.ibm-folder-move-to::before {
+    content: "\ec03";
+}
+
+.ibm-folder-off::before {
+    content: "\ec04";
+}
+
+.ibm-folder-open::before {
+    content: "\ec05";
+}
+
+.ibm-folder-parent::before {
+    content: "\ec06";
+}
+
+.ibm-folder-shared::before {
+    content: "\ec07";
+}
+
+.ibm-folders::before {
+    content: "\ec08";
+}
+
+.ibm-forecast-hail::before {
+    content: "\ec09";
+}
+
+.ibm-forecast-hail-30::before {
+    content: "\ec0a";
+}
+
+.ibm-forecast-lightning::before {
+    content: "\ec0b";
+}
+
+.ibm-forecast-lightning-30::before {
+    content: "\ec0c";
+}
+
+.ibm-fork::before {
+    content: "\ec0d";
+}
+
+.ibm-forum::before {
+    content: "\ec0e";
+}
+
+.ibm-forward-10::before {
+    content: "\ec0f";
+}
+
+.ibm-forward-30::before {
+    content: "\ec10";
+}
+
+.ibm-forward-5::before {
+    content: "\ec11";
+}
+
+.ibm-fragile::before {
+    content: "\ec12";
+}
+
+.ibm-friendship::before {
+    content: "\ec13";
+}
+
+.ibm-fruit-bowl::before {
+    content: "\ec14";
+}
+
+.ibm-function::before {
+    content: "\ec15";
+}
+
+.ibm-function-math::before {
+    content: "\ec16";
+}
+
+.ibm-fusion-blender::before {
+    content: "\ec17";
+}
+
+.ibm-game-console::before {
+    content: "\ec18";
+}
+
+.ibm-game-wireless::before {
+    content: "\ec19";
+}
+
+.ibm-gamification::before {
+    content: "\ec1a";
+}
+
+.ibm-gas-station::before {
+    content: "\ec1b";
+}
+
+.ibm-filled-gas-station::before {
+    content: "\ec1c";
+}
+
+.ibm-gateway::before {
+    content: "\ec1d";
+}
+
+.ibm-gateway-api::before {
+    content: "\ec1e";
+}
+
+.ibm-gateway-mail::before {
+    content: "\ec1f";
+}
+
+.ibm-gateway-public::before {
+    content: "\ec20";
+}
+
+.ibm-gateway-security::before {
+    content: "\ec21";
+}
+
+.ibm-gateway-user-access::before {
+    content: "\ec22";
+}
+
+.ibm-gateway-vpn::before {
+    content: "\ec23";
+}
+
+.ibm-gender-female::before {
+    content: "\ec24";
+}
+
+.ibm-gender-male::before {
+    content: "\ec25";
+}
+
+.ibm-generate-pdf::before {
+    content: "\ec26";
+}
+
+.ibm-gif::before {
+    content: "\ec27";
+}
+
+.ibm-gift::before {
+    content: "\ec28";
+}
+
+.ibm-globe::before {
+    content: "\ec29";
+}
+
+.ibm-gradient::before {
+    content: "\ec2a";
+}
+
+.ibm-graphical-data-flow::before {
+    content: "\ec2b";
+}
+
+.ibm-grid::before {
+    content: "\ec2c";
+}
+
+.ibm-group::before {
+    content: "\ec2d";
+}
+
+.ibm-group-access::before {
+    content: "\ec2e";
+}
+
+.ibm-group-account::before {
+    content: "\ec2f";
+}
+
+.ibm-group-objects::before {
+    content: "\ec30";
+}
+
+.ibm-group-objects-new::before {
+    content: "\ec31";
+}
+
+.ibm-group-objects-save::before {
+    content: "\ec32";
+}
+
+.ibm-group-presentation::before {
+    content: "\ec33";
+}
+
+.ibm-group-resource::before {
+    content: "\ec34";
+}
+
+.ibm-group-security::before {
+    content: "\ec35";
+}
+
+.ibm-growth::before {
+    content: "\ec36";
+}
+
+.ibm-gui::before {
+    content: "\ec37";
+}
+
+.ibm-gui-management::before {
+    content: "\ec38";
+}
+
+.ibm-h::before {
+    content: "\ec39";
+}
+
+.ibm-hail::before {
+    content: "\ec3a";
+}
+
+.ibm-hanging-protocol::before {
+    content: "\ec3b";
+}
+
+.ibm-harbor::before {
+    content: "\ec3c";
+}
+
+.ibm-hardware-security-module::before {
+    content: "\ec3d";
+}
+
+.ibm-hashtag::before {
+    content: "\ec3e";
+}
+
+.ibm-haze::before {
+    content: "\ec3f";
+}
+
+.ibm-haze-night::before {
+    content: "\ec40";
+}
+
+.ibm-hd::before {
+    content: "\ec41";
+}
+
+.ibm-filled-hd::before {
+    content: "\ec42";
+}
+
+.ibm-hdr::before {
+    content: "\ec43";
+}
+
+.ibm-headphones::before {
+    content: "\ec44";
+}
+
+.ibm-headset::before {
+    content: "\ec45";
+}
+
+.ibm-health-cross::before {
+    content: "\ec46";
+}
+
+.ibm-hearing::before {
+    content: "\ec47";
+}
+
+.ibm-heat-map::before {
+    content: "\ec48";
+}
+
+.ibm-heat-map-02::before {
+    content: "\ec49";
+}
+
+.ibm-heat-map-03::before {
+    content: "\ec4a";
+}
+
+.ibm-heat-map-stocks::before {
+    content: "\ec4b";
+}
+
+.ibm-helicopter::before {
+    content: "\ec4c";
+}
+
+.ibm-help::before {
+    content: "\ec4d";
+}
+
+.ibm-help-desk::before {
+    content: "\ec4e";
+}
+
+.ibm-filled-help::before {
+    content: "\ec4f";
+}
+
+.ibm-hinton-plot::before {
+    content: "\ec50";
+}
+
+.ibm-hl7-attributes::before {
+    content: "\ec51";
+}
+
+.ibm-hole-filling::before {
+    content: "\ec52";
+}
+
+.ibm-hole-filling-cursor::before {
+    content: "\ec53";
+}
+
+.ibm-home::before {
+    content: "\ec54";
+}
+
+.ibm-horizontal-view::before {
+    content: "\ec55";
+}
+
+.ibm-hospital::before {
+    content: "\ec56";
+}
+
+.ibm-hospital-bed::before {
+    content: "\ec57";
+}
+
+.ibm-hotel::before {
+    content: "\ec58";
+}
+
+.ibm-hourglass::before {
+    content: "\ec59";
+}
+
+.ibm-html::before {
+    content: "\ec5a";
+}
+
+.ibm-html-reference::before {
+    content: "\ec5b";
+}
+
+.ibm-http::before {
+    content: "\ec5c";
+}
+
+.ibm-humidity::before {
+    content: "\ec5d";
+}
+
+.ibm-humidity-alt::before {
+    content: "\ec5e";
+}
+
+.ibm-hurricane::before {
+    content: "\ec5f";
+}
+
+.ibm-hybrid-networking::before {
+    content: "\ec60";
+}
+
+.ibm-hybrid-networking-alt::before {
+    content: "\ec61";
+}
+
+.ibm-ibm-bluepay::before {
+    content: "\ec62";
+}
+
+.ibm-ibm-cloud::before {
+    content: "\ec63";
+}
+
+.ibm-ibm-cloud-app-id::before {
+    content: "\ec64";
+}
+
+.ibm-ibm-cloud-citrix-daas::before {
+    content: "\ec65";
+}
+
+.ibm-ibm-cloud-continuous-delivery::before {
+    content: "\ec66";
+}
+
+.ibm-ibm-cloud-dedicated-host::before {
+    content: "\ec67";
+}
+
+.ibm-ibm-cloud-direct-link-1-connect::before {
+    content: "\ec68";
+}
+
+.ibm-ibm-cloud-direct-link-1-dedicated::before {
+    content: "\ec69";
+}
+
+.ibm-ibm-cloud-direct-link-1-dedicated-hosting::before {
+    content: "\ec6a";
+}
+
+.ibm-ibm-cloud-direct-link-1-exchange::before {
+    content: "\ec6b";
+}
+
+.ibm-ibm-cloud-direct-link-2-connect::before {
+    content: "\ec6c";
+}
+
+.ibm-ibm-cloud-direct-link-2-dedicated::before {
+    content: "\ec6d";
+}
+
+.ibm-ibm-cloud-direct-link-2-dedicated-hosting::before {
+    content: "\ec6e";
+}
+
+.ibm-ibm-cloud-event-notification::before {
+    content: "\ec6f";
+}
+
+.ibm-ibm-cloud-event-streams::before {
+    content: "\ec70";
+}
+
+.ibm-ibm-cloud-for-education::before {
+    content: "\ec71";
+}
+
+.ibm-ibm-cloud-hsm::before {
+    content: "\ec72";
+}
+
+.ibm-ibm-cloud-hyper-protect-crypto-services::before {
+    content: "\ec73";
+}
+
+.ibm-ibm-cloud-hyper-protect-dbaas::before {
+    content: "\ec74";
+}
+
+.ibm-ibm-cloud-hyper-protect-vs::before {
+    content: "\ec75";
+}
+
+.ibm-ibm-cloud-internet-services::before {
+    content: "\ec76";
+}
+
+.ibm-ibm-cloud-ipsec-vpn::before {
+    content: "\ec77";
+}
+
+.ibm-ibm-cloud-key-protect::before {
+    content: "\ec78";
+}
+
+.ibm-ibm-cloud-kubernetes-service::before {
+    content: "\ec79";
+}
+
+.ibm-ibm-cloud-logging::before {
+    content: "\ec7a";
+}
+
+.ibm-ibm-cloud-mass-data-migration::before {
+    content: "\ec7b";
+}
+
+.ibm-ibm-cloud-pak-applications::before {
+    content: "\ec7c";
+}
+
+.ibm-ibm-cloud-pak-business-automation::before {
+    content: "\ec7d";
+}
+
+.ibm-ibm-cloud-pak-data::before {
+    content: "\ec7e";
+}
+
+.ibm-ibm-cloud-pak-integration::before {
+    content: "\ec7f";
+}
+
+.ibm-ibm-cloud-pak-manta-automated-data-lineage::before {
+    content: "\ec80";
+}
+
+.ibm-ibm-cloud-pak-multicloud-mgmt::before {
+    content: "\ec81";
+}
+
+.ibm-ibm-cloud-pak-netezza::before {
+    content: "\ec82";
+}
+
+.ibm-ibm-cloud-pak-network-automation::before {
+    content: "\ec83";
+}
+
+.ibm-ibm-cloud-pak-security::before {
+    content: "\ec84";
+}
+
+.ibm-ibm-cloud-pak-system::before {
+    content: "\ec85";
+}
+
+.ibm-ibm-cloud-pak-watson-aiops::before {
+    content: "\ec86";
+}
+
+.ibm-ibm-cloud-pal::before {
+    content: "\ec87";
+}
+
+.ibm-ibm-cloud-privileged-access-gateway::before {
+    content: "\ec88";
+}
+
+.ibm-ibm-cloud-secrets-manager::before {
+    content: "\ec89";
+}
+
+.ibm-ibm-cloud-security-compliance-center::before {
+    content: "\ec8a";
+}
+
+.ibm-ibm-cloud-subnets::before {
+    content: "\ec8b";
+}
+
+.ibm-ibm-cloud-sysdig-secure::before {
+    content: "\ec8c";
+}
+
+.ibm-ibm-cloud-transit-gateway::before {
+    content: "\ec8d";
+}
+
+.ibm-ibm-cloud-vpc-endpoints::before {
+    content: "\ec8e";
+}
+
+.ibm-ibm-content-services::before {
+    content: "\ec8f";
+}
+
+.ibm-ibm-data-replication::before {
+    content: "\ec90";
+}
+
+.ibm-ibm-datastage::before {
+    content: "\ec91";
+}
+
+.ibm-ibm-db2::before {
+    content: "\ec92";
+}
+
+.ibm-ibm-db2-alt::before {
+    content: "\ec93";
+}
+
+.ibm-ibm-match-360::before {
+    content: "\ec94";
+}
+
+.ibm-ibm-mq::before {
+    content: "\ec95";
+}
+
+.ibm-ibm-open-enterprise-languages::before {
+    content: "\ec96";
+}
+
+.ibm-ibm-power-vs::before {
+    content: "\ec97";
+}
+
+.ibm-ibm-security::before {
+    content: "\ec98";
+}
+
+.ibm-ibm-security-services::before {
+    content: "\ec99";
+}
+
+.ibm-ibm-telehealth::before {
+    content: "\ec9a";
+}
+
+.ibm-ibm-tenet::before {
+    content: "\ec9b";
+}
+
+.ibm-ibm-toolchain::before {
+    content: "\ec9c";
+}
+
+.ibm-ibm-watson-assistant::before {
+    content: "\ec9d";
+}
+
+.ibm-ibm-watson-discovery::before {
+    content: "\ec9e";
+}
+
+.ibm-ibm-watson-knowledge-catalog::before {
+    content: "\ec9f";
+}
+
+.ibm-ibm-watson-knowledge-studio::before {
+    content: "\eca0";
+}
+
+.ibm-ibm-watson-language-translator::before {
+    content: "\eca1";
+}
+
+.ibm-ibm-watson-machine-learning::before {
+    content: "\eca2";
+}
+
+.ibm-ibm-watson-natural-language-classifier::before {
+    content: "\eca3";
+}
+
+.ibm-ibm-watson-natural-language-understanding::before {
+    content: "\eca4";
+}
+
+.ibm-ibm-watson-openscale::before {
+    content: "\eca5";
+}
+
+.ibm-ibm-watson-orders::before {
+    content: "\eca6";
+}
+
+.ibm-ibm-watson-query::before {
+    content: "\eca7";
+}
+
+.ibm-ibm-watson-speech-to-text::before {
+    content: "\eca8";
+}
+
+.ibm-ibm-watson-studio::before {
+    content: "\eca9";
+}
+
+.ibm-ibm-watson-text-to-speech::before {
+    content: "\ecaa";
+}
+
+.ibm-ibm-watson-tone-analyzer::before {
+    content: "\ecab";
+}
+
+.ibm-ibm-z-cloud-mod-stack::before {
+    content: "\ecac";
+}
+
+.ibm-ibm-z-cloud-provisioning::before {
+    content: "\ecad";
+}
+
+.ibm-ibm-z-os-package-manager::before {
+    content: "\ecae";
+}
+
+.ibm-ica-2d::before {
+    content: "\ecaf";
+}
+
+.ibm-ice-accretion::before {
+    content: "\ecb0";
+}
+
+.ibm-ice-vision::before {
+    content: "\ecb1";
+}
+
+.ibm-id::before {
+    content: "\ecb2";
+}
+
+.ibm-id-management::before {
+    content: "\ecb3";
+}
+
+.ibm-idea::before {
+    content: "\ecb4";
+}
+
+.ibm-identification::before {
+    content: "\ecb5";
+}
+
+.ibm-image::before {
+    content: "\ecb6";
+}
+
+.ibm-image-availability-local::before {
+    content: "\ecb7";
+}
+
+.ibm-image-availability-retrieving::before {
+    content: "\ecb8";
+}
+
+.ibm-image-availability-unavailable::before {
+    content: "\ecb9";
+}
+
+.ibm-image-copy::before {
+    content: "\ecba";
+}
+
+.ibm-image-medical::before {
+    content: "\ecbb";
+}
+
+.ibm-image-reference::before {
+    content: "\ecbc";
+}
+
+.ibm-image-search::before {
+    content: "\ecbd";
+}
+
+.ibm-image-search-alt::before {
+    content: "\ecbe";
+}
+
+.ibm-image-service::before {
+    content: "\ecbf";
+}
+
+.ibm-import-export::before {
+    content: "\ecc0";
+}
+
+.ibm-improve-relevance::before {
+    content: "\ecc1";
+}
+
+.ibm-in-progress::before {
+    content: "\ecc2";
+}
+
+.ibm-in-progress-error::before {
+    content: "\ecc3";
+}
+
+.ibm-in-progress-warning::before {
+    content: "\ecc4";
+}
+
+.ibm-incomplete::before {
+    content: "\ecc5";
+}
+
+.ibm-incomplete-cancel::before {
+    content: "\ecc6";
+}
+
+.ibm-incomplete-error::before {
+    content: "\ecc7";
+}
+
+.ibm-incomplete-warning::before {
+    content: "\ecc8";
+}
+
+.ibm-increase-level::before {
+    content: "\ecc9";
+}
+
+.ibm-industry::before {
+    content: "\ecca";
+}
+
+.ibm-information::before {
+    content: "\eccb";
+}
+
+.ibm-information-disabled::before {
+    content: "\eccc";
+}
+
+.ibm-filled-information::before {
+    content: "\eccd";
+}
+
+.ibm-information-square::before {
+    content: "\ecce";
+}
+
+.ibm-filled-information-square::before {
+    content: "\eccf";
+}
+
+.ibm-infrastructure-classic::before {
+    content: "\ecd0";
+}
+
+.ibm-insert::before {
+    content: "\ecd1";
+}
+
+.ibm-insert-page::before {
+    content: "\ecd2";
+}
+
+.ibm-insert-syntax::before {
+    content: "\ecd3";
+}
+
+.ibm-inspection::before {
+    content: "\ecd4";
+}
+
+.ibm-instance-bx::before {
+    content: "\ecd5";
+}
+
+.ibm-instance-classic::before {
+    content: "\ecd6";
+}
+
+.ibm-instance-cx::before {
+    content: "\ecd7";
+}
+
+.ibm-instance-mx::before {
+    content: "\ecd8";
+}
+
+.ibm-instance-virtual::before {
+    content: "\ecd9";
+}
+
+.ibm-integration::before {
+    content: "\ecda";
+}
+
+.ibm-intent-request-active::before {
+    content: "\ecdb";
+}
+
+.ibm-intent-request-create::before {
+    content: "\ecdc";
+}
+
+.ibm-intent-request-heal::before {
+    content: "\ecdd";
+}
+
+.ibm-intent-request-inactive::before {
+    content: "\ecde";
+}
+
+.ibm-intent-request-scale-in::before {
+    content: "\ecdf";
+}
+
+.ibm-intent-request-scale-out::before {
+    content: "\ece0";
+}
+
+.ibm-intent-request-uninstall::before {
+    content: "\ece1";
+}
+
+.ibm-intent-request-upgrade::before {
+    content: "\ece2";
+}
+
+.ibm-interactions::before {
+    content: "\ece3";
+}
+
+.ibm-interactive-segmentation-cursor::before {
+    content: "\ece4";
+}
+
+.ibm-intersect::before {
+    content: "\ece5";
+}
+
+.ibm-intrusion-prevention::before {
+    content: "\ece6";
+}
+
+.ibm-inventory-management::before {
+    content: "\ece7";
+}
+
+.ibm-iot-connect::before {
+    content: "\ece8";
+}
+
+.ibm-iot-platform::before {
+    content: "\ece9";
+}
+
+.ibm-iso::before {
+    content: "\ecea";
+}
+
+.ibm-filled-iso::before {
+    content: "\eceb";
+}
+
+.ibm-iso-outline::before {
+    content: "\ecec";
+}
+
+.ibm-join-full::before {
+    content: "\eced";
+}
+
+.ibm-join-inner::before {
+    content: "\ecee";
+}
+
+.ibm-join-left::before {
+    content: "\ecef";
+}
+
+.ibm-join-outer::before {
+    content: "\ecf0";
+}
+
+.ibm-join-right::before {
+    content: "\ecf1";
+}
+
+.ibm-jpg::before {
+    content: "\ecf2";
+}
+
+.ibm-json::before {
+    content: "\ecf3";
+}
+
+.ibm-json-reference::before {
+    content: "\ecf4";
+}
+
+.ibm-jump-link::before {
+    content: "\ecf5";
+}
+
+.ibm-k::before {
+    content: "\ecf6";
+}
+
+.ibm-filled-k::before {
+    content: "\ecf7";
+}
+
+.ibm-keep-dry::before {
+    content: "\ecf8";
+}
+
+.ibm-keyboard::before {
+    content: "\ecf9";
+}
+
+.ibm-keyboard-off::before {
+    content: "\ecfa";
+}
+
+.ibm-kubernetes::before {
+    content: "\ecfb";
+}
+
+.ibm-label::before {
+    content: "\ecfc";
+}
+
+.ibm-language::before {
+    content: "\ecfd";
+}
+
+.ibm-laptop::before {
+    content: "\ecfe";
+}
+
+.ibm-lasso::before {
+    content: "\ecff";
+}
+
+.ibm-lasso-polygon::before {
+    content: "\ed00";
+}
+
+.ibm-launch::before {
+    content: "\ed01";
+}
+
+.ibm-launch-study-1::before {
+    content: "\ed02";
+}
+
+.ibm-launch-study-2::before {
+    content: "\ed03";
+}
+
+.ibm-launch-study-3::before {
+    content: "\ed04";
+}
+
+.ibm-layers::before {
+    content: "\ed05";
+}
+
+.ibm-legend::before {
+    content: "\ed06";
+}
+
+.ibm-letter-aa::before {
+    content: "\ed07";
+}
+
+.ibm-letter-bb::before {
+    content: "\ed08";
+}
+
+.ibm-letter-cc::before {
+    content: "\ed09";
+}
+
+.ibm-letter-dd::before {
+    content: "\ed0a";
+}
+
+.ibm-letter-ee::before {
+    content: "\ed0b";
+}
+
+.ibm-letter-ff::before {
+    content: "\ed0c";
+}
+
+.ibm-letter-gg::before {
+    content: "\ed0d";
+}
+
+.ibm-letter-hh::before {
+    content: "\ed0e";
+}
+
+.ibm-letter-ii::before {
+    content: "\ed0f";
+}
+
+.ibm-letter-jj::before {
+    content: "\ed10";
+}
+
+.ibm-letter-kk::before {
+    content: "\ed11";
+}
+
+.ibm-letter-ll::before {
+    content: "\ed12";
+}
+
+.ibm-letter-mm::before {
+    content: "\ed13";
+}
+
+.ibm-letter-nn::before {
+    content: "\ed14";
+}
+
+.ibm-letter-oo::before {
+    content: "\ed15";
+}
+
+.ibm-letter-pp::before {
+    content: "\ed16";
+}
+
+.ibm-letter-qq::before {
+    content: "\ed17";
+}
+
+.ibm-letter-rr::before {
+    content: "\ed18";
+}
+
+.ibm-letter-ss::before {
+    content: "\ed19";
+}
+
+.ibm-letter-tt::before {
+    content: "\ed1a";
+}
+
+.ibm-letter-uu::before {
+    content: "\ed1b";
+}
+
+.ibm-letter-vv::before {
+    content: "\ed1c";
+}
+
+.ibm-letter-ww::before {
+    content: "\ed1d";
+}
+
+.ibm-letter-xx::before {
+    content: "\ed1e";
+}
+
+.ibm-letter-yy::before {
+    content: "\ed1f";
+}
+
+.ibm-letter-zz::before {
+    content: "\ed20";
+}
+
+.ibm-license::before {
+    content: "\ed21";
+}
+
+.ibm-license-draft::before {
+    content: "\ed22";
+}
+
+.ibm-license-global::before {
+    content: "\ed23";
+}
+
+.ibm-license-maintenance::before {
+    content: "\ed24";
+}
+
+.ibm-license-maintenance-draft::before {
+    content: "\ed25";
+}
+
+.ibm-license-third-party::before {
+    content: "\ed26";
+}
+
+.ibm-license-third-party-draft::before {
+    content: "\ed27";
+}
+
+.ibm-lifesaver::before {
+    content: "\ed28";
+}
+
+.ibm-light::before {
+    content: "\ed29";
+}
+
+.ibm-filled-light::before {
+    content: "\ed2a";
+}
+
+.ibm-lightning::before {
+    content: "\ed2b";
+}
+
+.ibm-link::before {
+    content: "\ed2c";
+}
+
+.ibm-linux::before {
+    content: "\ed2d";
+}
+
+.ibm-linux-alt::before {
+    content: "\ed2e";
+}
+
+.ibm-list::before {
+    content: "\ed2f";
+}
+
+.ibm-list-boxes::before {
+    content: "\ed30";
+}
+
+.ibm-list-bulleted::before {
+    content: "\ed31";
+}
+
+.ibm-list-checked::before {
+    content: "\ed32";
+}
+
+.ibm-list-checked-mirror::before {
+    content: "\ed33";
+}
+
+.ibm-list-dropdown::before {
+    content: "\ed34";
+}
+
+.ibm-list-numbered::before {
+    content: "\ed35";
+}
+
+.ibm-list-numbered-mirror::before {
+    content: "\ed36";
+}
+
+.ibm-load-balancer-application::before {
+    content: "\ed37";
+}
+
+.ibm-load-balancer-classic::before {
+    content: "\ed38";
+}
+
+.ibm-load-balancer-global::before {
+    content: "\ed39";
+}
+
+.ibm-load-balancer-listener::before {
+    content: "\ed3a";
+}
+
+.ibm-load-balancer-local::before {
+    content: "\ed3b";
+}
+
+.ibm-load-balancer-network::before {
+    content: "\ed3c";
+}
+
+.ibm-load-balancer-pool::before {
+    content: "\ed3d";
+}
+
+.ibm-load-balancer-vpc::before {
+    content: "\ed3e";
+}
+
+.ibm-location::before {
+    content: "\ed3f";
+}
+
+.ibm-location-company::before {
+    content: "\ed40";
+}
+
+.ibm-filled-location-company::before {
+    content: "\ed41";
+}
+
+.ibm-location-current::before {
+    content: "\ed42";
+}
+
+.ibm-filled-location::before {
+    content: "\ed43";
+}
+
+.ibm-location-hazard::before {
+    content: "\ed44";
+}
+
+.ibm-filled-location-hazard::before {
+    content: "\ed45";
+}
+
+.ibm-location-heart::before {
+    content: "\ed46";
+}
+
+.ibm-filled-location-heart::before {
+    content: "\ed47";
+}
+
+.ibm-location-person::before {
+    content: "\ed48";
+}
+
+.ibm-filled-location-person::before {
+    content: "\ed49";
+}
+
+.ibm-location-save::before {
+    content: "\ed4a";
+}
+
+.ibm-location-star::before {
+    content: "\ed4b";
+}
+
+.ibm-filled-location-star::before {
+    content: "\ed4c";
+}
+
+.ibm-locked::before {
+    content: "\ed4d";
+}
+
+.ibm-logical-partition::before {
+    content: "\ed4e";
+}
+
+.ibm-login::before {
+    content: "\ed4f";
+}
+
+.ibm-logo-angular::before {
+    content: "\ed50";
+}
+
+.ibm-logo-ansible-community::before {
+    content: "\ed51";
+}
+
+.ibm-logo-digg::before {
+    content: "\ed52";
+}
+
+.ibm-logo-discord::before {
+    content: "\ed53";
+}
+
+.ibm-logo-facebook::before {
+    content: "\ed54";
+}
+
+.ibm-logo-figma::before {
+    content: "\ed55";
+}
+
+.ibm-logo-flickr::before {
+    content: "\ed56";
+}
+
+.ibm-logo-github::before {
+    content: "\ed57";
+}
+
+.ibm-logo-glassdoor::before {
+    content: "\ed58";
+}
+
+.ibm-logo-instagram::before {
+    content: "\ed59";
+}
+
+.ibm-logo-invision::before {
+    content: "\ed5a";
+}
+
+.ibm-logo-jupyter::before {
+    content: "\ed5b";
+}
+
+.ibm-logo-keybase::before {
+    content: "\ed5c";
+}
+
+.ibm-logo-kubernetes::before {
+    content: "\ed5d";
+}
+
+.ibm-logo-linkedin::before {
+    content: "\ed5e";
+}
+
+.ibm-logo-livestream::before {
+    content: "\ed5f";
+}
+
+.ibm-logo-medium::before {
+    content: "\ed60";
+}
+
+.ibm-logo-npm::before {
+    content: "\ed61";
+}
+
+.ibm-logo-openshift::before {
+    content: "\ed62";
+}
+
+.ibm-logo-pinterest::before {
+    content: "\ed63";
+}
+
+.ibm-logo-python::before {
+    content: "\ed64";
+}
+
+.ibm-logo-quora::before {
+    content: "\ed65";
+}
+
+.ibm-logo-r-script::before {
+    content: "\ed66";
+}
+
+.ibm-logo-react::before {
+    content: "\ed67";
+}
+
+.ibm-logo-red-hat-ansible::before {
+    content: "\ed68";
+}
+
+.ibm-logo-sketch::before {
+    content: "\ed69";
+}
+
+.ibm-logo-skype::before {
+    content: "\ed6a";
+}
+
+.ibm-logo-slack::before {
+    content: "\ed6b";
+}
+
+.ibm-logo-snapchat::before {
+    content: "\ed6c";
+}
+
+.ibm-logo-svelte::before {
+    content: "\ed6d";
+}
+
+.ibm-logo-tumblr::before {
+    content: "\ed6e";
+}
+
+.ibm-logo-twitter::before {
+    content: "\ed6f";
+}
+
+.ibm-logo-vmware::before {
+    content: "\ed70";
+}
+
+.ibm-logo-vmware-alt::before {
+    content: "\ed71";
+}
+
+.ibm-logo-vue::before {
+    content: "\ed72";
+}
+
+.ibm-logo-wechat::before {
+    content: "\ed73";
+}
+
+.ibm-logo-xing::before {
+    content: "\ed74";
+}
+
+.ibm-logo-yelp::before {
+    content: "\ed75";
+}
+
+.ibm-logo-youtube::before {
+    content: "\ed76";
+}
+
+.ibm-logout::before {
+    content: "\ed77";
+}
+
+.ibm-loop::before {
+    content: "\ed78";
+}
+
+.ibm-mac-command::before {
+    content: "\ed79";
+}
+
+.ibm-mac-option::before {
+    content: "\ed7a";
+}
+
+.ibm-mac-shift::before {
+    content: "\ed7b";
+}
+
+.ibm-machine-learning::before {
+    content: "\ed7c";
+}
+
+.ibm-machine-learning-model::before {
+    content: "\ed7d";
+}
+
+.ibm-magic-wand::before {
+    content: "\ed7e";
+}
+
+.ibm-filled-magic-wand::before {
+    content: "\ed7f";
+}
+
+.ibm-magnify::before {
+    content: "\ed80";
+}
+
+.ibm-mail-all::before {
+    content: "\ed81";
+}
+
+.ibm-mail-reply::before {
+    content: "\ed82";
+}
+
+.ibm-mammogram::before {
+    content: "\ed83";
+}
+
+.ibm-manage-protection::before {
+    content: "\ed84";
+}
+
+.ibm-managed-solutions::before {
+    content: "\ed85";
+}
+
+.ibm-map::before {
+    content: "\ed86";
+}
+
+.ibm-map-boundary::before {
+    content: "\ed87";
+}
+
+.ibm-map-boundary-vegetation::before {
+    content: "\ed88";
+}
+
+.ibm-map-center::before {
+    content: "\ed89";
+}
+
+.ibm-map-identify::before {
+    content: "\ed8a";
+}
+
+.ibm-marine-warning::before {
+    content: "\ed8b";
+}
+
+.ibm-math-curve::before {
+    content: "\ed8c";
+}
+
+.ibm-matrix::before {
+    content: "\ed8d";
+}
+
+.ibm-maximize::before {
+    content: "\ed8e";
+}
+
+.ibm-media-cast::before {
+    content: "\ed8f";
+}
+
+.ibm-media-library::before {
+    content: "\ed90";
+}
+
+.ibm-filled-media-library::before {
+    content: "\ed91";
+}
+
+.ibm-medication::before {
+    content: "\ed92";
+}
+
+.ibm-medication-alert::before {
+    content: "\ed93";
+}
+
+.ibm-medication-reminder::before {
+    content: "\ed94";
+}
+
+.ibm-menu::before {
+    content: "\ed95";
+}
+
+.ibm-message-queue::before {
+    content: "\ed96";
+}
+
+.ibm-meter::before {
+    content: "\ed97";
+}
+
+.ibm-meter-alt::before {
+    content: "\ed98";
+}
+
+.ibm-microphone::before {
+    content: "\ed99";
+}
+
+.ibm-filled-microphone::before {
+    content: "\ed9a";
+}
+
+.ibm-microphone-off::before {
+    content: "\ed9b";
+}
+
+.ibm-filled-microphone-off::before {
+    content: "\ed9c";
+}
+
+.ibm-microscope::before {
+    content: "\ed9d";
+}
+
+.ibm-microservices-1::before {
+    content: "\ed9e";
+}
+
+.ibm-microservices-2::before {
+    content: "\ed9f";
+}
+
+.ibm-migrate::before {
+    content: "\eda0";
+}
+
+.ibm-migrate-alt::before {
+    content: "\eda1";
+}
+
+.ibm-milestone::before {
+    content: "\eda2";
+}
+
+.ibm-military-camp::before {
+    content: "\eda3";
+}
+
+.ibm-minimize::before {
+    content: "\eda4";
+}
+
+.ibm-misuse::before {
+    content: "\eda5";
+}
+
+.ibm-misuse-outline::before {
+    content: "\eda6";
+}
+
+.ibm-mixed-rain-hail::before {
+    content: "\eda7";
+}
+
+.ibm-mobile::before {
+    content: "\eda8";
+}
+
+.ibm-mobile-add::before {
+    content: "\eda9";
+}
+
+.ibm-mobile-audio::before {
+    content: "\edaa";
+}
+
+.ibm-mobile-check::before {
+    content: "\edab";
+}
+
+.ibm-mobile-download::before {
+    content: "\edac";
+}
+
+.ibm-mobile-landscape::before {
+    content: "\edad";
+}
+
+.ibm-mobility-services::before {
+    content: "\edae";
+}
+
+.ibm-model::before {
+    content: "\edaf";
+}
+
+.ibm-model-alt::before {
+    content: "\edb0";
+}
+
+.ibm-model-builder::before {
+    content: "\edb1";
+}
+
+.ibm-model-builder-reference::before {
+    content: "\edb2";
+}
+
+.ibm-model-reference::before {
+    content: "\edb3";
+}
+
+.ibm-money::before {
+    content: "\edb4";
+}
+
+.ibm-monster::before {
+    content: "\edb5";
+}
+
+.ibm-monument::before {
+    content: "\edb6";
+}
+
+.ibm-moon::before {
+    content: "\edb7";
+}
+
+.ibm-moonrise::before {
+    content: "\edb8";
+}
+
+.ibm-moonset::before {
+    content: "\edb9";
+}
+
+.ibm-mostly-cloudy::before {
+    content: "\edba";
+}
+
+.ibm-mostly-cloudy-night::before {
+    content: "\edbb";
+}
+
+.ibm-mountain::before {
+    content: "\edbc";
+}
+
+.ibm-mov::before {
+    content: "\edbd";
+}
+
+.ibm-move::before {
+    content: "\edbe";
+}
+
+.ibm-movement::before {
+    content: "\edbf";
+}
+
+.ibm-mp3::before {
+    content: "\edc0";
+}
+
+.ibm-mp4::before {
+    content: "\edc1";
+}
+
+.ibm-mpeg::before {
+    content: "\edc2";
+}
+
+.ibm-mpg2::before {
+    content: "\edc3";
+}
+
+.ibm-music::before {
+    content: "\edc4";
+}
+
+.ibm-music-add::before {
+    content: "\edc5";
+}
+
+.ibm-music-remove::before {
+    content: "\edc6";
+}
+
+.ibm-name-space::before {
+    content: "\edc7";
+}
+
+.ibm-navaid-civil::before {
+    content: "\edc8";
+}
+
+.ibm-navaid-dme::before {
+    content: "\edc9";
+}
+
+.ibm-navaid-helipad::before {
+    content: "\edca";
+}
+
+.ibm-navaid-military::before {
+    content: "\edcb";
+}
+
+.ibm-navaid-military-civil::before {
+    content: "\edcc";
+}
+
+.ibm-navaid-ndb::before {
+    content: "\edcd";
+}
+
+.ibm-navaid-ndb-dme::before {
+    content: "\edce";
+}
+
+.ibm-navaid-private::before {
+    content: "\edcf";
+}
+
+.ibm-navaid-seaplane::before {
+    content: "\edd0";
+}
+
+.ibm-navaid-tacan::before {
+    content: "\edd1";
+}
+
+.ibm-navaid-vhfor::before {
+    content: "\edd2";
+}
+
+.ibm-navaid-vor::before {
+    content: "\edd3";
+}
+
+.ibm-navaid-vordme::before {
+    content: "\edd4";
+}
+
+.ibm-navaid-vortac::before {
+    content: "\edd5";
+}
+
+.ibm-need::before {
+    content: "\edd6";
+}
+
+.ibm-network-1::before {
+    content: "\edd7";
+}
+
+.ibm-network-2::before {
+    content: "\edd8";
+}
+
+.ibm-network-3::before {
+    content: "\edd9";
+}
+
+.ibm-network-3-reference::before {
+    content: "\edda";
+}
+
+.ibm-network-4::before {
+    content: "\eddb";
+}
+
+.ibm-network-4-reference::before {
+    content: "\eddc";
+}
+
+.ibm-network-admin-control::before {
+    content: "\eddd";
+}
+
+.ibm-network-enterprise::before {
+    content: "\edde";
+}
+
+.ibm-network-overlay::before {
+    content: "\eddf";
+}
+
+.ibm-network-public::before {
+    content: "\ede0";
+}
+
+.ibm-new-tab::before {
+    content: "\ede1";
+}
+
+.ibm-filled-next::before {
+    content: "\ede2";
+}
+
+.ibm-next-outline::before {
+    content: "\ede3";
+}
+
+.ibm-no-image::before {
+    content: "\ede4";
+}
+
+.ibm-no-ticket::before {
+    content: "\ede5";
+}
+
+.ibm-nominal::before {
+    content: "\ede6";
+}
+
+.ibm-nominate::before {
+    content: "\ede7";
+}
+
+.ibm-non-certified::before {
+    content: "\ede8";
+}
+
+.ibm-noodle-bowl::before {
+    content: "\ede9";
+}
+
+.ibm-not-available::before {
+    content: "\edea";
+}
+
+.ibm-not-sent::before {
+    content: "\edeb";
+}
+
+.ibm-filled-not-sent::before {
+    content: "\edec";
+}
+
+.ibm-notebook::before {
+    content: "\eded";
+}
+
+.ibm-notebook-reference::before {
+    content: "\edee";
+}
+
+.ibm-notification::before {
+    content: "\edef";
+}
+
+.ibm-filled-notification::before {
+    content: "\edf0";
+}
+
+.ibm-notification-new::before {
+    content: "\edf1";
+}
+
+.ibm-notification-off::before {
+    content: "\edf2";
+}
+
+.ibm-filled-notification-off::before {
+    content: "\edf3";
+}
+
+.ibm-number-0::before {
+    content: "\edf4";
+}
+
+.ibm-number-1::before {
+    content: "\edf5";
+}
+
+.ibm-number-2::before {
+    content: "\edf6";
+}
+
+.ibm-number-3::before {
+    content: "\edf7";
+}
+
+.ibm-number-4::before {
+    content: "\edf8";
+}
+
+.ibm-number-5::before {
+    content: "\edf9";
+}
+
+.ibm-number-6::before {
+    content: "\edfa";
+}
+
+.ibm-number-7::before {
+    content: "\edfb";
+}
+
+.ibm-number-8::before {
+    content: "\edfc";
+}
+
+.ibm-number-9::before {
+    content: "\edfd";
+}
+
+.ibm-number-small-0::before {
+    content: "\edfe";
+}
+
+.ibm-number-small-1::before {
+    content: "\edff";
+}
+
+.ibm-number-small-2::before {
+    content: "\ee00";
+}
+
+.ibm-number-small-3::before {
+    content: "\ee01";
+}
+
+.ibm-number-small-4::before {
+    content: "\ee02";
+}
+
+.ibm-number-small-5::before {
+    content: "\ee03";
+}
+
+.ibm-number-small-6::before {
+    content: "\ee04";
+}
+
+.ibm-number-small-7::before {
+    content: "\ee05";
+}
+
+.ibm-number-small-8::before {
+    content: "\ee06";
+}
+
+.ibm-number-small-9::before {
+    content: "\ee07";
+}
+
+.ibm-object-storage::before {
+    content: "\ee08";
+}
+
+.ibm-object-storage-alt::before {
+    content: "\ee09";
+}
+
+.ibm-observed-hail::before {
+    content: "\ee0a";
+}
+
+.ibm-observed-lightning::before {
+    content: "\ee0b";
+}
+
+.ibm-omega::before {
+    content: "\ee0c";
+}
+
+.ibm-opacity::before {
+    content: "\ee0d";
+}
+
+.ibm-open-panel-bottom::before {
+    content: "\ee0e";
+}
+
+.ibm-filled-open-panel-bottom::before {
+    content: "\ee0f";
+}
+
+.ibm-filled-open-panel-left::before {
+    content: "\ee10";
+}
+
+.ibm-filled-open-panel-right::before {
+    content: "\ee11";
+}
+
+.ibm-filled-open-panel-top::before {
+    content: "\ee12";
+}
+
+.ibm-open-panel-left::before {
+    content: "\ee13";
+}
+
+.ibm-open-panel-right::before {
+    content: "\ee14";
+}
+
+.ibm-open-panel-top::before {
+    content: "\ee15";
+}
+
+.ibm-operation::before {
+    content: "\ee16";
+}
+
+.ibm-operation-gauge::before {
+    content: "\ee17";
+}
+
+.ibm-operation-if::before {
+    content: "\ee18";
+}
+
+.ibm-operations-field::before {
+    content: "\ee19";
+}
+
+.ibm-operations-record::before {
+    content: "\ee1a";
+}
+
+.ibm-order-details::before {
+    content: "\ee1b";
+}
+
+.ibm-ordinal::before {
+    content: "\ee1c";
+}
+
+.ibm-outage::before {
+    content: "\ee1d";
+}
+
+.ibm-outlook-severe::before {
+    content: "\ee1e";
+}
+
+.ibm-overflow-menu-horizontal::before {
+    content: "\ee1f";
+}
+
+.ibm-overflow-menu-vertical::before {
+    content: "\ee20";
+}
+
+.ibm-overlay::before {
+    content: "\ee21";
+}
+
+.ibm-package::before {
+    content: "\ee22";
+}
+
+.ibm-page-break::before {
+    content: "\ee23";
+}
+
+.ibm-page-first::before {
+    content: "\ee24";
+}
+
+.ibm-page-last::before {
+    content: "\ee25";
+}
+
+.ibm-page-number::before {
+    content: "\ee26";
+}
+
+.ibm-page-scroll::before {
+    content: "\ee27";
+}
+
+.ibm-paint-brush::before {
+    content: "\ee28";
+}
+
+.ibm-paint-brush-alt::before {
+    content: "\ee29";
+}
+
+.ibm-palm-tree::before {
+    content: "\ee2a";
+}
+
+.ibm-pan-horizontal::before {
+    content: "\ee2b";
+}
+
+.ibm-pan-vertical::before {
+    content: "\ee2c";
+}
+
+.ibm-panel-expansion::before {
+    content: "\ee2d";
+}
+
+.ibm-paragraph::before {
+    content: "\ee2e";
+}
+
+.ibm-parameter::before {
+    content: "\ee2f";
+}
+
+.ibm-parent-child::before {
+    content: "\ee30";
+}
+
+.ibm-partly-cloudy::before {
+    content: "\ee31";
+}
+
+.ibm-partly-cloudy-night::before {
+    content: "\ee32";
+}
+
+.ibm-partnership::before {
+    content: "\ee33";
+}
+
+.ibm-passenger-drinks::before {
+    content: "\ee34";
+}
+
+.ibm-passenger-plus::before {
+    content: "\ee35";
+}
+
+.ibm-password::before {
+    content: "\ee36";
+}
+
+.ibm-paste::before {
+    content: "\ee37";
+}
+
+.ibm-pause::before {
+    content: "\ee38";
+}
+
+.ibm-filled-pause::before {
+    content: "\ee39";
+}
+
+.ibm-pause-future::before {
+    content: "\ee3a";
+}
+
+.ibm-pause-outline::before {
+    content: "\ee3b";
+}
+
+.ibm-filled-pause-outline::before {
+    content: "\ee3c";
+}
+
+.ibm-pause-past::before {
+    content: "\ee3d";
+}
+
+.ibm-pcn-e-node::before {
+    content: "\ee3e";
+}
+
+.ibm-pcn-military::before {
+    content: "\ee3f";
+}
+
+.ibm-pcn-p-node::before {
+    content: "\ee40";
+}
+
+.ibm-pcn-z-node::before {
+    content: "\ee41";
+}
+
+.ibm-pdf::before {
+    content: "\ee42";
+}
+
+.ibm-pdf-reference::before {
+    content: "\ee43";
+}
+
+.ibm-pedestrian::before {
+    content: "\ee44";
+}
+
+.ibm-pedestrian-child::before {
+    content: "\ee45";
+}
+
+.ibm-pedestrian-family::before {
+    content: "\ee46";
+}
+
+.ibm-pen::before {
+    content: "\ee47";
+}
+
+.ibm-pen-fountain::before {
+    content: "\ee48";
+}
+
+.ibm-pending::before {
+    content: "\ee49";
+}
+
+.ibm-filled-pending::before {
+    content: "\ee4a";
+}
+
+.ibm-percentage::before {
+    content: "\ee4b";
+}
+
+.ibm-filled-percentage::before {
+    content: "\ee4c";
+}
+
+.ibm-person::before {
+    content: "\ee4d";
+}
+
+.ibm-person-favorite::before {
+    content: "\ee4e";
+}
+
+.ibm-pest::before {
+    content: "\ee4f";
+}
+
+.ibm-pet-image-b::before {
+    content: "\ee50";
+}
+
+.ibm-pet-image-o::before {
+    content: "\ee51";
+}
+
+.ibm-phone::before {
+    content: "\ee52";
+}
+
+.ibm-phone-application::before {
+    content: "\ee53";
+}
+
+.ibm-phone-block::before {
+    content: "\ee54";
+}
+
+.ibm-filled-phone-block::before {
+    content: "\ee55";
+}
+
+.ibm-filled-phone::before {
+    content: "\ee56";
+}
+
+.ibm-phone-incoming::before {
+    content: "\ee57";
+}
+
+.ibm-filled-phone-incoming::before {
+    content: "\ee58";
+}
+
+.ibm-phone-ip::before {
+    content: "\ee59";
+}
+
+.ibm-phone-off::before {
+    content: "\ee5a";
+}
+
+.ibm-filled-phone-off::before {
+    content: "\ee5b";
+}
+
+.ibm-phone-outgoing::before {
+    content: "\ee5c";
+}
+
+.ibm-filled-phone-outgoing::before {
+    content: "\ee5d";
+}
+
+.ibm-phone-settings::before {
+    content: "\ee5e";
+}
+
+.ibm-phone-voice::before {
+    content: "\ee5f";
+}
+
+.ibm-filled-phone-voice::before {
+    content: "\ee60";
+}
+
+.ibm-phrase-sentiment::before {
+    content: "\ee61";
+}
+
+.ibm-picnic-area::before {
+    content: "\ee62";
+}
+
+.ibm-piggy-bank::before {
+    content: "\ee63";
+}
+
+.ibm-piggy-bank-slot::before {
+    content: "\ee64";
+}
+
+.ibm-pills::before {
+    content: "\ee65";
+}
+
+.ibm-pills-add::before {
+    content: "\ee66";
+}
+
+.ibm-pills-subtract::before {
+    content: "\ee67";
+}
+
+.ibm-pin::before {
+    content: "\ee68";
+}
+
+.ibm-filled-pin::before {
+    content: "\ee69";
+}
+
+.ibm-plan::before {
+    content: "\ee6a";
+}
+
+.ibm-plane::before {
+    content: "\ee6b";
+}
+
+.ibm-plane-private::before {
+    content: "\ee6c";
+}
+
+.ibm-plane-sea::before {
+    content: "\ee6d";
+}
+
+.ibm-play::before {
+    content: "\ee6e";
+}
+
+.ibm-filled-play-alt::before {
+    content: "\ee6f";
+}
+
+.ibm-filled-play::before {
+    content: "\ee70";
+}
+
+.ibm-play-outline::before {
+    content: "\ee71";
+}
+
+.ibm-filled-play-outline::before {
+    content: "\ee72";
+}
+
+.ibm-playlist::before {
+    content: "\ee73";
+}
+
+.ibm-plug::before {
+    content: "\ee74";
+}
+
+.ibm-filled-plug::before {
+    content: "\ee75";
+}
+
+.ibm-png::before {
+    content: "\ee76";
+}
+
+.ibm-point-of-presence::before {
+    content: "\ee77";
+}
+
+.ibm-pointer-text::before {
+    content: "\ee78";
+}
+
+.ibm-police::before {
+    content: "\ee79";
+}
+
+.ibm-policy::before {
+    content: "\ee7a";
+}
+
+.ibm-popup::before {
+    content: "\ee7b";
+}
+
+.ibm-port-input::before {
+    content: "\ee7c";
+}
+
+.ibm-port-output::before {
+    content: "\ee7d";
+}
+
+.ibm-portfolio::before {
+    content: "\ee7e";
+}
+
+.ibm-power::before {
+    content: "\ee7f";
+}
+
+.ibm-ppt::before {
+    content: "\ee80";
+}
+
+.ibm-presentation-file::before {
+    content: "\ee81";
+}
+
+.ibm-pressure::before {
+    content: "\ee82";
+}
+
+.ibm-filled-pressure::before {
+    content: "\ee83";
+}
+
+.ibm-filled-previous::before {
+    content: "\ee84";
+}
+
+.ibm-previous-outline::before {
+    content: "\ee85";
+}
+
+.ibm-printer::before {
+    content: "\ee86";
+}
+
+.ibm-product::before {
+    content: "\ee87";
+}
+
+.ibm-progress-bar::before {
+    content: "\ee88";
+}
+
+.ibm-progress-bar-round::before {
+    content: "\ee89";
+}
+
+.ibm-promote::before {
+    content: "\ee8a";
+}
+
+.ibm-property-relationship::before {
+    content: "\ee8b";
+}
+
+.ibm-purchase::before {
+    content: "\ee8c";
+}
+
+.ibm-qc-launch::before {
+    content: "\ee8d";
+}
+
+.ibm-qq-plot::before {
+    content: "\ee8e";
+}
+
+.ibm-qr-code::before {
+    content: "\ee8f";
+}
+
+.ibm-quadrant-plot::before {
+    content: "\ee90";
+}
+
+.ibm-query::before {
+    content: "\ee91";
+}
+
+.ibm-query-queue::before {
+    content: "\ee92";
+}
+
+.ibm-queued::before {
+    content: "\ee93";
+}
+
+.ibm-quotes::before {
+    content: "\ee94";
+}
+
+.ibm-radar::before {
+    content: "\ee95";
+}
+
+.ibm-radar-enhanced::before {
+    content: "\ee96";
+}
+
+.ibm-radar-weather::before {
+    content: "\ee97";
+}
+
+.ibm-radio::before {
+    content: "\ee98";
+}
+
+.ibm-radio-button::before {
+    content: "\ee99";
+}
+
+.ibm-radio-button-checked::before {
+    content: "\ee9a";
+}
+
+.ibm-radio-combat::before {
+    content: "\ee9b";
+}
+
+.ibm-radio-push-to-talk::before {
+    content: "\ee9c";
+}
+
+.ibm-rain::before {
+    content: "\ee9d";
+}
+
+.ibm-rain-drizzle::before {
+    content: "\ee9e";
+}
+
+.ibm-rain-drop::before {
+    content: "\ee9f";
+}
+
+.ibm-rain-heavy::before {
+    content: "\eea0";
+}
+
+.ibm-rain-scattered::before {
+    content: "\eea1";
+}
+
+.ibm-rain-scattered-night::before {
+    content: "\eea2";
+}
+
+.ibm-raw::before {
+    content: "\eea3";
+}
+
+.ibm-rd-party-connected::before {
+    content: "\eea4";
+}
+
+.ibm-receipt::before {
+    content: "\eea5";
+}
+
+.ibm-recently-viewed::before {
+    content: "\eea6";
+}
+
+.ibm-recommend::before {
+    content: "\eea7";
+}
+
+.ibm-recording::before {
+    content: "\eea8";
+}
+
+.ibm-filled-recording-alt::before {
+    content: "\eea9";
+}
+
+.ibm-filled-recording::before {
+    content: "\eeaa";
+}
+
+.ibm-recycle::before {
+    content: "\eeab";
+}
+
+.ibm-redo::before {
+    content: "\eeac";
+}
+
+.ibm-ref-evapotranspiration::before {
+    content: "\eead";
+}
+
+.ibm-reflect-horizontal::before {
+    content: "\eeae";
+}
+
+.ibm-reflect-vertical::before {
+    content: "\eeaf";
+}
+
+.ibm-region-analysis-area::before {
+    content: "\eeb0";
+}
+
+.ibm-region-analysis-volume::before {
+    content: "\eeb1";
+}
+
+.ibm-registration::before {
+    content: "\eeb2";
+}
+
+.ibm-reminder::before {
+    content: "\eeb3";
+}
+
+.ibm-reminder-medical::before {
+    content: "\eeb4";
+}
+
+.ibm-renew::before {
+    content: "\eeb5";
+}
+
+.ibm-repeat::before {
+    content: "\eeb6";
+}
+
+.ibm-repeat-one::before {
+    content: "\eeb7";
+}
+
+.ibm-replicate::before {
+    content: "\eeb8";
+}
+
+.ibm-reply::before {
+    content: "\eeb9";
+}
+
+.ibm-reply-all::before {
+    content: "\eeba";
+}
+
+.ibm-repo-artifact::before {
+    content: "\eebb";
+}
+
+.ibm-repo-source-code::before {
+    content: "\eebc";
+}
+
+.ibm-report::before {
+    content: "\eebd";
+}
+
+.ibm-report-data::before {
+    content: "\eebe";
+}
+
+.ibm-request-quote::before {
+    content: "\eebf";
+}
+
+.ibm-reset::before {
+    content: "\eec0";
+}
+
+.ibm-reset-alt::before {
+    content: "\eec1";
+}
+
+.ibm-restart::before {
+    content: "\eec2";
+}
+
+.ibm-restaurant::before {
+    content: "\eec3";
+}
+
+.ibm-restaurant-fine::before {
+    content: "\eec4";
+}
+
+.ibm-result::before {
+    content: "\eec5";
+}
+
+.ibm-result-new::before {
+    content: "\eec6";
+}
+
+.ibm-result-old::before {
+    content: "\eec7";
+}
+
+.ibm-retry-failed::before {
+    content: "\eec8";
+}
+
+.ibm-review::before {
+    content: "\eec9";
+}
+
+.ibm-rewind-10::before {
+    content: "\eeca";
+}
+
+.ibm-rewind-30::before {
+    content: "\eecb";
+}
+
+.ibm-rewind-5::before {
+    content: "\eecc";
+}
+
+.ibm-road::before {
+    content: "\eecd";
+}
+
+.ibm-road-weather::before {
+    content: "\eece";
+}
+
+.ibm-roadmap::before {
+    content: "\eecf";
+}
+
+.ibm-rocket::before {
+    content: "\eed0";
+}
+
+.ibm-rotate::before {
+    content: "\eed1";
+}
+
+.ibm-rotate-180::before {
+    content: "\eed2";
+}
+
+.ibm-rotate-360::before {
+    content: "\eed3";
+}
+
+.ibm-rotate-clockwise::before {
+    content: "\eed4";
+}
+
+.ibm-rotate-clockwise-alt::before {
+    content: "\eed5";
+}
+
+.ibm-filled-rotate-clockwise-alt::before {
+    content: "\eed6";
+}
+
+.ibm-filled-rotate-clockwise::before {
+    content: "\eed7";
+}
+
+.ibm-rotate-counterclockwise::before {
+    content: "\eed8";
+}
+
+.ibm-rotate-counterclockwise-alt::before {
+    content: "\eed9";
+}
+
+.ibm-filled-rotate-counterclockwise-alt::before {
+    content: "\eeda";
+}
+
+.ibm-filled-rotate-counterclockwise::before {
+    content: "\eedb";
+}
+
+.ibm-router::before {
+    content: "\eedc";
+}
+
+.ibm-router-voice::before {
+    content: "\eedd";
+}
+
+.ibm-router-wifi::before {
+    content: "\eede";
+}
+
+.ibm-row::before {
+    content: "\eedf";
+}
+
+.ibm-row-collapse::before {
+    content: "\eee0";
+}
+
+.ibm-row-delete::before {
+    content: "\eee1";
+}
+
+.ibm-row-expand::before {
+    content: "\eee2";
+}
+
+.ibm-row-insert::before {
+    content: "\eee3";
+}
+
+.ibm-rss::before {
+    content: "\eee4";
+}
+
+.ibm-rule::before {
+    content: "\eee5";
+}
+
+.ibm-rule-cancelled::before {
+    content: "\eee6";
+}
+
+.ibm-rule-data-quality::before {
+    content: "\eee7";
+}
+
+.ibm-rule-draft::before {
+    content: "\eee8";
+}
+
+.ibm-filled-rule::before {
+    content: "\eee9";
+}
+
+.ibm-rule-test::before {
+    content: "\eeea";
+}
+
+.ibm-ruler::before {
+    content: "\eeeb";
+}
+
+.ibm-ruler-alt::before {
+    content: "\eeec";
+}
+
+.ibm-run::before {
+    content: "\eeed";
+}
+
+.ibm-run-mirror::before {
+    content: "\eeee";
+}
+
+.ibm-s::before {
+    content: "\eeef";
+}
+
+.ibm-s-alt::before {
+    content: "\eef0";
+}
+
+.ibm-sailboat-coastal::before {
+    content: "\eef1";
+}
+
+.ibm-sailboat-offshore::before {
+    content: "\eef2";
+}
+
+.ibm-sankey-diagram::before {
+    content: "\eef3";
+}
+
+.ibm-sankey-diagram-alt::before {
+    content: "\eef4";
+}
+
+.ibm-satellite::before {
+    content: "\eef5";
+}
+
+.ibm-satellite-radar::before {
+    content: "\eef6";
+}
+
+.ibm-satellite-weather::before {
+    content: "\eef7";
+}
+
+.ibm-save::before {
+    content: "\eef8";
+}
+
+.ibm-save-annotation::before {
+    content: "\eef9";
+}
+
+.ibm-save-image::before {
+    content: "\eefa";
+}
+
+.ibm-save-model::before {
+    content: "\eefb";
+}
+
+.ibm-save-series::before {
+    content: "\eefc";
+}
+
+.ibm-scale::before {
+    content: "\eefd";
+}
+
+.ibm-scales::before {
+    content: "\eefe";
+}
+
+.ibm-scales-tipped::before {
+    content: "\eeff";
+}
+
+.ibm-scalpel::before {
+    content: "\ef00";
+}
+
+.ibm-scalpel-cursor::before {
+    content: "\ef01";
+}
+
+.ibm-scalpel-lasso::before {
+    content: "\ef02";
+}
+
+.ibm-scalpel-select::before {
+    content: "\ef03";
+}
+
+.ibm-scan::before {
+    content: "\ef04";
+}
+
+.ibm-scan-alt::before {
+    content: "\ef05";
+}
+
+.ibm-scan-disabled::before {
+    content: "\ef06";
+}
+
+.ibm-scatter-matrix::before {
+    content: "\ef07";
+}
+
+.ibm-schematics::before {
+    content: "\ef08";
+}
+
+.ibm-scis-control-tower::before {
+    content: "\ef09";
+}
+
+.ibm-scis-transparent-supply::before {
+    content: "\ef0a";
+}
+
+.ibm-scooter::before {
+    content: "\ef0b";
+}
+
+.ibm-scooter-front::before {
+    content: "\ef0c";
+}
+
+.ibm-screen::before {
+    content: "\ef0d";
+}
+
+.ibm-screen-map::before {
+    content: "\ef0e";
+}
+
+.ibm-screen-map-set::before {
+    content: "\ef0f";
+}
+
+.ibm-screen-off::before {
+    content: "\ef10";
+}
+
+.ibm-script::before {
+    content: "\ef11";
+}
+
+.ibm-script-reference::before {
+    content: "\ef12";
+}
+
+.ibm-sdk::before {
+    content: "\ef13";
+}
+
+.ibm-search::before {
+    content: "\ef14";
+}
+
+.ibm-search-advanced::before {
+    content: "\ef15";
+}
+
+.ibm-search-locate::before {
+    content: "\ef16";
+}
+
+.ibm-search-locate-mirror::before {
+    content: "\ef17";
+}
+
+.ibm-security::before {
+    content: "\ef18";
+}
+
+.ibm-security-services::before {
+    content: "\ef19";
+}
+
+.ibm-select-01::before {
+    content: "\ef1a";
+}
+
+.ibm-select-02::before {
+    content: "\ef1b";
+}
+
+.ibm-select-window::before {
+    content: "\ef1c";
+}
+
+.ibm-send::before {
+    content: "\ef1d";
+}
+
+.ibm-send-alt::before {
+    content: "\ef1e";
+}
+
+.ibm-filled-send-alt::before {
+    content: "\ef1f";
+}
+
+.ibm-send-backward::before {
+    content: "\ef20";
+}
+
+.ibm-filled-send::before {
+    content: "\ef21";
+}
+
+.ibm-send-to-back::before {
+    content: "\ef22";
+}
+
+.ibm-server-dns::before {
+    content: "\ef23";
+}
+
+.ibm-server-proxy::before {
+    content: "\ef24";
+}
+
+.ibm-server-time::before {
+    content: "\ef25";
+}
+
+.ibm-service-desk::before {
+    content: "\ef26";
+}
+
+.ibm-service-id::before {
+    content: "\ef27";
+}
+
+.ibm-session-border-control::before {
+    content: "\ef28";
+}
+
+.ibm-settings::before {
+    content: "\ef29";
+}
+
+.ibm-settings-adjust::before {
+    content: "\ef2a";
+}
+
+.ibm-settings-check::before {
+    content: "\ef2b";
+}
+
+.ibm-settings-services::before {
+    content: "\ef2c";
+}
+
+.ibm-settings-view::before {
+    content: "\ef2d";
+}
+
+.ibm-shape-except::before {
+    content: "\ef2e";
+}
+
+.ibm-shape-exclude::before {
+    content: "\ef2f";
+}
+
+.ibm-shape-intersect::before {
+    content: "\ef30";
+}
+
+.ibm-shape-join::before {
+    content: "\ef31";
+}
+
+.ibm-shape-unite::before {
+    content: "\ef32";
+}
+
+.ibm-share::before {
+    content: "\ef33";
+}
+
+.ibm-share-knowledge::before {
+    content: "\ef34";
+}
+
+.ibm-shopping-bag::before {
+    content: "\ef35";
+}
+
+.ibm-shopping-cart::before {
+    content: "\ef36";
+}
+
+.ibm-shopping-cart-arrow-down::before {
+    content: "\ef37";
+}
+
+.ibm-shopping-cart-arrow-up::before {
+    content: "\ef38";
+}
+
+.ibm-shopping-cart-clear::before {
+    content: "\ef39";
+}
+
+.ibm-shopping-cart-error::before {
+    content: "\ef3a";
+}
+
+.ibm-shopping-cart-minus::before {
+    content: "\ef3b";
+}
+
+.ibm-shopping-cart-plus::before {
+    content: "\ef3c";
+}
+
+.ibm-shopping-catalog::before {
+    content: "\ef3d";
+}
+
+.ibm-show-data-cards::before {
+    content: "\ef3e";
+}
+
+.ibm-shrink-screen::before {
+    content: "\ef3f";
+}
+
+.ibm-filled-shrink-screen::before {
+    content: "\ef40";
+}
+
+.ibm-shuffle::before {
+    content: "\ef41";
+}
+
+.ibm-shuttle::before {
+    content: "\ef42";
+}
+
+.ibm-side-panel-close::before {
+    content: "\ef43";
+}
+
+.ibm-filled-side-panel-close::before {
+    content: "\ef44";
+}
+
+.ibm-side-panel-open::before {
+    content: "\ef45";
+}
+
+.ibm-filled-side-panel-open::before {
+    content: "\ef46";
+}
+
+.ibm-sight::before {
+    content: "\ef47";
+}
+
+.ibm-sigma::before {
+    content: "\ef48";
+}
+
+.ibm-signal-strength::before {
+    content: "\ef49";
+}
+
+.ibm-sim-card::before {
+    content: "\ef4a";
+}
+
+.ibm-skill-level::before {
+    content: "\ef4b";
+}
+
+.ibm-skill-level-advanced::before {
+    content: "\ef4c";
+}
+
+.ibm-skill-level-basic::before {
+    content: "\ef4d";
+}
+
+.ibm-skill-level-intermediate::before {
+    content: "\ef4e";
+}
+
+.ibm-skip-back::before {
+    content: "\ef4f";
+}
+
+.ibm-filled-skip-back::before {
+    content: "\ef50";
+}
+
+.ibm-skip-back-outline::before {
+    content: "\ef51";
+}
+
+.ibm-filled-skip-back-outline::before {
+    content: "\ef52";
+}
+
+.ibm-skip-back-outline-solid::before {
+    content: "\ef53";
+}
+
+.ibm-filled-skip-back-solid::before {
+    content: "\ef54";
+}
+
+.ibm-skip-forward::before {
+    content: "\ef55";
+}
+
+.ibm-filled-skip-forward::before {
+    content: "\ef56";
+}
+
+.ibm-skip-forward-outline::before {
+    content: "\ef57";
+}
+
+.ibm-filled-skip-forward-outline::before {
+    content: "\ef58";
+}
+
+.ibm-skip-forward-outline-solid::before {
+    content: "\ef59";
+}
+
+.ibm-filled-skip-forward-solid::before {
+    content: "\ef5a";
+}
+
+.ibm-sleet::before {
+    content: "\ef5b";
+}
+
+.ibm-slisor::before {
+    content: "\ef5c";
+}
+
+.ibm-slm::before {
+    content: "\ef5d";
+}
+
+.ibm-smell::before {
+    content: "\ef5e";
+}
+
+.ibm-smoke::before {
+    content: "\ef5f";
+}
+
+.ibm-smoothing::before {
+    content: "\ef60";
+}
+
+.ibm-smoothing-cursor::before {
+    content: "\ef61";
+}
+
+.ibm-snooze::before {
+    content: "\ef62";
+}
+
+.ibm-snow::before {
+    content: "\ef63";
+}
+
+.ibm-snow-blizzard::before {
+    content: "\ef64";
+}
+
+.ibm-snow-density::before {
+    content: "\ef65";
+}
+
+.ibm-snow-heavy::before {
+    content: "\ef66";
+}
+
+.ibm-snow-scattered::before {
+    content: "\ef67";
+}
+
+.ibm-snow-scattered-night::before {
+    content: "\ef68";
+}
+
+.ibm-snowflake::before {
+    content: "\ef69";
+}
+
+.ibm-soccer::before {
+    content: "\ef6a";
+}
+
+.ibm-software-resource::before {
+    content: "\ef6b";
+}
+
+.ibm-software-resource-cluster::before {
+    content: "\ef6c";
+}
+
+.ibm-software-resource-resource::before {
+    content: "\ef6d";
+}
+
+.ibm-soil-moisture::before {
+    content: "\ef6e";
+}
+
+.ibm-soil-moisture-field::before {
+    content: "\ef6f";
+}
+
+.ibm-soil-moisture-global::before {
+    content: "\ef70";
+}
+
+.ibm-soil-temperature::before {
+    content: "\ef71";
+}
+
+.ibm-soil-temperature-field::before {
+    content: "\ef72";
+}
+
+.ibm-soil-temperature-global::before {
+    content: "\ef73";
+}
+
+.ibm-solar-panel::before {
+    content: "\ef74";
+}
+
+.ibm-sort-ascending::before {
+    content: "\ef75";
+}
+
+.ibm-sort-descending::before {
+    content: "\ef76";
+}
+
+.ibm-sort-remove::before {
+    content: "\ef77";
+}
+
+.ibm-spell-check::before {
+    content: "\ef78";
+}
+
+.ibm-spine-label::before {
+    content: "\ef79";
+}
+
+.ibm-split::before {
+    content: "\ef7a";
+}
+
+.ibm-split-discard::before {
+    content: "\ef7b";
+}
+
+.ibm-split-screen::before {
+    content: "\ef7c";
+}
+
+.ibm-spray-paint::before {
+    content: "\ef7d";
+}
+
+.ibm-sprout::before {
+    content: "\ef7e";
+}
+
+.ibm-sql::before {
+    content: "\ef7f";
+}
+
+.ibm-stack-limitation::before {
+    content: "\ef80";
+}
+
+.ibm-stacked-move::before {
+    content: "\ef81";
+}
+
+.ibm-stacked-scrolling-1::before {
+    content: "\ef82";
+}
+
+.ibm-stacked-scrolling-2::before {
+    content: "\ef83";
+}
+
+.ibm-stamp::before {
+    content: "\ef84";
+}
+
+.ibm-star::before {
+    content: "\ef85";
+}
+
+.ibm-filled-star::before {
+    content: "\ef86";
+}
+
+.ibm-star-half::before {
+    content: "\ef87";
+}
+
+.ibm-star-review::before {
+    content: "\ef88";
+}
+
+.ibm-status-acknowledge::before {
+    content: "\ef89";
+}
+
+.ibm-status-change::before {
+    content: "\ef8a";
+}
+
+.ibm-status-partial-fail::before {
+    content: "\ef8b";
+}
+
+.ibm-status-resolved::before {
+    content: "\ef8c";
+}
+
+.ibm-stay-inside::before {
+    content: "\ef8d";
+}
+
+.ibm-stem-leaf-plot::before {
+    content: "\ef8e";
+}
+
+.ibm-stethoscope::before {
+    content: "\ef8f";
+}
+
+.ibm-stop::before {
+    content: "\ef90";
+}
+
+.ibm-filled-stop-alt::before {
+    content: "\ef91";
+}
+
+.ibm-filled-stop::before {
+    content: "\ef92";
+}
+
+.ibm-stop-outline::before {
+    content: "\ef93";
+}
+
+.ibm-filled-stop-outline::before {
+    content: "\ef94";
+}
+
+.ibm-stop-sign::before {
+    content: "\ef95";
+}
+
+.ibm-filled-stop-sign::before {
+    content: "\ef96";
+}
+
+.ibm-storage-pool::before {
+    content: "\ef97";
+}
+
+.ibm-storage-request::before {
+    content: "\ef98";
+}
+
+.ibm-store::before {
+    content: "\ef99";
+}
+
+.ibm-storm-tracker::before {
+    content: "\ef9a";
+}
+
+.ibm-strawberry::before {
+    content: "\ef9b";
+}
+
+.ibm-stress-breath-editor::before {
+    content: "\ef9c";
+}
+
+.ibm-string-integer::before {
+    content: "\ef9d";
+}
+
+.ibm-string-text::before {
+    content: "\ef9e";
+}
+
+.ibm-study-next::before {
+    content: "\ef9f";
+}
+
+.ibm-study-previous::before {
+    content: "\efa0";
+}
+
+.ibm-study-read::before {
+    content: "\efa1";
+}
+
+.ibm-study-skip::before {
+    content: "\efa2";
+}
+
+.ibm-study-transfer::before {
+    content: "\efa3";
+}
+
+.ibm-study-unread::before {
+    content: "\efa4";
+}
+
+.ibm-study-view::before {
+    content: "\efa5";
+}
+
+.ibm-sub-volume::before {
+    content: "\efa6";
+}
+
+.ibm-subflow::before {
+    content: "\efa7";
+}
+
+.ibm-subflow-local::before {
+    content: "\efa8";
+}
+
+.ibm-subnet-acl-rules::before {
+    content: "\efa9";
+}
+
+.ibm-subtract::before {
+    content: "\efaa";
+}
+
+.ibm-subtract-alt::before {
+    content: "\efab";
+}
+
+.ibm-summary-kpi::before {
+    content: "\efac";
+}
+
+.ibm-summary-kpi-mirror::before {
+    content: "\efad";
+}
+
+.ibm-sun::before {
+    content: "\efae";
+}
+
+.ibm-sunrise::before {
+    content: "\efaf";
+}
+
+.ibm-sunset::before {
+    content: "\efb0";
+}
+
+.ibm-svg::before {
+    content: "\efb1";
+}
+
+.ibm-swim::before {
+    content: "\efb2";
+}
+
+.ibm-switch-layer-2::before {
+    content: "\efb3";
+}
+
+.ibm-switch-layer-3::before {
+    content: "\efb4";
+}
+
+.ibm-switcher::before {
+    content: "\efb5";
+}
+
+.ibm-sys-provision::before {
+    content: "\efb6";
+}
+
+.ibm-t::before {
+    content: "\efb7";
+}
+
+.ibm-t-alt::before {
+    content: "\efb8";
+}
+
+.ibm-table::before {
+    content: "\efb9";
+}
+
+.ibm-table-alias::before {
+    content: "\efba";
+}
+
+.ibm-table-built::before {
+    content: "\efbb";
+}
+
+.ibm-table-of-contents::before {
+    content: "\efbc";
+}
+
+.ibm-table-shortcut::before {
+    content: "\efbd";
+}
+
+.ibm-table-split::before {
+    content: "\efbe";
+}
+
+.ibm-tablet::before {
+    content: "\efbf";
+}
+
+.ibm-tablet-landscape::before {
+    content: "\efc0";
+}
+
+.ibm-tag::before {
+    content: "\efc1";
+}
+
+.ibm-tag-edit::before {
+    content: "\efc2";
+}
+
+.ibm-tag-export::before {
+    content: "\efc3";
+}
+
+.ibm-tag-group::before {
+    content: "\efc4";
+}
+
+.ibm-tag-import::before {
+    content: "\efc5";
+}
+
+.ibm-tag-none::before {
+    content: "\efc6";
+}
+
+.ibm-tank::before {
+    content: "\efc7";
+}
+
+.ibm-task::before {
+    content: "\efc8";
+}
+
+.ibm-task-add::before {
+    content: "\efc9";
+}
+
+.ibm-task-approved::before {
+    content: "\efca";
+}
+
+.ibm-task-asset-view::before {
+    content: "\efcb";
+}
+
+.ibm-task-complete::before {
+    content: "\efcc";
+}
+
+.ibm-task-location::before {
+    content: "\efcd";
+}
+
+.ibm-task-remove::before {
+    content: "\efce";
+}
+
+.ibm-task-settings::before {
+    content: "\efcf";
+}
+
+.ibm-task-star::before {
+    content: "\efd0";
+}
+
+.ibm-task-tools::before {
+    content: "\efd1";
+}
+
+.ibm-task-view::before {
+    content: "\efd2";
+}
+
+.ibm-taste::before {
+    content: "\efd3";
+}
+
+.ibm-taxi::before {
+    content: "\efd4";
+}
+
+.ibm-tcp-ip-service::before {
+    content: "\efd5";
+}
+
+.ibm-temperature::before {
+    content: "\efd6";
+}
+
+.ibm-temperature-celsius::before {
+    content: "\efd7";
+}
+
+.ibm-temperature-celsius-alt::before {
+    content: "\efd8";
+}
+
+.ibm-temperature-fahrenheit::before {
+    content: "\efd9";
+}
+
+.ibm-temperature-fahrenheit-alt::before {
+    content: "\efda";
+}
+
+.ibm-temperature-feels-like::before {
+    content: "\efdb";
+}
+
+.ibm-temperature-frigid::before {
+    content: "\efdc";
+}
+
+.ibm-temperature-hot::before {
+    content: "\efdd";
+}
+
+.ibm-temperature-inversion::before {
+    content: "\efde";
+}
+
+.ibm-temperature-max::before {
+    content: "\efdf";
+}
+
+.ibm-temperature-min::before {
+    content: "\efe0";
+}
+
+.ibm-temperature-water::before {
+    content: "\efe1";
+}
+
+.ibm-template::before {
+    content: "\efe2";
+}
+
+.ibm-tennis::before {
+    content: "\efe3";
+}
+
+.ibm-tennis-ball::before {
+    content: "\efe4";
+}
+
+.ibm-term::before {
+    content: "\efe5";
+}
+
+.ibm-terminal::before {
+    content: "\efe6";
+}
+
+.ibm-terminal-3270::before {
+    content: "\efe7";
+}
+
+.ibm-test-tool::before {
+    content: "\efe8";
+}
+
+.ibm-text-align-center::before {
+    content: "\efe9";
+}
+
+.ibm-text-align-justify::before {
+    content: "\efea";
+}
+
+.ibm-text-align-left::before {
+    content: "\efeb";
+}
+
+.ibm-text-align-mixed::before {
+    content: "\efec";
+}
+
+.ibm-text-align-right::before {
+    content: "\efed";
+}
+
+.ibm-text-all-caps::before {
+    content: "\efee";
+}
+
+.ibm-text-annotation-toggle::before {
+    content: "\efef";
+}
+
+.ibm-text-bold::before {
+    content: "\eff0";
+}
+
+.ibm-text-clear-format::before {
+    content: "\eff1";
+}
+
+.ibm-text-color::before {
+    content: "\eff2";
+}
+
+.ibm-text-creation::before {
+    content: "\eff3";
+}
+
+.ibm-text-fill::before {
+    content: "\eff4";
+}
+
+.ibm-text-font::before {
+    content: "\eff5";
+}
+
+.ibm-text-footnote::before {
+    content: "\eff6";
+}
+
+.ibm-text-highlight::before {
+    content: "\eff7";
+}
+
+.ibm-text-indent::before {
+    content: "\eff8";
+}
+
+.ibm-text-indent-less::before {
+    content: "\eff9";
+}
+
+.ibm-text-indent-more::before {
+    content: "\effa";
+}
+
+.ibm-text-italic::before {
+    content: "\effb";
+}
+
+.ibm-text-kerning::before {
+    content: "\effc";
+}
+
+.ibm-text-leading::before {
+    content: "\effd";
+}
+
+.ibm-text-line-spacing::before {
+    content: "\effe";
+}
+
+.ibm-text-link::before {
+    content: "\efff";
+}
+
+.ibm-text-link-analysis::before {
+    content: "\f000";
+}
+
+.ibm-text-mining::before {
+    content: "\f001";
+}
+
+.ibm-text-mining-applier::before {
+    content: "\f002";
+}
+
+.ibm-text-new-line::before {
+    content: "\f003";
+}
+
+.ibm-text-scale::before {
+    content: "\f004";
+}
+
+.ibm-text-selection::before {
+    content: "\f005";
+}
+
+.ibm-text-small-caps::before {
+    content: "\f006";
+}
+
+.ibm-text-strikethrough::before {
+    content: "\f007";
+}
+
+.ibm-text-subscript::before {
+    content: "\f008";
+}
+
+.ibm-text-superscript::before {
+    content: "\f009";
+}
+
+.ibm-text-tracking::before {
+    content: "\f00a";
+}
+
+.ibm-text-underline::before {
+    content: "\f00b";
+}
+
+.ibm-text-vertical-alignment::before {
+    content: "\f00c";
+}
+
+.ibm-text-wrap::before {
+    content: "\f00d";
+}
+
+.ibm-theater::before {
+    content: "\f00e";
+}
+
+.ibm-this-side-up::before {
+    content: "\f00f";
+}
+
+.ibm-threshold::before {
+    content: "\f010";
+}
+
+.ibm-thumbnail-1::before {
+    content: "\f011";
+}
+
+.ibm-thumbnail-2::before {
+    content: "\f012";
+}
+
+.ibm-thumbnail-preview::before {
+    content: "\f013";
+}
+
+.ibm-thumbs-down::before {
+    content: "\f014";
+}
+
+.ibm-filled-thumbs-down::before {
+    content: "\f015";
+}
+
+.ibm-thumbs-up::before {
+    content: "\f016";
+}
+
+.ibm-filled-thumbs-up::before {
+    content: "\f017";
+}
+
+.ibm-thunderstorm::before {
+    content: "\f018";
+}
+
+.ibm-thunderstorm-scattered::before {
+    content: "\f019";
+}
+
+.ibm-thunderstorm-scattered-night::before {
+    content: "\f01a";
+}
+
+.ibm-thunderstorm-severe::before {
+    content: "\f01b";
+}
+
+.ibm-thunderstorm-strong::before {
+    content: "\f01c";
+}
+
+.ibm-ticket::before {
+    content: "\f01d";
+}
+
+.ibm-tides::before {
+    content: "\f01e";
+}
+
+.ibm-tif::before {
+    content: "\f01f";
+}
+
+.ibm-time::before {
+    content: "\f020";
+}
+
+.ibm-time-plot::before {
+    content: "\f021";
+}
+
+.ibm-timer::before {
+    content: "\f022";
+}
+
+.ibm-tool-box::before {
+    content: "\f023";
+}
+
+.ibm-tool-kit::before {
+    content: "\f024";
+}
+
+.ibm-tools::before {
+    content: "\f025";
+}
+
+.ibm-tools-alt::before {
+    content: "\f026";
+}
+
+.ibm-tornado::before {
+    content: "\f027";
+}
+
+.ibm-tornado-warning::before {
+    content: "\f028";
+}
+
+.ibm-touch-1::before {
+    content: "\f029";
+}
+
+.ibm-touch-1-down::before {
+    content: "\f02a";
+}
+
+.ibm-filled-touch-1-down::before {
+    content: "\f02b";
+}
+
+.ibm-filled-touch-1::before {
+    content: "\f02c";
+}
+
+.ibm-touch-2::before {
+    content: "\f02d";
+}
+
+.ibm-filled-touch-2::before {
+    content: "\f02e";
+}
+
+.ibm-touch-interaction::before {
+    content: "\f02f";
+}
+
+.ibm-traffic-cone::before {
+    content: "\f030";
+}
+
+.ibm-traffic-event::before {
+    content: "\f031";
+}
+
+.ibm-traffic-flow::before {
+    content: "\f032";
+}
+
+.ibm-traffic-flow-incident::before {
+    content: "\f033";
+}
+
+.ibm-traffic-incident::before {
+    content: "\f034";
+}
+
+.ibm-traffic-weather-incident::before {
+    content: "\f035";
+}
+
+.ibm-train::before {
+    content: "\f036";
+}
+
+.ibm-train-heart::before {
+    content: "\f037";
+}
+
+.ibm-train-profile::before {
+    content: "\f038";
+}
+
+.ibm-train-speed::before {
+    content: "\f039";
+}
+
+.ibm-train-ticket::before {
+    content: "\f03a";
+}
+
+.ibm-train-time::before {
+    content: "\f03b";
+}
+
+.ibm-tram::before {
+    content: "\f03c";
+}
+
+.ibm-transform-binary::before {
+    content: "\f03d";
+}
+
+.ibm-transform-instructions::before {
+    content: "\f03e";
+}
+
+.ibm-transform-language::before {
+    content: "\f03f";
+}
+
+.ibm-transgender::before {
+    content: "\f040";
+}
+
+.ibm-translate::before {
+    content: "\f041";
+}
+
+.ibm-transmission-lte::before {
+    content: "\f042";
+}
+
+.ibm-transpose::before {
+    content: "\f043";
+}
+
+.ibm-trash-can::before {
+    content: "\f044";
+}
+
+.ibm-tree::before {
+    content: "\f045";
+}
+
+.ibm-tree-fall-risk::before {
+    content: "\f046";
+}
+
+.ibm-tree-view::before {
+    content: "\f047";
+}
+
+.ibm-tree-view-alt::before {
+    content: "\f048";
+}
+
+.ibm-trophy::before {
+    content: "\f049";
+}
+
+.ibm-filled-trophy::before {
+    content: "\f04a";
+}
+
+.ibm-tropical-storm::before {
+    content: "\f04b";
+}
+
+.ibm-tropical-storm-model-tracks::before {
+    content: "\f04c";
+}
+
+.ibm-tropical-storm-tracks::before {
+    content: "\f04d";
+}
+
+.ibm-tropical-warning::before {
+    content: "\f04e";
+}
+
+.ibm-tsq::before {
+    content: "\f04f";
+}
+
+.ibm-tsunami::before {
+    content: "\f050";
+}
+
+.ibm-tsv::before {
+    content: "\f051";
+}
+
+.ibm-two-factor-authentication::before {
+    content: "\f052";
+}
+
+.ibm-two-person-lift::before {
+    content: "\f053";
+}
+
+.ibm-txt::before {
+    content: "\f054";
+}
+
+.ibm-txt-reference::before {
+    content: "\f055";
+}
+
+.ibm-type-pattern::before {
+    content: "\f056";
+}
+
+.ibm-types::before {
+    content: "\f057";
+}
+
+.ibm-u1::before {
+    content: "\f058";
+}
+
+.ibm-u2::before {
+    content: "\f059";
+}
+
+.ibm-u3::before {
+    content: "\f05a";
+}
+
+.ibm-umbrella::before {
+    content: "\f05b";
+}
+
+.ibm-undefined::before {
+    content: "\f05c";
+}
+
+.ibm-filled-undefined::before {
+    content: "\f05d";
+}
+
+.ibm-undo::before {
+    content: "\f05e";
+}
+
+.ibm-ungroup-objects::before {
+    content: "\f05f";
+}
+
+.ibm-unknown::before {
+    content: "\f060";
+}
+
+.ibm-filled-unknown::before {
+    content: "\f061";
+}
+
+.ibm-unlink::before {
+    content: "\f062";
+}
+
+.ibm-unlocked::before {
+    content: "\f063";
+}
+
+.ibm-unsaved::before {
+    content: "\f064";
+}
+
+.ibm-up-to-top::before {
+    content: "\f065";
+}
+
+.ibm-update-now::before {
+    content: "\f066";
+}
+
+.ibm-upgrade::before {
+    content: "\f067";
+}
+
+.ibm-upload::before {
+    content: "\f068";
+}
+
+.ibm-usb::before {
+    content: "\f069";
+}
+
+.ibm-user::before {
+    content: "\f06a";
+}
+
+.ibm-user-access::before {
+    content: "\f06b";
+}
+
+.ibm-user-activity::before {
+    content: "\f06c";
+}
+
+.ibm-user-admin::before {
+    content: "\f06d";
+}
+
+.ibm-user-avatar::before {
+    content: "\f06e";
+}
+
+.ibm-filled-user-avatar-alt::before {
+    content: "\f06f";
+}
+
+.ibm-filled-user-avatar::before {
+    content: "\f070";
+}
+
+.ibm-user-certification::before {
+    content: "\f071";
+}
+
+.ibm-user-data::before {
+    content: "\f072";
+}
+
+.ibm-user-favorite::before {
+    content: "\f073";
+}
+
+.ibm-user-favorite-alt::before {
+    content: "\f074";
+}
+
+.ibm-filled-user-favorite-alt::before {
+    content: "\f075";
+}
+
+.ibm-filled-user::before {
+    content: "\f076";
+}
+
+.ibm-user-follow::before {
+    content: "\f077";
+}
+
+.ibm-user-identification::before {
+    content: "\f078";
+}
+
+.ibm-user-military::before {
+    content: "\f079";
+}
+
+.ibm-user-multiple::before {
+    content: "\f07a";
+}
+
+.ibm-user-online::before {
+    content: "\f07b";
+}
+
+.ibm-user-profile::before {
+    content: "\f07c";
+}
+
+.ibm-user-profile-alt::before {
+    content: "\f07d";
+}
+
+.ibm-user-role::before {
+    content: "\f07e";
+}
+
+.ibm-user-service-desk::before {
+    content: "\f07f";
+}
+
+.ibm-user-settings::before {
+    content: "\f080";
+}
+
+.ibm-user-simulation::before {
+    content: "\f081";
+}
+
+.ibm-user-speaker::before {
+    content: "\f082";
+}
+
+.ibm-user-x-ray::before {
+    content: "\f083";
+}
+
+.ibm-uv-index::before {
+    content: "\f084";
+}
+
+.ibm-uv-index-alt::before {
+    content: "\f085";
+}
+
+.ibm-filled-uv-index::before {
+    content: "\f086";
+}
+
+.ibm-value-variable::before {
+    content: "\f087";
+}
+
+.ibm-van::before {
+    content: "\f088";
+}
+
+.ibm-vegetation-asset::before {
+    content: "\f089";
+}
+
+.ibm-vehicle-api::before {
+    content: "\f08a";
+}
+
+.ibm-vehicle-connected::before {
+    content: "\f08b";
+}
+
+.ibm-vehicle-insights::before {
+    content: "\f08c";
+}
+
+.ibm-vehicle-services::before {
+    content: "\f08d";
+}
+
+.ibm-version::before {
+    content: "\f08e";
+}
+
+.ibm-vertical-view::before {
+    content: "\f08f";
+}
+
+.ibm-video::before {
+    content: "\f090";
+}
+
+.ibm-video-add::before {
+    content: "\f091";
+}
+
+.ibm-video-chat::before {
+    content: "\f092";
+}
+
+.ibm-filled-video::before {
+    content: "\f093";
+}
+
+.ibm-video-off::before {
+    content: "\f094";
+}
+
+.ibm-filled-video-off::before {
+    content: "\f095";
+}
+
+.ibm-view::before {
+    content: "\f096";
+}
+
+.ibm-filled-view::before {
+    content: "\f097";
+}
+
+.ibm-view-mode-1::before {
+    content: "\f098";
+}
+
+.ibm-view-mode-2::before {
+    content: "\f099";
+}
+
+.ibm-view-next::before {
+    content: "\f09a";
+}
+
+.ibm-view-off::before {
+    content: "\f09b";
+}
+
+.ibm-filled-view-off::before {
+    content: "\f09c";
+}
+
+.ibm-virtual-column::before {
+    content: "\f09d";
+}
+
+.ibm-virtual-column-key::before {
+    content: "\f09e";
+}
+
+.ibm-virtual-desktop::before {
+    content: "\f09f";
+}
+
+.ibm-virtual-machine::before {
+    content: "\f0a0";
+}
+
+.ibm-virtual-private-cloud::before {
+    content: "\f0a1";
+}
+
+.ibm-virtual-private-cloud-alt::before {
+    content: "\f0a2";
+}
+
+.ibm-visual-recognition::before {
+    content: "\f0a3";
+}
+
+.ibm-vlan::before {
+    content: "\f0a4";
+}
+
+.ibm-vlan-ibm::before {
+    content: "\f0a5";
+}
+
+.ibm-vmdk-disk::before {
+    content: "\f0a6";
+}
+
+.ibm-voice-activate::before {
+    content: "\f0a7";
+}
+
+.ibm-voicemail::before {
+    content: "\f0a8";
+}
+
+.ibm-volume-block-storage::before {
+    content: "\f0a9";
+}
+
+.ibm-volume-down::before {
+    content: "\f0aa";
+}
+
+.ibm-volume-down-alt::before {
+    content: "\f0ab";
+}
+
+.ibm-filled-volume-down-alt::before {
+    content: "\f0ac";
+}
+
+.ibm-filled-volume-down::before {
+    content: "\f0ad";
+}
+
+.ibm-volume-file-storage::before {
+    content: "\f0ae";
+}
+
+.ibm-volume-mute::before {
+    content: "\f0af";
+}
+
+.ibm-filled-volume-mute::before {
+    content: "\f0b0";
+}
+
+.ibm-volume-object-storage::before {
+    content: "\f0b1";
+}
+
+.ibm-volume-up::before {
+    content: "\f0b2";
+}
+
+.ibm-volume-up-alt::before {
+    content: "\f0b3";
+}
+
+.ibm-filled-volume-up-alt::before {
+    content: "\f0b4";
+}
+
+.ibm-filled-volume-up::before {
+    content: "\f0b5";
+}
+
+.ibm-vpn::before {
+    content: "\f0b6";
+}
+
+.ibm-vpn-connection::before {
+    content: "\f0b7";
+}
+
+.ibm-vpn-policy::before {
+    content: "\f0b8";
+}
+
+.ibm-wallet::before {
+    content: "\f0b9";
+}
+
+.ibm-warning::before {
+    content: "\f0ba";
+}
+
+.ibm-warning-alt::before {
+    content: "\f0bb";
+}
+
+.ibm-filled-warning-alt::before {
+    content: "\f0bc";
+}
+
+.ibm-warning-alt-inverted::before {
+    content: "\f0bd";
+}
+
+.ibm-filled-warning-alt-inverted::before {
+    content: "\f0be";
+}
+
+.ibm-filled-warning::before {
+    content: "\f0bf";
+}
+
+.ibm-warning-hex::before {
+    content: "\f0c0";
+}
+
+.ibm-filled-warning-hex::before {
+    content: "\f0c1";
+}
+
+.ibm-warning-other::before {
+    content: "\f0c2";
+}
+
+.ibm-warning-square::before {
+    content: "\f0c3";
+}
+
+.ibm-filled-warning-square::before {
+    content: "\f0c4";
+}
+
+.ibm-watch::before {
+    content: "\f0c5";
+}
+
+.ibm-watson::before {
+    content: "\f0c6";
+}
+
+.ibm-watson-machine-learning::before {
+    content: "\f0c7";
+}
+
+.ibm-wave-direction::before {
+    content: "\f0c8";
+}
+
+.ibm-wave-height::before {
+    content: "\f0c9";
+}
+
+.ibm-wave-period::before {
+    content: "\f0ca";
+}
+
+.ibm-weather-front-cold::before {
+    content: "\f0cb";
+}
+
+.ibm-weather-front-stationary::before {
+    content: "\f0cc";
+}
+
+.ibm-weather-front-warm::before {
+    content: "\f0cd";
+}
+
+.ibm-weather-station::before {
+    content: "\f0ce";
+}
+
+.ibm-webhook::before {
+    content: "\f0cf";
+}
+
+.ibm-websheet::before {
+    content: "\f0d0";
+}
+
+.ibm-wheat::before {
+    content: "\f0d1";
+}
+
+.ibm-wifi::before {
+    content: "\f0d2";
+}
+
+.ibm-wifi-bridge::before {
+    content: "\f0d3";
+}
+
+.ibm-wifi-bridge-alt::before {
+    content: "\f0d4";
+}
+
+.ibm-wifi-controller::before {
+    content: "\f0d5";
+}
+
+.ibm-wifi-not-secure::before {
+    content: "\f0d6";
+}
+
+.ibm-wifi-off::before {
+    content: "\f0d7";
+}
+
+.ibm-wifi-secure::before {
+    content: "\f0d8";
+}
+
+.ibm-wikis::before {
+    content: "\f0d9";
+}
+
+.ibm-wind-gusts::before {
+    content: "\f0da";
+}
+
+.ibm-wind-power::before {
+    content: "\f0db";
+}
+
+.ibm-wind-stream::before {
+    content: "\f0dc";
+}
+
+.ibm-window-auto::before {
+    content: "\f0dd";
+}
+
+.ibm-window-base::before {
+    content: "\f0de";
+}
+
+.ibm-window-black-saturation::before {
+    content: "\f0df";
+}
+
+.ibm-window-overlay::before {
+    content: "\f0e0";
+}
+
+.ibm-window-preset::before {
+    content: "\f0e1";
+}
+
+.ibm-windy::before {
+    content: "\f0e2";
+}
+
+.ibm-windy-dust::before {
+    content: "\f0e3";
+}
+
+.ibm-windy-snow::before {
+    content: "\f0e4";
+}
+
+.ibm-windy-strong::before {
+    content: "\f0e5";
+}
+
+.ibm-winter-warning::before {
+    content: "\f0e6";
+}
+
+.ibm-wintry-mix::before {
+    content: "\f0e7";
+}
+
+.ibm-wireless-checkout::before {
+    content: "\f0e8";
+}
+
+.ibm-wmv::before {
+    content: "\f0e9";
+}
+
+.ibm-word-cloud::before {
+    content: "\f0ea";
+}
+
+.ibm-workflow-automation::before {
+    content: "\f0eb";
+}
+
+.ibm-workspace::before {
+    content: "\f0ec";
+}
+
+.ibm-workspace-import::before {
+    content: "\f0ed";
+}
+
+.ibm-worship::before {
+    content: "\f0ee";
+}
+
+.ibm-worship-christian::before {
+    content: "\f0ef";
+}
+
+.ibm-worship-jewish::before {
+    content: "\f0f0";
+}
+
+.ibm-worship-muslim::before {
+    content: "\f0f1";
+}
+
+.ibm-x::before {
+    content: "\f0f2";
+}
+
+.ibm-x-axis::before {
+    content: "\f0f3";
+}
+
+.ibm-xls::before {
+    content: "\f0f4";
+}
+
+.ibm-xml::before {
+    content: "\f0f5";
+}
+
+.ibm-y::before {
+    content: "\f0f6";
+}
+
+.ibm-y-axis::before {
+    content: "\f0f7";
+}
+
+.ibm-z::before {
+    content: "\f0f8";
+}
+
+.ibm-z-axis::before {
+    content: "\f0f9";
+}
+
+.ibm-z-lpar::before {
+    content: "\f0fa";
+}
+
+.ibm-z-systems::before {
+    content: "\f0fb";
+}
+
+.ibm-zip::before {
+    content: "\f0fc";
+}
+
+.ibm-zip-reference::before {
+    content: "\f0fd";
+}
+
+.ibm-zoom-area::before {
+    content: "\f0fe";
+}
+
+.ibm-zoom-fit::before {
+    content: "\f0ff";
+}
+
+.ibm-zoom-in::before {
+    content: "\f100";
+}
+
+.ibm-zoom-in-area::before {
+    content: "\f101";
+}
+
+.ibm-zoom-out::before {
+    content: "\f102";
+}
+
+.ibm-zoom-out-area::before {
+    content: "\f103";
+}
+
+.ibm-zoom-pan::before {
+    content: "\f104";
+}
+
+.ibm-zoom-reset::before {
+    content: "\f105";
+}
+
+.ibm-zos::before {
+    content: "\f106";
+}
+
+.ibm-zos-sysplex::before {
+    content: "\f107";
 }

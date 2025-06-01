@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "@styles/theme.css";
 
 @layer base {
+    html {
+        @apply scheme-light-dark;
+        @apply bg-background;
+    }
 }

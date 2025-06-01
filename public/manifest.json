@@ -1,0 +1,55 @@
+{
+    "name": "Mi Roulotte",
+    "short_name": "Mi Roulotte",
+    "description": "Disfruta de los emocionantes viajes en familia que hemos realizado con nuestra caravana. Explora nuevos lugares, crea recuerdos inolvidables y vive la libertad en la carretera. ¡Nos vemos en la carretera!",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+        {
+            "sizes": "57x57",
+            "src": "/icons/57.png"
+        },
+        {
+            "sizes": "60x60",
+            "src": "/icons/60.png"
+        },
+        {
+            "sizes": "72x72",
+            "src": "/icons/72.png"
+        },
+        {
+            "sizes": "76x76",
+            "src": "/icons/76.png"
+        },
+        {
+            "sizes": "114x114",
+            "src": "/icons/114.png"
+        },
+        {
+            "sizes": "120x120",
+            "src": "/icons/120.png"
+        },
+        {
+            "sizes": "144x144",
+            "src": "/icons/144.png"
+        },
+        {
+            "sizes": "152x152",
+            "src": "/icons/152.png"
+        },
+        {
+            "sizes": "180x180",
+            "src": "/icons/180.png"
+        },
+        {
+            "sizes": "192x192",
+            "src": "/icons/192.png"
+        },
+        {
+            "sizes": "512x512",
+            "src": "/icons/512.png"
+        }
+    ],
+    "categories": ["travel", "blog", "lifestyle"],
+    "lang": "es"
+}

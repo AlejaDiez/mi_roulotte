@@ -1,0 +1,61 @@
+---
+import "@styles/globals.css";
+import type { BaseProps } from "@utils/props";
+
+export interface Props extends BaseProps {
+    title: string;
+    description?: string | null;
+    image?: string | null;
+    keywords?: string[] | null;
+}
+
+const { title, description, image, keywords, id, class: cls } = Astro.props;
+const url: string = "https://miroulotte.es";
+const name: string = "Mi Roulotte";
+const lang: string = "es";
+const author: string = "Alejandro Diez Bermejo";
+---
+
+<html {lang}>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        <title>{ title === name ? name : `${title} | ${name}` }</title>
+        { description && <meta name="description" content={description} /> }
+        <meta name="author" content={author} />
+        <link rel="canonical" href={url} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="mi-roulotte" href="/apple-touch-icon.png" />
+        <link
+            rel="mi-roulotte"
+            sizes="180x180"
+            href="/apple-touch-icon-precomposed.png" />
+        <meta http-equiv="Content-Language" content={lang} />
+        <link rel="manifest" href="/manifest.json" />
+        {
+            keywords ? (
+                <meta name="robots" content="follow, index" />
+                <meta name="googlebot" content="all" />
+                <meta name="keywords" content={[...new Set(keywords)].join(", ")} />
+            ) : (
+                <meta name="robots" content="nofollow, noindex" />
+                <meta name="googlebot" content="none" />
+            )
+        }
+        <meta property="og:url" content={Astro.url.href} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={name} />
+        <meta
+            property="og:title"
+            content={ title === name ? name : `${title} | ${name}` } />
+        { description && <meta property="og:description" content={description} /> }
+        { image && <meta property="og:image" content={image} /> }
+        { image && <meta property="og:image:alt" content={title} /> }
+        <meta name="color-scheme" content="light dark" />
+    </head>
+    <body {id} class:list={cls}>
+        <slot />
+    </body>
+</html>

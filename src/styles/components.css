@@ -290,4 +290,58 @@
         @apply animate-spin;
         @apply cursor-default select-none;
     }
+
+    /* Switch */
+    label:has(> input[type="checkbox"].switch) {
+        @apply inline-flex flex-row items-center justify-start gap-2;
+        @apply text-normal text-foreground-variant;
+        @apply select-none;
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+        }
+    }
+
+    input[type="checkbox"].switch {
+        @apply relative;
+        @apply h-5 w-8.5;
+        @apply bg-transparent;
+        @apply border-border hover:border-border-hover rounded-full border-1;
+        @apply transition-colors;
+        @apply cursor-pointer appearance-none outline-0 select-none;
+
+        &::before {
+            content: "";
+            @apply absolute top-1/2 left-0.5;
+            @apply h-3.5 w-3.5;
+            @apply bg-primary;
+            @apply rounded-full;
+            @apply -translate-y-1/2;
+            @apply transition-all;
+        }
+
+        &:checked {
+            @apply bg-primary hover:bg-primary-hover;
+            @apply border-primary hover:border-primary-hover;
+
+            &::before {
+                @apply left-4;
+                @apply bg-primary-foreground;
+            }
+        }
+
+        &:disabled {
+            @apply border-gray-20 dark:border-gray-80;
+            @apply cursor-not-allowed;
+
+            &::before {
+                @apply bg-muted-foreground-variant;
+            }
+
+            &:checked {
+                @apply bg-gray-20 dark:bg-gray-80;
+                @apply border-gray-20 dark:border-gray-80;
+            }
+        }
+    }
 }

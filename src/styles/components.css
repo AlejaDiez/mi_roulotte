@@ -206,4 +206,12 @@
             }
         }
     }
+
+    /* Link */
+    .link {
+        @apply inline-block;
+        @apply text-normal text-accent hover:text-accent-hover font-semibold;
+        @apply active:animate-shake transition-colors;
+        @apply cursor-pointer;
+    }
 }

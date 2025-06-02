@@ -273,4 +273,21 @@
             }
         }
     }
+
+    /* Spinner */
+    .spinner {
+        @apply inline-block;
+        @apply h-20 w-20;
+        @apply border-primary rounded-full border-8 border-b-transparent;
+        @apply animate-spin;
+        @apply cursor-default select-none;
+    }
+
+    .spinner-alt {
+        @apply inline-block;
+        @apply h-4 w-4;
+        @apply border-primary border-b-border rounded-full border-3;
+        @apply animate-spin;
+        @apply cursor-default select-none;
+    }
 }

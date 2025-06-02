@@ -344,4 +344,126 @@
             }
         }
     }
+
+    /* Text area */
+    label:has(> textarea.input) {
+        @apply inline-flex flex-col items-start justify-start gap-1.5;
+        @apply w-full;
+        @apply text-label text-foreground-variant;
+        @apply select-none;
+
+        &[data-helper]::after {
+            content: attr(data-helper);
+            @apply -mt-0.5;
+            @apply text-label text-muted-foreground-variant line-clamp-1 text-ellipsis;
+        }
+
+        &:has(:invalid) {
+            @apply text-red-70 dark:text-red-30;
+
+            &[data-error]::after {
+                content: attr(data-error);
+                @apply -mt-0.5;
+                @apply text-label text-red-40 dark:text-red-60 line-clamp-1 text-ellipsis;
+            }
+        }
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+
+            &::after {
+                @apply text-gray-30 dark:text-gray-70;
+            }
+        }
+    }
+
+    textarea.input {
+        @apply h-auto min-h-14 w-full;
+        @apply p-4;
+        @apply bg-muted hover:bg-muted-hover focus:bg-muted-hover;
+        @apply border-b-border hover:border-b-border-hover focus:border-b-primary-hover border-b-1;
+        @apply text-normal text-foreground placeholder:text-muted-foreground-variant text-left;
+        @apply transition-colors;
+        @apply resize-none appearance-none outline-0;
+
+        &:invalid {
+            @apply bg-red-10 dark:bg-red-90 hover:bg-red-10-hover dark:hover:bg-red-90-hover focus:bg-red-10-hover dark:focus:bg-red-90-hover;
+            @apply border-b-red-20 hover:border-b-red-20-hover dark:border-b-red-70 dark:hover:border-b-red-70-hover focus:border-b-error-hover;
+            @apply text-normal text-foreground placeholder:text-red-40 placeholder:dark:text-red-60;
+        }
+
+        &:disabled {
+            @apply bg-gray-20 dark:bg-gray-80;
+            @apply border-b-gray-30 dark:border-b-gray-70;
+            @apply text-foreground-variant placeholder:text-muted-foreground-variant;
+            @apply cursor-not-allowed select-none;
+        }
+    }
+
+    /* Text input */
+    label:has(> input[type="text"].input),
+    label:has(> input[type="email"].input),
+    label:has(> input[type="password"].input),
+    label:has(> input[type="search"].input),
+    label:has(> input[type="url"].input),
+    label:has(> input[type="tel"].input),
+    label:has(> input[type="number"].input) {
+        @apply inline-flex flex-col items-start justify-start gap-1.5;
+        @apply w-full;
+        @apply text-label text-foreground-variant;
+        @apply select-none;
+
+        &[data-helper]::after {
+            content: attr(data-helper);
+            @apply -mt-0.5;
+            @apply text-label text-muted-foreground-variant line-clamp-1 text-ellipsis;
+        }
+
+        &:has(:invalid) {
+            @apply text-red-70 dark:text-red-30;
+
+            &[data-error]::after {
+                content: attr(data-error);
+                @apply -mt-0.5;
+                @apply text-label text-red-40 dark:text-red-60 line-clamp-1 text-ellipsis;
+            }
+        }
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+
+            &::after {
+                @apply text-gray-30 dark:text-gray-70;
+            }
+        }
+    }
+
+    input[type="text"].input,
+    input[type="email"].input,
+    input[type="password"].input,
+    input[type="search"].input,
+    input[type="url"].input,
+    input[type="tel"].input,
+    input[type="number"].input {
+        @apply h-14 w-full;
+        @apply px-4;
+        @apply bg-muted hover:bg-muted-hover focus:bg-muted-hover;
+        @apply border-b-border hover:border-b-border-hover focus:border-b-primary-hover border-b-1;
+        @apply text-normal text-foreground placeholder:text-muted-foreground-variant text-left;
+        @apply transition-colors;
+        @apply appearance-none outline-0;
+
+        &:invalid {
+            @apply bg-red-10 dark:bg-red-90 hover:bg-red-10-hover dark:hover:bg-red-90-hover focus:bg-red-10-hover dark:focus:bg-red-90-hover;
+            @apply border-b-red-20 hover:border-b-red-20-hover dark:border-b-red-70 dark:hover:border-b-red-70-hover focus:border-b-error-hover;
+            @apply text-normal text-foreground placeholder:text-red-40 placeholder:dark:text-red-60;
+        }
+
+        &:disabled {
+            @apply bg-gray-20 dark:bg-gray-80;
+            @apply border-b-gray-30 dark:border-b-gray-70;
+            @apply text-foreground-variant placeholder:text-muted-foreground-variant;
+            @apply cursor-not-allowed select-none;
+        }
+    }
 }

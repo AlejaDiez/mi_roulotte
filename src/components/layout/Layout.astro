@@ -21,9 +21,10 @@ const author: string = "Alejandro Diez Bermejo";
         <meta charset="utf-8" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-        <title>{ title === name ? name : `${title} | ${name}` }</title>
-        { description && <meta name="description" content={description} /> }
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+        <title>{title === name ? name : `${title} | ${name}`}</title>
+        {description && <meta name="description" content={description} />}
         <meta name="author" content={author} />
         <link rel="canonical" href={url} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -31,17 +32,25 @@ const author: string = "Alejandro Diez Bermejo";
         <link
             rel="mi-roulotte"
             sizes="180x180"
-            href="/apple-touch-icon-precomposed.png" />
+            href="/apple-touch-icon-precomposed.png"
+        />
         <meta http-equiv="Content-Language" content={lang} />
         <link rel="manifest" href="/manifest.json" />
         {
             keywords ? (
-                <meta name="robots" content="follow, index" />
-                <meta name="googlebot" content="all" />
-                <meta name="keywords" content={[...new Set(keywords)].join(", ")} />
+                <>
+                    <meta name="robots" content="follow, index" />
+                    <meta name="googlebot" content="all" />
+                    <meta
+                        name="keywords"
+                        content={[...new Set(keywords)].join(", ")}
+                    />
+                </>
             ) : (
-                <meta name="robots" content="nofollow, noindex" />
-                <meta name="googlebot" content="none" />
+                <>
+                    <meta name="robots" content="nofollow, noindex" />
+                    <meta name="googlebot" content="none" />
+                </>
             )
         }
         <meta property="og:url" content={Astro.url.href} />
@@ -49,13 +58,20 @@ const author: string = "Alejandro Diez Bermejo";
         <meta property="og:site_name" content={name} />
         <meta
             property="og:title"
-            content={ title === name ? name : `${title} | ${name}` } />
-        { description && <meta property="og:description" content={description} /> }
-        { image && <meta property="og:image" content={image} /> }
-        { image && <meta property="og:image:alt" content={title} /> }
+            content={title === name ? name : `${title} | ${name}`}
+        />
+        {
+            description && (
+                <meta property="og:description" content={description} />
+            )
+        }
+        {image && <meta property="og:image" content={image} />}
+        {image && <meta property="og:image:alt" content={title} />}
         <meta name="color-scheme" content="light dark" />
-    </head>
-    <body {id} class:list={cls}>
+        <script>
+            import "@utils/slider.ts";
+        </script>
+    </head><body {id} class:list={cls}>
         <slot />
     </body>
 </html>

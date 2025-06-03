@@ -1,0 +1,79 @@
+@utility text-title {
+    @apply text-foreground font-sans text-5xl leading-[1.18] font-bold tracking-normal not-italic sm:text-6xl md:text-7xl;
+}
+
+@utility text-subtitle {
+    @apply text-foreground font-serif text-xl font-medium tracking-normal not-italic md:text-2xl;
+}
+
+@utility text-headline {
+    @apply text-foreground font-sans text-xl font-semibold tracking-normal not-italic;
+}
+
+@utility text-normal {
+    @apply text-foreground-variant font-sans text-base font-normal tracking-normal not-italic;
+}
+
+@utility text-caption {
+    @apply text-foreground-variant font-sans text-sm font-normal tracking-wider not-italic;
+}
+
+@utility text-label {
+    @apply text-foreground-variant font-sans text-xs font-normal tracking-widest not-italic;
+}
+
+@utility icon {
+    @apply text-foreground-variant font-icon text-xl leading-none font-normal normal-case not-italic antialiased;
+}
+
+@utility icon-alt {
+    @apply text-foreground-variant font-icon text-sm leading-none font-normal normal-case not-italic antialiased;
+}
+
+@utility aspect-portrait {
+    aspect-ratio: 3 / 4;
+}
+
+@utility aspect-landscape {
+    aspect-ratio: 4 / 3;
+}
+
+@utility animate-shake {
+    animation: 1s ease shake;
+}
+
+@keyframes shake {
+    0%,
+    11.1%,
+    to {
+        transform: translateZ(0);
+    }
+
+    22.2% {
+        transform: skewX(-12.5deg) skewY(-12.5deg);
+    }
+
+    33.3% {
+        transform: skewX(6.25deg) skewY(6.25deg);
+    }
+
+    44.4% {
+        transform: skewX(-3.125deg) skewY(-3.125deg);
+    }
+
+    55.5% {
+        transform: skewX(1.5625deg) skewY(1.5625deg);
+    }
+
+    66.6% {
+        transform: skewX(-0.78125deg) skewY(-0.78125deg);
+    }
+
+    77.7% {
+        transform: skewX(0.390625deg) skewY(0.390625deg);
+    }
+
+    88.8% {
+        transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+    }
+}

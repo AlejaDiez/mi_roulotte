@@ -1,0 +1,469 @@
+@layer components {
+    /* Button */
+    .button {
+        @apply inline-flex items-center justify-center gap-2;
+        @apply h-14 max-h-14 min-h-14 min-w-14 px-6;
+        @apply text-normal text-foreground text-center;
+        @apply transition-colors;
+        @apply cursor-pointer appearance-none outline-0 select-none;
+
+        & > i {
+            @apply icon text-current;
+        }
+
+        &:has(i:first-child) {
+            @apply pl-4.5;
+        }
+
+        &:has(i:last-child) {
+            @apply pr-4.5;
+        }
+
+        /* Fill style */
+        &.button-fill-primary {
+            @apply bg-primary hover:bg-primary-hover;
+            @apply text-primary-foreground;
+        }
+
+        &.button-fill-muted {
+            @apply bg-muted hover:bg-muted-hover;
+            @apply text-muted-foreground;
+        }
+
+        &.button-fill-accent {
+            @apply bg-accent hover:bg-accent-hover;
+            @apply text-accent-foreground;
+        }
+
+        &.button-fill-destructive {
+            @apply bg-error hover:bg-error-hover;
+            @apply text-error-foreground;
+        }
+
+        /* Outline style */
+        &.button-outline-primary,
+        &.button-outline-muted,
+        &.button-outline-accent,
+        &.button-outline-destructive {
+            @apply px-[23px];
+            @apply border-1;
+
+            &:has(i:first-child) {
+                @apply pl-[17px];
+            }
+
+            &:has(i:last-child) {
+                @apply pr-[17px];
+            }
+        }
+
+        &.button-outline-primary {
+            @apply hover:bg-primary-hover;
+            @apply border-primary hover:border-primary-hover;
+            @apply text-primary hover:text-primary-foreground;
+        }
+
+        &.button-outline-muted {
+            @apply hover:bg-muted-hover;
+            @apply border-muted hover:border-muted-hover;
+            @apply text-muted-foreground;
+        }
+
+        &.button-outline-accent {
+            @apply hover:bg-accent-hover;
+            @apply border-accent hover:border-accent-hover;
+            @apply text-accent hover:text-accent-foreground;
+        }
+
+        &.button-outline-destructive {
+            @apply hover:bg-error-hover;
+            @apply border-error hover:border-error-hover;
+            @apply text-error hover:text-error-foreground;
+        }
+
+        /* Text style */
+        &.button-primary {
+            @apply text-primary hover:text-primary-hover;
+        }
+
+        &.button-muted {
+            @apply text-muted-foreground-variant hover:text-gray-40-hover dark:hover:text-gray-60-hover;
+        }
+
+        &.button-accent {
+            @apply text-accent hover:text-accent-hover;
+        }
+
+        &.button-destructive {
+            @apply text-error hover:text-error-hover;
+        }
+
+        /* Disabled style */
+        &:disabled {
+            @apply text-muted-foreground-variant;
+            @apply cursor-not-allowed;
+
+            &.button-fill-primary,
+            &.button-fill-muted,
+            &.button-fill-accent,
+            &.button-fill-destructive {
+                @apply bg-gray-20 dark:bg-gray-80;
+            }
+
+            &.button-outline-primary,
+            &.button-outline-muted,
+            &.button-outline-accent,
+            &.button-outline-destructive {
+                @apply bg-transparent;
+                @apply border-muted-foreground-variant;
+            }
+        }
+    }
+
+    /* Card */
+    .card {
+        @apply flex flex-col content-start justify-start gap-2;
+        @apply w-64;
+        @apply cursor-pointer select-none;
+
+        > div {
+            @apply aspect-portrait w-full;
+            @apply bg-muted;
+            @apply overflow-hidden;
+
+            img {
+                @apply h-full w-full object-cover;
+                @apply border-none outline-0;
+                @apply transition-transform duration-300 ease-in-out;
+            }
+        }
+
+        > span {
+            @apply w-full;
+            @apply text-normal text-muted-foreground-variant line-clamp-2 text-left text-ellipsis;
+            @apply transition-colors duration-300 ease-in-out;
+        }
+
+        &:hover {
+            > div img {
+                @apply scale-110;
+            }
+
+            > span {
+                @apply text-primary;
+            }
+        }
+    }
+
+    /* Checkbox */
+    label:has(> input[type="checkbox"].checkbox) {
+        @apply inline-flex flex-row items-center justify-start gap-2;
+        @apply text-normal text-foreground-variant;
+        @apply select-none;
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+        }
+    }
+
+    input[type="checkbox"].checkbox {
+        @apply relative;
+        @apply h-5 w-5;
+        @apply bg-transparent;
+        @apply border-border hover:border-border-hover rounded-full border-1;
+        @apply transition-colors;
+        @apply cursor-pointer appearance-none outline-0 select-none;
+
+        &::before {
+            content: "\ea38";
+            @apply absolute top-1/2 left-1/2;
+            @apply text-primary-foreground icon-alt;
+            @apply opacity-0;
+            @apply -translate-1/2;
+            @apply transition-opacity;
+        }
+
+        &:checked {
+            @apply bg-primary hover:bg-primary-hover;
+            @apply border-primary hover:border-primary-hover;
+
+            &::before {
+                @apply opacity-100;
+            }
+        }
+
+        &:disabled {
+            @apply border-gray-20 dark:border-gray-80;
+            @apply cursor-not-allowed;
+
+            &:checked {
+                @apply bg-gray-20 dark:bg-gray-80;
+                @apply border-gray-20 dark:border-gray-80;
+
+                &::before {
+                    @apply text-muted-foreground-variant;
+                }
+            }
+        }
+    }
+
+    /* Link */
+    .link {
+        @apply inline-block;
+        @apply text-normal text-accent hover:text-accent-hover font-semibold;
+        @apply active:animate-shake transition-colors;
+        @apply cursor-pointer;
+    }
+
+    /* Slider */
+    label:has(> input[type="range"].slider) {
+        @apply inline-flex flex-row items-center justify-start gap-2;
+        @apply w-full;
+        @apply text-normal text-foreground-variant lining-nums tabular-nums;
+        @apply select-none;
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+        }
+    }
+
+    input[type="range"].slider {
+        @apply h-0.5 w-full;
+        background: linear-gradient(
+            to right,
+            transparent 0.625rem,
+            var(--color-primary) 0.625rem,
+            var(--color-primary) min(var(--progress, 0%), calc(100% - 0.625rem)),
+            var(--color-border) min(var(--progress, 0%), calc(100% - 0.625rem)),
+            var(--color-border) calc(100% - 0.625rem),
+            transparent calc(100% - 0.625rem)
+        );
+        @apply cursor-pointer appearance-none outline-0 select-none;
+
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+            @apply h-5 w-5;
+            @apply bg-primary hover:bg-primary-hover;
+            @apply rounded-full;
+            @apply active:scale-105;
+            @apply transition-all;
+            @apply cursor-grab appearance-none outline-0 select-none active:cursor-grabbing;
+        }
+
+        &:disabled {
+            background: linear-gradient(
+                to right,
+                transparent 0.625rem,
+                var(--color-muted-foreground-variant) 0.625rem,
+                var(--color-muted-foreground-variant)
+                    min(var(--progress, 0%), calc(100% - 0.625rem)),
+                light-dark(var(--color-gray-20), var(--color-gray-80))
+                    min(var(--progress, 0%), calc(100% - 0.625rem)),
+                light-dark(var(--color-gray-20), var(--color-gray-80))
+                    calc(100% - 0.625rem),
+                transparent calc(100% - 0.625rem)
+            );
+            @apply cursor-not-allowed;
+
+            &::-webkit-slider-thumb,
+            &::-moz-range-thumb {
+                @apply bg-muted-foreground-variant;
+                @apply scale-none;
+                @apply cursor-not-allowed;
+            }
+        }
+    }
+
+    /* Spinner */
+    .spinner {
+        @apply inline-block;
+        @apply h-20 w-20;
+        @apply border-primary rounded-full border-8 border-b-transparent;
+        @apply animate-spin;
+        @apply cursor-default select-none;
+    }
+
+    .spinner-alt {
+        @apply inline-block;
+        @apply h-4 w-4;
+        @apply border-primary border-b-border rounded-full border-3;
+        @apply animate-spin;
+        @apply cursor-default select-none;
+    }
+
+    /* Switch */
+    label:has(> input[type="checkbox"].switch) {
+        @apply inline-flex flex-row items-center justify-start gap-2;
+        @apply text-normal text-foreground-variant;
+        @apply select-none;
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+        }
+    }
+
+    input[type="checkbox"].switch {
+        @apply relative;
+        @apply h-5 w-8.5;
+        @apply bg-transparent;
+        @apply border-border hover:border-border-hover rounded-full border-1;
+        @apply transition-colors;
+        @apply cursor-pointer appearance-none outline-0 select-none;
+
+        &::before {
+            content: "";
+            @apply absolute top-1/2 left-0.5;
+            @apply h-3.5 w-3.5;
+            @apply bg-primary;
+            @apply rounded-full;
+            @apply -translate-y-1/2;
+            @apply transition-all;
+        }
+
+        &:checked {
+            @apply bg-primary hover:bg-primary-hover;
+            @apply border-primary hover:border-primary-hover;
+
+            &::before {
+                @apply left-4;
+                @apply bg-primary-foreground;
+            }
+        }
+
+        &:disabled {
+            @apply border-gray-20 dark:border-gray-80;
+            @apply cursor-not-allowed;
+
+            &::before {
+                @apply bg-muted-foreground-variant;
+            }
+
+            &:checked {
+                @apply bg-gray-20 dark:bg-gray-80;
+                @apply border-gray-20 dark:border-gray-80;
+            }
+        }
+    }
+
+    /* Text area */
+    label:has(> textarea.input) {
+        @apply inline-flex flex-col items-start justify-start gap-1.5;
+        @apply w-full;
+        @apply text-label text-foreground-variant;
+        @apply select-none;
+
+        &[data-helper]::after {
+            content: attr(data-helper);
+            @apply -mt-0.5;
+            @apply text-label text-muted-foreground-variant line-clamp-1 text-ellipsis;
+        }
+
+        &:has(:invalid) {
+            @apply text-red-70 dark:text-red-30;
+
+            &[data-error]::after {
+                content: attr(data-error);
+                @apply -mt-0.5;
+                @apply text-label text-red-40 dark:text-red-60 line-clamp-1 text-ellipsis;
+            }
+        }
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+
+            &::after {
+                @apply text-gray-30 dark:text-gray-70;
+            }
+        }
+    }
+
+    textarea.input {
+        @apply h-auto min-h-14 w-full;
+        @apply p-4;
+        @apply bg-muted hover:bg-muted-hover focus:bg-muted-hover;
+        @apply border-b-border hover:border-b-border-hover focus:border-b-primary-hover border-b-1;
+        @apply text-normal text-foreground placeholder:text-muted-foreground-variant text-left;
+        @apply transition-colors;
+        @apply resize-none appearance-none outline-0;
+
+        &:invalid {
+            @apply bg-red-10 dark:bg-red-90 hover:bg-red-10-hover dark:hover:bg-red-90-hover focus:bg-red-10-hover dark:focus:bg-red-90-hover;
+            @apply border-b-red-20 hover:border-b-red-20-hover dark:border-b-red-70 dark:hover:border-b-red-70-hover focus:border-b-error-hover;
+            @apply text-normal text-foreground placeholder:text-red-40 placeholder:dark:text-red-60;
+        }
+
+        &:disabled {
+            @apply bg-gray-20 dark:bg-gray-80;
+            @apply border-b-gray-30 dark:border-b-gray-70;
+            @apply text-foreground-variant placeholder:text-muted-foreground-variant;
+            @apply cursor-not-allowed select-none;
+        }
+    }
+
+    /* Text input */
+    label:has(> input[type="text"].input),
+    label:has(> input[type="email"].input),
+    label:has(> input[type="password"].input),
+    label:has(> input[type="search"].input),
+    label:has(> input[type="url"].input),
+    label:has(> input[type="tel"].input),
+    label:has(> input[type="number"].input) {
+        @apply inline-flex flex-col items-start justify-start gap-1.5;
+        @apply w-full;
+        @apply text-label text-foreground-variant;
+        @apply select-none;
+
+        &[data-helper]::after {
+            content: attr(data-helper);
+            @apply -mt-0.5;
+            @apply text-label text-muted-foreground-variant line-clamp-1 text-ellipsis;
+        }
+
+        &:has(:invalid) {
+            @apply text-red-70 dark:text-red-30;
+
+            &[data-error]::after {
+                content: attr(data-error);
+                @apply -mt-0.5;
+                @apply text-label text-red-40 dark:text-red-60 line-clamp-1 text-ellipsis;
+            }
+        }
+
+        &:has(:disabled) {
+            @apply text-muted-foreground-variant;
+
+            &::after {
+                @apply text-gray-30 dark:text-gray-70;
+            }
+        }
+    }
+
+    input[type="text"].input,
+    input[type="email"].input,
+    input[type="password"].input,
+    input[type="search"].input,
+    input[type="url"].input,
+    input[type="tel"].input,
+    input[type="number"].input {
+        @apply h-14 w-full;
+        @apply px-4;
+        @apply bg-muted hover:bg-muted-hover focus:bg-muted-hover;
+        @apply border-b-border hover:border-b-border-hover focus:border-b-primary-hover border-b-1;
+        @apply text-normal text-foreground placeholder:text-muted-foreground-variant text-left;
+        @apply transition-colors;
+        @apply appearance-none outline-0;
+
+        &:invalid {
+            @apply bg-red-10 dark:bg-red-90 hover:bg-red-10-hover dark:hover:bg-red-90-hover focus:bg-red-10-hover dark:focus:bg-red-90-hover;
+            @apply border-b-red-20 hover:border-b-red-20-hover dark:border-b-red-70 dark:hover:border-b-red-70-hover focus:border-b-error-hover;
+            @apply text-normal text-foreground placeholder:text-red-40 placeholder:dark:text-red-60;
+        }
+
+        &:disabled {
+            @apply bg-gray-20 dark:bg-gray-80;
+            @apply border-b-gray-30 dark:border-b-gray-70;
+            @apply text-foreground-variant placeholder:text-muted-foreground-variant;
+            @apply cursor-not-allowed select-none;
+        }
+    }
+}

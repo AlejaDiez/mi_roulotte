@@ -1,0 +1,148 @@
+@layer components {
+    /* Button */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2;
+        @apply h-14 max-h-14 min-h-14 min-w-14 px-6;
+        @apply rounded-none;
+        @apply text-normal text-foreground text-center;
+        @apply transition-colors;
+        @apply cursor-pointer select-none disabled:cursor-not-allowed;
+
+        & > i {
+            @apply icon text-current;
+        }
+
+        &:has(i:first-child) {
+            @apply pl-4.5;
+        }
+
+        &:has(i:last-child) {
+            @apply pr-4.5;
+        }
+
+        /* Primary */
+        &.btn-primary {
+            @apply text-primary hover:text-primary-hover;
+        }
+
+        &.btn-fill-primary {
+            @apply bg-primary hover:bg-primary-hover;
+            @apply text-primary-foreground;
+        }
+
+        &.btn-outline-primary {
+            @apply px-[23px];
+            @apply hover:bg-primary-hover;
+            @apply border-primary hover:border-primary-hover border-1;
+            @apply text-primary hover:text-primary-foreground;
+
+            &:has(i:first-child) {
+                @apply pl-[17px];
+            }
+
+            &:has(i:last-child) {
+                @apply pr-[17px];
+            }
+        }
+
+        /* Muted */
+        &.btn-muted {
+            @apply text-muted-foreground-variant hover:text-gray-40-hover dark:hover:text-gray-60-hover;
+        }
+
+        &.btn-fill-muted {
+            @apply bg-muted hover:bg-muted-hover;
+            @apply text-muted-foreground;
+        }
+
+        &.btn-outline-muted {
+            @apply px-[23px];
+            @apply hover:bg-muted-hover;
+            @apply border-muted hover:border-muted-hover border-1;
+            @apply text-muted-foreground;
+
+            &:has(i:first-child) {
+                @apply pl-[17px];
+            }
+
+            &:has(i:last-child) {
+                @apply pr-[17px];
+            }
+        }
+
+        /* Accent */
+        &.btn-accent {
+            @apply text-accent hover:text-accent-hover;
+        }
+
+        &.btn-fill-accent {
+            @apply bg-accent hover:bg-accent-hover;
+            @apply text-accent-foreground;
+        }
+
+        &.btn-outline-accent {
+            @apply px-[23px];
+            @apply hover:bg-accent-hover;
+            @apply border-accent hover:border-accent-hover border-1;
+            @apply text-accent hover:text-accent-foreground;
+
+            &:has(i:first-child) {
+                @apply pl-[17px];
+            }
+
+            &:has(i:last-child) {
+                @apply pr-[17px];
+            }
+        }
+
+        /* Destructive */
+        &.btn-destructive {
+            @apply text-error hover:text-error-hover;
+        }
+
+        &.btn-fill-destructive {
+            @apply bg-error hover:bg-error-hover;
+            @apply text-error-foreground;
+        }
+
+        &.btn-outline-destructive {
+            @apply px-[23px];
+            @apply hover:bg-error-hover;
+            @apply border-error hover:border-error-hover border-1;
+            @apply text-error hover:text-error-foreground;
+
+            &:has(i:first-child) {
+                @apply pl-[17px];
+            }
+
+            &:has(i:last-child) {
+                @apply pr-[17px];
+            }
+        }
+
+        /* Disabled */
+        &:disabled.btn-primary,
+        &:disabled.btn-muted,
+        &:disabled.btn-accent,
+        &:disabled.btn-destructive {
+            @apply text-muted-foreground-variant;
+        }
+
+        &:disabled.btn-fill-primary,
+        &:disabled.btn-fill-muted,
+        &:disabled.btn-fill-accent,
+        &:disabled.btn-fill-destructive {
+            @apply bg-gray-20 dark:bg-gray-80;
+            @apply text-muted-foreground-variant;
+        }
+
+        &:disabled.btn-outline-primary,
+        &:disabled.btn-outline-muted,
+        &:disabled.btn-outline-accent,
+        &:disabled.btn-outline-destructive {
+            @apply bg-transparent;
+            @apply border-muted-foreground-variant;
+            @apply text-muted-foreground-variant;
+        }
+    }
+}

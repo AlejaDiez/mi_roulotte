@@ -1,4 +1,9 @@
 @theme {
+    /* Font variables */
+    --font-sans: "IBM Plex Sans", sans-serif;
+    --font-serif: "IBM Plex Serif", serif;
+    --font-icon: "IBM Carbon Icons";
+
     /* Color variables */
     --color-red-*: initial;
     --color-red-10: #fff1f1;
@@ -267,7 +272,7 @@
     --color-black: #000000;
     --color-black-hover: #212121;
     --color-transparent: transparent;
-    
+
     /* Color styles */
     --color-background: light-dark(var(--color-white), var(--color-gray-100));
     --color-background-hover: light-dark(

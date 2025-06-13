@@ -1,5 +1,8 @@
 @import "tailwindcss";
-@import "./theme.css" layer(theme);
+@import "./typography.css";
+@import "./theme.css";
+@import "./utilities.css";
 
 @layer base {
+
 }

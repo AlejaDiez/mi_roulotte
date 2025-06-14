@@ -6,7 +6,7 @@
         @apply rounded-none;
         @apply text-normal text-foreground text-center;
         @apply transition-colors;
-        @apply cursor-pointer select-none disabled:cursor-not-allowed;
+        @apply cursor-pointer appearance-none outline-0 select-none disabled:cursor-not-allowed;
 
         & > i {
             @apply icon text-current;
@@ -198,7 +198,7 @@
         @apply bg-transparent;
         @apply border-border hover:border-border-hover rounded-full border-1;
         @apply transition-colors;
-        @apply cursor-pointer appearance-none select-none disabled:cursor-not-allowed;
+        @apply cursor-pointer appearance-none outline-0 select-none disabled:cursor-not-allowed;
 
         &::before {
             content: "\ea38";
@@ -256,6 +256,64 @@
             > img {
                 @apply opacity-0;
                 @apply scale-110;
+            }
+        }
+    }
+
+    /* Slider */
+    label:has(> input[type="range"].slider) {
+        @apply inline-flex flex-row items-center justify-start gap-2;
+        @apply w-full;
+        @apply text-normal text-foreground-variant;
+        @apply select-none;
+    }
+
+    label:has(> input[type="range"].slider:disabled) {
+        @apply text-muted-foreground-variant;
+    }
+
+    input[type="range"].slider {
+        @apply h-0.5 w-full;
+        background: linear-gradient(
+            to right,
+            transparent 0.625rem,
+            var(--color-primary) 0.625rem,
+            var(--color-primary) min(var(--progress, 0%), calc(100% - 0.625rem)),
+            var(--color-border) min(var(--progress, 0%), calc(100% - 0.625rem)),
+            var(--color-border) calc(100% - 0.625rem),
+            transparent calc(100% - 0.625rem)
+        );
+        @apply cursor-pointer appearance-none outline-0 select-none disabled:cursor-not-allowed;
+
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+            @apply h-5 w-5;
+            @apply bg-primary hover:bg-primary-hover;
+            @apply rounded-full;
+            @apply active:scale-105;
+            @apply transition-all;
+            @apply cursor-grab appearance-none outline-0 select-none active:cursor-grabbing disabled:cursor-not-allowed;
+        }
+
+        &:disabled {
+            background: linear-gradient(
+                to right,
+                transparent 0.625rem,
+                var(--color-muted-foreground-variant) 0.625rem,
+                var(--color-muted-foreground-variant)
+                    min(var(--progress, 0%), calc(100% - 0.625rem)),
+                light-dark(var(--color-gray-20), var(--color-gray-80))
+                    min(var(--progress, 0%), calc(100% - 0.625rem)),
+                light-dark(var(--color-gray-20), var(--color-gray-80))
+                    calc(100% - 0.625rem),
+                transparent calc(100% - 0.625rem)
+            );
+
+            &::-webkit-slider-thumb,
+            &::-moz-range-thumb {
+                @apply bg-muted-foreground-variant;
+                @apply scale-none;
+                @apply cursor-not-allowed;
             }
         }
     }

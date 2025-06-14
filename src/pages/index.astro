@@ -1,13 +1,23 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout>
-    <div class="img w-96">
-        <img
-            src="https://content-viajes.nationalgeographic.com.es/medio/2024/05/22/noruega_5f291173_240522130124_1280x772.jpg"
-            alt="Lofoten"
-        />
-        <span>Image caption</span>
-    </div>
+    <input type="range" min="0" max="100" value="50" class="slider" />
+    <label id="slider">
+        <input type="range" min="0" max="100" value="50" class="slider" />
+        <div></div>
+    </label>
 </Layout>
+
+<script>
+    const slider = document.querySelector("#slider");
+    const range = slider!.querySelector(
+        "input[type='range']"
+    ) as HTMLInputElement;
+    const label = slider!.querySelector("div") as HTMLDivElement;
+    const update = () => (label.textContent = range.value + "%");
+
+    range.addEventListener("input", update);
+    update();
+</script>

@@ -3,21 +3,6 @@ import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout>
-    <input type="range" min="0" max="100" value="50" class="slider" />
-    <label id="slider">
-        <input type="range" min="0" max="100" value="50" class="slider" />
-        <div></div>
-    </label>
+    <span class="spinner"></span>
+    <span class="spinner-alt"></span>
 </Layout>
-
-<script>
-    const slider = document.querySelector("#slider");
-    const range = slider!.querySelector(
-        "input[type='range']"
-    ) as HTMLInputElement;
-    const label = slider!.querySelector("div") as HTMLDivElement;
-    const update = () => (label.textContent = range.value + "%");
-
-    range.addEventListener("input", update);
-    update();
-</script>

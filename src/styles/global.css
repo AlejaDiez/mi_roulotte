@@ -1,4 +1,13 @@
 @import "tailwindcss";
+@import "./typography.css";
+@import "./theme.css";
+@import "./utilities.css";
+@import "./components.css" layer(components);
 
 @layer base {
+    html {
+        @apply scheme-light-dark;
+        @apply bg-background;
+        @apply text-normal;
+    }
 }

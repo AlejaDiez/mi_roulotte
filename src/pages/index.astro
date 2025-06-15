@@ -3,9 +3,15 @@ import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout>
-    <input type="checkbox" class="switch" />
-    <label>
-        <input type="checkbox" class="switch" />
-        Label
-    </label>
+    <div class="flex flex-col gap-6">
+        <label data-helper="Help text" data-error="Error" class="w-96">
+            Label
+            <input type="text" placeholder="Placeholder" class="input" />
+        </label>
+        <label data-helper="Help text" data-error="Error" class="w-2xl">
+            Label
+            <textarea rows="8" placeholder="Placeholder" class="input"
+            ></textarea>
+        </label>
+    </div>
 </Layout>

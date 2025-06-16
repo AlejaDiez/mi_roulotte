@@ -1,0 +1,20 @@
+{
+    "cssDeclarationSorter": "concentric-css",
+    "overrides": [
+        {
+            "files": "*.astro",
+            "options": {
+                "parser": "astro"
+            }
+        }
+    ],
+    "plugins": [
+        "prettier-plugin-astro",
+        "prettier-plugin-css-order",
+        "prettier-plugin-organize-imports",
+        "prettier-plugin-tailwindcss"
+    ],
+    "tabWidth": 4,
+    "tailwindAttributes": ["class", "class:list"],
+    "useTabs": false
+}

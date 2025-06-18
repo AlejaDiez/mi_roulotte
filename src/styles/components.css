@@ -1,0 +1,122 @@
+@layer components {
+    /* Button */
+    .button {
+        @apply inline-flex items-center justify-center gap-2;
+        @apply h-14 max-h-14 min-h-14 min-w-14 px-6;
+        @apply text-normal text-foreground text-center;
+        @apply transition-colors;
+        @apply cursor-pointer appearance-none outline-0 select-none;
+
+        & > i {
+            @apply icon text-current;
+        }
+
+        &:has(i:first-child) {
+            @apply pl-4.5;
+        }
+
+        &:has(i:last-child) {
+            @apply pr-4.5;
+        }
+
+        /* Fill style */
+        &.button-fill-primary {
+            @apply bg-primary hover:bg-primary-hover;
+            @apply text-primary-foreground;
+        }
+
+        &.button-fill-muted {
+            @apply bg-muted hover:bg-muted-hover;
+            @apply text-muted-foreground;
+        }
+
+        &.button-fill-accent {
+            @apply bg-accent hover:bg-accent-hover;
+            @apply text-accent-foreground;
+        }
+
+        &.button-fill-destructive {
+            @apply bg-error hover:bg-error-hover;
+            @apply text-error-foreground;
+        }
+
+        /* Outline style */
+        &.button-outline-primary,
+        &.button-outline-muted,
+        &.button-outline-accent,
+        &.button-outline-destructive {
+            @apply px-[23px];
+            @apply border-1;
+
+            &:has(i:first-child) {
+                @apply pl-[17px];
+            }
+
+            &:has(i:last-child) {
+                @apply pr-[17px];
+            }
+        }
+
+        &.button-outline-primary {
+            @apply hover:bg-primary-hover;
+            @apply border-primary hover:border-primary-hover;
+            @apply text-primary hover:text-primary-foreground;
+        }
+
+        &.button-outline-muted {
+            @apply hover:bg-muted-hover;
+            @apply border-muted hover:border-muted-hover;
+            @apply text-muted-foreground;
+        }
+
+        &.button-outline-accent {
+            @apply hover:bg-accent-hover;
+            @apply border-accent hover:border-accent-hover;
+            @apply text-accent hover:text-accent-foreground;
+        }
+
+        &.button-outline-destructive {
+            @apply hover:bg-error-hover;
+            @apply border-error hover:border-error-hover;
+            @apply text-error hover:text-error-foreground;
+        }
+
+        /* Text style */
+        &.button-primary {
+            @apply text-primary hover:text-primary-hover;
+        }
+
+        &.button-muted {
+            @apply text-muted-foreground-variant hover:text-gray-40-hover dark:hover:text-gray-60-hover;
+        }
+
+        &.button-accent {
+            @apply text-accent hover:text-accent-hover;
+        }
+
+        &.button-destructive {
+            @apply text-error hover:text-error-hover;
+        }
+
+        /* Disabled style */
+        &:disabled {
+            @apply text-muted-foreground-variant;
+            @apply cursor-not-allowed;
+
+            &.button-fill-primary,
+            &.button-fill-muted,
+            &.button-fill-accent,
+            &.button-fill-destructive {
+                @apply bg-gray-20 dark:bg-gray-80;
+            }
+
+            &.button-outline-primary,
+            &.button-outline-muted,
+            &.button-outline-accent,
+            &.button-outline-destructive {
+                @apply bg-transparent;
+                @apply border-muted-foreground-variant;
+            }
+        }
+    }
+}

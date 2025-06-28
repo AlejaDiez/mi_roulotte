@@ -1,0 +1,14 @@
+---
+import type { BaseProps } from "@utils/props";
+
+export type Props = BaseProps;
+
+const { id, class: cls } = Astro.props;
+---
+
+<main
+    {id}
+    class="px-space gap-space flex h-auto w-full flex-col items-start justify-start"
+    class:list={cls}>
+    <slot />
+</main>

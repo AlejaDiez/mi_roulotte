@@ -1,5 +1,6 @@
 ---
 import Layout from "@components/layout/Layout.astro";
+import Main from "@components/layout/Main.astro";
 
 export const prerender = true;
 ---
@@ -48,5 +49,7 @@ export const prerender = true;
         "belgica",
         "holanda"
     ]}>
-    <h1>Mi Roulotte</h1>
+    <Main>
+        <h1>Mi Roulotte</h1>
+    </Main>
 </Layout>

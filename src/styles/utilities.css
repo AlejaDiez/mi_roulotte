@@ -1,3 +1,33 @@
+@utility px-space {
+    padding-right: var(--space-x);
+    padding-left: var(--space-x);
+}
+
+@utility py-space {
+    padding-top: var(--space-y);
+    padding-bottom: var(--space-y);
+}
+
+@utility gap-space {
+    gap: var(--space-between);
+}
+
+@utility left-space {
+    left: var(--space-overflow);
+}
+
+@utility top-space {
+    top: var(--space-overflow);
+}
+
+@utility right-space {
+    right: var(--space-overflow);
+}
+
+@utility bottom-space {
+    bottom: var(--space-overflow);
+}
+
 @utility text-title {
     @apply text-foreground font-sans text-5xl leading-[1.18] font-bold tracking-normal not-italic sm:text-6xl md:text-7xl;
 }

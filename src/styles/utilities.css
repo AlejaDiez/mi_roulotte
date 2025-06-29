@@ -1,10 +1,60 @@
+@utility w-space {
+    width: var(--space-x);
+}
+
+@utility h-space {
+    height: var(--space-y);
+}
+
+@utility mx-space {
+    margin-right: var(--space-x);
+    margin-left: var(--space-x);
+}
+
+@utility mr-space {
+    margin-right: var(--space-x);
+}
+
+@utility ml-space {
+    margin-left: var(--space-x);
+}
+
+@utility my-space {
+    margin-top: var(--space-y);
+    margin-bottom: var(--space-y);
+}
+
+@utility mt-space {
+    margin-top: var(--space-y);
+}
+
+@utility mb-space {
+    margin-bottom: var(--space-y);
+}
+
 @utility px-space {
     padding-right: var(--space-x);
     padding-left: var(--space-x);
 }
 
+@utility pr-space {
+    padding-right: var(--space-x);
+}
+
+@utility pl-space {
+    padding-left: var(--space-x);
+}
+
 @utility py-space {
     padding-top: var(--space-y);
+    padding-bottom: var(--space-y);
+}
+
+@utility pt-space {
+    padding-top: var(--space-y);
+}
+
+@utility pb-space {
     padding-bottom: var(--space-y);
 }
 

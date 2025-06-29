@@ -118,6 +118,36 @@
     aspect-ratio: 4 / 3;
 }
 
+@utility clip-none {
+    transform: translateZ(0);
+    clip-path: inset(0 0 0 0);
+    pointer-events: all;
+}
+
+@utility clip-left {
+    transform: translateZ(0);
+    clip-path: inset(0 0 0 100%);
+    pointer-events: none;
+}
+
+@utility clip-top {
+    transform: translateZ(0);
+    clip-path: inset(100% 0 0 0);
+    pointer-events: none;
+}
+
+@utility clip-right {
+    transform: translateZ(0);
+    clip-path: inset(0 100% 0 0);
+    pointer-events: none;
+}
+
+@utility clip-bottom {
+    transform: translateZ(0);
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
+}
+
 @utility animate-shake {
     animation: 1s ease shake;
 }

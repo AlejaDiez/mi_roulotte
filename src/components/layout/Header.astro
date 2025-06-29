@@ -8,8 +8,8 @@ const { id, class: cls } = Astro.props;
 
 <header
     {id}
-    class="header group bg-background px-space h-space sticky top-0 left-0 z-[80] flex w-full flex-row items-center select-none"
-    class:list={cls}>
+    class:list={cls}
+    class="header group bg-background px-space h-space sticky top-0 left-0 z-[80] flex w-full flex-row items-center select-none">
     <a
         title="Mi Roulotte"
         href="/"
@@ -44,7 +44,7 @@ const { id, class: cls } = Astro.props;
                     <i class="ibm-chevron-down max-md:hidden"></i>
                 </a>
                 <nav
-                    class="md:bg-muted md:clip-bottom md:group-hover/alt:clip-none sub-menu max-md:pl-space flex w-full flex-col items-start justify-start md:absolute md:top-full md:left-0 md:z-10 md:w-64 md:py-2 md:transition-all md:duration-300">
+                    class="md:bg-muted md:clip-bottom md:group-hover/alt:clip-none sub-menu max-md:pl-space flex w-full flex-col items-start justify-start md:absolute md:top-full md:left-0 md:z-10 md:w-64 md:py-2 md:transition-[clip-path] md:duration-300">
                     <a
                         href="/suiza-2025"
                         target="_self"
@@ -85,10 +85,9 @@ const { id, class: cls } = Astro.props;
             </a>
         </nav>
     </div>
-    <button class="menu-toggle button button-primary md:hidden">
-        <i
-            class="ibm-menu transition-transform duration-500 group-[.expanded]:rotate-90">
-        </i>
+    <button
+        class="menu-toggle button button-primary transition-[color,rotate] duration-[150ms,500ms] group-[.expanded]:rotate-90 md:hidden">
+        <i class="ibm-menu"></i>
     </button>
 </header>
 
@@ -99,7 +98,7 @@ const { id, class: cls } = Astro.props;
 </style>
 
 <script>
-    const header = document.querySelector(".header")!;
+    const header = document.body.querySelector(".header")!;
     const links = header.querySelectorAll<HTMLAnchorElement>(".menu a");
     const toggleButton =
         header.querySelector<HTMLButtonElement>(".menu-toggle")!;

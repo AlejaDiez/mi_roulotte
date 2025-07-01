@@ -1,68 +1,61 @@
 ---
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
+import Layout from "@layouts/Layout.astro";
 import "@styles/global.css";
 ---
 
-<html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <title>Mi Roulotte</title>
-        <script src="@scripts/slider.js"></script>
-    </head>
-    <body>
-        <Header />
-        <h1 class="text-title">Mi Roulotte</h1>
-        <p class="text-normal">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus ratione exercitationem ducimus deleniti excepturi
-            dolor tempora, porro nisi incidunt quasi magnam culpa blanditiis,
-            eum, ipsa possimus adipisci totam. Similique, commodi! Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Laudantium perferendis,
-            at, obcaecati ducimus quaerat cupiditate recusandae voluptates earum
-            magni sapiente ea commodi ut, eveniet culpa ipsa quisquam quis?
-            Earum, facere. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Minus dolorem est consequatur voluptas asperiores, eligendi
-            saepe nemo accusantium exercitationem. Consequuntur quasi tempora
-            quis maiores, minus voluptates natus perferendis voluptate rerum.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam velit
-            expedita doloribus explicabo deserunt quod aperiam laudantium. Ex
-            quod, assumenda odio tempora commodi a eos magni sint, similique
-            error vel. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Quidem obcaecati reprehenderit exercitationem debitis similique odio
-            necessitatibus mollitia fuga, neque ab minima accusamus distinctio
-            magni quo dolorem ipsa quas doloribus nemo. Lorem, ipsum dolor sit
-            amet consectetur adipisicing elit. Tempora expedita quibusdam, earum
-            quos eos eius totam similique repudiandae nam inventore nulla, dicta
-            beatae nobis deleniti asperiores fugiat vero assumenda ex! Lorem
-            ipsum dolor sit amet consectetur adipisicing elit. Saepe vitae minus
-            fugiat eveniet magni, veniam adipisci eligendi minima ipsum,
-            quaerat, inventore ullam. Tenetur, fugit eius? Eaque quam
-            exercitationem soluta laudantium. Lorem ipsum dolor, sit amet
-            consectetur adipisicing elit. Distinctio deleniti eaque tempore
-            voluptatum alias. Eveniet, quos? Inventore ea atque eum sint natus
-            necessitatibus vel similique tempora, recusandae impedit,
-            dignissimos est! Lorem ipsum, dolor sit amet consectetur adipisicing
-            elit. Non animi ratione ad facilis ipsam debitis sit nobis natus rem
-            ab facere deleniti, esse eos. Eum fuga magnam delectus repellendus
-            pariatur! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Accusantium doloremque dicta sint suscipit corporis voluptas
-            doloribus, non dolorem molestiae? Dignissimos dolorem tempore cum
-            neque architecto quo corporis saepe numquam tempora. Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Iusto perspiciatis
-            commodi consequuntur accusantium, nam obcaecati atque perferendis
-            explicabo fugiat tempore consequatur eum aliquid dolor voluptatem,
-            in, exercitationem ex vitae reprehenderit? Lorem ipsum, dolor sit
-            amet consectetur adipisicing elit. Corrupti eius nihil culpa
-            asperiores ipsum provident magni beatae nisi impedit sit? Eius animi
-            ullam quas labore. Eius praesentium alias sequi repellendus? Lorem
-            ipsum dolor sit amet, consectetur adipisicing elit. Quam repellendus
-            incidunt ratione, optio dolores corrupti nemo, in iusto cumque culpa
-            reprehenderit. Ullam officia aliquam, mollitia id quidem ratione eos
-            tenetur.
-        </p>
-        <Footer />
-    </body>
-</html>
+<Layout
+    title="Mi Roulotte"
+    description="Disfruta de los emocionantes viajes en familia que hemos realizado con nuestra caravana. Explora nuevos lugares, crea recuerdos inolvidables y vive la libertad en la carretera. ¡Nos vemos en la carretera!"
+    image="/icons/1024.png"
+    keywords={[]}>
+    <Header />
+    <h1 class="text-title">Mi Roulotte</h1>
+    <p class="text-normal">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus
+        ratione exercitationem ducimus deleniti excepturi dolor tempora, porro
+        nisi incidunt quasi magnam culpa blanditiis, eum, ipsa possimus adipisci
+        totam. Similique, commodi! Lorem, ipsum dolor sit amet consectetur
+        adipisicing elit. Laudantium perferendis, at, obcaecati ducimus quaerat
+        cupiditate recusandae voluptates earum magni sapiente ea commodi ut,
+        eveniet culpa ipsa quisquam quis? Earum, facere. Lorem ipsum dolor sit
+        amet consectetur adipisicing elit. Minus dolorem est consequatur
+        voluptas asperiores, eligendi saepe nemo accusantium exercitationem.
+        Consequuntur quasi tempora quis maiores, minus voluptates natus
+        perferendis voluptate rerum. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Nam velit expedita doloribus explicabo deserunt quod
+        aperiam laudantium. Ex quod, assumenda odio tempora commodi a eos magni
+        sint, similique error vel. Lorem ipsum dolor sit amet consectetur,
+        adipisicing elit. Quidem obcaecati reprehenderit exercitationem debitis
+        similique odio necessitatibus mollitia fuga, neque ab minima accusamus
+        distinctio magni quo dolorem ipsa quas doloribus nemo. Lorem, ipsum
+        dolor sit amet consectetur adipisicing elit. Tempora expedita quibusdam,
+        earum quos eos eius totam similique repudiandae nam inventore nulla,
+        dicta beatae nobis deleniti asperiores fugiat vero assumenda ex! Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Saepe vitae minus
+        fugiat eveniet magni, veniam adipisci eligendi minima ipsum, quaerat,
+        inventore ullam. Tenetur, fugit eius? Eaque quam exercitationem soluta
+        laudantium. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Distinctio deleniti eaque tempore voluptatum alias. Eveniet, quos?
+        Inventore ea atque eum sint natus necessitatibus vel similique tempora,
+        recusandae impedit, dignissimos est! Lorem ipsum, dolor sit amet
+        consectetur adipisicing elit. Non animi ratione ad facilis ipsam debitis
+        sit nobis natus rem ab facere deleniti, esse eos. Eum fuga magnam
+        delectus repellendus pariatur! Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Accusantium doloremque dicta sint suscipit corporis
+        voluptas doloribus, non dolorem molestiae? Dignissimos dolorem tempore
+        cum neque architecto quo corporis saepe numquam tempora. Lorem ipsum
+        dolor sit amet consectetur, adipisicing elit. Iusto perspiciatis commodi
+        consequuntur accusantium, nam obcaecati atque perferendis explicabo
+        fugiat tempore consequatur eum aliquid dolor voluptatem, in,
+        exercitationem ex vitae reprehenderit? Lorem ipsum, dolor sit amet
+        consectetur adipisicing elit. Corrupti eius nihil culpa asperiores ipsum
+        provident magni beatae nisi impedit sit? Eius animi ullam quas labore.
+        Eius praesentium alias sequi repellendus? Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Quam repellendus incidunt ratione, optio
+        dolores corrupti nemo, in iusto cumque culpa reprehenderit. Ullam
+        officia aliquam, mollitia id quidem ratione eos tenetur.
+    </p>
+    <Footer />
+</Layout>

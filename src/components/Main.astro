@@ -1,0 +1,24 @@
+---
+import type { BaseProps } from "@models/props";
+
+export interface Props extends BaseProps {}
+
+const { id, class: cls } = Astro.props;
+---
+
+<main {id} class={cls}>
+    <slot />
+</main>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: var(--space-btw);
+        padding: 0 var(--space-x);
+        width: 100%;
+        height: auto;
+    }
+</style>

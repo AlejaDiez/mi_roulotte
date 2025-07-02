@@ -315,7 +315,6 @@ const { id, class: cls } = Astro.props;
     const header = document.querySelector<HTMLElement>("header")!;
     const items = header.querySelectorAll<HTMLAnchorElement>(".menu a");
     const toggleButton = header.querySelector<HTMLButtonElement>(".toggle")!;
-
     const activeItem = () =>
         items.forEach((e) => {
             if (window.location.href.includes(e.href))

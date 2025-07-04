@@ -1,5 +1,1 @@
-import { TripsTable } from "./trips";
-
-export default {
-    TripsTable
-};
+export * from "./trips";

@@ -16,16 +16,25 @@
         "build": "astro build",
         "preview": "astro build && wrangler pages dev",
         "deploy": "astro build && wrangler pages deploy",
-        "cf-typegen": "wrangler types"
+        "cf-typegen": "wrangler types",
+        "db:generate": "drizzle-kit generate --name=migration",
+        "db:migrate:local": "wrangler d1 migrations apply mi_roulotte_db --local",
+        "db:migrate:remote": "wrangler d1 migrations apply mi_roulotte_db --remote",
+        "db:studio:local": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit) drizzle-kit studio",
+        "db:studio:remote": "source .env && drizzle-kit studio"
     },
     "dependencies": {
         "@astrojs/cloudflare": "^12.6.0",
         "@tailwindcss/vite": "^4.1.11",
         "astro": "^5.12.3",
+        "drizzle-orm": "^0.44.3",
         "tailwindcss": "^4.1.11"
     },
     "devDependencies": {
         "@types/node": "^24.1.0",
+        "better-sqlite3": "^12.2.0",
+        "cross-env": "^7.0.3",
+        "drizzle-kit": "^0.31.4",
         "prettier": "^3.6.2",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-css-order": "^2.1.2",

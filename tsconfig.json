@@ -9,7 +9,6 @@
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
             "@models/*": ["src/models/*"],
-            "@server/*": ["src/server/*"],
             "@actions": ["src/server/actions"],
             "@schemas": ["src/server/db/schemas"],
             "@styles/*": ["src/styles/*"],

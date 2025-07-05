@@ -1,27 +1,23 @@
-import type { StagePreview } from "./stage";
-
-export interface Trip {
+export interface Stage {
     id: string;
+    tripId: string;
     name: string;
     date: Date;
     title: string;
     description: string | null;
     image: string | null;
-    video: string | null;
     content: object[];
-    stages: StagePreview[];
     keywords: string[] | null;
     published: boolean;
     createdAt: Date;
     modifiedAt: Date | null;
 }
 
-export interface TripPreview {
+export interface StagePreview {
     name: string;
     date: Date;
     title: string;
     description: string | null;
     image: string | null;
-    video: string | null;
     url: string;
 }

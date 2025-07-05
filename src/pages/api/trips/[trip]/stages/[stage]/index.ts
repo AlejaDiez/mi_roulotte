@@ -1,12 +1,12 @@
-import { getTripById } from "@actions";
+import { getStageById } from "@actions";
 import { getQueryParams } from "@utils/get_query_params";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ params, request, callAction }) => {
-    const { trip } = params;
+    const { trip, stage } = params;
     const { fields } = getQueryParams(request);
-    const { data, error } = await callAction(getTripById, {
-        id: trip,
+    const { data, error } = await callAction(getStageById, {
+        id: [trip, stage],
         fields
     });
 

@@ -9,4 +9,23 @@
         @apply bg-background;
         @apply text-normal;
     }
+
+    :root {
+        --space-x: 1.75rem;
+        --space-y: 5rem;
+        --space-btw: 2.5rem;
+
+        /* sm */
+        @media (width >= 40rem) {
+        }
+
+        /* md */
+        @media (width >= 48rem) {
+            --space-x: 8vw;
+        }
+
+        /* lg */
+        @media (width >= 64rem) {
+        }
+    }
 }

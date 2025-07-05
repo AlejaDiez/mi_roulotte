@@ -1,0 +1,49 @@
+---
+import type { BaseProps } from "@models/props";
+
+export interface Props extends BaseProps {}
+
+const { id, class: cls } = Astro.props;
+---
+
+<button
+    {id}
+    class:list={["button", "button-fill-primary", "scroll-to-top", cls]}>
+    <i class="ibm-chevron-up"></i>
+</button>
+
+<style>
+    .scroll-to-top {
+        position: fixed;
+        right: 0;
+        bottom: 8rem;
+        clip-path: inset(0 0 0 100%);
+        transition-duration: 150ms, 150ms, 300ms;
+        transition-property: color, background-color, clip-path;
+        pointer-events: none;
+    }
+
+    .scroll-to-top.visible {
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+
+    @media (width < 40rem) {
+        .scroll-to-top {
+            bottom: 10rem;
+        }
+    }
+</style>
+
+<script>
+    const scrollButton =
+        document.querySelector<HTMLButtonElement>(".scroll-to-top")!;
+    const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    const buttonVisibility = () => {
+        if (window.scrollY > window.innerHeight / 3) scrollButton.classList.add("visible");
+        else scrollButton.classList.remove("visible");
+    };
+
+    scrollButton.addEventListener("click", scrollToTop);
+    window.addEventListener("scroll", buttonVisibility);
+</script>

@@ -3,7 +3,7 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
     site: "https://miroulotte.es",
-    trailingSlash: "always",
+    trailingSlash: "ignore",
     output: "static",
     outDir: "./build",
     scopedStyleStrategy: "where",

@@ -15,14 +15,24 @@
         "dev": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "db:generate": "drizzle-kit generate --name=migration",
+        "db:migrate:local": "wrangler d1 migrations apply mi_roulotte_db --local",
+        "db:migrate:remote": "wrangler d1 migrations apply mi_roulotte_db --remote",
+        "db:studio:local": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit) drizzle-kit studio",
+        "db:studio:remote": "source .env && drizzle-kit studio"
     },
     "dependencies": {
+        "@astrojs/cloudflare": "^12.6.0",
         "@tailwindcss/vite": "^4.1.10",
-        "astro": "^5.9.3"
+        "astro": "^5.9.3",
+        "drizzle-orm": "^0.44.2"
     },
     "devDependencies": {
+        "@types/node": "^24.0.10",
         "autoprefixer": "^10.4.21",
+        "better-sqlite3": "^12.2.0",
+        "cross-env": "^7.0.3",
+        "drizzle-kit": "^0.31.4",
         "postcss": "^8.5.6",
         "prettier": "^3.5.3",
         "prettier-plugin-astro": "^0.14.1",

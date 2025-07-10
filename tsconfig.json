@@ -8,9 +8,11 @@
             "@layouts/*": ["src/layouts/*"],
             "@models/*": ["src/models/*"],
             "@pages/*": ["src/pages/*"],
+            "@schemas/*": ["src/db/schemas/*"],
             "@scripts/*": ["src/scripts/*"],
             "@styles/*": ["src/styles/*"]
-        }
+        },
+        "types": ["worker-configuration.d.ts", "node"]
     },
     "include": [".astro/types.d.ts", "**/*"],
     "exclude": ["build"]

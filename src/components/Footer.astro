@@ -1,7 +1,8 @@
 ---
-import type { BaseProps } from "@models/props";
-
-export interface Props extends BaseProps {}
+export interface Props {
+    id?: string;
+    class?: string;
+}
 
 const { id, class: cls } = Astro.props;
 const currentDate = new Date();

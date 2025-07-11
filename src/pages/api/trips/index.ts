@@ -17,7 +17,8 @@ export const GET: APIRoute = async ({ locals, params, request }) => {
             url: sql`${import.meta.env.SITE} || '/' || ${TripsTable.id}`,
         })
         .from(TripsTable)
-        .where(eq(TripsTable.published, true));
+        .where(eq(TripsTable.published, true))
+        .orderBy(TripsTable.date);
 
     return new Response(JSON.stringify(trips), {
         status: 200,

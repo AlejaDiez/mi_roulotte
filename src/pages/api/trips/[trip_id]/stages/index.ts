@@ -4,7 +4,7 @@ import type { APIRoute } from "astro";
 import { and, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
-export const GET: APIRoute = async ({ locals, params }) => {
+export const GET: APIRoute = async ({ locals, params, request }) => {
     const db = drizzle(locals.runtime.env.DB);
     const { trip_id } = params;
 
@@ -16,7 +16,7 @@ export const GET: APIRoute = async ({ locals, params }) => {
     }
 
     const trip = await db
-        .select()
+        .select({ id: TripsTable.id })
         .from(TripsTable)
         .where(and(eq(TripsTable.id, trip_id), eq(TripsTable.published, true)))
         .get();
@@ -31,10 +31,12 @@ export const GET: APIRoute = async ({ locals, params }) => {
         );
     }
 
-    const { published, createdAt, modifiedAt, ...rest } = trip;
     const stages = await db
         .select({
+            name: StagesTable.name,
+            date: StagesTable.date,
             title: StagesTable.title,
+            description: StagesTable.description,
             image: StagesTable.image,
             url: sql`${import.meta.env.SITE} || '/' || ${StagesTable.tripId} || '/' || ${StagesTable.id}`,
         })
@@ -47,11 +49,8 @@ export const GET: APIRoute = async ({ locals, params }) => {
         )
         .orderBy(StagesTable.date);
 
-    return new Response(
-        JSON.stringify({ ...rest, stages, published, createdAt, modifiedAt }),
-        {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-        },
-    );
+    return new Response(JSON.stringify(stages), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+    });
 };

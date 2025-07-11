@@ -1,0 +1,12 @@
+{
+    "name": "mi_roulotte",
+    "compatibility_date": "2025-01-01",
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "mi_roulotte_db",
+            "database_id": "cd7588c9-42c7-40d4-aa49-ebde43f0a768",
+            "migrations_dir": "src/db/migrations"
+        }
+    ]
+}

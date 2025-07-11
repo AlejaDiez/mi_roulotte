@@ -1,12 +1,13 @@
 ---
-import type { BaseProps } from "@models/props";
 import "@styles/global.css";
 
-export interface Props extends BaseProps {
+export interface Props {
     title: string;
     description?: string;
     image?: string;
     keywords?: string[];
+    id?: string;
+    class?: string;
 }
 const { title, description, image, keywords, id, class: cls } = Astro.props;
 const url: string = "https://miroulotte.es";

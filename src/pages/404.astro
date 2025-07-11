@@ -41,10 +41,13 @@ import Layout from "@layouts/Layout.astro";
         .menu {
             a,
             a.active {
-                color: light-dark(var(--color-red-40), var(--color-red-60));
+                color: light-dark(
+                    var(--color-red-40),
+                    var(--color-red-60)
+                ) !important;
 
                 &:hover {
-                    color: var(--color-white-hover);
+                    color: var(--color-white-hover) !important;
                 }
             }
 

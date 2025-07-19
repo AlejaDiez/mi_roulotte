@@ -2,8 +2,16 @@
     width: var(--space-x);
 }
 
+@utility w-space/2 {
+    width: calc(var(--space-x) / 2);
+}
+
 @utility h-space {
     height: var(--space-y);
+}
+
+@utility h-space/2 {
+    height: calc(var(--space-y) / 2);
 }
 
 @utility mx-space {
@@ -11,12 +19,51 @@
     margin-left: var(--space-x);
 }
 
+@utility mx-space/2 {
+    margin-right: calc(var(--space-x) / 2);
+    margin-left: calc(var(--space-x) / 2);
+}
+
+@utility -mx-space {
+    margin-right: calc(var(--space-x) * -1);
+    margin-left: calc(var(--space-x) * -1);
+}
+
+@utility -mx-space/2 {
+    margin-right: calc(var(--space-x) / -2);
+    margin-left: calc(var(--space-x) / -2);
+}
+
 @utility mr-space {
     margin-right: var(--space-x);
 }
 
+@utility mr-space/2 {
+    margin-right: calc(var(--space-x) / 2);
+}
+
+@utility -mr-space {
+    margin-right: calc(var(--space-x) * -1);
+}
+
+@utility -mr-space/2 {
+    margin-right: calc(var(--space-x) / -2);
+}
+
 @utility ml-space {
     margin-left: var(--space-x);
+}
+
+@utility ml-space/2 {
+    margin-left: calc(var(--space-x) / 2);
+}
+
+@utility -ml-space {
+    margin-left: calc(var(--space-x) * -1);
+}
+
+@utility -ml-space/2 {
+    margin-left: calc(var(--space-x) / -2);
 }
 
 @utility my-space {
@@ -24,12 +71,51 @@
     margin-bottom: var(--space-y);
 }
 
+@utility my-space/2 {
+    margin-top: calc(var(--space-y) / 2);
+    margin-bottom: calc(var(--space-y) / 2);
+}
+
+@utility -my-space {
+    margin-top: calc(var(--space-y) * -1);
+    margin-bottom: calc(var(--space-y) * -1);
+}
+
+@utility -my-space/2 {
+    margin-top: calc(var(--space-y) / -2);
+    margin-bottom: calc(var(--space-y) / -2);
+}
+
 @utility mt-space {
     margin-top: var(--space-y);
 }
 
+@utility mt-space/2 {
+    margin-top: calc(var(--space-y) / 2);
+}
+
+@utility -mt-space {
+    margin-top: calc(var(--space-y) * -1);
+}
+
+@utility -mt-space/2 {
+    margin-top: calc(var(--space-y) / -2);
+}
+
 @utility mb-space {
     margin-bottom: var(--space-y);
+}
+
+@utility mb-space/2 {
+    margin-bottom: calc(var(--space-y) / 2);
+}
+
+@utility -mb-space {
+    margin-bottom: calc(var(--space-y) * -1);
+}
+
+@utility -mb-space/2 {
+    margin-bottom: calc(var(--space-y) / -2);
 }
 
 @utility px-space {
@@ -37,12 +123,25 @@
     padding-left: var(--space-x);
 }
 
+@utility px-space/2 {
+    padding-right: calc(var(--space-x) / 2);
+    padding-left: calc(var(--space-x) / 2);
+}
+
 @utility pr-space {
     padding-right: var(--space-x);
 }
 
+@utility pr-space/2 {
+    padding-right: calc(var(--space-x) / 2);
+}
+
 @utility pl-space {
     padding-left: var(--space-x);
+}
+
+@utility pl-space/2 {
+    padding-left: calc(var(--space-x) / 2);
 }
 
 @utility py-space {
@@ -50,32 +149,97 @@
     padding-bottom: var(--space-y);
 }
 
+@utility py-space/2 {
+    padding-top: calc(var(--space-y) / 2);
+    padding-bottom: calc(var(--space-y) / 2);
+}
+
 @utility pt-space {
     padding-top: var(--space-y);
+}
+
+@utility pt-space/2 {
+    padding-top: calc(var(--space-y) / 2);
 }
 
 @utility pb-space {
     padding-bottom: var(--space-y);
 }
 
+@utility pb-space/2 {
+    padding-bottom: calc(var(--space-y) / 2);
+}
+
 @utility gap-space {
     gap: var(--space-between);
 }
 
+@utility gap-space/2 {
+    gap: calc(var(--space-between) / 2);
+}
+
 @utility left-space {
-    left: var(--space-overflow);
+    left: var(--space-x);
+}
+
+@utility left-space/2 {
+    left: calc(var(--space-x) / 2);
+}
+
+@utility -left-space {
+    left: calc(var(--space-x) * -1);
+}
+
+@utility -left-space/2 {
+    left: calc(var(--space-x) / -2);
 }
 
 @utility top-space {
-    top: var(--space-overflow);
+    top: var(--space-y);
+}
+
+@utility top-space/2 {
+    top: calc(var(--space-y) / 2);
+}
+
+@utility -top-space {
+    top: calc(var(--space-y) * -1);
+}
+
+@utility -top-space/2 {
+    top: calc(var(--space-y) / -2);
 }
 
 @utility right-space {
-    right: var(--space-overflow);
+    right: var(--space-x);
+}
+
+@utility right-space/2 {
+    right: calc(var(--space-x) / 2);
+}
+
+@utility -right-space {
+    right: calc(var(--space-x) * -1);
+}
+
+@utility -right-space/2 {
+    right: calc(var(--space-x) / -2);
 }
 
 @utility bottom-space {
-    bottom: var(--space-overflow);
+    bottom: var(--space-y);
+}
+
+@utility bottom-space/2 {
+    bottom: calc(var(--space-y) / 2);
+}
+
+@utility -bottom-space {
+    bottom: calc(var(--space-y) * -1);
+}
+
+@utility -bottom-space/2 {
+    bottom: calc(var(--space-y) / -2);
 }
 
 @utility text-title {
@@ -108,6 +272,10 @@
 
 @utility icon-alt {
     @apply text-foreground-variant font-icon text-sm leading-none font-normal normal-case not-italic antialiased;
+}
+
+@utility text-vertical {
+    writing-mode: vertical-rl;
 }
 
 @utility aspect-portrait {
@@ -148,8 +316,176 @@
     pointer-events: none;
 }
 
+@utility animation-delay-75 {
+    animation-delay: 75ms;
+}
+
+@utility animation-delay-100 {
+    animation-delay: 100ms;
+}
+
+@utility animation-delay-150 {
+    animation-delay: 150ms;
+}
+
+@utility animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+@utility animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+@utility animation-delay-500 {
+    animation-delay: 500ms;
+}
+
+@utility animation-delay-700 {
+    animation-delay: 700ms;
+}
+
+@utility animation-delay-1000 {
+    animation-delay: 1000ms;
+}
+
+@utility animate-clip-left {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-left;
+}
+
+@keyframes clip-from-left {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 100%);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-clip-top {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-top;
+}
+
+@keyframes clip-from-top {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(100% 0 0 0);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-clip-right {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-right;
+}
+
+@keyframes clip-from-right {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(0 100% 0 0);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-clip-bottom {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-bottom;
+}
+
+@keyframes clip-from-bottom {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(0 0 100% 0);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-float-top {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-top;
+}
+
+@keyframes float-top {
+    from {
+        transform: translateY(1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-float-left {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-left;
+}
+
+@keyframes float-left {
+    from {
+        transform: translateX(1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-float-bottom {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-bottom;
+}
+
+@keyframes float-bottom {
+    from {
+        transform: translateY(-1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-float-right {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-right;
+}
+
+@keyframes float-right {
+    from {
+        transform: translateX(-1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 @utility animate-shake {
-    animation: 1s ease shake;
+    animation: 1s cubic-bezier(0.4, 0, 0.2, 1) shake;
 }
 
 @keyframes shake {

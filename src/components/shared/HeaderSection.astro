@@ -16,7 +16,7 @@ const { title, subtitle, image, id, class: cls } = Astro.props;
     class="header-section max-md:aspect-portrait relative aspect-video w-full cursor-default select-none md:max-h-[48rem] md:min-h-96">
     {
         subtitle && (
-            <div class="subtitle animate-clip-top bg-primary h-space absolute top-0 right-[calc(50%+var(--space-overflow))] z-10 block content-center px-6 max-md:hidden">
+            <div class="subtitle animate-clip-top bg-primary absolute top-0 right-[calc(var(--space-overflow)+50%)] z-10 block h-(--space-y) content-center px-6 max-md:hidden">
                 <h2 class="text-subtitle text-primary-foreground line-clamp-1 text-center">
                     {subtitle}
                 </h2>
@@ -24,7 +24,7 @@ const { title, subtitle, image, id, class: cls } = Astro.props;
         )
     }
     <div
-        class="title md:top-space md:bg-muted md:pl-space md:-left-space md:pr-space/2 animate-clip-right max-md:animate-float-right absolute z-10 flex h-64 w-[50vw] items-center justify-start overflow-hidden max-md:h-full max-md:w-[var(--space-y)] max-md:items-end max-md:justify-center max-md:mask-b-to-10 max-md:mask-exclude">
+        class="title md:bg-muted animate-clip-right max-md:animate-float-right absolute z-10 flex h-64 w-[50vw] items-center justify-start overflow-hidden max-md:h-full max-md:w-[var(--space-y)] max-md:items-end max-md:justify-center max-md:mask-b-to-10 max-md:mask-exclude md:top-(--space-y) md:-left-(--space-x) md:pr-[calc(var(--space-x)/2)] md:pl-(--space-x)">
         <h1
             class="text-title max-md:text-vertical max-md:rotate-180 max-md:whitespace-nowrap md:line-clamp-2">
             {title}

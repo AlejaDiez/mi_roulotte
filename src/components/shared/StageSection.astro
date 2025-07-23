@@ -25,19 +25,19 @@ const currentStage = stages.findIndex(({ url }) =>
                 <div class="stages flex w-max flex-row items-start justify-start gap-[calc(var(--space)*4)] px-(--space-x)">
                     {stages.map(({ title, image, url }) => (
                         <a href={url} class="card snap-start">
-                            <div>
-                                <img src={image} alt={title} decoding="async" />
+                            <div class="image">
+                                <img src={image} alt={title} decoding="async" class="img" />
                             </div>
-                            <span>{title}</span>
+                            <span class="caption">{title}</span>
                         </a>
                     ))}
                 </div>
             </div>
             <div class="controls flex w-full flex-row items-center justify-end max-md:justify-start">
-                <button class="button button-fill-primary">
+                <button class="button prev button-fill-primary">
                     <i class="ibm-chevron-left" />
                 </button>
-                <button class="button button-fill-primary">
+                <button class="button next button-fill-primary">
                     <i class="ibm-chevron-right" />
                 </button>
             </div>       
@@ -45,11 +45,10 @@ const currentStage = stages.findIndex(({ url }) =>
         <script>
             const container = document.body.querySelector<HTMLDivElement>(".scroll")!;
             const cards = [...container.querySelectorAll<HTMLDivElement>(".card")];
-            const controls = document.body.querySelectorAll<HTMLButtonElement>(
-                ".controls > .button"
-            )!;
+            const prevButton = document.body.querySelector<HTMLButtonElement>(".controls .button.prev")!;
+            const nextButton = document.body.querySelector<HTMLButtonElement>(".controls .button.next")!;
 
-            controls[0].addEventListener("click", () => {
+            prevButton.addEventListener("click", () => {
                 const scrollPadding = Math.trunc(
                     parseFloat(getComputedStyle(container).scrollPaddingLeft)
                 );
@@ -63,7 +62,7 @@ const currentStage = stages.findIndex(({ url }) =>
                     behavior: "smooth"
                 });
             });
-            controls[1].addEventListener("click", () => {
+            nextButton.addEventListener("click", () => {
                 const scrollPadding = parseFloat(
                     getComputedStyle(container).scrollPaddingLeft
                 );
@@ -86,13 +85,13 @@ const currentStage = stages.findIndex(({ url }) =>
             {currentStage > 0 ? (
                 <a
                     href={stages[currentStage - 1]!.url}
-                    class="control button button-fill-primary">
+                    class="button prev button-fill-primary">
                     <i class="ibm-chevron-left" />
                 </a>
             ) : (
                 <a
                     href={Astro.url.pathname.split("/").slice(0, -1).join("/")}
-                    class="control button button-fill-primary">
+                    class="button home button-fill-primary">
                     <i class="ibm-home" />
                 </a>
             )}
@@ -114,11 +113,11 @@ const currentStage = stages.findIndex(({ url }) =>
             {currentStage < stages.length - 1 ? (
                 <a
                     href={stages[currentStage + 1]!.url}
-                    class="control button button-fill-primary">
+                    class="button next button-fill-primary">
                     <i class="ibm-chevron-right" />
                 </a>
             ) : (
-                <div class="empty-control w-14" />
+                <div class="w-14" />
             )}
         </section>
     )

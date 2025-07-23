@@ -1,0 +1,91 @@
+---
+import type { BaseProps } from "@utils/props";
+
+export interface Props extends BaseProps {
+    url: string;
+    caption: string;
+}
+
+const { url, caption, id, class: cls } = Astro.props;
+---
+
+<figure
+    {id}
+    class:list={cls}
+    class="image bg-muted aspect-landscape group relative h-auto w-auto cursor-pointer overflow-hidden select-none">
+    <img
+        src={url}
+        alt={caption}
+        loading="lazy"
+        decoding="async"
+        class="img bg-muted pointer-events-none relative z-10 h-full w-full border-none object-cover transition-[scale,opacity] duration-300 group-hover:scale-110 group-hover:opacity-0"
+    />
+    <figcaption
+        class="caption text-normal text-foreground-variant absolute top-0 left-0 h-full w-full content-center text-center">
+        {caption}
+    </figcaption>
+</figure>
+
+<style is:global>
+    body:has(.lightbox) {
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    const images = [
+        ...document.body.querySelectorAll<HTMLDivElement>(".image")
+    ];
+
+    const buildLightbox = (img: string, caption: string) => {
+        const lightboxContainer = document.createElement("div");
+
+        lightboxContainer.classList.add("lightbox");
+
+        // Image
+        const imageElement = document.createElement("div");
+        const imgElement = document.createElement("img");
+
+        imgElement.src = img;
+        imgElement.alt = caption;
+        imgElement.decoding = "async";
+        imgElement.classList.add("img");
+        imageElement.classList.add("image");
+        imageElement.appendChild(imgElement);
+        lightboxContainer.appendChild(imageElement);
+
+        // Caption
+        const captionElement = document.createElement("span");
+
+        captionElement.innerText = caption;
+        captionElement.classList.add("caption");
+        lightboxContainer.appendChild(captionElement);
+
+        // Close button
+        const closeButton = document.createElement("button");
+
+        closeButton.innerHTML = `<i class="ibm-close"></i>`;
+        closeButton.classList.add("button", "button-fill-primary");
+        closeButton.addEventListener("click", () =>
+            document.body.removeChild(lightboxContainer)
+        );
+        lightboxContainer.appendChild(closeButton);
+
+        return lightboxContainer;
+    };
+
+    for (const image of images) {
+        const img = image.querySelector<HTMLImageElement>(".img")!.src;
+        const caption = image.querySelector<HTMLElement>(".caption")!.innerText;
+
+        image.addEventListener("click", () => {
+            let lightbox = document.body.querySelector(".lightbox");
+
+            if (lightbox) {
+                document.body.removeChild(lightbox);
+            }
+            lightbox = buildLightbox(img, caption);
+            document.body.appendChild(lightbox);
+        });
+    }
+</script>

@@ -1,0 +1,30 @@
+---
+import type { BaseProps } from "@utils/props";
+
+export type Props = BaseProps;
+
+const { id, class: cls } = Astro.props;
+---
+
+<button
+    {id}
+    class:list={cls}
+    class="scroll-to-top button clip-left button-fill-primary fixed right-0 bottom-32 z-[80] transition-[background-color,color,clip-path] duration-[100ms,100ms,300ms] max-sm:bottom-40">
+    <i class="ibm-chevron-up"></i>
+</button>
+
+<script>
+    const scrollButton =
+        document.body.querySelector<HTMLButtonElement>(".scroll-to-top")!;
+
+    scrollButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > window.innerHeight / 3) {
+            scrollButton.classList.add("clip-none");
+        } else {
+            scrollButton.classList.remove("clip-none");
+        }
+    });
+</script>

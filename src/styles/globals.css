@@ -9,4 +9,27 @@
         @apply bg-background;
         @apply text-normal;
     }
+
+    :root {
+        --space: 0.25rem;
+        --space-x: 8vw;
+        --space-y: 5rem;
+        --space-between: 2.5rem;
+        --space-overflow: 4rem;
+
+        /* sm */
+        @media (width < 40rem) {
+            --space-overflow: 2rem;
+        }
+
+        /* md */
+        @media (width < 48rem) {
+            --space-x: 1.75rem;
+            --space-overflow: 3rem;
+        }
+
+        /* lg */
+        @media (width >= 64rem) {
+        }
+    }
 }

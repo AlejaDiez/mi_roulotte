@@ -1,3 +1,83 @@
+@utility w-space {
+    width: var(--space-x);
+}
+
+@utility h-space {
+    height: var(--space-y);
+}
+
+@utility mx-space {
+    margin-right: var(--space-x);
+    margin-left: var(--space-x);
+}
+
+@utility mr-space {
+    margin-right: var(--space-x);
+}
+
+@utility ml-space {
+    margin-left: var(--space-x);
+}
+
+@utility my-space {
+    margin-top: var(--space-y);
+    margin-bottom: var(--space-y);
+}
+
+@utility mt-space {
+    margin-top: var(--space-y);
+}
+
+@utility mb-space {
+    margin-bottom: var(--space-y);
+}
+
+@utility px-space {
+    padding-right: var(--space-x);
+    padding-left: var(--space-x);
+}
+
+@utility pr-space {
+    padding-right: var(--space-x);
+}
+
+@utility pl-space {
+    padding-left: var(--space-x);
+}
+
+@utility py-space {
+    padding-top: var(--space-y);
+    padding-bottom: var(--space-y);
+}
+
+@utility pt-space {
+    padding-top: var(--space-y);
+}
+
+@utility pb-space {
+    padding-bottom: var(--space-y);
+}
+
+@utility gap-space {
+    gap: var(--space-between);
+}
+
+@utility left-space {
+    left: var(--space-overflow);
+}
+
+@utility top-space {
+    top: var(--space-overflow);
+}
+
+@utility right-space {
+    right: var(--space-overflow);
+}
+
+@utility bottom-space {
+    bottom: var(--space-overflow);
+}
+
 @utility text-title {
     @apply text-foreground font-sans text-5xl leading-[1.18] font-bold tracking-normal not-italic sm:text-6xl md:text-7xl;
 }
@@ -36,6 +116,36 @@
 
 @utility aspect-landscape {
     aspect-ratio: 4 / 3;
+}
+
+@utility clip-none {
+    transform: translateZ(0);
+    clip-path: inset(0 0 0 0);
+    pointer-events: all;
+}
+
+@utility clip-left {
+    transform: translateZ(0);
+    clip-path: inset(0 0 0 100%);
+    pointer-events: none;
+}
+
+@utility clip-top {
+    transform: translateZ(0);
+    clip-path: inset(100% 0 0 0);
+    pointer-events: none;
+}
+
+@utility clip-right {
+    transform: translateZ(0);
+    clip-path: inset(0 100% 0 0);
+    pointer-events: none;
+}
+
+@utility clip-bottom {
+    transform: translateZ(0);
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
 }
 
 @utility animate-shake {

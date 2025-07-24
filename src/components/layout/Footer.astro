@@ -1,0 +1,57 @@
+---
+import type { BaseProps } from "@utils/props";
+
+export type Props = BaseProps;
+
+const { id, class: cls } = Astro.props;
+---
+
+<footer
+    {id}
+    class:list={cls}
+    class="footer px-space flex h-32 w-full cursor-default flex-col items-start justify-start select-none max-sm:h-40 max-sm:pb-2">
+    <div
+        class="content mt-8 flex w-full grow flex-row items-center justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-2">
+        <a
+            href="https://x.com/intent/post?text=%23NosVemosEnLaCarretera%20%23MiRoulotte"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground-variant hover:text-primary-hover inline-flex cursor-default flex-row items-center justify-start transition-colors">
+            <span class="text-normal text-current">
+                ¡Nos vemos en la carretera!
+            </span>
+        </a>
+        <nav class="social-links flex flex-row">
+            <a
+                title="Correo electrónico"
+                href="mailto:miroulotte@gmail.com?Subject=Contacto%20con%20Mi%20Roulotte"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted-foreground-variant hover:text-primary-hover inline-flex h-10 w-10 flex-row items-center justify-center transition-colors">
+                <i class="icon ibm-email text-current"></i>
+            </a>
+            <a
+                title="Instagram"
+                href="https://www.instagram.com/miroulotte/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted-foreground-variant hover:text-primary-hover inline-flex h-10 w-10 flex-row items-center justify-center transition-colors">
+                <i class="icon ibm-logo-instagram text-current"></i>
+            </a>
+            <a
+                title="YouTube"
+                href="https://www.youtube.com/@miroulotte/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted-foreground-variant hover:text-primary-hover inline-flex h-10 w-10 flex-row items-center justify-center transition-colors">
+                <i class="icon ibm-logo-youtube text-current"></i>
+            </a>
+        </nav>
+    </div>
+    <div
+        class="license flex h-8 w-full flex-row items-start justify-start max-sm:items-center max-sm:justify-center">
+        <span class="text-label text-gray-20 dark:text-gray-70">
+            &copy; {new Date().getFullYear()} Mi Roulotte · Todos los derechos reservados
+        </span>
+    </div>
+</footer>

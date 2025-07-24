@@ -1,4 +1,4 @@
-const sliders = document.querySelectorAll<HTMLInputElement>(
+const sliders = document.body.querySelectorAll<HTMLInputElement>(
     'input[type="range"].slider'
 );
 

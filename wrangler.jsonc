@@ -10,7 +10,7 @@
     "pages_build_output_dir": "./build",
     "observability": {
         "enabled": true
-    }
+    },
     /**
      * Smart Placement
      * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -23,6 +23,14 @@
      * databases, object storage, AI inference, real-time communication and more.
      * https://developers.cloudflare.com/workers/runtime-apis/bindings/
      */
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "mi_roulotte_db",
+            "database_id": "cd7588c9-42c7-40d4-aa49-ebde43f0a768",
+            "migrations_dir": "src/server/db/migrations"
+        }
+    ]
 
     /**
      * Environment Variables

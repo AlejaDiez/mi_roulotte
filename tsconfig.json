@@ -3,7 +3,7 @@
     "include": [".astro/types.d.ts", "**/*"],
     "exclude": ["build"],
     "compilerOptions": {
-        "types": ["./worker-configuration.d.ts", "node"],
+        "types": ["./worker-configuration.d.ts", "node", "youtube"],
         "baseUrl": ".",
         "paths": {
             "@assets/*": ["src/assets/*"],

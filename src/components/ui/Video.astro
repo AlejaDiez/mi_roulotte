@@ -1,0 +1,266 @@
+---
+import type { BaseProps } from "@utils/props";
+import { YouTube } from "@utils/video";
+
+export interface Props extends BaseProps {
+    url: string;
+    title?: string;
+    thumbnail?: string;
+}
+
+const { url, id, class: cls } = Astro.props;
+let { title, thumbnail } = Astro.props;
+const youtubeId = YouTube.getId(url);
+
+if (youtubeId) {
+    const { title: fetchedTitle, thumbnail_url: fetchedThumbnail } =
+        await YouTube.getData(youtubeId);
+
+    title = title ?? fetchedTitle;
+    thumbnail = thumbnail ?? fetchedThumbnail;
+}
+---
+
+<div
+    {id}
+    class="video bg-muted group relative aspect-video h-auto w-auto cursor-default overflow-hidden select-none"
+    class:list={cls}>
+    <div
+        class="thumbnail group/alt absolute top-0 left-0 z-20 h-full w-full data-hidden:pointer-events-none">
+        <img
+            src={thumbnail}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            class="img bg-muted h-full w-full border-none object-cover transition-[scale,opacity] duration-300 outline-none group-data-hidden/alt:scale-110 group-data-hidden/alt:opacity-0"
+        />
+        <span
+            class="text-headline caption absolute top-0 left-0 h-24 w-full bg-linear-to-b from-[#00000099] p-6 text-white transition-[translate,opacity] duration-300 group-data-hidden/alt:-translate-y-100 group-data-hidden/alt:opacity-0">
+            {title}
+        </span>
+        <button
+            class="player-state button button-fill-primary absolute top-1/2 left-1/2 h-20 max-h-none w-20 -translate-1/2 rounded-full p-0 transition-[background-color,scale,opacity] group-data-hidden/alt:opacity-0 hover:scale-110">
+            <i
+                class="ibm-filled-play-alt group-data-[state=buffering]:hidden group-data-[state=ended]:hidden group-data-[state=playing]:hidden">
+            </i>
+            <i class="ibm-filled-pause group-not-data-[state=playing]:hidden">
+            </i>
+            <i class="ibm-rotate-360 group-not-data-[state=ended]:hidden"></i>
+            <span
+                class="spinner-alt border-current border-b-transparent group-not-data-[state=buffering]:hidden">
+            </span>
+        </button>
+    </div>
+    <div class="player absolute top-0 left-0 h-full w-full bg-black">
+        {
+            youtubeId ? (
+                <source
+                    src={url}
+                    type="video/youtube"
+                    class="pointer-events-none h-full w-full border-none object-cover outline-none"
+                />
+            ) : (
+                <video
+                    src={url}
+                    playsinline
+                    class="pointer-events-none h-full w-full border-none object-cover outline-none"
+                />
+            )
+        }
+    </div>
+    <div
+        class="controls is-hidden clip-none bg-muted data-hidden:clip-top absolute bottom-0 left-0 z-10 flex h-14 w-full flex-row items-center justify-start transition-[clip-path] duration-300">
+        <button
+            class="player-state button button-primary relative h-14 w-14 p-0">
+            <i
+                class="ibm-filled-play-alt group-data-[state=buffering]:hidden group-data-[state=ended]:hidden group-data-[state=playing]:hidden">
+            </i>
+            <i class="ibm-filled-pause group-not-data-[state=playing]:hidden">
+            </i>
+            <i class="ibm-rotate-360 group-not-data-[state=ended]:hidden"></i>
+            <span class="spinner-alt group-not-data-[state=buffering]:hidden">
+            </span>
+        </button>
+        <label class="player-time">
+            <span class="text-label elapsed-time">00:00</span>
+            <input type="range" min="0" max="1" step="0.01" class="slider" />
+            <span class="text-label remaining-time">-00:00</span>
+        </label>
+        <div class="options flex h-14 flex-row items-center justify-start px-2">
+            <button
+                class="screen group/alt button button-primary group h-10 min-h-0 w-10 min-w-0 p-0">
+                <i class="ibm-maximize group-data-maximized/alt:hidden"></i>
+                <i class="ibm-minimize group-not-data-maximized/alt:hidden"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    import { VideoController } from "@utils/video";
+
+    const videos = [
+        ...document.body.querySelectorAll<HTMLDivElement>(".video")
+    ].map((e) => ({
+        container: e,
+        controller: new VideoController(e),
+        thumbnail: {
+            container: e.querySelector<HTMLDivElement>(".thumbnail")!,
+            play: e.querySelector<HTMLButtonElement>(
+                ".thumbnail > .player-state"
+            )!
+        },
+        controls: {
+            container: e.querySelector<HTMLDivElement>(".controls")!,
+            play: e.querySelector<HTMLButtonElement>(
+                ".controls > .player-state"
+            )!,
+            slider: e.querySelector<HTMLInputElement>(
+                ".controls > .player-time > .slider"
+            )!,
+            elapsedTime: e.querySelector<HTMLSpanElement>(
+                ".controls > .player-time > .elapsed-time"
+            )!,
+            remainingTime: e.querySelector<HTMLSpanElement>(
+                ".controls > .player-time > .remaining-time"
+            )!,
+            screen: e.querySelector<HTMLButtonElement>(
+                ".controls > .options > .screen"
+            )!
+        }
+    }));
+
+    const changePlayerState = (video: any, state: string) => {
+        video.container.setAttribute("data-state", state);
+    };
+    const showThumbnail = (video: any) => {
+        video.thumbnail.container.removeAttribute("data-hidden");
+    };
+    const hideThumbnail = (video: any) => {
+        video.thumbnail.container.setAttribute("data-hidden", "");
+    };
+    const showControls = (video: any, timeout?: NodeJS.Timeout | null) => {
+        video.controls.container.removeAttribute("data-hidden");
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+    };
+    const hideControls = (video: any, timeout?: NodeJS.Timeout | null) => {
+        video.controls.container.setAttribute("data-hidden", "");
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+    };
+    const hideControlsWithTimeout = (
+        video: any,
+        timeout?: NodeJS.Timeout | null
+    ) => {
+        showControls(video, timeout);
+        return setTimeout(() => {
+            const state = video.controller.getState();
+
+            if (state === "playing") {
+                hideControls(video);
+            }
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+        }, 2500);
+    };
+    const changeScreenState = (video: any) => {
+        if (document.fullscreenElement) {
+            video.controls.screen.setAttribute("data-maximized", "");
+        } else {
+            video.controls.screen.removeAttribute("data-maximized");
+        }
+    };
+
+    for (const video of videos) {
+        let timeout: NodeJS.Timeout | null = null;
+
+        const mouseMoveCallback = () => {
+            timeout = hideControlsWithTimeout(video, timeout);
+        };
+
+        video.controller.onReady = () => {
+            video.controls.slider.max = String(video.controller.getDuration());
+            video.controls.slider.dispatchEvent(
+                new CustomEvent("value", {
+                    detail: video.controller.getCurrentTime()
+                })
+            );
+            video.controls.elapsedTime.innerText =
+                video.controller.getElapsedTime();
+            video.controls.remainingTime.innerText =
+                video.controller.getRemainingTime();
+        };
+        video.controller.onEnded = () => {
+            // Show thumbnail
+            showThumbnail(video);
+            // Hide controls
+            video.container.removeEventListener("mousemove", mouseMoveCallback);
+            hideControls(video, timeout);
+            // Change player state
+            changePlayerState(video, "ended");
+        };
+        video.controller.onPlaying = () => {
+            // Hide thumbnail
+            hideThumbnail(video);
+            // Show controls and hide with timeout
+            video.container.removeEventListener("mousemove", mouseMoveCallback);
+            video.container.addEventListener("mousemove", mouseMoveCallback);
+            video.container.dispatchEvent(new MouseEvent("mousemove"));
+            // Change player state
+            changePlayerState(video, "playing");
+        };
+        video.controller.onPaused = () => {
+            // Show controls
+            video.container.removeEventListener("mousemove", mouseMoveCallback);
+            showControls(video, timeout);
+            // Change player state
+            changePlayerState(video, "paused");
+        };
+        video.controller.onBuffering = () =>
+            changePlayerState(video, "buffering");
+        video.controller.onSeek = (currentTime, duration) => {
+            video.controls.slider.max = String(duration);
+            video.controls.slider.dispatchEvent(
+                new CustomEvent("value", { detail: currentTime })
+            );
+            video.controls.elapsedTime.innerText =
+                video.controller.getElapsedTime();
+            video.controls.remainingTime.innerText =
+                video.controller.getRemainingTime();
+        };
+
+        video.thumbnail.play.addEventListener("click", () =>
+            video.controller.toggleState()
+        );
+        video.controls.play.addEventListener("click", () =>
+            video.controller.toggleState()
+        );
+        video.controls.slider.addEventListener("input", () => {
+            video.controller.seek(Number(video.controls.slider.value));
+            video.controls.elapsedTime.innerText =
+                video.controller.getElapsedTime();
+            video.controls.remainingTime.innerText =
+                video.controller.getRemainingTime();
+        });
+        video.controller.container.addEventListener("click", () =>
+            video.controller.toggleState()
+        );
+        document.addEventListener("fullscreenchange", () =>
+            changeScreenState(video)
+        );
+        video.controls.screen.addEventListener("click", () => {
+            if (document.fullscreenElement && document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (video.container.requestFullscreen) {
+                video.container.requestFullscreen();
+            }
+        });
+    }
+</script>

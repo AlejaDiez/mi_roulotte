@@ -24,27 +24,31 @@ const tripColumns = {
 export const getStageById = defineAction({
     input: z.object({
         id: z.tuple([z.string().default(""), z.string().default("")]),
+        check_travel: z.boolean().default(true),
         fields: z
             .string()
             .optional()
             .transform((e) => e?.split(","))
     }),
     handler: async (
-        { id: [tripId, stageId], fields },
+        { id: [tripId, stageId], check_travel, fields },
         context
     ): Promise<Partial<Stage>> => {
         const db = drizzle(context.locals.runtime.env.DB);
-        const exists = !!(await db
-            .select({ id: TripsTable.id })
-            .from(TripsTable)
-            .where(eq(TripsTable.id, tripId))
-            .get());
 
-        if (!exists) {
-            throw new ActionError({
-                code: "NOT_FOUND",
-                message: `Trip with id '${tripId}' does not exist`
-            });
+        if (check_travel) {
+            const exists = !!(await db
+                .select({ id: TripsTable.id })
+                .from(TripsTable)
+                .where(eq(TripsTable.id, tripId))
+                .get());
+
+            if (!exists) {
+                throw new ActionError({
+                    code: "NOT_FOUND",
+                    message: `Trip with id '${tripId}' does not exist`
+                });
+            }
         }
 
         const data = await db

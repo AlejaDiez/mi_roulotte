@@ -29,7 +29,7 @@ export namespace YouTube {
 
     export const getData = async (id: string) =>
         await fetch(
-            `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`,
+            `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`
         ).then<any>((res) => res.json());
 
     export const buildYoutubeIframe = (
@@ -43,7 +43,7 @@ export namespace YouTube {
             onBuffering?: () => void;
             onCued?: () => void;
             onSeek?: (currentTime: number, duration: number) => void;
-        },
+        }
     ): YT.Player => {
         let interval: number | null = null;
         const handleStateChange = (state: YT.PlayerState) => {
@@ -60,7 +60,7 @@ export namespace YouTube {
                 interval = window.setInterval(() => {
                     events?.onSeek?.(
                         player.getCurrentTime(),
-                        player.getDuration(),
+                        player.getDuration()
                     );
                 }, 100);
             };
@@ -109,12 +109,12 @@ export namespace YouTube {
                 origin: import.meta.env.SITE,
                 playsinline: 1, // YT.PlaysInline.Inline,
                 rel: 0, // YT.RelatedVideos.Hide
-                showinfo: 0, // YT.ShowInfo.Hide
+                showinfo: 0 // YT.ShowInfo.Hide
             },
             events: {
                 onReady: () => events?.onReady?.(),
-                onStateChange: ({ data }) => handleStateChange(data),
-            },
+                onStateChange: ({ data }) => handleStateChange(data)
+            }
         });
 
         return player;
@@ -190,8 +190,8 @@ export class VideoController {
                     onPaused: this.onPaused,
                     onBuffering: this.onBuffering,
                     onCued: this.onCued,
-                    onSeek: this.onSeek,
-                },
+                    onSeek: this.onSeek
+                }
             );
         }
     }

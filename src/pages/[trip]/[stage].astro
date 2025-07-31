@@ -4,7 +4,10 @@ import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import ScrollToTop from "@components/layout/ScrollToTop.astro";
+import ContentSection from "@components/shared/ContentSection.astro";
+import HeaderSection from "@components/shared/HeaderSection.astro";
+import StageSection from "@components/shared/StageSection.astro";
+import ScrollToTop from "@components/ui/ScrollToTop.astro";
 
 const { trip, stage } = Astro.params;
 const { data: contextData, error: contextError } = await Astro.callAction(
@@ -19,7 +22,8 @@ const { data: contextData, error: contextError } = await Astro.callAction(
 if (contextError) return Astro.redirect("/404");
 
 const { data, error } = await Astro.callAction(getStageById, {
-    id: [trip, stage]
+    id: [trip, stage],
+    check_travel: false
 });
 
 if (error) return Astro.redirect("/404");
@@ -32,7 +36,13 @@ if (error) return Astro.redirect("/404");
     keywords={data.keywords}>
     <Header />
     <Main>
-        {data.content}
+        <HeaderSection
+            title={data.title!}
+            subtitle=`${contextData.name} ${contextData.date!.getFullYear()}`
+            image={data.image!}
+        />
+        <ContentSection content={data.content!} />
+        <StageSection stages={contextData.stages as any} />
     </Main>
     <Footer />
     <ScrollToTop />

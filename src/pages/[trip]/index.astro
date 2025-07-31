@@ -4,7 +4,10 @@ import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import ScrollToTop from "@components/layout/ScrollToTop.astro";
+import ScrollToTop from "@components/ui/ScrollToTop.astro";
+import HeaderSection from "@components/shared/HeaderSection.astro";
+import StageSection from "@components/shared/StageSection.astro";
+import ContentSection from "@components/shared/ContentSection.astro";
 
 const { trip } = Astro.params;
 const { data, error } = await Astro.callAction(getTripById, {
@@ -24,7 +27,13 @@ if (error) {
     keywords={data.keywords}>
     <Header />
     <Main>
-        {data.content}
+        <HeaderSection
+            title={data.title!}
+            subtitle=`${data.name} ${data.date!.getFullYear()}`
+            image={data.image!}
+        />
+        <ContentSection content={data.content!} />
+        <StageSection stages={data.stages as any} />
     </Main>
     <Footer />
     <ScrollToTop />

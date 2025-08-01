@@ -9,7 +9,7 @@ const { id, class: cls } = Astro.props;
 <header
     {id}
     class:list={cls}
-    class="header group bg-background px-space h-space sticky top-0 left-0 z-[80] flex w-full flex-row items-center select-none">
+    class="header group bg-background sticky top-0 left-0 z-[80] flex h-(--space-y) w-full flex-row items-center px-(--space-x) select-none">
     <a
         title="Mi Roulotte"
         href="/"
@@ -25,9 +25,9 @@ const { id, class: cls } = Astro.props;
         </svg>
     </a>
     <div
-        class="menu max-md:clip-bottom max-md:bg-background max-md:pt-space max-md:group-[.expanded]:clip-none max-md:fixed max-md:top-0 max-md:left-0 max-md:-z-10 max-md:flex max-md:h-full max-md:w-full max-md:flex-col max-md:transition-[clip-path] max-md:duration-500">
+        class="menu max-md:clip-bottom max-md:bg-background max-md:group-data-expanded:clip-none max-md:fixed max-md:top-0 max-md:left-0 max-md:-z-10 max-md:flex max-md:h-full max-md:w-full max-md:flex-col max-md:pt-(--space-y) max-md:transition-[clip-path] max-md:duration-500">
         <nav
-            class="max-md:px-space max-md:pb-space flex flex-row items-center justify-end max-md:my-auto max-md:max-h-full max-md:flex-col max-md:items-start max-md:justify-start max-md:overflow-y-auto">
+            class="flex flex-row items-center justify-end max-md:my-auto max-md:max-h-full max-md:flex-col max-md:items-start max-md:justify-start max-md:overflow-y-auto max-md:px-(--space-x) max-md:pb-(--space-y)">
             <a
                 href="/#inicio"
                 target="_self"
@@ -44,7 +44,7 @@ const { id, class: cls } = Astro.props;
                     <i class="ibm-chevron-down max-md:hidden"></i>
                 </a>
                 <nav
-                    class="md:bg-muted md:clip-bottom md:group-hover/alt:clip-none sub-menu max-md:pl-space flex w-full flex-col items-start justify-start md:absolute md:top-full md:left-0 md:z-10 md:w-64 md:py-2 md:transition-[clip-path] md:duration-300">
+                    class="md:bg-muted md:clip-bottom md:group-hover/alt:clip-none sub-menu flex w-full flex-col items-start justify-start max-md:pl-(--space-x) md:absolute md:top-full md:left-0 md:z-10 md:w-64 md:py-2 md:transition-[clip-path] md:duration-300">
                     <a
                         href="/suiza-2025"
                         target="_self"
@@ -86,13 +86,13 @@ const { id, class: cls } = Astro.props;
         </nav>
     </div>
     <button
-        class="menu-toggle button button-primary transition-[color,rotate] duration-[150ms,500ms] group-[.expanded]:rotate-90 md:hidden">
+        class="menu-toggle button button-primary transition-[color,rotate] duration-[150ms,500ms] group-data-expanded:rotate-90 md:hidden">
         <i class="ibm-menu"></i>
     </button>
 </header>
 
 <style is:global>
-    body:has(.header.expanded) {
+    body:has(.header[data-expanded]) {
         overflow: hidden;
     }
 </style>
@@ -114,11 +114,11 @@ const { id, class: cls } = Astro.props;
     });
     window.dispatchEvent(new Event("hashchange"));
     toggleButton.addEventListener("click", () => {
-        header.classList.toggle("expanded");
+        header.toggleAttribute("data-expanded");
     });
     window.addEventListener("resize", () => {
         if (window.innerWidth >= 48 * 16) {
-            header.classList.remove("expanded");
+            header.removeAttribute("data-expanded");
         }
     });
 </script>

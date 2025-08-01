@@ -9,7 +9,7 @@ const { id, class: cls } = Astro.props;
 <footer
     {id}
     class:list={cls}
-    class="footer px-space flex h-32 w-full cursor-default flex-col items-start justify-start select-none max-sm:h-40 max-sm:pb-2">
+    class="footer flex h-32 w-full cursor-default flex-col items-start justify-start px-(--space-x) select-none max-sm:h-40 max-sm:pb-2">
     <div
         class="content mt-8 flex w-full grow flex-row items-center justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-2">
         <a
@@ -49,7 +49,7 @@ const { id, class: cls } = Astro.props;
         </nav>
     </div>
     <div
-        class="license flex h-8 w-full flex-row items-start justify-start max-sm:items-center max-sm:justify-center">
+        class="license flex h-8 w-full flex-row items-start justify-start max-sm:items-center max-sm:justify-center max-sm:text-center">
         <span class="text-label text-gray-20 dark:text-gray-70">
             &copy; {new Date().getFullYear()} Mi Roulotte · Todos los derechos reservados
         </span>

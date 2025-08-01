@@ -1,83 +1,3 @@
-@utility w-space {
-    width: var(--space-x);
-}
-
-@utility h-space {
-    height: var(--space-y);
-}
-
-@utility mx-space {
-    margin-right: var(--space-x);
-    margin-left: var(--space-x);
-}
-
-@utility mr-space {
-    margin-right: var(--space-x);
-}
-
-@utility ml-space {
-    margin-left: var(--space-x);
-}
-
-@utility my-space {
-    margin-top: var(--space-y);
-    margin-bottom: var(--space-y);
-}
-
-@utility mt-space {
-    margin-top: var(--space-y);
-}
-
-@utility mb-space {
-    margin-bottom: var(--space-y);
-}
-
-@utility px-space {
-    padding-right: var(--space-x);
-    padding-left: var(--space-x);
-}
-
-@utility pr-space {
-    padding-right: var(--space-x);
-}
-
-@utility pl-space {
-    padding-left: var(--space-x);
-}
-
-@utility py-space {
-    padding-top: var(--space-y);
-    padding-bottom: var(--space-y);
-}
-
-@utility pt-space {
-    padding-top: var(--space-y);
-}
-
-@utility pb-space {
-    padding-bottom: var(--space-y);
-}
-
-@utility gap-space {
-    gap: var(--space-between);
-}
-
-@utility left-space {
-    left: var(--space-overflow);
-}
-
-@utility top-space {
-    top: var(--space-overflow);
-}
-
-@utility right-space {
-    right: var(--space-overflow);
-}
-
-@utility bottom-space {
-    bottom: var(--space-overflow);
-}
-
 @utility text-title {
     @apply text-foreground font-sans text-5xl leading-[1.18] font-bold tracking-normal not-italic sm:text-6xl md:text-7xl;
 }
@@ -108,6 +28,10 @@
 
 @utility icon-alt {
     @apply text-foreground-variant font-icon text-sm leading-none font-normal normal-case not-italic antialiased;
+}
+
+@utility text-vertical {
+    writing-mode: vertical-rl;
 }
 
 @utility aspect-portrait {
@@ -148,8 +72,203 @@
     pointer-events: none;
 }
 
+@utility scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@utility animation-delay-* {
+    animation-delay: --value([*]);
+}
+
+@utility animation-delay-75 {
+    animation-delay: 75ms;
+}
+
+@utility animation-delay-100 {
+    animation-delay: 100ms;
+}
+
+@utility animation-delay-150 {
+    animation-delay: 150ms;
+}
+
+@utility animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+@utility animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+@utility animation-delay-500 {
+    animation-delay: 500ms;
+}
+
+@utility animation-delay-700 {
+    animation-delay: 700ms;
+}
+
+@utility animation-delay-1000 {
+    animation-delay: 1000ms;
+}
+
+@utility animate-fade {
+    animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) backwards fade;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@utility animate-clip-left {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-left;
+}
+
+@keyframes clip-from-left {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 100%);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-clip-top {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-top;
+}
+
+@keyframes clip-from-top {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(100% 0 0 0);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-clip-right {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-right;
+}
+
+@keyframes clip-from-right {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(0 100% 0 0);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-clip-bottom {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards clip-from-bottom;
+}
+
+@keyframes clip-from-bottom {
+    from {
+        transform: translateZ(0);
+        clip-path: inset(0 0 100% 0);
+        pointer-events: none;
+    }
+
+    to {
+        transform: translateZ(0);
+        clip-path: inset(0 0 0 0);
+        pointer-events: all;
+    }
+}
+
+@utility animate-float-top {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-top;
+}
+
+@keyframes float-top {
+    from {
+        transform: translateY(1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-float-left {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-left;
+}
+
+@keyframes float-left {
+    from {
+        transform: translateX(1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-float-bottom {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-bottom;
+}
+
+@keyframes float-bottom {
+    from {
+        transform: translateY(-1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@utility animate-float-right {
+    animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) backwards float-right;
+}
+
+@keyframes float-right {
+    from {
+        transform: translateX(-1.5rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 @utility animate-shake {
-    animation: 1s ease shake;
+    animation: 1s cubic-bezier(0.4, 0, 0.2, 1) shake;
 }
 
 @keyframes shake {

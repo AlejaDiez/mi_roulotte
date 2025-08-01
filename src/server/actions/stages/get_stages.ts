@@ -20,27 +20,31 @@ export const getStages = defineAction({
     input: z.object({
         id: z.string().default(""),
         relative_url: z.boolean().default(false),
+        check_travel: z.boolean().default(true),
         fields: z
             .string()
             .optional()
             .transform((e) => e?.split(","))
     }),
     handler: async (
-        { id, relative_url, fields },
+        { id, relative_url, check_travel, fields },
         context
     ): Promise<Partial<StagePreview>[]> => {
         const db = drizzle(context.locals.runtime.env.DB);
-        const exists = !!(await db
-            .select({ id: TripsTable.id })
-            .from(TripsTable)
-            .where(eq(TripsTable.id, id))
-            .get());
 
-        if (!exists) {
-            throw new ActionError({
-                code: "NOT_FOUND",
-                message: `Trip with id '${id}' does not exist`
-            });
+        if (check_travel) {
+            const exists = !!(await db
+                .select({ id: TripsTable.id })
+                .from(TripsTable)
+                .where(eq(TripsTable.id, id))
+                .get());
+
+            if (!exists) {
+                throw new ActionError({
+                    code: "NOT_FOUND",
+                    message: `Trip with id '${id}' does not exist`
+                });
+            }
         }
 
         const data = await db

@@ -1,0 +1,219 @@
+---
+import Image from '@components/ui/Image.astro';
+import Video from '@components/ui/Video.astro';
+
+export interface Props {
+    content: object | object[];
+}
+
+const { content } = Astro.props as any;
+---
+
+{
+    () => {
+        if (Array.isArray(content)) {
+            return content.map((content) => <Astro.self {content} />);
+        }
+
+        const { type, attributes = {}, children = [], data = "" } = content as any;
+
+        switch (type) {
+            case "title":
+                return <h3
+                    class="text-headline text-left"
+                    class:list={{
+                        [`align-${attributes.align}`]: !!attributes.align
+                    }}>
+                        <Astro.self content={children} />
+                    </h3>;
+            case "paragraph":
+                return <p
+                    class="text-normal text-justify"
+                    class:list={{
+                        [`align-${attributes.align}`]: !!attributes.align  
+                    }}>
+                        <Astro.self content={children} />
+                    </p>; 
+            case "list":
+                return <ul
+                    class="list-disc"
+                    class:list={{
+                        [`align-${attributes.align}`]: !!attributes.align  
+                    }}>
+                        <Astro.self content={children} />
+                    </ul>;
+            case "list-item":
+                return <li
+                    class="text-normal text-left ml-8"
+                    class:list={{
+                        [`align-${attributes.align}`]: !!attributes.align  
+                    }}>
+                        <Astro.self content={children} />
+                    </li>;  
+            case "text":
+                if (Object.keys(attributes).length > 0) {
+                    return <span
+                        class:list={{
+                            "bold": attributes.bold,
+                            "italic": attributes.italic,
+                            "underline": attributes.underline,
+                            "strikethrough": attributes.strikethrough,
+                            [`color-${attributes.color}`]: !!attributes.color
+                        }}>
+                            {data}
+                        </span>;
+                }  else {
+                    return data;
+                }
+            case "link":
+                return <a
+                    href={attributes.url}
+                    target={attributes.self ? "_self" : "_blank"}
+                    class="link"
+                    class:list={{
+                        "bold": attributes.bold,
+                        "italic": attributes.italic,
+                        "underline": attributes.underline,
+                        "strikethrough": attributes.strikethrough,
+                        [`color-${attributes.color}`]: !!attributes.color
+                    }}>
+                        {data}
+                    </a>;
+            case "image":
+                return <Image
+                    url={attributes.url}
+                    caption={attributes.caption}
+                    class:list={{
+                        [`col-${attributes.cols}`]: !!attributes.cols,
+                        [`row-${attributes.rows}`]: !!attributes.rows,
+                        [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
+                    }} />;
+            case "video":
+                return <Video
+                    url={attributes.url}
+                    title={attributes.title}
+                    thumbnail={attributes.thumbnail}
+                    class:list={{
+                        [`col-${attributes.cols}`]: !!attributes.cols,
+                        [`row-${attributes.rows}`]: !!attributes.rows,
+                        [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
+                    }} />;
+            case "mosaic":
+                return <div 
+                    class="mosaic"
+                    class:list={{
+                        [`size-${attributes.size}`]: !!attributes.size
+                    }}>
+                        <Astro.self content={children} />
+                    </div>;
+            default:
+                return <></>;
+        }
+    }
+}
+
+<style is:global>
+    .align-left {
+        text-align: left;
+    }
+
+    .align-center {
+        text-align: center;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .align-justify {
+        text-align: justify;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .underline {
+        text-decoration: underline;
+    }
+
+    .strikethrough {
+        text-decoration: line-through;
+    }
+
+    .underline.strikethrough {
+        text-decoration: underline line-through;
+    }
+
+    .color-red {
+        color: light-dark(var(--color-red-60), var(--color-red-50));
+    }
+
+    .color-orange {
+        color: light-dark(var(--color-orange-60), var(--color-orange-50));
+    }
+
+    .color-yellow {
+        color: light-dark(var(--color-yellow-60), var(--color-yellow-50));
+    }
+
+    .color-green {
+        color: light-dark(var(--color-green-60), var(--color-green-50));
+    }
+
+    .color-teal {
+        color: light-dark(var(--color-teal-60), var(--color-teal-50));
+    }
+
+    .color-cyan {
+        color: light-dark(var(--color-cyan-60), var(--color-cyan-50));
+    }
+
+    .color-blue {
+        color: light-dark(var(--color-blue-60), var(--color-blue-50));
+    }
+
+    .color-purple {
+        color: light-dark(var(--color-purple-60), var(--color-purple-50));
+    }
+
+    .color-magenta {
+        color: light-dark(var(--color-magenta-60), var(--color-magenta-50));
+    }
+
+    .color-gray {
+        color: light-dark(var(--color-gray-60), var(--color-gray-50));
+    }
+
+    .aspect-ratio-1 {
+        aspect-ratio: 1;
+    }
+
+    .aspect-ratio-2\/3 {
+        aspect-ratio: 2/3;
+    }
+
+    .aspect-ratio-3\/2 {
+        aspect-ratio: 3/2;
+    }
+
+    .aspect-ratio-3\/4 {
+        aspect-ratio: 3/4;
+    }
+
+    .aspect-ratio-4\/3 {
+        aspect-ratio: 4/3;
+    }
+
+    .aspect-ratio-9\/16 {
+        aspect-ratio: 9/16;
+    }
+
+    .aspect-ratio-16\/9 {
+        aspect-ratio: 16/9;
+    }
+</style>

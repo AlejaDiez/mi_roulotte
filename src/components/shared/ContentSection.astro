@@ -1,0 +1,49 @@
+---
+import Content from "@components/ui/Content.astro";
+import type { BaseProps } from "@utils/props";
+
+export interface Props extends BaseProps {
+    content: object[];
+}
+
+const { content, id, class: cls } = Astro.props;
+---
+
+<section
+    {id}
+    class:list={cls}
+    class="content-section animation-delay-[375ms] animate-fade flex w-full flex-col items-start justify-start">
+    <Content {content} />
+</section>
+
+<style is:global>
+    .content-section > * {
+        width: 100%;
+    }
+
+    .content-section > h3 {
+        margin-top: calc(var(--space) * 3);
+        margin-bottom: var(--space);
+    }
+
+    .content-section > p,
+    .content-section > ul {
+        margin-top: var(--space);
+        margin-bottom: var(--space);
+    }
+
+    .content-section > .mosaic,
+    .content-section > .image,
+    .content-section > .video {
+        margin-top: calc(var(--space) * 2);
+        margin-bottom: calc(var(--space) * 2);
+    }
+
+    .content-section > :first-child {
+        margin-top: 0 !important;
+    }
+
+    .content-section > :last-child {
+        margin-bottom: 0 !important;
+    }
+</style>

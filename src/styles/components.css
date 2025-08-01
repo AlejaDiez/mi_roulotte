@@ -207,12 +207,410 @@
         }
     }
 
+    /* Lightbox */
+    .lightbox {
+        @apply fixed top-0 left-0 z-[90];
+        @apply flex flex-col items-center justify-center gap-2;
+        @apply h-full w-full;
+        @apply p-(--space-y);
+        @apply bg-background;
+        @apply cursor-default overflow-hidden select-none;
+
+        > div {
+            @apply block content-center;
+            @apply w-full;
+            @apply overflow-hidden;
+            @apply animate-clip-bottom animation-delay-500;
+
+            > img {
+                @apply bg-muted mx-auto aspect-auto h-auto max-h-full w-auto max-w-full object-contain;
+            }
+        }
+
+        > span {
+            @apply text-normal text-foreground-variant text-center;
+            @apply animate-fade animation-delay-[375ms];
+        }
+
+        > button {
+            @apply absolute top-3 right-3;
+            @apply animate-clip-left;
+        }
+    }
+
     /* Link */
     .link {
         @apply inline-block;
         @apply text-normal text-accent hover:text-accent-hover font-semibold;
         @apply active:animate-shake transition-colors;
         @apply cursor-pointer;
+    }
+
+    /* Mosaic */
+    .mosaic {
+        @apply flex flex-col items-center justify-start gap-[calc(var(--space)*4)] md:grid md:justify-center;
+
+        &.size-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            grid-auto-rows: calc(100vw - (var(--space-x) * 2));
+        }
+
+        &.size-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4)) / 2
+            );
+        }
+
+        &.size-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 2)) / 3
+            );
+        }
+
+        &.size-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 3)) / 4
+            );
+        }
+
+        &.size-5 {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 4)) / 5
+            );
+        }
+
+        &.size-6 {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 5)) / 6
+            );
+        }
+
+        &.size-7 {
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 6)) / 7
+            );
+        }
+
+        &.size-8 {
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 7)) / 8
+            );
+        }
+
+        &.size-9 {
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 8)) / 9
+            );
+        }
+
+        &.size-10 {
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 9)) / 10
+            );
+        }
+
+        &.size-11 {
+            grid-template-columns: repeat(11, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 10)) / 11
+            );
+        }
+
+        &.size-12 {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 11)) / 12
+            );
+        }
+
+        &.size-13 {
+            grid-template-columns: repeat(13, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 12)) / 13
+            );
+        }
+
+        &.size-14 {
+            grid-template-columns: repeat(14, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 13)) / 14
+            );
+        }
+
+        &.size-15 {
+            grid-template-columns: repeat(15, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 14)) / 15
+            );
+        }
+
+        &.size-16 {
+            grid-template-columns: repeat(16, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 15)) / 16
+            );
+        }
+
+        &.size-17 {
+            grid-template-columns: repeat(17, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 16)) / 17
+            );
+        }
+
+        &.size-18 {
+            grid-template-columns: repeat(18, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 17)) / 18
+            );
+        }
+
+        &.size-19 {
+            grid-template-columns: repeat(19, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 18)) / 19
+            );
+        }
+
+        &.size-20 {
+            grid-template-columns: repeat(20, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 19)) / 20
+            );
+        }
+
+        &.size-21 {
+            grid-template-columns: repeat(21, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 20)) / 21
+            );
+        }
+
+        &.size-22 {
+            grid-template-columns: repeat(22, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 21)) / 22
+            );
+        }
+
+        &.size-23 {
+            grid-template-columns: repeat(23, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 22)) / 23
+            );
+        }
+
+        &.size-24 {
+            grid-template-columns: repeat(24, minmax(0, 1fr));
+            grid-auto-rows: calc(
+                (100vw - (var(--space-x) * 2) - (var(--space) * 4 * 23)) / 24
+            );
+        }
+
+        > * {
+            @apply col-auto row-auto !h-full !w-full md:!aspect-[auto];
+        }
+
+        > .col-1 {
+            @apply !col-span-1;
+        }
+
+        > .col-2 {
+            @apply !col-span-2;
+        }
+
+        > .col-3 {
+            @apply !col-span-3;
+        }
+
+        > .col-4 {
+            @apply !col-span-4;
+        }
+
+        > .col-5 {
+            @apply !col-span-5;
+        }
+
+        > .col-6 {
+            @apply !col-span-6;
+        }
+
+        > .col-7 {
+            @apply !col-span-7;
+        }
+
+        > .col-8 {
+            @apply !col-span-8;
+        }
+
+        > .col-9 {
+            @apply !col-span-9;
+        }
+
+        > .col-10 {
+            @apply !col-span-10;
+        }
+
+        > .col-11 {
+            @apply !col-span-11;
+        }
+
+        > .col-12 {
+            @apply !col-span-12;
+        }
+
+        > .col-13 {
+            @apply !col-span-13;
+        }
+
+        > .col-14 {
+            @apply !col-span-14;
+        }
+
+        > .col-15 {
+            @apply !col-span-15;
+        }
+
+        > .col-16 {
+            @apply !col-span-16;
+        }
+
+        > .col-17 {
+            @apply !col-span-17;
+        }
+
+        > .col-18 {
+            @apply !col-span-18;
+        }
+
+        > .col-19 {
+            @apply !col-span-19;
+        }
+
+        > .col-20 {
+            @apply !col-span-20;
+        }
+
+        > .col-21 {
+            @apply !col-span-21;
+        }
+
+        > .col-22 {
+            @apply !col-span-22;
+        }
+
+        > .col-23 {
+            @apply !col-span-23;
+        }
+
+        > .col-24 {
+            @apply !col-span-24;
+        }
+
+        > .row-1 {
+            @apply !row-span-1;
+        }
+
+        > .row-2 {
+            @apply !row-span-2;
+        }
+
+        > .row-3 {
+            @apply !row-span-3;
+        }
+
+        > .row-4 {
+            @apply !row-span-4;
+        }
+
+        > .row-5 {
+            @apply !row-span-5;
+        }
+
+        > .row-6 {
+            @apply !row-span-6;
+        }
+
+        > .row-7 {
+            @apply !row-span-7;
+        }
+
+        > .row-8 {
+            @apply !row-span-8;
+        }
+
+        > .row-9 {
+            @apply !row-span-9;
+        }
+
+        > .row-10 {
+            @apply !row-span-10;
+        }
+
+        > .row-11 {
+            @apply !row-span-11;
+        }
+
+        > .row-12 {
+            @apply !row-span-12;
+        }
+
+        > .row-13 {
+            @apply !row-span-13;
+        }
+
+        > .row-14 {
+            @apply !row-span-14;
+        }
+
+        > .row-15 {
+            @apply !row-span-15;
+        }
+
+        > .row-16 {
+            @apply !row-span-16;
+        }
+
+        > .row-17 {
+            @apply !row-span-17;
+        }
+
+        > .row-18 {
+            @apply !row-span-18;
+        }
+
+        > .row-19 {
+            @apply !row-span-19;
+        }
+
+        > .row-20 {
+            @apply !row-span-20;
+        }
+
+        > .row-21 {
+            @apply !row-span-21;
+        }
+
+        > .row-22 {
+            @apply !row-span-22;
+        }
+
+        > .row-23 {
+            @apply !row-span-23;
+        }
+
+        > .row-24 {
+            @apply !row-span-24;
+        }
     }
 
     /* Slider */

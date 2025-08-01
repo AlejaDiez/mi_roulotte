@@ -1,0 +1,42 @@
+---
+import type { BaseProps } from "@utils/props";
+
+export interface Props extends BaseProps {
+    title: string;
+    subtitle?: string;
+    image: string;
+}
+
+const { title, subtitle, image, id, class: cls } = Astro.props;
+---
+
+<section
+    {id}
+    class:list={cls}
+    class="header-section max-md:aspect-portrait relative aspect-video w-full cursor-default select-none md:max-h-[48rem] md:min-h-96">
+    {
+        subtitle && (
+            <div class="subtitle animate-clip-top bg-primary absolute top-0 right-[calc(var(--space-overflow)+50%)] z-10 block h-(--space-y) content-center px-6 max-md:hidden">
+                <h2 class="text-subtitle text-primary-foreground line-clamp-1 text-center">
+                    {subtitle}
+                </h2>
+            </div>
+        )
+    }
+    <div
+        class="title md:bg-muted animate-clip-right max-md:animate-float-right absolute z-10 flex h-64 w-[50vw] items-center justify-start overflow-hidden max-md:h-full max-md:w-[var(--space-y)] max-md:items-end max-md:justify-center max-md:mask-b-to-10 max-md:mask-exclude md:top-(--space-y) md:-left-(--space-x) md:pr-[calc(var(--space-x)/2)] md:pl-(--space-x)">
+        <h1
+            class="text-title max-md:text-vertical max-md:rotate-180 max-md:whitespace-nowrap md:line-clamp-2">
+            {title}
+        </h1>
+    </div>
+    <div
+        class="hero-image animate-clip-bottom animation-delay-500 absolute top-0 z-0 h-full overflow-hidden max-md:right-0 max-md:w-[calc(100%-var(--space-y))] md:left-0 md:w-full">
+        <img
+            src={image}
+            alt={subtitle}
+            decoding="async"
+            class="h-full w-full object-cover object-center"
+        />
+    </div>
+</section>

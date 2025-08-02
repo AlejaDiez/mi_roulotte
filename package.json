@@ -5,7 +5,7 @@
     "homepage": "https://miroulotte.es",
     "repository": {
         "type": "git",
-        "url": "https://github.com/AlejaDiez/mi_roulotte"
+        "url": "https://github.com/AlejaDiez/mi-roulotte"
     },
     "license": "CC-A-NC-SA-4.0",
     "author": "Alejandro Diez Bermejo",
@@ -18,8 +18,8 @@
         "deploy": "astro build && wrangler pages deploy",
         "cf-typegen": "wrangler types",
         "db:generate": "drizzle-kit generate --name=migration",
-        "db:migrate:local": "wrangler d1 migrations apply mi_roulotte_db --local",
-        "db:migrate:remote": "wrangler d1 migrations apply mi_roulotte_db --remote",
+        "db:migrate:local": "wrangler d1 migrations apply mi-roulotte-db --local",
+        "db:migrate:remote": "wrangler d1 migrations apply mi-roulotte-db --remote",
         "db:studio:local": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit) drizzle-kit studio",
         "db:studio:remote": "source .env && drizzle-kit studio"
     },

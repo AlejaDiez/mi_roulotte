@@ -26,8 +26,8 @@
     "d1_databases": [
         {
             "binding": "DB",
-            "database_name": "mi_roulotte_db",
-            "database_id": "cd7588c9-42c7-40d4-aa49-ebde43f0a768",
+            "database_name": "mi-roulotte-db",
+            "database_id": "326c8ed1-35f8-487e-988f-ab6725327acc",
             "migrations_dir": "src/server/db/migrations"
         }
     ]

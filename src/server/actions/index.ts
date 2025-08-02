@@ -1,3 +1,6 @@
+// Comments
+export * from "./comments/get_comments";
+
 // Stages
 export * from "./stages/get_stage_by_id";
 export * from "./stages/get_stages";

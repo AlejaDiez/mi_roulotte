@@ -37,3 +37,19 @@ export const StagesTable = table(
     },
     (self) => [primaryKey({ columns: [self.id, self.tripId] })]
 );
+
+export const StagesTableColumns = {
+    id: StagesTable.id,
+    tripId: StagesTable.tripId,
+    name: StagesTable.name,
+    date: StagesTable.date,
+    title: StagesTable.title,
+    description: StagesTable.description,
+    image: StagesTable.image,
+    content: StagesTable.content,
+    keywords: StagesTable.keywords,
+    published: StagesTable.published,
+    allowComments: StagesTable.allowComments,
+    createdAt: StagesTable.createdAt,
+    modifiedAt: StagesTable.modifiedAt
+};

@@ -36,3 +36,15 @@ export const CommentsTable = table(
             .onDelete("cascade")
     ]
 );
+
+export const CommentsTableColumns = {
+    id: CommentsTable.id,
+    tripId: CommentsTable.tripId,
+    stageId: CommentsTable.stageId,
+    username: CommentsTable.username,
+    email: CommentsTable.email,
+    content: CommentsTable.content,
+    repliedTo: CommentsTable.repliedTo,
+    createdAt: CommentsTable.createdAt,
+    modifiedAt: CommentsTable.modifiedAt
+};

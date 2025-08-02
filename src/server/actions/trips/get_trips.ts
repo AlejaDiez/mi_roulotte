@@ -1,5 +1,5 @@
 import type { TripPreview } from "@models/trip";
-import { TripsTable } from "@schemas";
+import { TripsTable, TripsTableColumns } from "@schemas";
 import { composeRelativeUrl, composeUrl } from "@utils/compose_url";
 import { filterObject } from "@utils/filter_object";
 import { defineAction } from "astro:actions";
@@ -7,15 +7,7 @@ import { z } from "astro:schema";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
-const tripColumns = {
-    id: TripsTable.id,
-    name: TripsTable.name,
-    date: TripsTable.date,
-    title: TripsTable.title,
-    description: TripsTable.description,
-    image: TripsTable.image,
-    video: TripsTable.video
-};
+export type PartialTripPreview = Partial<TripPreview>;
 
 export const getTrips = defineAction({
     input: z.object({
@@ -28,15 +20,15 @@ export const getTrips = defineAction({
     handler: async (
         { relative_url, fields },
         context
-    ): Promise<Partial<TripPreview>[]> => {
+    ): Promise<PartialTripPreview[]> => {
         const db = drizzle(context.locals.runtime.env.DB);
         const data = await db
-            .select(filterObject(tripColumns, fields, ["id"]))
+            .select(TripsTableColumns)
             .from(TripsTable)
             .where(eq(TripsTable.published, true))
             .orderBy(TripsTable.date);
 
-        return data.map<Partial<TripPreview>>((e) =>
+        return data.map<PartialTripPreview>((e) =>
             filterObject(
                 {
                     name: e.name,
@@ -46,10 +38,10 @@ export const getTrips = defineAction({
                     image: e.image,
                     video: e.video,
                     url: relative_url
-                        ? composeRelativeUrl(e.id!)
-                        : composeUrl(e.id!)
+                        ? composeRelativeUrl(e.id)
+                        : composeUrl(e.id)
                 },
-                fields
+                { fields }
             )
         );
     }

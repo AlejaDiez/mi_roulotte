@@ -1,35 +1,27 @@
-import type { StagePreview } from "@models/stage";
+import { type PartialCommentPreview, type PartialStagePreview } from "@actions";
+import { buildRelatedComments } from "@models/comment";
 import type { Trip } from "@models/trip";
-import { StagesTable, TripsTable } from "@schemas";
+import {
+    CommentsTable,
+    CommentsTableColumns,
+    StagesTable,
+    StagesTableColumns,
+    TripsTable,
+    TripsTableColumns
+} from "@schemas";
 import { composeRelativeUrl, composeUrl } from "@utils/compose_url";
 import { filterObject } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
-const tripColumns = {
-    id: TripsTable.id,
-    name: TripsTable.name,
-    date: TripsTable.date,
-    title: TripsTable.title,
-    description: TripsTable.description,
-    image: TripsTable.image,
-    video: TripsTable.video,
-    content: TripsTable.content,
-    keywords: TripsTable.keywords,
-    published: TripsTable.published,
-    createdAt: TripsTable.createdAt,
-    modifiedAt: TripsTable.modifiedAt
-};
-const stageColumns = {
-    id: StagesTable.id,
-    name: StagesTable.name,
-    date: StagesTable.date,
-    title: StagesTable.title,
-    description: StagesTable.description,
-    image: StagesTable.image
-};
+export type PartialTrip = Partial<
+    Omit<Omit<Trip, "stages">, "comments"> & {
+        stages: PartialStagePreview[];
+        comments: PartialCommentPreview[] | null;
+    }
+>;
 
 export const getTripById = defineAction({
     input: z.object({
@@ -43,12 +35,10 @@ export const getTripById = defineAction({
     handler: async (
         { id, relative_url, fields },
         context
-    ): Promise<
-        Partial<Omit<Trip, "stages"> & { stages?: Partial<StagePreview>[] }>
-    > => {
+    ): Promise<PartialTrip> => {
         const db = drizzle(context.locals.runtime.env.DB);
         const data = await db
-            .select(filterObject(tripColumns, fields))
+            .select(TripsTableColumns)
             .from(TripsTable)
             .where(and(eq(TripsTable.id, id), eq(TripsTable.published, true)))
             .get();
@@ -60,14 +50,11 @@ export const getTripById = defineAction({
             });
         }
 
-        let stagesData: Partial<StagePreview>[] | undefined = undefined;
+        let stagesData: PartialStagePreview[] | undefined = undefined;
 
-        if (!fields || fields.some((e) => e.includes("stages"))) {
-            const stageFields = fields
-                ?.filter((f) => f.startsWith("stages."))
-                .map((f) => f.replace("stages.", ""));
+        if (!fields || fields.some((f) => f.includes("stages"))) {
             const data = await db
-                .select(filterObject(stageColumns, stageFields, ["id"]))
+                .select(StagesTableColumns)
                 .from(StagesTable)
                 .where(
                     and(
@@ -77,7 +64,7 @@ export const getTripById = defineAction({
                 )
                 .orderBy(StagesTable.date);
 
-            stagesData = data.map((e) =>
+            stagesData = data.map<PartialStagePreview>((e) =>
                 filterObject(
                     {
                         name: e.name,
@@ -86,28 +73,72 @@ export const getTripById = defineAction({
                         description: e.description,
                         image: e.image,
                         url: relative_url
-                            ? composeRelativeUrl(id, e.id!)
-                            : composeUrl(id, e.id!)
+                            ? composeRelativeUrl(id, e.id)
+                            : composeUrl(id, e.id)
                     },
-                    stageFields
+                    { fields, depth: "stages" }
                 )
             );
         }
 
-        return {
-            id: data.id,
-            name: data.name,
-            date: data.date,
-            title: data.title,
-            description: data.description,
-            image: data.image,
-            video: data.video,
-            content: data.content as object[],
-            stages: stagesData,
-            keywords: data.keywords as string[] | null,
-            published: data.published,
-            createdAt: data.createdAt,
-            modifiedAt: data.modifiedAt
-        };
+        let commentsData: PartialCommentPreview[] | undefined = undefined;
+
+        if (
+            data.allowComments &&
+            (!fields || fields.some((f) => f.includes("comments")))
+        ) {
+            const data = await db
+                .select(CommentsTableColumns)
+                .from(CommentsTable)
+                .innerJoin(
+                    TripsTable,
+                    and(
+                        eq(CommentsTable.tripId, TripsTable.id),
+                        eq(TripsTable.allowComments, true)
+                    )
+                )
+                .where(eq(CommentsTable.tripId, id))
+                .orderBy(
+                    sql`COALESCE(${CommentsTable.modifiedAt}, ${CommentsTable.createdAt}) DESC`
+                );
+
+            commentsData = buildRelatedComments(data, (e) =>
+                filterObject(
+                    {
+                        id: e.id,
+                        username: e.username,
+                        content: e.content,
+                        url: relative_url
+                            ? composeRelativeUrl(id, `#comment-${e.id}`)
+                            : composeUrl(id, `#comment-${e.id}`),
+                        lastModifiedAt: e.modifiedAt ?? e.createdAt,
+                        replies: e.replies
+                    },
+                    { fields, depth: "comments" }
+                )
+            );
+        }
+
+        return filterObject(
+            {
+                id: data.id,
+                name: data.name,
+                date: data.date,
+                title: data.title,
+                description: data.description,
+                image: data.image,
+                video: data.video,
+                content: data.content as object[],
+                stages: stagesData,
+                keywords: data.keywords as string[] | null,
+                published: data.published,
+                allowComments: data.allowComments,
+                comments: commentsData,
+                url: relative_url ? composeRelativeUrl(id) : composeUrl(id),
+                createdAt: data.createdAt,
+                modifiedAt: data.modifiedAt
+            },
+            { fields }
+        );
     }
 });

@@ -22,3 +22,19 @@ export const TripsTable = table("trips", {
         .default(sql`(unixepoch())`),
     modifiedAt: integer("modified_at", { mode: "timestamp" })
 });
+
+export const TripsTableColumns = {
+    id: TripsTable.id,
+    name: TripsTable.name,
+    date: TripsTable.date,
+    title: TripsTable.title,
+    description: TripsTable.description,
+    image: TripsTable.image,
+    video: TripsTable.video,
+    content: TripsTable.content,
+    keywords: TripsTable.keywords,
+    published: TripsTable.published,
+    allowComments: TripsTable.allowComments,
+    createdAt: TripsTable.createdAt,
+    modifiedAt: TripsTable.modifiedAt
+};

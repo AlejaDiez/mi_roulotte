@@ -19,14 +19,18 @@ const { data: contextData, error: contextError } = await Astro.callAction(
     }
 );
 
-if (contextError) return Astro.redirect("/404");
+if (contextError) {
+    return Astro.redirect("/404");
+}
 
 const { data, error } = await Astro.callAction(getStageById, {
     id: [trip, stage],
     check_travel: false
 });
 
-if (error) return Astro.redirect("/404");
+if (error) {
+    return Astro.redirect("/404");
+}
 ---
 
 <Layout

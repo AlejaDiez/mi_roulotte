@@ -1,5 +1,5 @@
 import type { StagePreview } from "@models/stage";
-import { StagesTable, TripsTable } from "@schemas";
+import { StagesTable, StagesTableColumns, TripsTable } from "@schemas";
 import { composeRelativeUrl, composeUrl } from "@utils/compose_url";
 import { filterObject } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
@@ -7,14 +7,7 @@ import { z } from "astro:content";
 import { and, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
-const stageColumns = {
-    id: StagesTable.id,
-    name: StagesTable.name,
-    date: StagesTable.date,
-    title: StagesTable.title,
-    description: StagesTable.description,
-    image: StagesTable.image
-};
+export type PartialStagePreview = Partial<StagePreview>;
 
 export const getStages = defineAction({
     input: z.object({
@@ -29,7 +22,7 @@ export const getStages = defineAction({
     handler: async (
         { id, relative_url, check_travel, fields },
         context
-    ): Promise<Partial<StagePreview>[]> => {
+    ): Promise<PartialStagePreview[]> => {
         const db = drizzle(context.locals.runtime.env.DB);
 
         if (check_travel) {
@@ -48,14 +41,14 @@ export const getStages = defineAction({
         }
 
         const data = await db
-            .select(filterObject(stageColumns, fields, ["id"]))
+            .select(StagesTableColumns)
             .from(StagesTable)
             .where(
                 and(eq(StagesTable.tripId, id), eq(StagesTable.published, true))
             )
             .orderBy(StagesTable.date);
 
-        return data.map<Partial<StagePreview>>((e) =>
+        return data.map<PartialStagePreview>((e) =>
             filterObject(
                 {
                     name: e.name,
@@ -64,10 +57,10 @@ export const getStages = defineAction({
                     description: e.description,
                     image: e.image,
                     url: relative_url
-                        ? composeRelativeUrl(id, e.id!)
-                        : composeUrl(id, e.id!)
+                        ? composeRelativeUrl(id, e.id)
+                        : composeUrl(id, e.id)
                 },
-                fields
+                { fields }
             )
         );
     }

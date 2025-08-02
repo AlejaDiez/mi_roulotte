@@ -1,3 +1,4 @@
+import type { CommentPreview } from "./comment";
 import type { StagePreview } from "./stage";
 
 export interface Trip {
@@ -12,6 +13,9 @@ export interface Trip {
     stages: StagePreview[];
     keywords: string[] | null;
     published: boolean;
+    allowComments: boolean;
+    comments?: CommentPreview[];
+    url: string;
     createdAt: Date;
     modifiedAt: Date | null;
 }

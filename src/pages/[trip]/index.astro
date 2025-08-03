@@ -4,10 +4,10 @@ import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import ScrollToTop from "@components/ui/ScrollToTop.astro";
+import ContentSection from "@components/shared/ContentSection.astro";
 import HeaderSection from "@components/shared/HeaderSection.astro";
 import StageSection from "@components/shared/StageSection.astro";
-import ContentSection from "@components/shared/ContentSection.astro";
+import ScrollToTop from "@components/ui/ScrollToTop.astro";
 
 const { trip } = Astro.params;
 const { data, error } = await Astro.callAction(getTripById, {

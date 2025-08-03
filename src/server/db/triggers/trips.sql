@@ -1,4 +1,5 @@
-CREATE TRIGGER IF NOT EXISTS `update_modified_at_on_trips`
+DROP TRIGGER IF EXISTS `update_modified_at_on_trips`;
+CREATE TRIGGER `update_modified_at_on_trips`
 AFTER UPDATE ON `trips`
 FOR EACH ROW
 BEGIN

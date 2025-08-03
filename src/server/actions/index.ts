@@ -1,4 +1,5 @@
 // Comments
+export * from "./comments/add_new_comment";
 export * from "./comments/get_comments";
 
 // Stages

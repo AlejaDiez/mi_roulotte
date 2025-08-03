@@ -43,6 +43,7 @@ export const getTripById = defineAction({
             .where(and(eq(TripsTable.id, id), eq(TripsTable.published, true)))
             .get();
 
+        // Trip exits?
         if (!data) {
             throw new ActionError({
                 code: "NOT_FOUND",
@@ -50,6 +51,7 @@ export const getTripById = defineAction({
             });
         }
 
+        // Get stages data
         let stagesData: PartialStagePreview[] | undefined = undefined;
 
         if (!fields || fields.some((f) => f.includes("stages"))) {
@@ -81,6 +83,7 @@ export const getTripById = defineAction({
             );
         }
 
+        // Get comments data
         let commentsData: PartialCommentPreview[] | undefined = undefined;
 
         if (

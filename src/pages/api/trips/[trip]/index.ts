@@ -1,5 +1,5 @@
 import { getTripById } from "@actions";
-import { getQueryParams } from "@utils/get_query_params";
+import { getQueryParams } from "@utils/request";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ params, request, callAction }) => {

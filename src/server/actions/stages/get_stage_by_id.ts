@@ -37,6 +37,7 @@ export const getStageById = defineAction({
     ): Promise<PartialStage> => {
         const db = drizzle(context.locals.runtime.env.DB);
 
+        // Check if trip exists
         if (check_travel) {
             const exists = !!(await db
                 .select({ id: TripsTable.id })
@@ -52,6 +53,7 @@ export const getStageById = defineAction({
             }
         }
 
+        // Get data
         const data = await db
             .select(StagesTableColumns)
             .from(StagesTable)
@@ -71,6 +73,7 @@ export const getStageById = defineAction({
             });
         }
 
+        // Get comments
         let commentsData: PartialCommentPreview[] | undefined = undefined;
 
         if (

@@ -1,4 +1,5 @@
-CREATE TRIGGER IF NOT EXISTS `update_modified_at_on_stages`
+DROP TRIGGER IF EXISTS `update_modified_at_on_stages`;
+CREATE TRIGGER `update_modified_at_on_stages`
 AFTER UPDATE ON `stages`
 FOR EACH ROW
 BEGIN

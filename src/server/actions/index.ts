@@ -3,6 +3,7 @@ export * from "./comments/add_new_comment";
 export * from "./comments/delete_comment";
 export * from "./comments/get_comment_by_id";
 export * from "./comments/get_comments";
+export * from "./comments/reply_comment";
 
 // Stages
 export * from "./stages/get_stage_by_id";

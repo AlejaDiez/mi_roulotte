@@ -1,0 +1,233 @@
+---
+import Footer from "@components/layout/Footer.astro";
+import Header from "@components/layout/Header.astro";
+import Layout from "@components/layout/Layout.astro";
+import Main from "@components/layout/Main.astro";
+import ScrollToTop from "@components/ui/ScrollToTop.astro";
+
+export const prerender = true;
+---
+
+<Layout title="Política de privacidad">
+    <Header />
+    <Main>
+        <section
+            class="flex flex-col items-start justify-start gap-[calc(var(--space)*2)]">
+            <h1 class="text-headline">Política de Privacidad</h1>
+            <p class="text-label text-muted-foreground-variant">
+                <strong class="font-semibold">Última actualización:</strong> 5 de
+                agosto de 2025
+            </p>
+        </section>
+        <section
+            class="flex flex-col items-start justify-start gap-[calc(var(--space)*4)]">
+            <p>
+                Esta Política de Privacidad describe cómo se recogen, utilizan y
+                protegen los datos personales de los usuarios del sitio web <strong
+                    class="font-semibold">Mi Roulotte</strong
+                >, disponible en <a href="/" target="_blank" class="underline"
+                    >https://miroulotte.es</a
+                > (en adelante, “la Web”).
+            </p>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    1. Responsable del tratamiento
+                </h2>
+                <ul class="my-(--space) ml-4.5 list-disc">
+                    <p>
+                        El responsable del tratamiento de los datos personales
+                        es el titular de este blog personal, al que puedes
+                        contactar en:
+                    </p>
+                    <li class="ml-8">
+                        <strong class="font-semibold">Nombre:</strong> Alejandro
+                        Diez Bermejo
+                    </li>
+                    <li class="ml-8">
+                        <strong class="font-semibold">Email de contacto:</strong
+                        >
+                        <a
+                            href="mailto:miroulotte@gmail.com?subject=Consulta%20de%20la%20política%20de%20privacidad"
+                            class="underline">miroulotte@gmail.com</a
+                        >
+                    </li>
+                </ul>
+                <p class="mt-(--space) ml-4.5">
+                    Este blog no tiene carácter comercial ni ánimo de lucro, y
+                    no está vinculado a ninguna actividad empresarial o
+                    profesional.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    2. Finalidades del tratamiento
+                </h2>
+                <ul class="mt-(--space) ml-4.5 list-disc">
+                    <p>
+                        Los datos personales que se puedan recopilar en este
+                        sitio serán tratados con las siguientes finalidades:
+                    </p>
+                    <li class="ml-8">
+                        Permitir la publicación de comentarios en las entradas
+                        del blog.
+                    </li>
+                    <li class="ml-8">
+                        Responder a consultas enviadas a través del formulario
+                        de contacto o correo electrónico.
+                    </li>
+                    <li class="ml-8">
+                        Enviarte notificaciones relacionadas si así lo solicitas
+                        (por ejemplo, aviso de respuesta a tu comentario).
+                    </li>
+                    <li class="ml-8">
+                        Analizar el uso de la web mediante cookies (solo si
+                        aceptas su uso).
+                    </li>
+                </ul>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    3. Legitimación para el tratamiento
+                </h2>
+                <p class="mt-(--space) ml-4.5">
+                    La base legal para el tratamiento de tus datos es tu
+                    consentimiento libre e informado, que otorgas al enviar un
+                    formulario o aceptar cookies.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    4. Categorías de datos recogidos
+                </h2>
+                <ul class="mt-(--space) ml-4.5 list-disc">
+                    <p>
+                        Según el uso que hagas de la web, se pueden recoger los
+                        siguientes datos:
+                    </p>
+                    <li class="ml-8">Nombre o alias</li>
+                    <li class="ml-8">Correo electrónico</li>
+                    <li class="ml-8">Contenido del comentario o mensaje</li>
+                    <li class="ml-8">
+                        Dirección IP y datos de navegación (solo si aceptas
+                        cookies)
+                    </li>
+                </ul>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    5. Destinatarios de los datos
+                </h2>
+                <ul class="my-(--space) ml-4.5 list-disc">
+                    <p>
+                        No se ceden datos personales a terceros, salvo
+                        obligación legal o cuando sea necesario para la
+                        prestación del servicio. En particular, los datos pueden
+                        ser tratados por:
+                    </p>
+                    <li class="ml-8">
+                        <strong class="font-semibold">Resend Inc.</strong>,
+                        proveedor de servicios de envío de correos electrónicos,
+                        con sede en EE. UU., utilizado para notificaciones
+                        relacionadas con los comentarios o formularios.
+                    </li>
+                    <li class="ml-8">
+                        <strong class="font-semibold">Cloudflare Inc.</strong>,
+                        proveedor de alojamiento, base de datos, servicios de
+                        CDN, seguridad y optimización del sitio web.
+                    </li>
+                    <p>
+                        Estos proveedores actúan como encargados del tratamiento
+                        bajo contratos que garantizan el cumplimiento del RGPD.
+                    </p>
+                </ul>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    6. Transferencias internacionales
+                </h2>
+                <p class="mt-(--space) ml-4.5">
+                    Algunos proveedores como Resend y Cloudflare pueden tratar
+                    datos fuera del Espacio Económico Europeo. Estas
+                    transferencias se realizan bajo garantías adecuadas,
+                    incluyendo cláusulas contractuales tipo aprobadas por la
+                    Comisión Europea, y siempre se prioriza, siempre que sea
+                    posible, el tratamiento dentro del territorio europeo.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    7. Conservación de los datos
+                </h2>
+                <p class="mt-(--space) ml-4.5">
+                    Los datos se conservarán mientras exista la finalidad para
+                    la que fueron recogidos o hasta que solicites su supresión.
+                    Posteriormente podrán mantenerse bloqueados durante el
+                    tiempo necesario para cumplir con obligaciones legales.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    8. Derechos de los usuarios
+                </h2>
+                <ul class="my-(--space) ml-4.5 list-disc">
+                    <p>Puedes ejercer en cualquier momento tus derechos de:</p>
+                    <li class="ml-8">Acceso a tus datos</li>
+                    <li class="ml-8">Rectificación de datos inexactos</li>
+                    <li class="ml-8">Supresión (derecho al olvido)</li>
+                    <li class="ml-8">Limitación del tratamiento</li>
+                    <li class="ml-8">Oposición al tratamiento</li>
+                    <li class="ml-8">Portabilidad de tus datos</li>
+                    <p>
+                        Para ejercerlos, contacta con <a
+                            href="mailto:miroulotte@gmail.com?subject=Solicitud%20de%20ejercicio%20de%20derechos"
+                            class="underline">miroulotte@gmail.com</a
+                        >, adjuntando un documento que acredite tu identidad si
+                        es necesario.
+                    </p>
+                </ul>
+                <p class="mt-(--space) ml-4.5">
+                    También puedes presentar una reclamación ante la <a
+                        href="https://www.aepd.es"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="underline"
+                        >Agencia Española de Protección de Datos</a
+                    > si consideras que no se ha atendido correctamente tu solicitud.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    9. Protección de menores
+                </h2>
+                <p class="mt-(--space) ml-4.5">
+                    No se recopilan datos de menores de 14 años. Si detectamos
+                    que se han tratado datos sin el consentimiento de sus padres
+                    o tutores, procederemos a eliminarlos inmediatamente.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    10. Seguridad de los datos
+                </h2>
+                <p class="mt-(--space) ml-4.5">
+                    Aplicamos medidas técnicas y organizativas razonables para
+                    proteger tus datos personales, incluyendo cifrado de
+                    comunicaciones, control de acceso y alojamiento en
+                    servidores seguros.
+                </p>
+            </article>
+            <article class="flex flex-col items-start justify-start">
+                <h2 class="text-foreground font-semibold">
+                    11. Cambios en la política
+                </h2>
+                <p class="mt-(--space) ml-4.5">
+                    Nos reservamos el derecho de modificar esta Política de
+                    Privacidad para adaptarla a novedades legales o técnicas. Se
+                    notificará en la Web cualquier cambio relevante.
+                </p>
+            </article>
+        </section>
+    </Main>
+    <Footer />
+    <ScrollToTop />
+</Layout>

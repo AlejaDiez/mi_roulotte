@@ -1,4 +1,5 @@
-import type { StagePreview } from "./stage";
+import type { CommentPreview, PartialCommentPreview } from "@models/comment";
+import type { PartialStagePreview, StagePreview } from "@models/stage";
 
 export interface Trip {
     id: string;
@@ -12,9 +13,19 @@ export interface Trip {
     stages: StagePreview[];
     keywords: string[] | null;
     published: boolean;
+    allowComments: boolean;
+    comments?: CommentPreview[];
+    url: string;
     createdAt: Date;
     modifiedAt: Date | null;
 }
+
+export type PartialTrip = Partial<
+    Omit<Omit<Trip, "stages">, "comments"> & {
+        stages: PartialStagePreview[];
+        comments: PartialCommentPreview[] | null;
+    }
+>;
 
 export interface TripPreview {
     name: string;
@@ -25,3 +36,5 @@ export interface TripPreview {
     video: string | null;
     url: string;
 }
+
+export type PartialTripPreview = Partial<TripPreview>;

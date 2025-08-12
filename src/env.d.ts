@@ -4,7 +4,18 @@ declare namespace App {
     interface Locals extends Runtime {}
 }
 
-interface ImportMetaEnv {}
+interface ImportMetaEnv {
+    // cloudflare
+    CLOUDFLARE_ACCOUNT_ID: string;
+    D1_TOKEN: string;
+    DB_ID: string;
+
+    // resend
+    EMAIL_TOKEN: string;
+
+    // mi roulotte
+    UNSUBSCRIBE_SECRET: string;
+}
 
 interface ImportMeta {
     readonly env: ImportMetaEnv;

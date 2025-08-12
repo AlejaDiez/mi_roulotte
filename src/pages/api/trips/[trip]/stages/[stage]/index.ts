@@ -1,27 +1,22 @@
-import { getStageById } from "@actions";
-import { getQueryParams } from "@utils/get_query_params";
+import { getQueryParams } from "@utils/request";
+import { getErrorObject } from "@utils/response";
 import type { APIRoute } from "astro";
+import { actions } from "astro:actions";
 
 export const GET: APIRoute = async ({ params, request, callAction }) => {
     const { trip, stage } = params;
     const { fields } = getQueryParams(request);
-    const { data, error } = await callAction(getStageById, {
-        id: [trip, stage],
+    const { data, error } = await callAction(actions.getStageById, {
+        tripId: trip!,
+        stageId: stage!,
         fields
     });
 
     if (error) {
-        return new Response(
-            JSON.stringify({
-                error: error.code,
-                code: error.status,
-                message: error.message
-            }),
-            {
-                status: error.status,
-                headers: { "Content-Type": "application/json" }
-            }
-        );
+        return new Response(JSON.stringify(getErrorObject(error)), {
+            status: error.status,
+            headers: { "Content-Type": "application/json" }
+        });
     }
     return new Response(JSON.stringify(data), {
         status: 200,

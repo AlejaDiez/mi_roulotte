@@ -1,18 +1,19 @@
 ---
-import { getTripById } from "@actions";
 import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import ScrollToTop from "@components/ui/ScrollToTop.astro";
+import CommentsSection from "@components/shared/CommentsSection.astro";
+import ContentSection from "@components/shared/ContentSection.astro";
 import HeaderSection from "@components/shared/HeaderSection.astro";
 import StageSection from "@components/shared/StageSection.astro";
-import ContentSection from "@components/shared/ContentSection.astro";
+import ScrollToTop from "@components/ui/ScrollToTop.astro";
+import { actions } from "astro:actions";
 
 const { trip } = Astro.params;
-const { data, error } = await Astro.callAction(getTripById, {
-    id: trip,
-    relative_url: true
+const { data, error } = await Astro.callAction(actions.getTripById, {
+    tripId: trip as any,
+    relative: true
 });
 
 if (error) {
@@ -33,6 +34,7 @@ if (error) {
             image={data.image!}
         />
         <ContentSection content={data.content!} />
+        {data.allowComments && <CommentsSection comments={data.comments!} />}
         <StageSection stages={data.stages as any} />
     </Main>
     <Footer />

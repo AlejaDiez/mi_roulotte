@@ -3,6 +3,8 @@ import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
+
+export const prerender = true;
 ---
 
 <Layout
@@ -11,14 +13,14 @@ import Main from "@components/layout/Main.astro";
     <Header class="floating" />
     <Main
         class="h-full cursor-default !items-center !justify-center !gap-0 pt-(--space-y) pb-32 select-none">
-        <h1 class="text-title text-white">404</h1>
+        <h1 class="text-title text-center text-white">404</h1>
         <p class="mt-4 mb-10 max-w-xl text-center text-white">
             ¡Oops! Parece que has tomado un desvío y te encuentras en un lugar
             algo distinto al que esperabas...
         </p>
         <a
             href="/"
-            class="button button-outline-primary hover:bg-white-hover hover:border-white-hover border-white text-white hover:text-gray-100">
+            class="redirect-button button button-outline-primary hover:bg-white-hover hover:border-white-hover border-white text-white hover:text-gray-100">
             <span>Recalcular ruta</span>
         </a>
     </Main>

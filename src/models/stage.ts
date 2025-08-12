@@ -1,4 +1,4 @@
-import type { CommentPreview } from "./comment";
+import type { CommentPreview, PartialCommentPreview } from "@models/comment";
 
 export interface Stage {
     id: string;
@@ -18,6 +18,12 @@ export interface Stage {
     modifiedAt: Date | null;
 }
 
+export type PartialStage = Partial<
+    Omit<Stage, "comments"> & {
+        comments: PartialCommentPreview[];
+    }
+>;
+
 export interface StagePreview {
     name: string;
     date: Date;
@@ -26,3 +32,5 @@ export interface StagePreview {
     image: string | null;
     url: string;
 }
+
+export type PartialStagePreview = Partial<StagePreview>;

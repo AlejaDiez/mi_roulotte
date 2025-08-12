@@ -1,46 +1,44 @@
+import { z } from "astro:schema";
+import { sql } from "drizzle-orm";
+
+export const fields = z
+    .string({
+        invalid_type_error: "fields must be a string"
+    })
+    .or(
+        z.array(z.string(), {
+            invalid_type_error: "fields must be an array of strings"
+        })
+    )
+    .optional()
+    .transform((e) => (typeof e === "string" ? [e] : e));
+
 export const filterObject = <T extends object>(
-    obj: T,
-    {
-        fields,
-        required = [],
-        depth
-    }: {
-        fields?: string[];
-        required?: (keyof T)[];
-        depth?: string;
-    }
-): Partial<T> => {
+    columns: T,
+    fields: string[] | undefined
+) => {
     if (!fields || fields.length === 0) {
-        return { ...obj };
+        return columns;
     }
 
-    const result: Partial<T> = {};
-    const requiredSet = new Set(required);
-    const filteredFields = depth
-        ? fields
-              .filter((f) => f.startsWith(`${depth}.`))
-              .map((f) => f.slice(depth.length + 1))
-        : fields;
-
-    if (
-        depth &&
-        filteredFields.length === 0 &&
-        fields.some((f) => f.includes(depth))
-    ) {
-        return { ...obj };
-    }
-
-    for (const key of requiredSet) {
-        if (key in obj) {
-            result[key] = obj[key];
+    const set = new Set(fields);
+    const cols = Object.entries(columns).reduce((acc, [key, value]) => {
+        if (key.startsWith("_") || set.has(key)) {
+            return { ...acc, [key]: value };
         }
-    }
-    for (const field of filteredFields) {
-        const key = field.split(".")[0] as keyof T;
+        return acc;
+    }, {});
 
-        if (!requiredSet.has(key) && key in obj) {
-            result[key] = obj[key];
-        }
+    if (Object.keys(cols).length === 0) {
+        return { _: sql`1` };
     }
-    return result;
+    return cols;
 };
+
+export const canFilter = (field: string, fields: string[] | undefined) =>
+    fields?.some((e) => e.includes(field)) ?? true;
+
+export const subFields = (field: string, fields: string[] | undefined) =>
+    fields
+        ?.filter((e) => e.includes(`${field}.`))
+        .map((e) => e.replace(`${field}.`, "")) ?? [];

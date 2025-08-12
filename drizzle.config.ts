@@ -2,8 +2,8 @@ import type { Config } from "drizzle-kit";
 
 export default {
     dialect: "sqlite",
-    out: "src/server/db/migrations",
-    schema: "src/server/db/schemas",
+    out: "src/db/migrations",
+    schema: "src/db/schemas",
     ...(process.env.LOCAL_DB_PATH
         ? {
               dbCredentials: { url: process.env.LOCAL_DB_PATH }

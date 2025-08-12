@@ -8,9 +8,9 @@
         "paths": {
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
+            "@queries": ["src/db/queries"],
+            "@schemas": ["src/db/schemas"],
             "@models/*": ["src/models/*"],
-            "@actions": ["src/server/actions"],
-            "@schemas": ["src/server/db/schemas"],
             "@styles/*": ["src/styles/*"],
             "@utils/*": ["src/utils/*"]
         }

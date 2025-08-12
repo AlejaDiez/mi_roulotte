@@ -1,0 +1,47 @@
+---
+import Footer from "@components/layout/Footer.astro";
+import Header from "@components/layout/Header.astro";
+import Layout from "@components/layout/Layout.astro";
+import Main from "@components/layout/Main.astro";
+---
+
+<Layout title="Confirmar baja de notificaciones" class="h-screen w-screen">
+    <Header class="floating !fixed" />
+    <Main
+        class="h-full cursor-default !items-center !justify-center !gap-0 pt-(--space-y) pb-32 select-none">
+        <h1 class="text-title text-center">¿Nos damos un descansito?</h1>
+        <p class="mt-4 mb-10 max-w-xl text-center">
+            ¿Necesitas un respiro? Si prefieres no recibir más notificaciones
+            sobre este comentario, simplemente pulsa el botón y nos tomamos un
+            descanso.
+        </p>
+        <button class="unsubscribe-button button button-outline-primary">
+            <span>¡Sí, por favor, silencio!</span>
+        </button>
+    </Main>
+    <Footer class="floating fixed bottom-0 left-0" />
+</Layout>
+
+<script>
+    import { actions } from "astro:actions";
+
+    const button = document.body.querySelector<HTMLButtonElement>(
+        ".unsubscribe-button"
+    )!;
+
+    button.addEventListener("click", async () => {
+        const url = new URL(window.location.href);
+        const { error } = await actions.unsubscribeRepliesNotifications({
+            commentId: Number(url.pathname.split("/").at(-2)),
+            token: url.searchParams.get("token")!
+        });
+
+        if (error) {
+            alert(
+                "No hemos podido cancelar las notificaciones. Por favor, inténtalo de nuevo más tarde o contacta con nosotros."
+            );
+        } else {
+            window.open("/", "_self");
+        }
+    });
+</script>

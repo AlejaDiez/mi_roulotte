@@ -4,6 +4,7 @@ export interface Comment {
     stageId: string | null;
     username: string;
     email: string;
+    content: string;
     repliedTo: number;
     url: string;
     createdAt: Date;

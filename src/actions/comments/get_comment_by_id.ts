@@ -53,6 +53,7 @@ export const getCommentById = defineAction({
             tripId: data.tripId,
             stageId: data.stageId,
             username: data.username,
+            content: data.content,
             repliedTo: data.repliedTo,
             url: data.url,
             replies: repliesData,

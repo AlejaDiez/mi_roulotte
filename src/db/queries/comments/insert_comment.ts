@@ -7,11 +7,11 @@ export const insertComment = (
     db: DrizzleD1Database,
     value: {
         tripId: string;
-        stageId?: string;
+        stageId?: string | null;
         username: string;
-        email?: string;
+        email?: string | null;
         content: string;
-        repliedTo?: number;
+        repliedTo?: number | null;
     },
     config?: {
         fields?: string[];

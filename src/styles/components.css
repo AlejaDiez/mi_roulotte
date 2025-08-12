@@ -100,7 +100,7 @@
 
         /* Disabled style */
         &:disabled {
-            @apply text-muted-foreground-variant;
+            @apply !text-muted-foreground-variant;
             @apply cursor-not-allowed;
 
             &.button-fill-primary,
@@ -168,7 +168,7 @@
 
     input[type="checkbox"].checkbox {
         @apply relative;
-        @apply h-5 w-5;
+        @apply h-5 min-h-5 w-5 min-w-5;
         @apply bg-transparent;
         @apply border-border hover:border-border-hover rounded-full border-1;
         @apply transition-colors;

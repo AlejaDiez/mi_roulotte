@@ -24,6 +24,7 @@ export const addNewComment = defineAction({
                     invalid_type_error: "stageId must be a string or undefined"
                 })
                 .nonempty("stageId must not be empty")
+                .nullable()
                 .optional(),
             username: z
                 .string({
@@ -36,6 +37,7 @@ export const addNewComment = defineAction({
                     invalid_type_error: "email must be a string or undefined"
                 })
                 .email("email must be a valid email address")
+                .nullable()
                 .optional(),
             content: z
                 .string({
@@ -97,6 +99,7 @@ export const addNewComment = defineAction({
             tripId: data.tripId,
             stageId: data.stageId,
             username: data.username,
+            content: data.content,
             repliedTo: data.repliedTo,
             url: data.url,
             replies:

@@ -1,0 +1,541 @@
+---
+import type { PartialCommentPreview } from "@models/comment";
+import { timeAgo } from "@utils/date";
+import type { BaseProps } from "@utils/props";
+
+export interface Props extends BaseProps {
+    comments: PartialCommentPreview[];
+}
+
+const { comments, id, class: cls } = Astro.props;
+const messages: string[] = [
+    "¿Aventuras divertidas en carretera? ¡Cuéntanos todo!",
+    "¡No guardes tus risas para ti! Comparte tus travesuras sobre ruedas.",
+    "¡Estamos ansiosos por leer tus travesías en caravana! ¡Adelante, escribe tu rollo!",
+    "¡No nos dejes con la intriga! ¡Comparte tus momentos épicos sobre ruedas!",
+    "¡Toca la bocina y suelta tu imaginación! ¡Queremos escuchar tus relatos en caravana!",
+    "¡Atrévete a dejar tu marca en el asfalto con tus historias sobre ruedas!",
+    "¿Vivencias graciosas o momentos ocurrentes? ¡Compártelos con la comunidad viajera!",
+    "¡Despliega tus teclas y acelera tus historias sobre ruedas!",
+    "¿Listo para desatar tu espíritu viajero? ¡Cuéntanos qué tal te va por la ruta! "
+];
+const { trip, stage } = Astro.params;
+---
+
+<section
+    {id}
+    class:list={cls}
+    class="comments-section animation-delay-[375ms] animate-fade flex w-full flex-col items-start justify-start">
+    <h3 class="comments-count text-headline mb-(--space)">
+        {
+            comments.length === 0
+                ? "Ningún comentario"
+                : comments.length === 1
+                  ? "1 comentario"
+                  : `${comments.length} comentarios`
+        }
+    </h3>
+    {
+        comments.length > 0 && (
+            <div
+                class="comments-list my-[calc(var(--space)*2)] flex w-full flex-col items-start justify-start gap-[calc(var(--space)*4)]">
+                {
+                    comments.map(e => (
+                        <div
+                            id=`comment-${e.id}`
+                            class="comment border-border group flex w-full scroll-m-(--space-y) flex-col items-start justify-start border-1">
+                            <div
+                                class="comment-header text-normal text-foreground relative w-full px-4 pt-3 pb-2 font-light select-none">
+                                <strong class="font-semibold">{e.username}</strong>
+                                {timeAgo(e.lastModifiedAt!)}
+                                <button
+                                    title="Responder"
+                                    class="button button-fill-accent absolute top-2 right-2 h-8 min-h-0 w-8 min-w-0 p-0 transition-[opacity,background-color] group-hover:opacity-100 md:opacity-0"
+                                    data-reply-id={e.id}
+                                    data-reply-username={e.username}>
+                                        <i class="ibm-reply text-sm"></i>
+                                </button>
+                            </div>
+                            <p class="comment-content text-normal w-full px-4 pb-3 text-justify">
+                                {e.content}
+                            </p>
+                            {
+                                e.replies && e.replies.length > 0 && (
+                                    <div class="comment-replies border-border border-t-1 px-4 py-3 flex w-full flex-col items-start justify-start gap-[calc(var(--space)*2)]">
+                                        {
+                                            e.replies.map(e => (
+                                                <div
+                                                    id=`comment-${e.id}`
+                                                    class="reply bg-muted flex w-full scroll-m-(--space-y) flex-col items-start justify-start">
+                                                    <div
+                                                        class="reply-header text-normal text-muted-foreground w-full px-4 pt-3 pb-2 font-light select-none">
+                                                        <strong class="font-semibold">{e.username}</strong>
+                                                        {timeAgo(e.lastModifiedAt!)}
+                                                    </div>
+                                                    <p
+                                                        class="reply-content text-normal w-full px-4 pb-3 text-justify">
+                                                        {e.content}
+                                                    </p>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                )
+                            }
+                        </div>
+                    ))
+                }
+            </div>
+        )
+    }
+    <form
+        class="comments-form mt-[calc(var(--space)*4)] flex w-full flex-col items-start justify-start gap-[calc(var(--space)*2)]">
+        <input type="hidden" name="tripId" value={trip} readonly />
+        <input type="hidden" name="stageId" value={stage} readonly />
+        <input type="hidden" name="repliedTo" readonly />
+        <label>
+            Comentario
+            <textarea
+                name="content"
+                placeholder={messages[
+                    Math.floor(Math.random() * messages.length)
+                ]}
+                class="input field-sizing-content min-h-56"></textarea>
+        </label>
+        <label class="max-w-xl">
+            Nombre
+            <input name="username" type="text" class="input" />
+        </label>
+        <label class="max-w-xl">
+            Correo electrónico
+            <input name="email" type="text" class="input" />
+        </label>
+        <label class="mt-[calc(var(--space)*2)]">
+            <input name="notify" type="checkbox" class="checkbox" checked />
+            Deseo recibir notificaciones por correo electrónico si alguien responde
+            a mi comentario.
+        </label>
+        <label class="mb-[calc(var(--space)*4)]">
+            <input name="acceptPrivacy" type="checkbox" class="checkbox" />
+            <span>
+                He leído y acepto la <a
+                    href="/politica-privacidad"
+                    target="_blank"
+                    class="underline">política de privacidad</a
+                >.
+            </span>
+        </label>
+        <input
+            class="submit-comment button button-outline-primary self-end"
+            type="submit"
+            value="Enviar comentario"
+        />
+    </form>
+</section>
+
+<style is:global>
+    .comment-replies {
+        position: relative;
+        margin-top: 0.46875rem;
+        padding-top: calc(0.46875rem + 0.75rem);
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 8px;
+            translate: 0 -50%;
+            background-color: var(--color-background);
+            padding: 0 8px;
+            content: "Respuestas";
+            color: var(--color-muted-foreground-variant);
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.75rem;
+            line-height: calc(1 / 0.75);
+            font-family: "IBM Plex Sans", sans-serif;
+            letter-spacing: 0.1em;
+        }
+    }
+</style>
+
+<script>
+    import { actions } from "astro:actions";
+
+    const counter =
+        document.body.querySelector<HTMLHeadingElement>(".comments-count")!;
+    let commentsList =
+        document.body.querySelector<HTMLDivElement>(".comments-list");
+    const replyButtons =
+        commentsList?.querySelectorAll<HTMLButtonElement>(
+            ".comment-header > .button"
+        ) ?? [];
+    const form =
+        document.body.querySelector<HTMLFormElement>(".comments-form")!;
+    const fields = {
+        tripId: form.querySelector<HTMLInputElement>('input[name="tripId"]')!,
+        stageId: form.querySelector<HTMLInputElement>('input[name="stageId"]')!,
+        username: form.querySelector<HTMLInputElement>(
+            'input[name="username"]'
+        )!,
+        email: form.querySelector<HTMLInputElement>('input[name="email"]')!,
+        content: form.querySelector<HTMLInputElement>(
+            'textarea[name="content"]'
+        )!,
+        repliedTo: form.querySelector<HTMLInputElement>(
+            'input[name="repliedTo"]'
+        )!,
+        notify: form.querySelector<HTMLInputElement>('input[name="notify"]')!,
+        acceptPrivacy: form.querySelector<HTMLInputElement>(
+            'input[name="acceptPrivacy"]'
+        )!
+    };
+    const submitButton = form.querySelector<HTMLInputElement>(
+        'input[type="submit"]'
+    )!;
+
+    const buildComment = (id: number, username: string, content: string) => {
+        const comment = document.createElement("div");
+
+        comment.id = `comment-${id}`;
+        comment.classList.add(
+            "comment",
+            "border-border",
+            "group",
+            "flex",
+            "w-full",
+            "scroll-m-(--space-y)",
+            "flex-col",
+            "items-start",
+            "justify-start",
+            "border-1"
+        );
+
+        const header = document.createElement("div");
+        const strong = document.createElement("strong");
+
+        strong.classList.add("font-semibold");
+        strong.innerText = username;
+        header.classList.add(
+            "comment-header",
+            "text-normal",
+            "text-foreground",
+            "relative",
+            "w-full",
+            "px-4",
+            "pt-3",
+            "pb-2",
+            "font-light",
+            "select-none"
+        );
+        header.appendChild(strong);
+        header.innerHTML += " ahora";
+        comment.appendChild(header);
+
+        const paragraph = document.createElement("p");
+
+        paragraph.classList.add(
+            "comment-content",
+            "text-normal",
+            "w-full",
+            "px-4",
+            "pb-3",
+            "text-justify"
+        );
+        paragraph.innerText = content;
+        comment.appendChild(paragraph);
+
+        return comment;
+    };
+
+    const buildReply = (id: number, username: string, content: string) => {
+        const reply = document.createElement("div");
+
+        reply.id = `comment-${id}`;
+        reply.classList.add(
+            "reply",
+            "bg-muted",
+            "flex",
+            "w-full",
+            "scroll-m-(--space-y)",
+            "flex-col",
+            "items-start",
+            "justify-start"
+        );
+
+        const header = document.createElement("div");
+        const strong = document.createElement("strong");
+
+        strong.classList.add("font-semibold");
+        strong.innerText = username;
+        header.classList.add(
+            "reply-header",
+            "text-normal",
+            "text-muted-foreground",
+            "w-full",
+            "px-4",
+            "pt-3",
+            "pb-2",
+            "font-light",
+            "select-none"
+        );
+        header.appendChild(strong);
+        header.innerHTML += " ahora";
+        reply.appendChild(header);
+
+        const paragraph = document.createElement("p");
+
+        paragraph.classList.add(
+            "reply-content",
+            "text-normal",
+            "w-full",
+            "px-4",
+            "pb-3",
+            "text-justify"
+        );
+        paragraph.innerText = content;
+        reply.appendChild(paragraph);
+
+        return reply;
+    };
+
+    const buildReplyBanner = (username: string) => {
+        const blockquote = document.createElement("blockquote");
+        const closeButton = document.createElement("button");
+
+        blockquote.classList.add(
+            "reply-banner",
+            "relative",
+            "bg-blue-10",
+            "dark:bg-blue-90",
+            "border-blue-20",
+            "dark:border-blue-70",
+            "w-full",
+            "border-l-1",
+            "px-3",
+            "py-4"
+        );
+        blockquote.innerText = `En respuesta a ${username}`;
+        closeButton.classList.add(
+            "absolute",
+            "top-0",
+            "right-0",
+            "button",
+            "button-accent"
+        );
+        closeButton.type = "button";
+        closeButton.innerHTML = `<i class="ibm-close"></i>`;
+        closeButton.onclick = () => removeReplyBanner();
+        blockquote.appendChild(closeButton);
+        return blockquote;
+    };
+
+    const removeReplyBanner = () => {
+        const banner = form.querySelector(".reply-banner");
+
+        fields.repliedTo.removeAttribute("value");
+        if (banner) {
+            form.removeChild(banner);
+        }
+    };
+
+    const validateField = (field: HTMLInputElement) => {
+        const value: any =
+            field.type === "checkbox" ? field.checked : field.value.trim();
+
+        clearError(field);
+        if (!touchedFields.get(field) && field.type !== "checkbox") {
+            return;
+        }
+        switch (field) {
+            case fields.username:
+                if (value.length < 1) {
+                    setError(field, "El nombre es obligatorio");
+                }
+                break;
+            case fields.email:
+                if (
+                    fields.notify.checked &&
+                    !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                        value
+                    )
+                ) {
+                    setError(
+                        field,
+                        "Es necesario un correo electrónico válido para recibir las notificaciones"
+                    );
+                }
+                break;
+            case fields.content:
+                if (value.length < 1) {
+                    setError(field, "El comentario es obligatorio");
+                }
+                break;
+            case fields.notify:
+                fields.email.disabled = !value;
+                validateField(fields.email);
+                break;
+            case fields.acceptPrivacy:
+                submitButton.disabled = !field.checked;
+                break;
+        }
+    };
+
+    const setError = (field: HTMLInputElement, message: string) => {
+        field.setCustomValidity(" ");
+        if (field.parentElement instanceof HTMLLabelElement) {
+            field.parentElement.setAttribute("data-error", message);
+        }
+        field.reportValidity();
+    };
+
+    const clearError = (field: HTMLInputElement) => {
+        field.setCustomValidity("");
+        if (field.parentElement instanceof HTMLLabelElement) {
+            field.parentElement.removeAttribute("data-error");
+        }
+        field.reportValidity();
+    };
+
+    const reset = () => {
+        removeReplyBanner();
+        form.reset();
+        fields.email.disabled = false;
+        submitButton.disabled = true;
+    };
+
+    // Reply comment
+    for (const button of replyButtons) {
+        button.addEventListener("click", () => {
+            removeReplyBanner();
+            fields.repliedTo.value = button.getAttribute("data-reply-id")!;
+            form.insertBefore(
+                buildReplyBanner(button.getAttribute("data-reply-username")!),
+                form.firstChild
+            );
+        });
+    }
+
+    // Form validation
+    const touchedFields = new WeakMap<HTMLElement, boolean>();
+
+    for (const field of Object.values(fields)) {
+        touchedFields.set(field, false);
+        field.addEventListener("blur", () => {
+            touchedFields.set(field, true);
+            validateField(field);
+        });
+        field.addEventListener("input", () => {
+            validateField(field);
+        });
+    }
+
+    submitButton.disabled = true;
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        for (const field of Object.values(fields)) {
+            touchedFields.set(field, true);
+            validateField(field);
+        }
+        if (form.checkValidity()) {
+            const data = new FormData(form).entries().reduce(
+                (acc, [key, value]) => ({
+                    [key]: value ? value : null,
+                    ...acc
+                }),
+                {}
+            );
+
+            submit(data);
+        }
+    });
+
+    // Form submit
+    async function submit(e: any) {
+        const { data, error } = await (e.repliedTo
+            ? actions.replyComment({
+                  commentId: Number(e.repliedTo),
+                  body: {
+                      username: e.username,
+                      content: e.content,
+                      email: e.email
+                  }
+              })
+            : actions.addNewComment({
+                  body: {
+                      tripId: e.tripId,
+                      stageId: e.stageId,
+                      username: e.username,
+                      email: e.email,
+                      content: e.content
+                  }
+              }));
+
+        if (error) {
+            alert(
+                "No hemos podido publicar tu comentario. Por favor, vuelve a intentarlo más tarde."
+            );
+        } else {
+            const { id, username, content, repliedTo } = data;
+
+            // Add comment
+            if (repliedTo) {
+                let repliesList = commentsList?.querySelector<HTMLDivElement>(
+                    `#comment-${repliedTo} .comment-replies`
+                );
+
+                if (!repliesList) {
+                    repliesList = document.createElement("div");
+                    repliesList.classList.add(
+                        "comment-replies",
+                        "border-border",
+                        "border-t-1",
+                        "px-4",
+                        "py-3",
+                        "flex",
+                        "w-full",
+                        "flex-col",
+                        "items-start",
+                        "justify-start",
+                        "gap-[calc(var(--space)*2)]"
+                    );
+                    document.body
+                        .querySelector(`#comment-${repliedTo}`)!
+                        .appendChild(repliesList);
+                }
+                repliesList.insertBefore(
+                    buildReply(id!, username!, content!),
+                    repliesList.firstChild
+                );
+            } else {
+                if (!commentsList) {
+                    commentsList = document.createElement("div");
+                    commentsList.classList.add(
+                        "comments-list",
+                        "my-[calc(var(--space)*2)]",
+                        "flex",
+                        "w-full",
+                        "flex-col",
+                        "items-start",
+                        "justify-start",
+                        "gap-[calc(var(--space)*4)]"
+                    );
+                    document.body
+                        .querySelector(".comments-section")!
+                        .insertBefore(commentsList, form);
+                }
+                commentsList.insertBefore(
+                    buildComment(id!, username!, content!),
+                    commentsList.firstChild
+                );
+                counter.innerText =
+                    commentsList.children.length === 0
+                        ? "Ningún comentario"
+                        : commentsList.children.length === 1
+                          ? "1 comentario"
+                          : `${commentsList.children.length} comentarios`;
+            }
+            // Reset form
+            reset();
+        }
+    }
+</script>

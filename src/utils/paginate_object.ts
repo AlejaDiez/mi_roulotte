@@ -5,13 +5,15 @@ export const page = z
         invalid_type_error: "page must be a number"
     })
     .int("page must be an integer number")
-    .positive("page must be a positive number");
+    .positive("page must be a positive number")
+    .optional();
 export const limit = z
     .number({
         invalid_type_error: "limit must be a number"
     })
     .int("limit must be an integer number")
-    .positive("limit must be a positive number");
+    .positive("limit must be a positive number")
+    .optional();
 
 export interface Pagination<T extends object> {
     page: number;

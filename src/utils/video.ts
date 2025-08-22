@@ -16,14 +16,18 @@ export namespace YouTube {
         const urlObject = new URL(url);
 
         if (urlObject.hostname.includes("youtube.com")) {
-            if (urlObject.searchParams.get("v"))
-                return urlObject.searchParams.get("v");
-
             const params = urlObject.pathname.slice(1).split("/");
 
-            if (params.includes("shorts")) return params.at(-1) ?? null;
-        } else if (urlObject.hostname === "youtu.be")
+            if (params.includes("watch")) {
+                return urlObject.searchParams.get("v");
+            } else if (params.includes("shorts")) {
+                return params.at(-1) ?? null;
+            } else if (params.includes("playlist")) {
+                return urlObject.searchParams.get("list");
+            }
+        } else if (urlObject.hostname.includes("youtu.be")) {
             return urlObject.pathname.slice(1);
+        }
         return null;
     };
 
@@ -31,6 +35,17 @@ export namespace YouTube {
         await fetch(
             `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`
         ).then<any>((res) => res.json());
+
+    export const getPlaylistVideos = async (id: string) => {
+        const response: any = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${id}&part=snippet&maxResults=50&key=${import.meta.env.YOUTUBE_TOKEN}`
+        ).then(async (res) => await res.json());
+
+        return (response.items as any[]).map<string>(
+            ({ snippet }: any) =>
+                `https://www.youtube.com/watch?v=${snippet.resourceId.videoId}`
+        );
+    };
 
     export const buildYoutubeIframe = (
         source: HTMLSourceElement,

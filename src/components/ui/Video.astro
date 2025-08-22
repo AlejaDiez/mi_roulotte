@@ -8,7 +8,7 @@ export interface Props extends BaseProps {
     thumbnail?: string;
 }
 
-const { url, id, class: cls } = Astro.props;
+const { url, id, style, class: cls } = Astro.props;
 let { title, thumbnail } = Astro.props;
 const youtubeId = YouTube.getId(url);
 
@@ -23,8 +23,9 @@ if (youtubeId) {
 
 <div
     {id}
-    class="video bg-muted group relative aspect-video h-auto w-auto cursor-default overflow-hidden select-none"
-    class:list={cls}>
+    {style}
+    class:list={cls}
+    class="video bg-muted group relative aspect-video h-auto w-auto cursor-default overflow-hidden select-none">
     <div
         class="thumbnail group/alt absolute top-0 left-0 z-20 h-full w-full data-hidden:pointer-events-none">
         <img
@@ -181,8 +182,28 @@ if (youtubeId) {
     for (const video of videos) {
         let timeout: NodeJS.Timeout | null = null;
 
-        const mouseMoveCallback = () => {
+        const clickCallbackPlay = () => {
+            video.controller.toggleState();
+        };
+        const inputCallback = () => {
+            video.controller.seek(Number(video.controls.slider.value));
+            video.controls.elapsedTime.innerText =
+                video.controller.getElapsedTime();
+            video.controls.remainingTime.innerText =
+                video.controller.getRemainingTime();
+        };
+        const mousemoveCallback = () => {
             timeout = hideControlsWithTimeout(video, timeout);
+        };
+        const clickCallbackScreen = () => {
+            if (document.fullscreenElement && document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (video.container.requestFullscreen) {
+                video.container.requestFullscreen();
+            }
+        };
+        const fullscreenchangeCallback = () => {
+            changeScreenState(video);
         };
 
         video.controller.onReady = () => {
@@ -201,7 +222,7 @@ if (youtubeId) {
             // Show thumbnail
             showThumbnail(video);
             // Hide controls
-            video.container.removeEventListener("mousemove", mouseMoveCallback);
+            video.container.removeEventListener("mousemove", mousemoveCallback);
             hideControls(video, timeout);
             // Change player state
             changePlayerState(video, "ended");
@@ -210,15 +231,15 @@ if (youtubeId) {
             // Hide thumbnail
             hideThumbnail(video);
             // Show controls and hide with timeout
-            video.container.removeEventListener("mousemove", mouseMoveCallback);
-            video.container.addEventListener("mousemove", mouseMoveCallback);
-            video.container.dispatchEvent(new MouseEvent("mousemove"));
+            video.container.removeEventListener("mousemove", mousemoveCallback);
+            video.container.addEventListener("mousemove", mousemoveCallback);
+            mousemoveCallback();
             // Change player state
             changePlayerState(video, "playing");
         };
         video.controller.onPaused = () => {
             // Show controls
-            video.container.removeEventListener("mousemove", mouseMoveCallback);
+            video.container.removeEventListener("mousemove", mousemoveCallback);
             showControls(video, timeout);
             // Change player state
             changePlayerState(video, "paused");
@@ -236,31 +257,11 @@ if (youtubeId) {
                 video.controller.getRemainingTime();
         };
 
-        video.thumbnail.play.addEventListener("click", () =>
-            video.controller.toggleState()
-        );
-        video.controls.play.addEventListener("click", () =>
-            video.controller.toggleState()
-        );
-        video.controls.slider.addEventListener("input", () => {
-            video.controller.seek(Number(video.controls.slider.value));
-            video.controls.elapsedTime.innerText =
-                video.controller.getElapsedTime();
-            video.controls.remainingTime.innerText =
-                video.controller.getRemainingTime();
-        });
-        video.controller.container.addEventListener("click", () =>
-            video.controller.toggleState()
-        );
-        document.addEventListener("fullscreenchange", () =>
-            changeScreenState(video)
-        );
-        video.controls.screen.addEventListener("click", () => {
-            if (document.fullscreenElement && document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (video.container.requestFullscreen) {
-                video.container.requestFullscreen();
-            }
-        });
+        video.thumbnail.play.addEventListener("click", clickCallbackPlay);
+        video.controls.play.addEventListener("click", clickCallbackPlay);
+        video.controls.slider.addEventListener("input", inputCallback);
+        video.controller.container.addEventListener("click", clickCallbackPlay);
+        video.controls.screen.addEventListener("click", clickCallbackScreen);
+        document.addEventListener("fullscreenchange", fullscreenchangeCallback);
     }
 </script>

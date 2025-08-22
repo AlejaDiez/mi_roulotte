@@ -30,3 +30,14 @@ export const timeAgo = (date: Date) => {
     const years = Math.round(days / 365);
     return rtf.format(-years, "year");
 };
+
+export const tripDate = (date: Date) => {
+    let formatted = date.toLocaleDateString("es-ES", {
+        month: "long",
+        year: "numeric"
+    });
+
+    formatted = formatted.replace(" de ", " ");
+    formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    return formatted;
+};

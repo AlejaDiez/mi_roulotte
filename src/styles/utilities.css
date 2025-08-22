@@ -81,6 +81,10 @@
     }
 }
 
+@utility animation-paused {
+    animation-play-state: paused;
+}
+
 @utility animation-delay-* {
     animation-delay: --value([*]);
 }

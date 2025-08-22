@@ -10,6 +10,9 @@ interface ImportMetaEnv {
     D1_TOKEN: string;
     DB_ID: string;
 
+    // google
+    YOUTUBE_TOKEN: string;
+
     // resend
     EMAIL_TOKEN: string;
 

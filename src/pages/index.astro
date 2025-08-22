@@ -1,11 +1,40 @@
 ---
-import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import ScrollToTop from "@components/ui/ScrollToTop.astro";
+import { getImage, Image } from "astro:assets";
+import IMG_20200825_185010 from "@assets/images/IMG_20200825_185010.jpg";
+import Footer from "@components/layout/Footer.astro";
+import { actions } from "astro:actions";
+import type { PartialTripPreview } from "@models/trip";
+import { tripDate } from "@utils/date";
+import { YouTube } from "@utils/video";
+import Video from "@components/ui/Video.astro";
 
-export const prerender = true;
+const IMG_20200825_185010_MASK = await getImage({
+    src: import("@assets/images/IMG_20200825_185010_MASK.png"),
+    quality: 60
+});
+
+// Get trips data
+const { data, error } = await Astro.callAction(actions.getTrips, {
+    relative: true
+}).then(({ data, ...rest }) => ({
+    data: data as PartialTripPreview[] | undefined,
+    ...rest
+}));
+
+data?.reverse();
+
+// Get youtube data
+const videos: string[] = [];
+const youtubeId = YouTube.getId(
+    "https://www.youtube.com/playlist?list=PLMZqxy7ks8derwsZceqoWvkNhZDsp8TF9"
+);
+
+if (youtubeId) {
+    (await YouTube.getPlaylistVideos(youtubeId)).forEach((e) => videos.push(e));
+}
 ---
 
 <Layout
@@ -52,130 +81,586 @@ export const prerender = true;
         "belgica",
         "holanda"
     ]}>
-    <Header />
-    <Main>
-        <h1>Mi Roulotte</h1>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro ex,
-            hic vero autem rerum aspernatur iusto repellat fugit quisquam
-            quaerat explicabo incidunt nemo voluptate quasi ut obcaecati enim
-            aperiam quod? Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Eum totam, vero ipsa nesciunt aliquam dolorem est vitae
-            asperiores? At laborum perferendis consequatur explicabo illum
-            iusto, libero incidunt minus! Provident, quidem? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Placeat adipisci est, amet
-            tenetur dolorem consectetur deserunt accusantium voluptatibus, eius
-            animi id vitae ex ab nesciunt nemo vel, aut ipsum impedit.
-        </p>
+    <Header class="contrast transparent md:fixed" />
+    <Main class="md:gap-0 md:px-0">
+        <section
+            id="inicio"
+            class="max-md:bg-muted max-md:animate-clip-right md:**:animation-paused relative w-[calc(var(--space-x)+100%)] overflow-hidden select-none max-md:-left-(--space-x) max-md:scroll-mt-(--space-y) max-md:px-(--space-x) max-md:py-8 md:h-screen md:w-screen md:snap-start">
+            <Image
+                src={IMG_20200825_185010}
+                alt="Ponta da Piedade"
+                quality={60}
+                class="absolute top-0 left-0 h-full w-full object-cover max-md:hidden"
+            />
+            <h1
+                class="text-title max-md:!translate-0 md:absolute md:top-[26%] md:left-1/2 md:-translate-x-1/2 md:animate-[500ms_cubic-bezier(0.4,0,0.2,1)_backwards_float-top] md:text-[8vw] md:text-white">
+                Mi Roulotte
+            </h1>
+            <Image
+                src={IMG_20200825_185010}
+                alt="Ponta da Piedade"
+                quality={60}
+                style=`mask-image: url("${IMG_20200825_185010_MASK.src}")`
+                class="absolute top-0 left-0 h-full w-full mask-cover mask-center object-cover max-md:hidden"
+            />
+            <div
+                class="absolute right-(--space-x) bottom-(--space-y) flex flex-row max-md:hidden md:animate-[500ms_cubic-bezier(0.4,0,0.2,1)_500ms_backwards_fade]">
+                <a
+                    title="Instagram"
+                    href="https://www.instagram.com/miroulotte/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-fill-primary hover:bg-white-hover bg-white text-gray-100">
+                    <i class="ibm-logo-instagram"></i>
+                </a>
+                <a
+                    title="YouTube"
+                    href="https://www.youtube.com/@miroulotte/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-fill-primary hover:bg-white-hover bg-white text-gray-100">
+                    <i class="ibm-logo-youtube"></i>
+                </a>
+            </div>
+        </section>
+        <section
+            id="viajes"
+            class="max-md:aspect-portrait md:**:animation-paused relative w-full overflow-hidden select-none max-md:scroll-mt-(--space-y) md:h-screen md:w-screen md:snap-start">
+            <div
+                class="subtitle animate-clip-left md:animate-clip-top bg-primary absolute top-0 z-10 flex h-(--space-y) w-(--space-y) items-center justify-center overflow-hidden max-md:left-0 md:top-(--space-y) md:right-[calc(var(--space-overflow)+50%)]">
+                {
+                    data?.map(({}, i) => (
+                        <span
+                            class:list={{ selected: i === 0 }}
+                            class="text-subtitle text-primary-foreground absolute text-center">
+                            {i + 1}
+                        </span>
+                    ))
+                }
+            </div>
+            <div
+                class="title animate-float-right md:bg-muted md:animate-clip-right absolute top-(--space-y) left-0 z-10 flex h-[calc(100%-3.5rem-4*var(--space)-var(--space-y))] w-(--space-y) items-end justify-center overflow-hidden max-md:mask-b-to-10 max-md:mask-exclude md:top-[calc(var(--space-y)*2)] md:h-64 md:w-1/2 md:items-center md:justify-start md:pr-[calc(var(--space-x)/2)] md:pl-(--space-x)">
+                {
+                    data?.map(({ date, name }, i) => (
+                        <>
+                            <span
+                                class:list={{ selected: i === 0 }}
+                                class="text-label text-muted-foreground-variant absolute top-1/4 max-md:hidden">
+                                {tripDate(date!)}
+                            </span>
+                            <h1
+                                class:list={{ selected: i === 0 }}
+                                class="text-title max-md:text-vertical absolute max-md:rotate-180 max-md:whitespace-nowrap md:line-clamp-1">
+                                {name}
+                            </h1>
+                        </>
+                    ))
+                }
+            </div>
+            <div
+                class="content animation-delay-[375ms] animate-fade absolute bottom-0 left-0 h-14 w-[calc(100%-3.5rem-4*var(--space))] overflow-hidden md:bottom-(--space-y) md:left-(--space-x) md:h-[calc(100%-var(--space-y)*3-var(--spacing)*64-var(--space-between))] md:w-[calc(50%-var(--space-x)-var(--space-overflow)-var(--space-y))]">
+                {
+                    data?.map(({ description, url, video }, i) => (
+                        <div
+                            class:list={{ selected: i === 0 }}
+                            class="absolute flex h-full w-full flex-col items-start justify-start gap-[calc(var(--space)*2)]">
+                            <div class="description scrollbar-hidden w-full overflow-scroll mask-t-to-[calc(var(--space)*2)] mask-exclude max-md:hidden">
+                                <p class="text-normal pb-[calc(var(--space)*2)]">
+                                    {description}
+                                </p>
+                            </div>
+                            <div class="actions flex w-full flex-row items-start justify-start gap-[calc(var(--space)*4)]">
+                                <a
+                                    href={url}
+                                    class="button button-outline-primary">
+                                    <span>Ver más</span>
+                                </a>
+                                {video && (
+                                    <a
+                                        href={video}
+                                        target="_blank"
+                                        class="button button-fill-primary">
+                                        <i class="ibm-video" />
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div
+                class="hero-image animate-clip-bottom animation-delay-500 group absolute top-0 right-0 h-[calc(100%-3.5rem-4*var(--space))] w-[calc(100%-var(--space-y))] overflow-hidden md:top-(--space-y) md:right-(--space-x) md:h-[calc(100%-var(--space-y)*2)] md:w-[calc(50%+var(--space-overflow)-var(--space-x))]">
+                {
+                    data?.map(({ date, name, image }, i) => (
+                        <div
+                            class:list={{ selected: i === 0 }}
+                            class="absolute h-full w-full">
+                            <img
+                                src={image}
+                                alt={`${name} ${date!.getFullYear()}`}
+                                decoding="async"
+                                class="h-full w-full scale-105 object-cover object-center transition-transform duration-300 md:group-hover:scale-115 md:group-hover:transition-[scale]"
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+            <div
+                class="controls animation-delay-[375ms] animate-fade md:animate-clip-left md:animation-delay-1000 absolute right-0 bottom-0 z-10 flex flex-row items-center justify-end md:right-(--space-x) md:bottom-(--space-y)">
+                <button
+                    class="prev button button-fill-primary md:bg-background md:hover:bg-background-hover md:text-foreground max-md:hidden">
+                    <i class="ibm-chevron-left"></i>
+                </button>
+                <button
+                    class="next button button-fill-primary md:bg-background md:hover:bg-background-hover md:text-foreground">
+                    <i class="ibm-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+        <section
+            id="brico-cv"
+            class="md:**:animation-paused relative w-screen overflow-hidden select-none max-md:-left-(--space-x) max-md:scroll-mt-(--space-y) md:h-screen md:snap-start">
+            <div
+                class="scroll scrollbar-hidden relative z-0 w-full snap-x snap-mandatory overflow-x-scroll scroll-smooth md:h-full">
+                <div
+                    class="videos flex w-max flex-row items-center justify-start gap-[calc(var(--space-x)*2)] px-(--space-x) md:h-full md:gap-[calc(var(--space)*4)] md:px-[calc(50vw-min(75vw,4/3*75vh)/2)]">
+                    {
+                        videos.length > 0 ? (
+                            videos.map((url, i) => (
+                                <Video
+                                    {url}
+                                    style={{
+                                        "animation-delay": `${i * 75}ms`
+                                    }}
+                                    class="animate-clip-top !aspect-landscape !w-[calc(100vw-var(--space-x)*2)] snap-center md:!w-[min(75vw,calc(4/3*75vh))]"
+                                />
+                            ))
+                        ) : (
+                            <div class="aspect-landscape animate-clip-top bg-muted h-auto w-[calc(100vw-var(--space-x)*2)] snap-center md:w-[min(75vw,calc(4/3*75vh))]" />
+                        )
+                    }
+                </div>
+            </div>
+            <button
+                style={{
+                    "animation-delay": `${500 + Math.max(videos.length - 1, 0) * 75}ms`
+                }}
+                class="prev button button-fill-primary animate-clip-right absolute top-1/2 left-(--space-x) z-10 -translate-y-1/2">
+                <i class="ibm-chevron-left"></i>
+            </button>
+            <button
+                style={{
+                    "animation-delay": `${500 + Math.max(videos.length - 1, 0) * 75}ms`
+                }}
+                class="next button button-fill-primary animate-clip-left absolute top-1/2 right-(--space-x) z-10 -translate-y-1/2">
+                <i class="ibm-chevron-right"></i>
+            </button>
+        </section>
     </Main>
-    <Footer />
-    <ScrollToTop />
+    <Footer class="md:hidden" />
 </Layout>
+
+<style is:global>
+    #viajes > .subtitle {
+        > span {
+            transition-delay: 250ms;
+            transition-duration: 300ms, 500ms;
+            transition-property: opacity, translate;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        > span:not(.selected) {
+            opacity: 0;
+        }
+
+        > span.selected ~ span,
+        &:has(> span:last-of-type.selected) > span:first-of-type {
+            translate: 0 -1rem;
+        }
+
+        > span:has(~ span.selected),
+        &:has(> span:first-of-type.selected) > span:last-of-type {
+            translate: 0 0.5rem;
+        }
+    }
+
+    #viajes > .title {
+        > span {
+            transition-delay: 300ms;
+            transition-duration: 300ms;
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        > h1 {
+            transition-delay: 300ms;
+            transition-duration: 300ms, 500ms;
+            transition-property: opacity, translate;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        > span:not(.selected),
+        > h1:not(.selected) {
+            opacity: 0;
+        }
+
+        > h1.selected ~ h1,
+        &:has(> h1:last-of-type.selected) > h1:first-of-type {
+            translate: -1rem 0;
+        }
+
+        > h1:has(~ h1.selected),
+        &:has(> h1:first-of-type.selected) > h1:last-of-type {
+            translate: 0.5rem 0;
+        }
+    }
+
+    #viajes > .hero-image {
+        > div {
+            transition-duration: 500ms;
+            transition-property: clip-path;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        > div.selected {
+            clip-path: inset(0 0 0 0);
+            transition-delay: 300ms;
+        }
+
+        > div.selected ~ div,
+        &:has(> div:last-of-type.selected) > div:first-of-type {
+            clip-path: inset(0 0 100% 0);
+        }
+
+        > div:has(~ div.selected),
+        &:has(> div:first-of-type.selected) > div:last-of-type {
+            clip-path: inset(100% 0 0 0);
+        }
+    }
+
+    #viajes > .content {
+        > div {
+            transition-duration: 300ms;
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        > div.selected {
+            transition-delay: 300ms;
+        }
+
+        > div:not(.selected) {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    @media (width >= 48rem /* 768px */) {
+        html {
+            scroll-snap-type: y mandatory;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .header.transparent {
+            background-color: transparent;
+        }
+
+        .header.contrast {
+            .mi-roulotte-icon {
+                svg {
+                    fill: var(--color-white);
+                }
+
+                &:hover svg {
+                    fill: var(--color-white-hover);
+                }
+            }
+
+            .menu > nav {
+                & > .button-primary,
+                & > .sub-menu > .button-primary {
+                    color: var(--color-white);
+
+                    &:hover {
+                        color: var(--color-white-hover);
+                    }
+                }
+
+                & > .button-muted,
+                & > .sub-menu > .button-muted {
+                    color: rgba(255, 255, 255, 0.6);
+
+                    &:hover {
+                        color: rgba(241, 241, 241, 0.6);
+                    }
+                }
+            }
+        }
+    }
+</style>
+
+<script>
+    // Header
+    const header = document.body.querySelector(".header")!;
+    const backgroundIntersectionObserver = new IntersectionObserver(
+        ([entry]: IntersectionObserverEntry[]) => {
+            if (entry.isIntersecting) {
+                header.classList.add("transparent");
+            } else {
+                header.classList.remove("transparent");
+            }
+        }
+    );
+    const colorIntersectionObserver = new IntersectionObserver(
+        ([entry]: IntersectionObserverEntry[]) => {
+            if (entry.isIntersecting) {
+                header.classList.add("contrast");
+            } else {
+                header.classList.remove("contrast");
+            }
+        },
+        { rootMargin: "-40px" }
+    );
+
+    // All sections
+    const sections = {
+        inicio: document.body.querySelector<HTMLElement>(
+            "main > section#inicio"
+        )!,
+        viajes: document.body.querySelector<HTMLElement>(
+            "main > section#viajes"
+        )!,
+        bricoCV: document.body.querySelector<HTMLElement>(
+            "main > section#brico-cv"
+        )!
+    };
+
+    const intersectionObserverCallback = ([
+        entry
+    ]: IntersectionObserverEntry[]) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.remove("md:**:animation-paused");
+            history.replaceState(null, "", `#${entry.target.id}`);
+            window.dispatchEvent(new Event("hashchange"));
+        }
+    };
+
+    // Inicio
+    const inicioIntersectionObserver = new IntersectionObserver(
+        intersectionObserverCallback,
+        { threshold: 0.5 }
+    );
+    const title = sections.inicio.querySelector<HTMLHeadingElement>("h1")!;
+
+    const titleParallax = () => {
+        if (sections.inicio.getBoundingClientRect().bottom > 0) {
+            const y = window.scrollY * 0.25;
+
+            title.style.transform = `translateY(${y}px)`;
+        }
+    };
+
+    // Viajes
+    const viajesIntersectionObserver = new IntersectionObserver(
+        intersectionObserverCallback,
+        { threshold: 0.5 }
+    );
+    const subtitles = [
+        ...sections.viajes.querySelectorAll<HTMLSpanElement>(".subtitle > span")
+    ];
+    const titles = [
+        ...sections.viajes.querySelectorAll<HTMLHeadingElement>(".title > h1")
+    ];
+    const titlesLabels = [
+        ...sections.viajes.querySelectorAll<HTMLHeadingElement>(".title > span")
+    ];
+    const contents = [
+        ...sections.viajes.querySelectorAll<HTMLDivElement>(".content > div")
+    ];
+    const heroImage =
+        sections.viajes.querySelector<HTMLDivElement>(".hero-image")!;
+    const images = [
+        ...sections.viajes.querySelectorAll<HTMLImageElement>(
+            ".hero-image > div"
+        )
+    ];
+    let index = 0;
+    let parallaxTicking = false;
+
+    const mousemoveCallback = (e: MouseEvent) => {
+        if (!parallaxTicking) {
+            window.requestAnimationFrame(() => {
+                const img = images
+                    .at(index)
+                    ?.querySelector<HTMLImageElement>("img");
+
+                if (img) {
+                    const rect = img.getBoundingClientRect();
+                    const mousex = e.clientX - rect.left;
+                    const mousey = e.clientY - rect.top;
+                    const x = (mousex - rect.width / 2) / 40;
+                    const y = (mousey - rect.height / 2) / 40;
+
+                    img.style.transform = `translate(${x}px, ${y}px)`;
+                    parallaxTicking = false;
+                }
+            });
+            parallaxTicking = true;
+        }
+    };
+    const mouseoutCallback = () => {
+        const img = images.at(index)?.querySelector<HTMLImageElement>("img");
+
+        if (img) {
+            img.style.transform = "";
+        }
+    };
+    const clickCallbackPrevTrip = () => {
+        const newIndex = index - 1 >= 0 ? index - 1 : subtitles.length - 1;
+
+        [subtitles, titles, titlesLabels, contents, images].forEach((e) => {
+            e.at(index)?.classList.remove("selected");
+            e.at(newIndex)?.classList.add("selected");
+        });
+        index = newIndex;
+    };
+    const clickCallbackNextTrip = () => {
+        const newIndex = index + 1 >= subtitles.length ? 0 : index + 1;
+
+        [subtitles, titles, titlesLabels, contents, images].forEach((e) => {
+            e.at(index)?.classList.remove("selected");
+            e.at(newIndex)?.classList.add("selected");
+        });
+        index = newIndex;
+    };
+
+    sections.viajes
+        .querySelector<HTMLButtonElement>(".controls > .prev")!
+        .addEventListener("click", clickCallbackPrevTrip);
+    sections.viajes
+        .querySelector<HTMLButtonElement>(".controls > .next")!
+        .addEventListener("click", clickCallbackNextTrip);
+
+    // Brico-CV
+    const bricoCVIntersectionObserver = new IntersectionObserver(
+        intersectionObserverCallback,
+        { threshold: 0.5 }
+    );
+    const container =
+        sections.bricoCV.querySelector<HTMLDivElement>(".scroll")!;
+    const videos = [...container.querySelectorAll<HTMLDivElement>(".video")];
+
+    const clickCallbackPrevVideo = () => {
+        const width = container.offsetWidth;
+        const scrollLeft = container.scrollLeft;
+        const prevVideo = videos.findLast(
+            ({ offsetLeft, offsetWidth }) =>
+                offsetLeft + offsetWidth / 2 - scrollLeft < width / 2 - 2
+        );
+
+        if (prevVideo) {
+            container.scrollTo({
+                left:
+                    prevVideo.offsetLeft - (width - prevVideo.offsetWidth) / 2,
+                behavior: "smooth"
+            });
+        }
+    };
+    const clickCallbackNextVideo = () => {
+        const width = container.offsetWidth;
+        const scrollLeft = container.scrollLeft;
+        const nextVideo = videos.find(
+            ({ offsetLeft, offsetWidth }) =>
+                offsetLeft + offsetWidth / 2 - scrollLeft > width / 2 + 2
+        );
+
+        if (nextVideo) {
+            container.scrollTo({
+                left:
+                    nextVideo.offsetLeft - (width - nextVideo.offsetWidth) / 2,
+                behavior: "smooth"
+            });
+        }
+    };
+
+    sections.bricoCV
+        .querySelector<HTMLButtonElement>(".prev")!
+        .addEventListener("click", clickCallbackPrevVideo);
+    sections.bricoCV
+        .querySelector<HTMLButtonElement>(".next")!
+        .addEventListener("click", clickCallbackNextVideo);
+
+    // General
+    let desktop = false;
+    let ticking = false;
+
+    const scrollCallback = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                // Inicio
+                titleParallax();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+    const resizeCallback = () => {
+        if (window.innerWidth >= 48 * 16 && !desktop) {
+            // Header
+            backgroundIntersectionObserver.observe(sections.inicio);
+            colorIntersectionObserver.observe(sections.inicio);
+
+            // Inicio
+            inicioIntersectionObserver.observe(sections.inicio);
+
+            // Viajes
+            viajesIntersectionObserver.observe(sections.viajes);
+            heroImage.addEventListener("mousemove", mousemoveCallback);
+            heroImage.addEventListener("mouseout", mouseoutCallback);
+
+            // Brico-CV
+            bricoCVIntersectionObserver.observe(sections.bricoCV);
+
+            // General
+            window.addEventListener("scroll", scrollCallback);
+            desktop = true;
+        } else if (window.innerWidth < 48 * 16 && desktop) {
+            // Header
+            backgroundIntersectionObserver.disconnect();
+            colorIntersectionObserver.disconnect();
+            header.classList.remove("transparent", "contrast");
+
+            // Inicio
+            inicioIntersectionObserver.disconnect();
+            title.style.transform = "";
+
+            // Viajes
+            const img = images.at(index)?.querySelector("img");
+
+            viajesIntersectionObserver.disconnect();
+            heroImage.removeEventListener("mousemove", mousemoveCallback);
+            heroImage.removeEventListener("mouseout", mouseoutCallback);
+            if (img) {
+                img.style.transform = "";
+            }
+            parallaxTicking = false;
+
+            // Brico-CV
+            bricoCVIntersectionObserver.disconnect();
+
+            // General
+            window.removeEventListener("scroll", scrollCallback);
+            desktop = false;
+            ticking = false;
+        }
+    };
+
+    window.addEventListener("resize", resizeCallback);
+    resizeCallback();
+</script>

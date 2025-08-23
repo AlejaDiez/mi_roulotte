@@ -9,17 +9,11 @@ const images = /\.(png|jpe?g|webp|svg|gif|tiff?|bmp|ico)$/i;
 const audios = /\.(mp3|wav|ogg|flac|aac|m4a|wma)$/i;
 const videos = /\.(mp4|webm|mov|avi|mkv|flv|wmv)$/i;
 
-// https://astro.build/config
 export default defineConfig({
     site: "https://miroulotte.es",
     trailingSlash: "ignore",
     output: "server",
-    adapter: cloudflare({
-        platformProxy: {
-            enabled: true,
-        },
-        imageService: "cloudflare",
-    }),
+    adapter: cloudflare({ imageService: "cloudflare" }),
     outDir: "build",
     compressHTML: true,
     scopedStyleStrategy: "where",
@@ -40,22 +34,22 @@ export default defineConfig({
                         return "[name].[hash][extname]";
                     },
                     chunkFileNames: "scripts/script.[hash].js",
-                    entryFileNames: "scripts/script.[hash].js",
-                },
-            },
+                    entryFileNames: "scripts/script.[hash].js"
+                }
+            }
         },
         css: { transformer: "lightningcss" },
-        plugins: [tailwindcss()],
+        plugins: [tailwindcss()]
     },
     server: {
         host: true,
         headers: {
-            "Access-Control-Allow-Origin": "*",
-        },
+            "Access-Control-Allow-Origin": "*"
+        }
     },
     devToolbar: { enabled: false },
     i18n: {
         locales: ["es"],
-        defaultLocale: "es",
-    },
+        defaultLocale: "es"
+    }
 });

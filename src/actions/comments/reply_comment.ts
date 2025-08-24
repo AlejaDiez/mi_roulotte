@@ -6,8 +6,8 @@ import {
     selectTrip,
     type DataType
 } from "@queries";
+import { generateToken } from "@utils/crypto";
 import { fields } from "@utils/filter_object";
-import { generateToken } from "@utils/jwt";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";

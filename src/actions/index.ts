@@ -4,6 +4,7 @@ import { getCommentById } from "./comments/get_comment_by_id";
 import { getComments } from "./comments/get_comments";
 import { replyComment } from "./comments/reply_comment";
 import { unsubscribeRepliesNotifications } from "./comments/unsubscribe_replies_notifications";
+import { deleteFile } from "./files/delete_file";
 import { getFiles } from "./files/get_files";
 import { uploadFile } from "./files/upload_file";
 import { getStageById } from "./stages/get_stage_by_id";
@@ -21,6 +22,7 @@ export const server = {
     unsubscribeRepliesNotifications,
 
     // Files
+    deleteFile,
     getFiles,
     uploadFile,
 

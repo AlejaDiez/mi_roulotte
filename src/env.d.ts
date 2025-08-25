@@ -8,7 +8,7 @@ interface ImportMetaEnv {
     // cloudflare
     CLOUDFLARE_ACCOUNT_ID: string;
     D1_TOKEN: string;
-    DB_ID: string;
+    R2_TOKEN: string;
 
     // google
     YOUTUBE_TOKEN: string;

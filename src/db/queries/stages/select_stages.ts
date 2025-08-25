@@ -1,5 +1,5 @@
 import { StagesTable } from "@schemas";
-import { filterObject } from "@utils/filter_object";
+import { filterObjectColumns } from "@utils/filter_object";
 import { and, eq, sql } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
@@ -24,7 +24,7 @@ export const selectStages = (
             : sql`CONCAT(${import.meta.env.SITE}, '/', ${StagesTable.tripId}, '/', ${StagesTable.id})`
     };
     const query = db
-        .select(filterObject(columns, config?.fields))
+        .select(filterObjectColumns(columns, config?.fields))
         .from(StagesTable)
         .where(
             and(eq(StagesTable.tripId, tripId), eq(StagesTable.published, true))

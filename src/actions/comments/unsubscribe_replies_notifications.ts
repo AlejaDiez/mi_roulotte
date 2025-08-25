@@ -1,5 +1,5 @@
 import { updateComment } from "@queries";
-import { validateToken } from "@utils/jwt";
+import { validateToken } from "@utils/crypto";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";

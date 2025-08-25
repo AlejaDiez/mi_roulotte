@@ -29,7 +29,7 @@ export const getTrips = defineAction({
             page,
             limit,
             relative
-        });
+        }).then((e) => e.map(({ _, ...e }: any) => e));
 
         return paginateObject(
             data,

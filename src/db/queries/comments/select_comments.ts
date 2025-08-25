@@ -1,5 +1,5 @@
 import { CommentsTable } from "@schemas";
-import { filterObject } from "@utils/filter_object";
+import { filterObjectColumns } from "@utils/filter_object";
 import { and, desc, eq, isNull, sql } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
@@ -39,7 +39,7 @@ export const selectComments = (
             )
     };
     const query = db
-        .select(filterObject(columns, config?.fields))
+        .select(filterObjectColumns(columns, config?.fields))
         .from(CommentsTable)
         .orderBy(
             desc(

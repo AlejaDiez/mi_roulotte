@@ -14,6 +14,24 @@ export const fields = z
     .transform((e) => (typeof e === "string" ? [e] : e));
 
 export const filterObject = <T extends object>(
+    obj: T,
+    fields: string[] | undefined
+): Partial<T> => {
+    if (!fields || fields.length === 0) {
+        return { ...obj };
+    }
+
+    const result: Partial<T> = {};
+
+    for (const key of fields) {
+        if (key in obj) {
+            result[key as keyof T] = obj[key as keyof T];
+        }
+    }
+    return result;
+};
+
+export const filterObjectColumns = <T extends object>(
     columns: T,
     fields: string[] | undefined
 ) => {
@@ -30,7 +48,7 @@ export const filterObject = <T extends object>(
     }, {});
 
     if (Object.keys(cols).length === 0) {
-        return { _: sql`1` };
+        return { _: sql`'_'` };
     }
     return cols;
 };

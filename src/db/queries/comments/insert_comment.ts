@@ -1,5 +1,5 @@
 import { CommentsTable } from "@schemas";
-import { filterObject } from "@utils/filter_object";
+import { filterObjectColumns } from "@utils/filter_object";
 import { sql } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
@@ -54,7 +54,7 @@ export const insertComment = (
             content: value.content,
             repliedTo: value.repliedTo
         })
-        .returning(filterObject(columns, config?.fields))
+        .returning(filterObjectColumns(columns, config?.fields))
         .get();
 
     return query;

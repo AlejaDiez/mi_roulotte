@@ -1,5 +1,5 @@
 import { TripsTable } from "@schemas";
-import { filterObject } from "@utils/filter_object";
+import { filterObjectColumns } from "@utils/filter_object";
 import { and, eq, sql } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
@@ -32,7 +32,7 @@ export const selectTrip = (
     };
 
     return db
-        .select(filterObject(columns, config?.fields))
+        .select(filterObjectColumns(columns, config?.fields))
         .from(TripsTable)
         .where(and(eq(TripsTable.id, tripId), eq(TripsTable.published, true)))
         .get();

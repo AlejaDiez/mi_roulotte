@@ -1,5 +1,5 @@
 import { TripsTable } from "@schemas";
-import { filterObject } from "@utils/filter_object";
+import { filterObjectColumns } from "@utils/filter_object";
 import { eq, sql } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
@@ -24,7 +24,7 @@ export const selectTrips = (
             : sql`CONCAT(${import.meta.env.SITE}, '/', ${TripsTable.id})`
     };
     const query = db
-        .select(filterObject(columns, config?.fields))
+        .select(filterObjectColumns(columns, config?.fields))
         .from(TripsTable)
         .where(eq(TripsTable.published, true));
 

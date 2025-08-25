@@ -6,8 +6,9 @@ import {
     ImageTypes,
     streamToArrayBuffer,
     VideoTypes,
-    type UploadedFile
+    type PartialUploadedFile
 } from "@utils/file";
+import { fields, filterObject } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 
@@ -84,10 +85,11 @@ export const uploadFile = defineAction({
                     })
                     .optional()
             })
-            .optional()
+            .optional(),
+        fields
     }),
-    handler: async (input, ctx): Promise<UploadedFile> => {
-        const { file, transform } = input;
+    handler: async (input, ctx): Promise<PartialUploadedFile> => {
+        const { file, transform, fields } = input;
         const bucket = ctx.locals.runtime.env.BUCKET;
         const imageService = ctx.locals.runtime.env.IMAGES;
         let filePath = `${file.name}_${generateHash()}`;
@@ -95,7 +97,10 @@ export const uploadFile = defineAction({
         let fileBuffer: ArrayBuffer = file.buffer;
 
         if (ImageTypes.includes(file.type)) {
-            if (transform) {
+            if (
+                transform &&
+                Object.values(transform).some((e) => e !== undefined)
+            ) {
                 try {
                     const blob = new Blob([file.buffer], { type: fileType });
                     const res = await imageService
@@ -139,11 +144,15 @@ export const uploadFile = defineAction({
             }
         });
 
-        return {
-            name: filePath.split("/").pop()!,
-            type: fileType,
-            size: res.size,
-            url: `${import.meta.env.SITE}/${filePath}`
-        };
+        return filterObject(
+            {
+                name: res.key.split("/").pop()!,
+                type: res.httpMetadata?.contentType,
+                size: res.size,
+                url: `${import.meta.env.SITE}/${res.key}`,
+                uploadedAt: res.uploaded
+            },
+            fields
+        );
     }
 });

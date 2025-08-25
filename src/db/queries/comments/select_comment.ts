@@ -1,5 +1,5 @@
 import { CommentsTable } from "@schemas";
-import { filterObject } from "@utils/filter_object";
+import { filterObjectColumns } from "@utils/filter_object";
 import { eq, sql } from "drizzle-orm";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
@@ -38,7 +38,7 @@ export const selectComment = (
         modifiedAt: CommentsTable.modifiedAt
     };
     const query = db
-        .select(filterObject(columns, config?.fields))
+        .select(filterObjectColumns(columns, config?.fields))
         .from(CommentsTable)
         .where(eq(CommentsTable.id, commentId))
         .get();

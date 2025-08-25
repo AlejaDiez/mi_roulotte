@@ -1,9 +1,12 @@
-export type UploadedFile = {
+export interface UploadedFile {
     name: string;
     type: string;
     size: number;
     url: string;
-};
+    uploadedAt: Date;
+}
+
+export type PartialUploadedFile = Partial<UploadedFile>;
 
 export const ImageTypes = [
     "image/jpeg",

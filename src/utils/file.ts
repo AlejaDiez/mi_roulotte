@@ -27,6 +27,9 @@ export const ExtensionTypes: Record<string, string> = {
     "audio/mpeg": "mp3",
     "audio/wav": "wav",
     "audio/ogg": "ogg",
+    "video/mp4": "mp4",
+    "video/webm": "webm",
+    "video/ogg": "ogv",
     "application/pdf": "pdf",
     "text/plain": "txt"
 };

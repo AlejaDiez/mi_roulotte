@@ -85,7 +85,7 @@ export const getStageById = defineAction({
             comments: commentsData,
             url: data.url,
             createdAt: data.createdAt,
-            modifiedAt: data.modifiedAt
+            updatedAt: data.updatedAt
         };
     }
 });

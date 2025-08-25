@@ -12,7 +12,7 @@
             "binding": "DB",
             "database_name": "mi-roulotte-db",
             "database_id": "326c8ed1-35f8-487e-988f-ab6725327acc",
-            "migrations_dir": "src/server/db/migrations"
+            "migrations_dir": "src/db/migrations"
         }
     ],
     "r2_buckets": [

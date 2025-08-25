@@ -28,7 +28,7 @@ export const selectTrip = (
             : sql`CONCAT(${import.meta.env.SITE}, '/', ${TripsTable.id})`,
         allowComments: TripsTable.allowComments,
         createdAt: TripsTable.createdAt,
-        modifiedAt: TripsTable.modifiedAt
+        updatedAt: TripsTable.updatedAt
     };
 
     return db

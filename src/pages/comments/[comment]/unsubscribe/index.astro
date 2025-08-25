@@ -3,6 +3,8 @@ import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
+
+const { comment } = Astro.params;
 ---
 
 <Layout title="Confirmar baja de notificaciones" class="h-screen w-screen">
@@ -15,7 +17,9 @@ import Main from "@components/layout/Main.astro";
             sobre este comentario, simplemente pulsa el botón y nos tomamos un
             descanso.
         </p>
-        <button class="unsubscribe-button button button-outline-primary">
+        <button
+            class="unsubscribe-button button button-outline-primary"
+            data-comment-id={comment}>
             <span>¡Sí, por favor, silencio!</span>
         </button>
     </Main>
@@ -25,14 +29,14 @@ import Main from "@components/layout/Main.astro";
 <script>
     import { actions } from "astro:actions";
 
-    const button = document.body.querySelector<HTMLButtonElement>(
+    const unsubscribeButton = document.body.querySelector<HTMLButtonElement>(
         ".unsubscribe-button"
     )!;
 
-    button.addEventListener("click", async () => {
+    const clickCallback = async () => {
         const url = new URL(window.location.href);
         const { error } = await actions.unsubscribeRepliesNotifications({
-            commentId: Number(url.pathname.split("/").at(-2)),
+            commentId: unsubscribeButton.getAttribute("data-comment-id")!,
             token: url.searchParams.get("token")!
         });
 
@@ -43,5 +47,7 @@ import Main from "@components/layout/Main.astro";
         } else {
             window.open("/", "_self");
         }
-    });
+    };
+
+    unsubscribeButton.addEventListener("click", clickCallback);
 </script>

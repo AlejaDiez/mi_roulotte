@@ -7,7 +7,7 @@ export const GET: APIRoute = async ({ params, request, callAction }) => {
     const { comment } = params;
     const { fields } = getQueryParams(request);
     const { data, error } = await callAction(actions.getCommentById, {
-        commentId: Number(comment),
+        commentId: comment!,
         fields
     });
 
@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ params, request, callAction }) => {
     const body = await getBody(request);
     const { fields } = getQueryParams(request);
     const { data, error } = await callAction(actions.replyComment, {
-        commentId: Number(comment),
+        commentId: comment!,
         body: body as any,
         fields
     });
@@ -61,7 +61,7 @@ export const POST: APIRoute = async ({ params, request, callAction }) => {
 export const DELETE: APIRoute = async ({ params, callAction }) => {
     const { comment } = params;
     const { error } = await callAction(actions.deleteComment, {
-        commentId: Number(comment)
+        commentId: comment!
     });
 
     if (error) {

@@ -17,7 +17,7 @@ export interface Trip {
     comments?: CommentPreview[];
     url: string;
     createdAt: Date;
-    modifiedAt: Date | null;
+    updatedAt: Date | null;
 }
 
 export type PartialTrip = Partial<

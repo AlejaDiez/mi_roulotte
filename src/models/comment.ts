@@ -1,29 +1,32 @@
 export interface Comment {
-    id: number;
+    id: string;
     tripId: string;
     stageId: string | null;
     username: string;
     email: string;
     content: string;
-    repliedTo: number;
+    repliedTo: string | null;
+    replies: Comment[];
     url: string;
+    userAgent: string | null;
+    ipAddress: string | null;
     createdAt: Date;
-    modifiedAt: Date | null;
+    updatedAt: Date | null;
 }
 
 export type PartialComment = Partial<
-    Comment & {
+    Omit<Comment, "replies"> & {
         replies: Partial<Omit<Comment, "repliedTo">>[];
     }
 >;
 
 export interface CommentPreview {
-    id: number;
+    id: string;
     username: string;
     content: string;
-    url: string;
-    lastModifiedAt: Date;
     replies: CommentPreview[];
+    url: string;
+    lastUpdatedAt: Date;
 }
 
 export type PartialCommentPreview = Partial<
@@ -37,7 +40,32 @@ export const buildRelatedComments = (
     replies: boolean = true
 ) => {
     const map = replies
-        ? new Map(comments.map((c) => [c._id, { ...c, replies: [] }]))
+        ? new Map(
+              comments.map(
+                  ({
+                      _id,
+                      url,
+                      userAgent,
+                      ipAddress,
+                      lastUpdatedAt,
+                      createdAt,
+                      updatedAt,
+                      ...rest
+                  }) => [
+                      _id,
+                      {
+                          ...rest,
+                          replies: [],
+                          url,
+                          userAgent,
+                          ipAddress,
+                          lastUpdatedAt,
+                          createdAt,
+                          updatedAt
+                      }
+                  ]
+              )
+          )
         : new Map(comments.map((c) => [c._id, { ...c }]));
 
     return comments.reduce<any[]>((acc, comment) => {

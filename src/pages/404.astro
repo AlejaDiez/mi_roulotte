@@ -10,7 +10,7 @@ export const prerender = true;
 <Layout
     title="Página no encontrada"
     class="bg-red-60 dark:bg-red-80 h-screen w-screen">
-    <Header class="floating" />
+    <Header class="floating !fixed !bg-transparent" />
     <Main
         class="h-full cursor-default !items-center !justify-center !gap-0 pt-(--space-y) pb-32 select-none">
         <h1 class="text-title text-center text-white">404</h1>
@@ -24,89 +24,74 @@ export const prerender = true;
             <span>Recalcular ruta</span>
         </a>
     </Main>
-    <Footer class="floating" />
+    <Footer class="floating fixed bottom-0 left-0 bg-transparent" />
 </Layout>
 
 <style is:global>
-    .header.floating {
-        position: fixed;
-        background-color: transparent;
+    .header.floating .mi-roulotte-icon,
+    .header.floating .menu-toggle {
+        color: var(--color-white);
 
-        .mi-roulotte-icon,
-        .menu-toggle {
-            color: var(--color-white);
+        &:hover {
+            color: var(--color-white-hover);
+        }
+    }
+
+    .header.floating .menu {
+        a {
+            color: light-dark(
+                var(--color-red-40),
+                var(--color-red-60)
+            ) !important;
 
             &:hover {
-                color: var(--color-white-hover);
+                color: var(--color-white-hover) !important;
             }
         }
 
-        .menu {
-            a {
-                color: light-dark(
-                    var(--color-red-40),
-                    var(--color-red-60)
-                ) !important;
+        .sub-menu {
+            nav {
+                background-color: var(--color-red-70);
 
-                &:hover {
-                    color: var(--color-white-hover) !important;
-                }
-            }
+                a {
+                    color: var(--color-red-50);
 
-            .sub-menu {
-                nav {
-                    background-color: var(--color-red-70);
-
-                    a {
-                        color: var(--color-red-50);
-
-                        &:hover {
-                            color: var(--color-white-hover);
-                        }
+                    &:hover {
+                        color: var(--color-white-hover);
                     }
                 }
             }
+        }
 
-            @media (width < 48rem) {
-                background-color: light-dark(
-                    var(--color-red-60),
-                    var(--color-red-80)
-                );
+        @media (width < 48rem) {
+            background-color: light-dark(
+                var(--color-red-60),
+                var(--color-red-80)
+            );
 
-                .sub-menu nav {
-                    background-color: var(--color-transparent);
+            .sub-menu nav {
+                background-color: var(--color-transparent);
 
-                    a {
-                        color: light-dark(
-                            var(--color-red-40),
-                            var(--color-red-60)
-                        );
+                a {
+                    color: light-dark(var(--color-red-40), var(--color-red-60));
 
-                        &:hover {
-                            color: var(--color-white-hover);
-                        }
+                    &:hover {
+                        color: var(--color-white-hover);
                     }
                 }
             }
         }
     }
 
-    .footer.floating {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        background-color: transparent;
+    .footer.floating .content a {
+        color: light-dark(var(--color-red-40), var(--color-red-60));
 
-        .content a {
-            color: light-dark(var(--color-red-40), var(--color-red-60));
-
-            &:hover {
-                color: var(--color-white-hover);
-            }
+        &:hover {
+            color: var(--color-white-hover);
         }
+    }
 
-        .license span {
-            color: var(--color-red-70);
-        }
+    .footer.floating .license span {
+        color: var(--color-red-70);
     }
 </style>

@@ -3,11 +3,12 @@ import type { BaseProps } from "@utils/props";
 
 export type Props = BaseProps;
 
-const { id, class: cls } = Astro.props;
+const { id, style, class: cls } = Astro.props;
 ---
 
 <main
     {id}
+    {style}
     class:list={cls}
     class="main flex h-auto w-full flex-col items-start justify-start gap-(--space-between) px-(--space-x)">
     <slot />

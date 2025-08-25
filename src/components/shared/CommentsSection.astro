@@ -7,7 +7,7 @@ export interface Props extends BaseProps {
     comments: PartialCommentPreview[];
 }
 
-const { comments, id, class: cls } = Astro.props;
+const { comments, id, style, class: cls } = Astro.props;
 const messages: string[] = [
     "¿Aventuras divertidas en carretera? ¡Cuéntanos todo!",
     "¡No guardes tus risas para ti! Comparte tus travesuras sobre ruedas.",
@@ -24,6 +24,7 @@ const { trip, stage } = Astro.params;
 
 <section
     {id}
+    {style}
     class:list={cls}
     class="comments-section animation-delay-[375ms] animate-fade flex w-full flex-col items-start justify-start">
     <h3 class="comments-count text-headline mb-(--space)">
@@ -37,54 +38,46 @@ const { trip, stage } = Astro.params;
     </h3>
     {
         comments.length > 0 && (
-            <div
-                class="comments-list my-[calc(var(--space)*2)] flex w-full flex-col items-start justify-start gap-[calc(var(--space)*4)]">
-                {
-                    comments.map(e => (
-                        <div
-                            id=`comment-${e.id}`
-                            class="comment border-border group flex w-full scroll-m-(--space-y) flex-col items-start justify-start border-1">
-                            <div
-                                class="comment-header text-normal text-foreground relative w-full px-4 pt-3 pb-2 font-light select-none">
-                                <strong class="font-semibold">{e.username}</strong>
-                                {timeAgo(e.lastModifiedAt!)}
-                                <button
-                                    title="Responder"
-                                    class="button button-fill-accent absolute top-2 right-2 h-8 min-h-0 w-8 min-w-0 p-0 transition-[opacity,background-color] group-hover:opacity-100 md:opacity-0"
-                                    data-reply-id={e.id}
-                                    data-reply-username={e.username}>
-                                        <i class="ibm-reply text-sm"></i>
-                                </button>
-                            </div>
-                            <p class="comment-content text-normal w-full px-4 pb-3 text-justify">
-                                {e.content}
-                            </p>
-                            {
-                                e.replies && e.replies.length > 0 && (
-                                    <div class="comment-replies border-border border-t-1 px-4 py-3 flex w-full flex-col items-start justify-start gap-[calc(var(--space)*2)]">
-                                        {
-                                            e.replies.map(e => (
-                                                <div
-                                                    id=`comment-${e.id}`
-                                                    class="reply bg-muted flex w-full scroll-m-(--space-y) flex-col items-start justify-start">
-                                                    <div
-                                                        class="reply-header text-normal text-muted-foreground w-full px-4 pt-3 pb-2 font-light select-none">
-                                                        <strong class="font-semibold">{e.username}</strong>
-                                                        {timeAgo(e.lastModifiedAt!)}
-                                                    </div>
-                                                    <p
-                                                        class="reply-content text-normal w-full px-4 pb-3 text-justify">
-                                                        {e.content}
-                                                    </p>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                )
-                            }
+            <div class="comments-list my-[calc(var(--space)*2)] flex w-full flex-col items-start justify-start gap-[calc(var(--space)*4)]">
+                {comments.map((e) => (
+                    <div
+                        id={e.id}
+                        class="comment border-border group flex w-full scroll-m-(--space-y) flex-col items-start justify-start border-1">
+                        <div class="comment-header text-normal text-foreground relative w-full px-4 pt-3 pb-2 font-light select-none">
+                            <strong class="font-semibold">{e.username}</strong>
+                            {timeAgo(e.lastUpdatedAt!)}
+                            <button
+                                title="Responder"
+                                class="button button-fill-accent absolute top-2 right-2 h-8 min-h-0 w-8 min-w-0 p-0 transition-[opacity,background-color] group-hover:opacity-100 md:opacity-0"
+                                data-reply-id={e.id}
+                                data-reply-username={e.username}>
+                                <i class="ibm-reply text-sm" />
+                            </button>
                         </div>
-                    ))
-                }
+                        <p class="comment-content text-normal w-full px-4 pb-3 text-justify">
+                            {e.content}
+                        </p>
+                        {e.replies && e.replies.length > 0 && (
+                            <div class="comment-replies border-border flex w-full flex-col items-start justify-start gap-[calc(var(--space)*2)] border-t-1 px-4 py-3">
+                                {e.replies.map((e) => (
+                                    <div
+                                        id={e.id}
+                                        class="reply bg-muted flex w-full scroll-m-(--space-y) flex-col items-start justify-start">
+                                        <div class="reply-header text-normal text-muted-foreground w-full px-4 pt-3 pb-2 font-light select-none">
+                                            <strong class="font-semibold">
+                                                {e.username}
+                                            </strong>
+                                            {timeAgo(e.lastUpdatedAt!)}
+                                        </div>
+                                        <p class="reply-content text-normal w-full px-4 pb-3 text-justify">
+                                            {e.content}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
         )
     }
@@ -193,10 +186,10 @@ const { trip, stage } = Astro.params;
         'input[type="submit"]'
     )!;
 
-    const buildComment = (id: number, username: string, content: string) => {
+    const buildComment = (id: string, username: string, content: string) => {
         const comment = document.createElement("div");
 
-        comment.id = `comment-${id}`;
+        comment.id = id;
         comment.classList.add(
             "comment",
             "border-border",
@@ -247,10 +240,10 @@ const { trip, stage } = Astro.params;
         return comment;
     };
 
-    const buildReply = (id: number, username: string, content: string) => {
+    const buildReply = (id: string, username: string, content: string) => {
         const reply = document.createElement("div");
 
-        reply.id = `comment-${id}`;
+        reply.id = id;
         reply.classList.add(
             "reply",
             "bg-muted",
@@ -297,7 +290,6 @@ const { trip, stage } = Astro.params;
 
         return reply;
     };
-
     const buildReplyBanner = (username: string) => {
         const blockquote = document.createElement("blockquote");
         const closeButton = document.createElement("button");
@@ -328,7 +320,6 @@ const { trip, stage } = Astro.params;
         blockquote.appendChild(closeButton);
         return blockquote;
     };
-
     const removeReplyBanner = () => {
         const banner = form.querySelector(".reply-banner");
 
@@ -337,13 +328,12 @@ const { trip, stage } = Astro.params;
             form.removeChild(banner);
         }
     };
-
     const validateField = (field: HTMLInputElement) => {
         const value: any =
             field.type === "checkbox" ? field.checked : field.value.trim();
 
         clearError(field);
-        if (!touchedFields.get(field) && field.type !== "checkbox") {
+        if (!touched.get(field) && field.type !== "checkbox") {
             return;
         }
         switch (field) {
@@ -379,7 +369,6 @@ const { trip, stage } = Astro.params;
                 break;
         }
     };
-
     const setError = (field: HTMLInputElement, message: string) => {
         field.setCustomValidity(" ");
         if (field.parentElement instanceof HTMLLabelElement) {
@@ -387,7 +376,6 @@ const { trip, stage } = Astro.params;
         }
         field.reportValidity();
     };
-
     const clearError = (field: HTMLInputElement) => {
         field.setCustomValidity("");
         if (field.parentElement instanceof HTMLLabelElement) {
@@ -395,7 +383,6 @@ const { trip, stage } = Astro.params;
         }
         field.reportValidity();
     };
-
     const reset = () => {
         removeReplyBanner();
         form.reset();
@@ -404,36 +391,47 @@ const { trip, stage } = Astro.params;
     };
 
     // Reply comment
-    for (const button of replyButtons) {
-        button.addEventListener("click", () => {
-            removeReplyBanner();
-            fields.repliedTo.value = button.getAttribute("data-reply-id")!;
-            form.insertBefore(
-                buildReplyBanner(button.getAttribute("data-reply-username")!),
-                form.firstChild
-            );
-        });
-    }
+    const clickCallback = (e: PointerEvent) => {
+        removeReplyBanner();
+        fields.repliedTo.value = (e.target as HTMLElement).getAttribute(
+            "data-reply-id"
+        )!;
+        form.insertBefore(
+            buildReplyBanner(
+                (e.target as HTMLElement).getAttribute("data-reply-username")!
+            ),
+            form.firstChild
+        );
+    };
+
+    replyButtons.forEach((e) => e.addEventListener("click", clickCallback));
 
     // Form validation
-    const touchedFields = new WeakMap<HTMLElement, boolean>();
+    const touched = new WeakMap<HTMLElement, boolean>();
+
+    const blurCallback = (e: FocusEvent) => {
+        const element: any = e.target;
+
+        touched.set(element, true);
+        validateField(element);
+    };
+    const inputCallback = (e: Event) => {
+        const element: any = e.target;
+
+        validateField(element);
+    };
 
     for (const field of Object.values(fields)) {
-        touchedFields.set(field, false);
-        field.addEventListener("blur", () => {
-            touchedFields.set(field, true);
-            validateField(field);
-        });
-        field.addEventListener("input", () => {
-            validateField(field);
-        });
+        touched.set(field, false);
+        field.addEventListener("blur", blurCallback);
+        field.addEventListener("input", inputCallback);
     }
 
-    submitButton.disabled = true;
-    form.addEventListener("submit", (e) => {
+    // Form submit
+    const submitCallback = (e: SubmitEvent) => {
         e.preventDefault();
         for (const field of Object.values(fields)) {
-            touchedFields.set(field, true);
+            touched.set(field, true);
             validateField(field);
         }
         if (form.checkValidity()) {
@@ -447,13 +445,16 @@ const { trip, stage } = Astro.params;
 
             submit(data);
         }
-    });
+    };
+
+    submitButton.disabled = true;
+    form.addEventListener("submit", submitCallback);
 
     // Form submit
     async function submit(e: any) {
         const { data, error } = await (e.repliedTo
             ? actions.replyComment({
-                  commentId: Number(e.repliedTo),
+                  commentId: e.repliedTo,
                   body: {
                       username: e.username,
                       content: e.content,
@@ -480,7 +481,7 @@ const { trip, stage } = Astro.params;
             // Add comment
             if (repliedTo) {
                 let repliesList = commentsList?.querySelector<HTMLDivElement>(
-                    `#comment-${repliedTo} .comment-replies`
+                    `#${CSS.escape(repliedTo)} .comment-replies`
                 );
 
                 if (!repliesList) {
@@ -499,7 +500,7 @@ const { trip, stage } = Astro.params;
                         "gap-[calc(var(--space)*2)]"
                     );
                     document.body
-                        .querySelector(`#comment-${repliedTo}`)!
+                        .querySelector(`#${CSS.escape(repliedTo)}`)!
                         .appendChild(repliesList);
                 }
                 repliesList.insertBefore(

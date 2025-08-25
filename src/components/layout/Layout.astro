@@ -9,7 +9,15 @@ export interface Props extends BaseProps {
     keywords?: string[] | null;
 }
 
-const { title, description, image, keywords, id, class: cls } = Astro.props;
+const {
+    title,
+    description,
+    image,
+    keywords,
+    id,
+    style,
+    class: cls
+} = Astro.props;
 const url: string = "https://miroulotte.es";
 const name: string = "Mi Roulotte";
 const lang: string = "es";
@@ -72,7 +80,7 @@ const author: string = "Alejandro Diez Bermejo";
             import "@utils/slider.ts";
         </script>
     </head>
-    <body {id} class:list={cls}>
+    <body {id} {style} class:list={cls}>
         <slot />
     </body>
 </html>

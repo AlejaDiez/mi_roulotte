@@ -13,12 +13,11 @@ import { drizzle } from "drizzle-orm/d1";
 export const getCommentById = defineAction({
     input: z.object({
         commentId: z
-            .number({
-                invalid_type_error: "commentId must be a number",
+            .string({
+                invalid_type_error: "commentId must be a string",
                 required_error: "commentId is required"
             })
-            .int("commentId must be an integer number")
-            .positive("commentId must be a positive number"),
+            .nonempty("commentId cannot be empty"),
         fields,
         relative: z.boolean().default(false)
     }),
@@ -55,10 +54,10 @@ export const getCommentById = defineAction({
             username: data.username,
             content: data.content,
             repliedTo: data.repliedTo,
-            url: data.url,
             replies: repliesData,
+            url: data.url,
             createdAt: data.createdAt,
-            modifiedAt: data.modifiedAt
+            updatedAt: data.updatedAt
         };
     }
 });

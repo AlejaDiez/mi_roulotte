@@ -15,7 +15,7 @@ export interface Stage {
     comments?: CommentPreview[];
     url: string;
     createdAt: Date;
-    modifiedAt: Date | null;
+    updatedAt: Date | null;
 }
 
 export type PartialStage = Partial<

@@ -18,12 +18,11 @@ const resend = new Resend(import.meta.env.EMAIL_TOKEN);
 export const replyComment = defineAction({
     input: z.object({
         commentId: z
-            .number({
-                invalid_type_error: "commentId must be a number",
+            .string({
+                invalid_type_error: "commentId must be a string",
                 required_error: "commentId is required"
             })
-            .int("commentId must be an integer number")
-            .positive("commentId must be a positive number"),
+            .nonempty("commentId cannot be empty"),
         body: z.object({
             username: z
                 .string({
@@ -106,7 +105,11 @@ export const replyComment = defineAction({
                 username: body.username,
                 email: body.email,
                 content: body.content,
-                repliedTo: commentId
+                repliedTo: commentId,
+                userAgent: ctx.request.headers.get("user-agent"),
+                ipAddress:
+                    ctx.request.headers.get("CF-Connecting-IP") ??
+                    ctx.request.headers.get("x-forwarded-for")
             },
             {
                 fields,
@@ -127,7 +130,7 @@ export const replyComment = defineAction({
                 from: "Mi Roulotte <no-reply@miroulotte.es>",
                 to: [comment.email],
                 subject: `Nueva respuesta en "${title}"`,
-                html: `<div style="max-width:600px;margin:0 auto;background-color:#fff;padding:1.75remfont-family:Helvetica,Arial,sans-serif;font-size:1rem;line-height:1.5;color:#525252"><h1 style=font-size:1.25rem;line-height:1.4;color:#161616;margin-bottom:1.25rem>¡Tienes una nueva respuesta!</h1><p style="margin:0 0 1rem">Hola ${comment.username},<p style="margin:0 0 1rem">Han respondido a tu comentario en el post <strong>"${title}"</strong>.<p style="margin:0 0 .5rem"><strong>Tu comentario:</strong><blockquote style="margin:0 0 1rem;padding:1rem;background:#f4f4f4;border-left:1px solid #a8a8a8;color:#525252;font-style:italic">${comment.content}</blockquote><p style="margin:0 0 .5rem"><strong>Respuesta:</strong><blockquote style="margin:0 0 1rem;padding:1rem;background:#f4f4f4;border-left:1px solid #a8a8a8;color:#525252;font-style:italic">${data.content}</blockquote><p style="margin:0 0 1rem">Puedes ver la conversación completa aquí:</p><a href="${comment.url}"style="display:inline-block;align-content:center;margin:0 0 .75rem;padding:1rem 1.5rem;background-color:#161616;color:#fff;text-decoration:none;text-align:center">Ver respuesta</a><p style="font-size:.75rem;color:#a8a8a8;line-height:1.333;margin:2rem 0 0 0">Este correo se ha enviado automáticamente desde <a href="${import.meta.env.SITE}" style=color:currentColor;text-decoration:underline>Mi Roulotte</a>. Si no deseas recibir más notificaciones, puedes <a href="${import.meta.env.SITE}/comments/${comment.id}/unsubscribe?token=${token}" style=color:currentColor;text-decoration:underline>cambiarlas aquí</a>.</div>`
+                html: `<div style="max-width:600px;margin:0 auto;background-color:#fff;padding:1.75rem;font-family:Helvetica,Arial,sans-serif;font-size:1rem;line-height:1.5;color:#525252"><h1 style=font-size:1.25rem;line-height:1.4;color:#161616;margin-bottom:1.25rem>¡Tienes una nueva respuesta!</h1><p style="margin:0 0 1rem">Hola ${comment.username},<p style="margin:0 0 1rem">Han respondido a tu comentario en el post <strong>"${title}"</strong>.<p style="margin:0 0 .5rem"><strong>Tu comentario:</strong><blockquote style="margin:0 0 1rem;padding:1rem;background:#f4f4f4;border-left:1px solid #a8a8a8;color:#525252;font-style:italic">${comment.content}</blockquote><p style="margin:0 0 .5rem"><strong>Respuesta:</strong><blockquote style="margin:0 0 1rem;padding:1rem;background:#f4f4f4;border-left:1px solid #a8a8a8;color:#525252;font-style:italic">${data.content}</blockquote><p style="margin:0 0 1rem">Puedes ver la conversación completa aquí:</p><a href="${comment.url}"style="display:inline-block;align-content:center;margin:0 0 .75rem;padding:1rem 1.5rem;background-color:#161616;color:#fff;text-decoration:none;text-align:center">Ver respuesta</a><p style="font-size:.75rem;color:#a8a8a8;line-height:1.333;margin:2rem 0 0 0">Este correo se ha enviado automáticamente desde <a href="${import.meta.env.SITE}" style=color:currentColor;text-decoration:underline>Mi Roulotte</a>. Si no deseas recibir más notificaciones, puedes <a href="${import.meta.env.SITE}/comments/${comment.id}/unsubscribe?token=${token}" style=color:currentColor;text-decoration:underline>cambiarlas aquí</a>.</div>`
             });
         }
 
@@ -138,13 +141,13 @@ export const replyComment = defineAction({
             username: data.username,
             content: data.content,
             repliedTo: data.repliedTo,
-            url: data.url,
             replies:
                 !fields || fields?.length === 0 || fields?.includes("replies")
                     ? []
                     : undefined,
+            url: data.url,
             createdAt: data.createdAt,
-            modifiedAt: data.modifiedAt
+            updatedAt: data.updatedAt
         };
     }
 });

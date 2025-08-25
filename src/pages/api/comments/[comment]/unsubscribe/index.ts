@@ -8,7 +8,7 @@ export const GET: APIRoute = async ({ params, request, callAction }) => {
     const { token } = getQueryParams(request);
     const { data, error } = await callAction(
         actions.unsubscribeRepliesNotifications,
-        { commentId: Number(comment), token }
+        { commentId: comment!, token }
     );
 
     if (error) {

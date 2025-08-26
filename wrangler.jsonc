@@ -11,7 +11,7 @@
         {
             "binding": "DB",
             "database_name": "mi-roulotte-db",
-            "database_id": "326c8ed1-35f8-487e-988f-ab6725327acc",
+            "database_id": "2f584243-2f1b-4425-b7d6-c0971f34f976",
             "migrations_dir": "src/db/migrations"
         }
     ],

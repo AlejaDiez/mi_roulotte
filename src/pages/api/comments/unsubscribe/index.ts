@@ -3,12 +3,11 @@ import { getErrorObject } from "@utils/response";
 import type { APIRoute } from "astro";
 import { actions } from "astro:actions";
 
-export const GET: APIRoute = async ({ params, request, callAction }) => {
-    const { comment } = params;
+export const PUT: APIRoute = async ({ params, request, callAction }) => {
     const { token } = getQueryParams(request);
     const { data, error } = await callAction(
         actions.unsubscribeRepliesNotifications,
-        { commentId: comment!, token }
+        { token }
     );
 
     if (error) {

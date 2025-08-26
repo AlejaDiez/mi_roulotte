@@ -6,12 +6,6 @@ import { drizzle } from "drizzle-orm/d1";
 
 export const unsubscribeRepliesNotifications = defineAction({
     input: z.object({
-        commentId: z
-            .string({
-                invalid_type_error: "commentId must be a string",
-                required_error: "commentId is required"
-            })
-            .nonempty("commentId cannot be empty"),
         token: z
             .string({
                 invalid_type_error: "token must be a string",
@@ -20,7 +14,7 @@ export const unsubscribeRepliesNotifications = defineAction({
             .nonempty("token must not be empty")
     }),
     handler: async (input, ctx): Promise<void> => {
-        const { commentId, token } = input;
+        const { token } = input;
         const db = drizzle(ctx.locals.runtime.env.DB);
 
         // Validate token
@@ -30,13 +24,6 @@ export const unsubscribeRepliesNotifications = defineAction({
             throw new ActionError({
                 code: "UNAUTHORIZED",
                 message: "Invalid or expired token"
-            });
-        }
-
-        if (data.id !== commentId) {
-            throw new ActionError({
-                code: "BAD_REQUEST",
-                message: "Invalid comment id for this token"
             });
         }
 

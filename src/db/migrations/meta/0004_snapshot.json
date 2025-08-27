@@ -10,7 +10,7 @@
                 "uid": {
                     "name": "uid",
                     "type": "text",
-                    "primaryKey": false,
+                    "primaryKey": true,
                     "notNull": true,
                     "autoincrement": false
                 },
@@ -50,12 +50,7 @@
                     "onUpdate": "cascade"
                 }
             },
-            "compositePrimaryKeys": {
-                "otps_uid_code_pk": {
-                    "columns": ["uid", "code"],
-                    "name": "otps_uid_code_pk"
-                }
-            },
+            "compositePrimaryKeys": {},
             "uniqueConstraints": {},
             "checkConstraints": {}
         },
@@ -190,7 +185,7 @@
                     "name": "password",
                     "type": "text",
                     "primaryKey": false,
-                    "notNull": false,
+                    "notNull": true,
                     "autoincrement": false
                 },
                 "role": {

@@ -1,10 +1,5 @@
 import { sql } from "drizzle-orm";
-import {
-    integer,
-    primaryKey,
-    sqliteTable as table,
-    text
-} from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable as table, text } from "drizzle-orm/sqlite-core";
 
 export const UsersTable = table("users", {
     id: text("id")
@@ -12,7 +7,7 @@ export const UsersTable = table("users", {
         .default(sql`(lower(hex(randomblob(16))))`),
     username: text("username").notNull(),
     email: text("email").notNull().unique(),
-    password: text("password"),
+    password: text("password").notNull(),
     role: text("role")
         .notNull()
         .references(() => RolesTable.id, {
@@ -59,22 +54,18 @@ export const SessionsTable = table("sessions", {
     expiresAt: integer("expires_at", { mode: "timestamp" }).notNull()
 });
 
-export const OtpsTable = table(
-    "otps",
-    {
-        uid: text("uid")
-            .notNull()
-            .references(() => UsersTable.id, {
-                onUpdate: "cascade",
-                onDelete: "cascade"
-            }),
-        code: text("code", { length: 6 })
-            .notNull()
-            .default(sql`(printf('%06d', ABS(RANDOM()) % 1000000))`),
-        createdAt: integer("created_at", { mode: "timestamp" })
-            .notNull()
-            .default(sql`(unixepoch())`),
-        expiresAt: integer("expires_at", { mode: "timestamp" }).notNull()
-    },
-    (self) => [primaryKey({ columns: [self.uid, self.code] })]
-);
+export const OTPsTable = table("otps", {
+    uid: text("uid")
+        .primaryKey()
+        .references(() => UsersTable.id, {
+            onUpdate: "cascade",
+            onDelete: "cascade"
+        }),
+    code: text("code", { length: 6 })
+        .notNull()
+        .default(sql`(printf('%06d', ABS(RANDOM()) % 1000000))`),
+    createdAt: integer("created_at", { mode: "timestamp" })
+        .notNull()
+        .default(sql`(unixepoch())`),
+    expiresAt: integer("expires_at", { mode: "timestamp" }).notNull()
+});

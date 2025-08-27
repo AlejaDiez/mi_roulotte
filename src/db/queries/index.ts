@@ -1,3 +1,7 @@
+// Auth
+export * from "./auth/insert_user";
+export * from "./auth/update_user";
+
 // Comments
 export * from "./comments/count_comments";
 export * from "./comments/delete_comment";

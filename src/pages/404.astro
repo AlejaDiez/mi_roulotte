@@ -10,17 +10,17 @@ export const prerender = true;
 <Layout
     title="Página no encontrada"
     class="bg-red-60 dark:bg-red-80 h-screen w-screen">
-    <Header class="floating !fixed !bg-transparent" />
+    <Header class="floating !fixed" />
     <Main
         class="h-full cursor-default !items-center !justify-center !gap-0 pt-(--space-y) pb-32 select-none">
         <h1 class="text-title text-center text-white">404</h1>
-        <p class="mt-4 mb-10 max-w-xl text-center text-white">
+        <p class="text-red-20 mt-4 mb-10 max-w-xl text-center">
             ¡Oops! Parece que has tomado un desvío y te encuentras en un lugar
             algo distinto al que esperabas...
         </p>
         <a
             href="/"
-            class="redirect-button button button-outline-primary hover:bg-white-hover hover:border-white-hover border-white text-white hover:text-gray-100">
+            class="redirect button button-outline-primary hover:bg-white-hover hover:border-white-hover border-white text-white hover:text-gray-100">
             <span>Recalcular ruta</span>
         </a>
     </Main>
@@ -28,70 +28,81 @@ export const prerender = true;
 </Layout>
 
 <style is:global>
-    .header.floating .mi-roulotte-icon,
-    .header.floating .menu-toggle {
-        color: var(--color-white);
+    .header.floating {
+        background-color: transparent !important;
 
-        &:hover {
-            color: var(--color-white-hover);
-        }
-    }
-
-    .header.floating .menu {
-        a {
-            color: light-dark(
-                var(--color-red-40),
-                var(--color-red-60)
-            ) !important;
+        .mi-roulotte-icon,
+        .menu-toggle {
+            color: var(--color-white);
 
             &:hover {
-                color: var(--color-white-hover) !important;
+                color: var(--color-white-hover);
             }
         }
 
-        .sub-menu {
-            nav {
-                background-color: var(--color-red-70);
+        .menu {
+            a {
+                color: light-dark(
+                    var(--color-red-40),
+                    var(--color-red-60)
+                ) !important;
 
-                a {
-                    color: var(--color-red-50);
+                &:hover {
+                    color: var(--color-white-hover) !important;
+                }
+            }
 
-                    &:hover {
-                        color: var(--color-white-hover);
+            .sub-menu {
+                nav {
+                    background-color: var(--color-red-70);
+
+                    a {
+                        color: var(--color-red-50);
+
+                        &:hover {
+                            color: var(--color-white-hover);
+                        }
                     }
                 }
             }
-        }
 
-        @media (width < 48rem) {
-            background-color: light-dark(
-                var(--color-red-60),
-                var(--color-red-80)
-            );
+            @media (width < 48rem) {
+                background-color: light-dark(
+                    var(--color-red-60),
+                    var(--color-red-80)
+                );
 
-            .sub-menu nav {
-                background-color: var(--color-transparent);
+                .sub-menu nav {
+                    background-color: var(--color-transparent);
 
-                a {
-                    color: light-dark(var(--color-red-40), var(--color-red-60));
+                    a {
+                        color: light-dark(
+                            var(--color-red-40),
+                            var(--color-red-60)
+                        );
 
-                    &:hover {
-                        color: var(--color-white-hover);
+                        &:hover {
+                            color: var(--color-white-hover);
+                        }
                     }
                 }
             }
         }
     }
 
-    .footer.floating .content a {
-        color: light-dark(var(--color-red-40), var(--color-red-60));
+    .footer.floating {
+        background-color: transparent !important;
 
-        &:hover {
-            color: var(--color-white-hover);
+        .content a {
+            color: light-dark(var(--color-red-40), var(--color-red-60));
+
+            &:hover {
+                color: var(--color-white-hover);
+            }
         }
-    }
 
-    .footer.floating .license span {
-        color: var(--color-red-70);
+        .license span {
+            color: var(--color-red-70);
+        }
     }
 </style>

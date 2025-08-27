@@ -1,3 +1,5 @@
+import { registerUser } from "./auth/register_user";
+import { verifyEmail } from "./auth/verify_email";
 import { addNewComment } from "./comments/add_new_comment";
 import { deleteComment } from "./comments/delete_comment";
 import { getCommentById } from "./comments/get_comment_by_id";
@@ -14,6 +16,10 @@ import { getTripById } from "./trips/get_trip_by_id";
 import { getTrips } from "./trips/get_trips";
 
 export const server = {
+    // Auth
+    registerUser,
+    verifyEmail,
+
     // Comments
     addNewComment,
     deleteComment,

@@ -1,0 +1,217 @@
+---
+import Footer from "@components/layout/Footer.astro";
+import Header from "@components/layout/Header.astro";
+import Layout from "@components/layout/Layout.astro";
+import Main from "@components/layout/Main.astro";
+import { getQueryParams } from "@utils/request";
+import { actions } from "astro:actions";
+
+const { token } = getQueryParams(Astro.request);
+const { error } = await Astro.callAction(actions.verifyEmail, { token });
+---
+
+<Layout
+    title="Verificación de correo electrónico"
+    class:list={{ error, success: !error }}
+    class="h-screen w-screen">
+    <Header class="floating !fixed" />
+    <Main
+        class="h-full cursor-default !items-center !justify-center !gap-0 pt-(--space-y) pb-32 select-none">
+        {
+            !error ? (
+                <>
+                    <h1 class="text-title text-white">¡Ya está listo!</h1>
+                    <p class="text-green-20 mt-4 mb-10 max-w-xl text-center">
+                        Tu correo ha sido verificado correctamente. Ahora ya
+                        puedes iniciar sesión y comenzar a disfrutar de todos
+                        los beneficios.
+                    </p>
+                </>
+            ) : (
+                <>
+                    <h1 class="text-title text-white">Verificación fallida</h1>
+                    <p class="text-red-20 mt-4 mb-10 max-w-xl text-center">
+                        El enlace de verificación no es válido. Solicita un
+                        nuevo correo de confirmación para continuar.
+                    </p>
+                    <a class="resend button button-outline-primary hover:bg-white-hover hover:border-white-hover border-white text-white hover:text-gray-100">
+                        <span>Reenviar correo</span>
+                    </a>
+                </>
+            )
+        }
+    </Main>
+    <Footer class="floating fixed bottom-0 left-0" />
+</Layout>
+
+<style is:global>
+    .success {
+        background-color: light-dark(
+            var(--color-green-60),
+            var(--color-green-80)
+        ) !important;
+
+        .header.floating {
+            background-color: transparent !important;
+
+            .mi-roulotte-icon,
+            .menu-toggle {
+                color: var(--color-white);
+
+                &:hover {
+                    color: var(--color-white-hover);
+                }
+            }
+
+            .menu {
+                a {
+                    color: light-dark(
+                        var(--color-green-40),
+                        var(--color-green-60)
+                    ) !important;
+
+                    &:hover {
+                        color: var(--color-white-hover) !important;
+                    }
+                }
+
+                .sub-menu {
+                    nav {
+                        background-color: var(--color-green-70);
+
+                        a {
+                            color: var(--color-green-50);
+
+                            &:hover {
+                                color: var(--color-white-hover);
+                            }
+                        }
+                    }
+                }
+
+                @media (width < 48rem) {
+                    background-color: light-dark(
+                        var(--color-green-60),
+                        var(--color-green-80)
+                    );
+
+                    .sub-menu nav {
+                        background-color: var(--color-transparent);
+
+                        a {
+                            color: light-dark(
+                                var(--color-green-40),
+                                var(--color-green-60)
+                            );
+
+                            &:hover {
+                                color: var(--color-white-hover);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer.floating {
+            background-color: transparent !important;
+
+            .content a {
+                color: light-dark(var(--color-green-40), var(--color-green-60));
+
+                &:hover {
+                    color: var(--color-white-hover);
+                }
+            }
+
+            .license span {
+                color: var(--color-green-70);
+            }
+        }
+    }
+
+    .error {
+        background-color: light-dark(
+            var(--color-red-60),
+            var(--color-red-80)
+        ) !important;
+
+        .header.floating {
+            background-color: transparent !important;
+
+            .mi-roulotte-icon,
+            .menu-toggle {
+                color: var(--color-white);
+
+                &:hover {
+                    color: var(--color-white-hover);
+                }
+            }
+
+            .menu {
+                a {
+                    color: light-dark(
+                        var(--color-red-40),
+                        var(--color-red-60)
+                    ) !important;
+
+                    &:hover {
+                        color: var(--color-white-hover) !important;
+                    }
+                }
+
+                .sub-menu {
+                    nav {
+                        background-color: var(--color-red-70);
+
+                        a {
+                            color: var(--color-red-50);
+
+                            &:hover {
+                                color: var(--color-white-hover);
+                            }
+                        }
+                    }
+                }
+
+                @media (width < 48rem) {
+                    background-color: light-dark(
+                        var(--color-red-60),
+                        var(--color-red-80)
+                    );
+
+                    .sub-menu nav {
+                        background-color: var(--color-transparent);
+
+                        a {
+                            color: light-dark(
+                                var(--color-red-40),
+                                var(--color-red-60)
+                            );
+
+                            &:hover {
+                                color: var(--color-white-hover);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer.floating {
+            background-color: transparent !important;
+
+            .content a {
+                color: light-dark(var(--color-red-40), var(--color-red-60));
+
+                &:hover {
+                    color: var(--color-white-hover);
+                }
+            }
+
+            .license span {
+                color: var(--color-red-70);
+            }
+        }
+    }
+</style>

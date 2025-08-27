@@ -18,6 +18,7 @@ interface ImportMetaEnv {
 
     // mi roulotte
     UNSUBSCRIBE_SECRET: string;
+    VERIFY_EMAIL_SECRET: string;
 }
 
 interface ImportMeta {

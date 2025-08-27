@@ -320,6 +320,24 @@
         var(--color-white),
         var(--color-white)
     );
+    --color-success: light-dark(var(--color-green-60), var(--color-green-50));
+    --color-success-hover: light-dark(
+        var(--color-green-60-hover),
+        var(--color-green-50-hover)
+    );
+    --color-success-foreground: light-dark(
+        var(--color-white),
+        var(--color-white)
+    );
+    --color-warning: light-dark(var(--color-yellow-60), var(--color-yellow-50));
+    --color-warning-hover: light-dark(
+        var(--color-yellow-60-hover),
+        var(--color-yellow-50-hover)
+    );
+    --color-warning-foreground: light-dark(
+        var(--color-white),
+        var(--color-white)
+    );
     --color-error: light-dark(var(--color-red-60), var(--color-red-50));
     --color-error-hover: light-dark(
         var(--color-red-60-hover),

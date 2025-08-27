@@ -1,10 +1,10 @@
-import { updateComment } from "@queries";
+import { updateUser } from "@queries";
 import { validateToken } from "@utils/crypto";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";
 
-export const unsubscribeRepliesNotifications = defineAction({
+export const verifyEmail = defineAction({
     input: z.object({
         token: z
             .string({
@@ -18,7 +18,7 @@ export const unsubscribeRepliesNotifications = defineAction({
         const db = drizzle(ctx.locals.runtime.env.DB);
 
         // Validate token
-        const data = validateToken(token, import.meta.env.UNSUBSCRIBE_SECRET);
+        const data = validateToken(token, import.meta.env.VERIFY_EMAIL_SECRET);
 
         if (!data) {
             throw new ActionError({
@@ -27,11 +27,11 @@ export const unsubscribeRepliesNotifications = defineAction({
             });
         }
 
-        // Update comment email
-        const updated = await updateComment(
+        // Update user verufication status
+        const updated = await updateUser(
             db,
             data.id,
-            { email: null },
+            { emailVerified: true },
             { fields: ["id"] }
         );
 

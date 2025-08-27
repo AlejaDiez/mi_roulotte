@@ -123,7 +123,7 @@ export const replyComment = defineAction({
             const token = generateToken(
                 { id: comment.id },
                 import.meta.env.UNSUBSCRIBE_SECRET,
-                3600 * 24 * 7 // 7 days
+                60 * 60 * 24 * 7 // 7 days
             );
 
             await resend.emails.send({

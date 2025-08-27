@@ -11,3 +11,8 @@ export interface User {
 }
 
 export type PartialUser = Partial<User>;
+
+export interface UserCredentials {
+    token: string;
+    refreshToken?: string;
+}

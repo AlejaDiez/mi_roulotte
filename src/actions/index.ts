@@ -1,3 +1,5 @@
+import { loginUser } from "./auth/login";
+import { refreshToken } from "./auth/refresh_token";
 import { registerUser } from "./auth/register_user";
 import { verifyEmail } from "./auth/verify_email";
 import { addNewComment } from "./comments/add_new_comment";
@@ -17,6 +19,8 @@ import { getTrips } from "./trips/get_trips";
 
 export const server = {
     // Auth
+    loginUser,
+    refreshToken,
     registerUser,
     verifyEmail,
 

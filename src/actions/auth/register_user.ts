@@ -71,7 +71,7 @@ export const registerUser = defineAction({
             const token = generateToken(
                 { id: data.id },
                 import.meta.env.VERIFY_EMAIL_SECRET,
-                1800 // 30 mins
+                60 * 30 // 30 mins
             );
 
             await resend.emails.send({

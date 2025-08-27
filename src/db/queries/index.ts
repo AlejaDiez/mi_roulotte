@@ -1,5 +1,10 @@
 // Auth
+export * from "./auth/delete_session";
+export * from "./auth/insert_session";
 export * from "./auth/insert_user";
+export * from "./auth/select_session";
+export * from "./auth/select_user";
+export * from "./auth/update_session";
 export * from "./auth/update_user";
 
 // Comments

@@ -1,3 +1,6 @@
+export const getHeaders = (request: Request): Record<string, any> =>
+    Object.fromEntries(request.headers.entries());
+
 export const getQueryParams = (request: Request): Record<string, any> => {
     const url = new URL(request.url);
     const params = url.searchParams.entries();

@@ -31,7 +31,7 @@ export const generateHash = (length: number = 6): string => {
     ).join("");
 };
 
-export const hash = async (data: string) => await bcrypt.hash(data, 10);
+export const hash = async (data: string) => await bcrypt.hash(data, 12);
 
 export const compareHash = async (data: string, encrypted: string) =>
     await bcrypt.compare(data, encrypted);

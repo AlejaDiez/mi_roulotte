@@ -8,12 +8,9 @@ export const UsersTable = table("users", {
     username: text("username").notNull(),
     email: text("email").notNull().unique(),
     password: text("password").notNull(),
-    role: text("role")
+    role: text({ enum: ["admin", "editor", "reader"] })
         .notNull()
-        .references(() => RolesTable.id, {
-            onUpdate: "cascade",
-            onDelete: "cascade"
-        }),
+        .default("reader"),
     isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
     emailVerified: integer("email_verified", { mode: "boolean" })
         .notNull()
@@ -27,11 +24,6 @@ export const UsersTable = table("users", {
         .notNull()
         .default(sql`(unixepoch())`),
     updatedAt: integer("updated_at", { mode: "timestamp" })
-});
-
-export const RolesTable = table("roles", {
-    id: text("id").primaryKey(),
-    info: text("info")
 });
 
 export const SessionsTable = table("sessions", {

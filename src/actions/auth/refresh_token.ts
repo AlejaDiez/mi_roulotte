@@ -55,9 +55,7 @@ export const refreshToken = defineAction({
                 refresh: generateHash(),
                 expiresIn: 60 * 60 * 24 * 30, // 30 days,
                 userAgent: ctx.request.headers.get("user-agent"),
-                ipAddress:
-                    ctx.request.headers.get("CF-Connecting-IP") ??
-                    ctx.request.headers.get("x-forwarded-for")
+                ipAddress: ctx.clientAddress
             },
             { fields: ["id", "uid", "refresh"] }
         );

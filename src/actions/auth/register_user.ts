@@ -1,11 +1,7 @@
 import type { PartialUser } from "@models/user";
-import { insertUser, type DataType } from "@queries";
-import { generateToken, hash } from "@utils/crypto";
 import { fields } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import { drizzle } from "drizzle-orm/d1";
-import type { DrizzleQueryError } from "drizzle-orm/errors";
 import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.EMAIL_TOKEN);
@@ -40,58 +36,62 @@ export const registerUser = defineAction({
         fields
     }),
     handler: async (input, ctx): Promise<PartialUser> => {
-        const { body, fields } = input;
-        const db = drizzle(ctx.locals.runtime.env.DB);
-
-        // Register the user
-        const data: DataType = await insertUser(
-            db,
-            {
-                username: body.username,
-                email: body.email,
-                password: await hash(body.password),
-                role: "viewer"
-            },
-            { fields }
-        ).catch((e) => {
-            const msg = (e as DrizzleQueryError).cause?.message;
-
-            if (msg?.includes("UNIQUE") && msg?.includes("users.email")) {
-                throw new ActionError({
-                    code: "CONFLICT",
-                    message: "A user with this email already exists"
-                });
-            }
-            throw e;
+        throw new ActionError({
+            code: "METHOD_NOT_ALLOWED",
+            message: "Registration is currently disabled"
         });
 
-        // Send verification email
-        if (data) {
-            // Generate verification token
-            const token = generateToken(
-                { id: data.id },
-                import.meta.env.VERIFY_EMAIL_SECRET,
-                60 * 30 // 30 mins
-            );
+        // const { body, fields } = input;
+        // const db = drizzle(ctx.locals.runtime.env.DB);
 
-            await resend.emails.send({
-                from: "Mi Roulotte <no-reply@miroulotte.es>",
-                to: [data.email],
-                subject: "Verifica tu correo electrónico",
-                html: `<div style="max-width:600px;margin:0 auto;background-color:#fff;padding:1.75rem;font-family:Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:1rem;line-height:1.5;color:#525252"><h1 style="font-size:1.25rem;line-height:1.4;color:#161616;margin-bottom:1.25rem">Verifica tu correo electrónico</h1><p style="margin:0 0 1rem">Hola ${data.username},</p><p style="margin:0 0 1rem">Gracias por registrarte en <strong>Mi Roulotte</strong>. Antes de comenzar, necesitamos confirmar que esta dirección de correo electrónico te pertenece.</p><p style="margin:0 0 1rem">Por favor, haz clic en el siguiente botón para verificar tu cuenta:</p><a href="${import.meta.env.SITE}/verificar-email?token=${token}" rel="noopener noreferrer" style="display:inline-block;margin:0 0 .75rem;padding:1rem 1.5rem;background-color:#161616;color:#fff;text-decoration:none;text-align:center;align-content:center">Verificar correo</a><p style="font-size:.75rem;color:#a8a8a8;line-height:1.333;margin:2rem 0 0 0">Este correo se ha enviado automáticamente desde <a href="${import.meta.env.SITE}" rel="noopener noreferrer" style="color:currentColor;text-decoration:underline">Mi Roulotte</a>. Si no creaste esta cuenta, puedes ignorar este mensaje.</p></div>`
-            });
-        }
+        // // Register the user
+        // const data: DataType = await insertUser(
+        //     db,
+        //     {
+        //         username: body.username,
+        //         email: body.email,
+        //         password: await hash(body.password)
+        //     },
+        //     { fields }
+        // ).catch((e) => {
+        //     const msg = (e as DrizzleQueryError).cause?.message;
 
-        return {
-            id: data.id,
-            username: data.username,
-            email: data.email,
-            role: data.role,
-            isActive: data.isActive,
-            emailVerified: data.emailVerified,
-            twoFactorAuthentication: data.twoFactorAuthentication,
-            createdAt: data.createdAt,
-            updatedAt: data.updatedAt
-        };
+        //     if (msg?.includes("UNIQUE") && msg?.includes("users.email")) {
+        //         throw new ActionError({
+        //             code: "CONFLICT",
+        //             message: "A user with this email already exists"
+        //         });
+        //     }
+        //     throw e;
+        // });
+
+        // // Send verification email
+        // if (data) {
+        //     // Generate verification token
+        //     const token = generateToken(
+        //         { id: data.id },
+        //         import.meta.env.VERIFY_EMAIL_SECRET,
+        //         60 * 30 // 30 mins
+        //     );
+
+        //     await resend.emails.send({
+        //         from: "Mi Roulotte <no-reply@miroulotte.es>",
+        //         to: [data.email],
+        //         subject: "Verifica tu correo electrónico",
+        //         html: `<div style="max-width:600px;margin:0 auto;background-color:#fff;padding:1.75rem;font-family:Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:1rem;line-height:1.5;color:#525252"><h1 style="font-size:1.25rem;line-height:1.4;color:#161616;margin-bottom:1.25rem">Verifica tu correo electrónico</h1><p style="margin:0 0 1rem">Hola ${data.username},</p><p style="margin:0 0 1rem">Gracias por registrarte en <strong>Mi Roulotte</strong>. Antes de comenzar, necesitamos confirmar que esta dirección de correo electrónico te pertenece.</p><p style="margin:0 0 1rem">Por favor, haz clic en el siguiente botón para verificar tu cuenta:</p><a href="${import.meta.env.SITE}/verificar-email?token=${token}" rel="noopener noreferrer" style="display:inline-block;margin:0 0 .75rem;padding:1rem 1.5rem;background-color:#161616;color:#fff;text-decoration:none;text-align:center;align-content:center">Verificar correo</a><p style="font-size:.75rem;color:#a8a8a8;line-height:1.333;margin:2rem 0 0 0">Este correo se ha enviado automáticamente desde <a href="${import.meta.env.SITE}" rel="noopener noreferrer" style="color:currentColor;text-decoration:underline">Mi Roulotte</a>. Si no creaste esta cuenta, puedes ignorar este mensaje.</p></div>`
+        //     });
+        // }
+
+        // return {
+        //     id: data.id,
+        //     username: data.username,
+        //     email: data.email,
+        //     role: data.role,
+        //     isActive: data.isActive,
+        //     emailVerified: data.emailVerified,
+        //     twoFactorAuthentication: data.twoFactorAuthentication,
+        //     createdAt: data.createdAt,
+        //     updatedAt: data.updatedAt
+        // };
     }
 });

@@ -88,9 +88,7 @@ export const addNewComment = defineAction({
                 email: body.email,
                 content: body.content,
                 userAgent: ctx.request.headers.get("user-agent"),
-                ipAddress:
-                    ctx.request.headers.get("CF-Connecting-IP") ??
-                    ctx.request.headers.get("x-forwarded-for")
+                ipAddress: ctx.clientAddress
             },
             {
                 fields,

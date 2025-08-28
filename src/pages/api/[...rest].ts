@@ -1,17 +1,11 @@
 import type { APIRoute } from "astro";
+import { ActionError } from "astro:actions";
 
-export const ALL: APIRoute = async ({ params }) => {
+export const ALL: APIRoute = ({ params }) => {
     const { rest } = params;
 
-    return new Response(
-        JSON.stringify({
-            error: "NOT_FOUND",
-            code: 404,
-            message: `API route '/api/${rest}' not found`
-        }),
-        {
-            status: 404,
-            headers: { "Content-Type": "application/json" }
-        }
-    );
+    throw new ActionError({
+        code: "NOT_FOUND",
+        message: `API route '/api/${rest}' not found`
+    });
 };

@@ -1,53 +1,38 @@
-import { getQueryParams } from "@utils/request";
-import { getErrorObject } from "@utils/response";
+import { requireRole } from "@middlewares/auth";
+import { arrayBuffer, headers, searchParams } from "@utils/request";
+import { response } from "@utils/response";
 import type { APIRoute } from "astro";
 import { actions } from "astro:actions";
 
-export const GET: APIRoute = async ({ request, callAction }) => {
-    const { fields } = getQueryParams(request);
-    const { data, error } = await callAction(actions.getFiles, {
-        fields
-    });
+export const GET: APIRoute = requireRole(
+    "editor",
+    async ({ request, callAction }) => {
+        const { fields } = searchParams(request);
 
-    if (error) {
-        return new Response(JSON.stringify(getErrorObject(error)), {
-            status: error.status,
-            headers: { "Content-Type": "application/json" }
-        });
+        return await callAction(actions.getFiles, {
+            fields
+        }).then((res) => response(res, 200));
     }
-    return new Response(JSON.stringify(data), {
-        status: 200,
-        headers: { "Content-Type": "application/json" }
-    });
-};
+);
 
-export const POST: APIRoute = async ({ request, callAction }) => {
-    const { width, height, rotate, quality, format, fields } =
-        getQueryParams(request);
-    const { data, error } = await callAction(actions.uploadFile, {
-        file: {
-            buffer: await request.arrayBuffer(),
-            name: request.headers.get("X-Filename") as any,
-            type: request.headers.get("Content-Type") as any
-        },
-        transform: {
-            width,
-            height,
-            rotate,
-            quality,
-            format
-        },
-        fields
-    });
+export const POST: APIRoute = requireRole(
+    "editor",
+    async ({ request, callAction }) => {
+        const { width, height, rotate, quality, format, fields } =
+            searchParams(request);
+        const { "x-filename": name, "content-type": type } = headers(request);
+        const buffer = await arrayBuffer(request);
 
-    if (error) {
-        return new Response(JSON.stringify(getErrorObject(error)), {
-            status: error.status,
-            headers: { "Content-Type": "application/json" }
-        });
+        return await callAction(actions.uploadFile, {
+            file: { buffer, name, type },
+            transform: {
+                width,
+                height,
+                rotate,
+                quality,
+                format
+            },
+            fields
+        }).then((res) => response(res, 201));
     }
-    return new Response(JSON.stringify(data), {
-        status: 201,
-        headers: { "Content-Type": "application/json" }
-    });
-};
+);

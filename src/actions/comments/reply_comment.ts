@@ -107,9 +107,7 @@ export const replyComment = defineAction({
                 content: body.content,
                 repliedTo: commentId,
                 userAgent: ctx.request.headers.get("user-agent"),
-                ipAddress:
-                    ctx.request.headers.get("CF-Connecting-IP") ??
-                    ctx.request.headers.get("x-forwarded-for")
+                ipAddress: ctx.clientAddress
             },
             {
                 fields,

@@ -1,3 +1,4 @@
+import type { UserRoles } from "@models/user";
 import { UsersTable } from "@schemas";
 import { filterObjectColumns } from "@utils/filter_object";
 import { eq } from "drizzle-orm";
@@ -10,7 +11,7 @@ export const updateUser = (
         username?: string;
         email?: string;
         password?: string;
-        role?: string;
+        role?: UserRoles;
         isActive?: boolean;
         emailVerified?: boolean;
         twoFactorAuthentication?: boolean;

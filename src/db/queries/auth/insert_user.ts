@@ -1,3 +1,4 @@
+import type { UserRoles } from "@models/user";
 import { UsersTable } from "@schemas";
 import { filterObjectColumns } from "@utils/filter_object";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
@@ -8,7 +9,7 @@ export const insertUser = (
         username: string;
         email: string;
         password: string;
-        role: string;
+        role?: UserRoles;
     },
     config?: {
         fields?: string[];
@@ -32,7 +33,7 @@ export const insertUser = (
             username: value.username,
             email: value.email,
             password: value.password,
-            role: value.role
+            role: value?.role
         })
         .returning(filterObjectColumns(columns, config?.fields))
         .get();

@@ -3,10 +3,10 @@ import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import { getQueryParams } from "@utils/request";
+import { searchParams } from "@utils/request";
 import { actions } from "astro:actions";
 
-const { token } = getQueryParams(Astro.request);
+const { token } = searchParams(Astro.request);
 const { error } = await Astro.callAction(actions.verifyEmail, { token });
 ---
 

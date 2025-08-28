@@ -1,9 +1,15 @@
+import type { UserRoles } from "@models/user";
 import { validateToken } from "@utils/crypto";
-import { getHeaders } from "@utils/request";
-import { defineMiddleware } from "astro:middleware";
-import { URLPattern } from "node:url";
+import { headers } from "@utils/request";
+import type {
+    APIContext,
+    APIRoute,
+    MiddlewareHandler,
+    MiddlewareNext
+} from "astro";
+import { ActionError } from "astro:actions";
 
-const blockedRoutes: URLPattern[] = [
+const routes: URLPattern[] = [
     new URLPattern({ pathname: "/api/comments" }),
     new URLPattern({ pathname: "/api/comments/*" }),
     new URLPattern({ pathname: "/api/files" }),
@@ -12,11 +18,14 @@ const blockedRoutes: URLPattern[] = [
     new URLPattern({ pathname: "/api/trips/*" })
 ];
 
-export const onRequest = defineMiddleware(async (ctx, next) => {
-    // Check if authorization is needed
-    if (blockedRoutes.some((e) => e.test(ctx.request.url))) {
-        const { authorization } = getHeaders(ctx.request);
+export const auth: MiddlewareHandler = async (
+    ctx: APIContext,
+    next: MiddlewareNext
+) => {
+    if (routes.some((url) => url.test(ctx.request.url))) {
+        const { authorization } = headers(ctx.request);
 
+        // Check if the request send authorization
         if (!authorization?.startsWith("Bearer ")) {
             return new Response(
                 JSON.stringify({
@@ -51,10 +60,26 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
                 }
             );
         }
+
         // Save user data
         ctx.locals.uid = data.id;
         ctx.locals.role = data.role;
         ctx.locals.username = data.username;
     }
     return next();
-});
+};
+
+export const requireRole = (role: UserRoles, handler: APIRoute): APIRoute => {
+    return async (ctx) => {
+        const roleHierarchy = ["reader", "editor", "admin"];
+        const userRole = ctx.locals.role;
+
+        if (roleHierarchy.indexOf(userRole) < roleHierarchy.indexOf(role)) {
+            throw new ActionError({
+                code: "FORBIDDEN",
+                message: `This action requires at least ${role} privileges`
+            });
+        }
+        return await handler(ctx);
+    };
+};

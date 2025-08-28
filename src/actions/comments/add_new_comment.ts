@@ -86,7 +86,9 @@ export const addNewComment = defineAction({
                 stageId: body.stageId,
                 username: body.username,
                 email: body.email,
-                content: body.content
+                content: body.content,
+                userAgent: ctx.request.headers.get("user-agent"),
+                ipAddress: ctx.clientAddress
             },
             {
                 fields,
@@ -101,13 +103,13 @@ export const addNewComment = defineAction({
             username: data.username,
             content: data.content,
             repliedTo: data.repliedTo,
-            url: data.url,
             replies:
                 !fields || fields?.length === 0 || fields?.includes("replies")
                     ? []
                     : undefined,
+            url: data.url,
             createdAt: data.createdAt,
-            modifiedAt: data.modifiedAt
+            updatedAt: data.updatedAt
         };
     }
 });

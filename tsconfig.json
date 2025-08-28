@@ -10,6 +10,7 @@
             "@components/*": ["src/components/*"],
             "@queries": ["src/db/queries"],
             "@schemas": ["src/db/schemas"],
+            "@middlewares/*": ["src/middleware/*"],
             "@models/*": ["src/models/*"],
             "@styles/*": ["src/styles/*"],
             "@utils/*": ["src/utils/*"]

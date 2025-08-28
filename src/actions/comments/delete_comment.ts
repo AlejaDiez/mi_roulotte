@@ -6,12 +6,11 @@ import { drizzle } from "drizzle-orm/d1";
 export const deleteComment = defineAction({
     input: z.object({
         commentId: z
-            .number({
-                invalid_type_error: "commentId must be a number",
+            .string({
+                invalid_type_error: "commentId must be a string",
                 required_error: "commentId is required"
             })
-            .int("commentId must be an integer number")
-            .positive("commentId must be a positive number")
+            .nonempty("commentId cannot be empty")
     }),
     handler: async (input, ctx): Promise<void> => {
         const { commentId } = input;

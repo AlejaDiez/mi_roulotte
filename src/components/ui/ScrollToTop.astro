@@ -3,11 +3,12 @@ import type { BaseProps } from "@utils/props";
 
 export type Props = BaseProps;
 
-const { id, class: cls } = Astro.props;
+const { id, style, class: cls } = Astro.props;
 ---
 
 <button
     {id}
+    {style}
     class:list={cls}
     class="scroll-to-top button clip-left button-fill-primary fixed right-0 bottom-32 z-[80] transition-[background-color,color,clip-path] duration-[100ms,100ms,300ms] max-sm:bottom-40">
     <i class="ibm-chevron-up"></i>
@@ -16,15 +17,21 @@ const { id, class: cls } = Astro.props;
 <script>
     const scrollButton =
         document.body.querySelector<HTMLButtonElement>(".scroll-to-top")!;
+    let visible = false;
 
-    scrollButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > window.innerHeight / 3) {
+    const scrollCallback = () => {
+        if (window.scrollY > window.innerHeight / 3 && !visible) {
             scrollButton.classList.add("clip-none");
-        } else {
+            visible = true;
+        } else if (window.scrollY <= window.innerHeight / 3 && visible) {
             scrollButton.classList.remove("clip-none");
+            visible = false;
         }
-    });
+    };
+    const clickCallback = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    window.addEventListener("scroll", scrollCallback);
+    scrollButton.addEventListener("click", clickCallback);
 </script>

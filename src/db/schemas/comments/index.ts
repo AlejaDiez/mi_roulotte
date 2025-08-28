@@ -10,7 +10,9 @@ import {
 export const CommentsTable = table(
     "comments",
     {
-        id: integer("id").primaryKey({ autoIncrement: true }),
+        id: text("id")
+            .primaryKey()
+            .default(sql`(lower(hex(randomblob(16))))`),
         tripId: text("trip_id")
             .notNull()
             .references(() => TripsTable.id, {
@@ -21,11 +23,13 @@ export const CommentsTable = table(
         username: text("username").notNull(),
         email: text("email"),
         content: text("content").notNull(),
-        repliedTo: integer("replied_to"),
+        repliedTo: text("replied_to"),
+        userAgent: text("user_agent"),
+        ipAddress: text("ip_address"),
         createdAt: integer("created_at", { mode: "timestamp" })
             .notNull()
             .default(sql`(unixepoch())`),
-        modifiedAt: integer("modified_at", { mode: "timestamp" })
+        updatedAt: integer("updated_at", { mode: "timestamp" })
     },
     (self) => [
         foreignKey({

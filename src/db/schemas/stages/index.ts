@@ -33,7 +33,7 @@ export const StagesTable = table(
         createdAt: integer("created_at", { mode: "timestamp" })
             .notNull()
             .default(sql`(unixepoch())`),
-        modifiedAt: integer("modified_at", { mode: "timestamp" })
+        updatedAt: integer("updated_at", { mode: "timestamp" })
     },
     (self) => [primaryKey({ columns: [self.id, self.tripId] })]
 );

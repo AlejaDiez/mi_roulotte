@@ -22,20 +22,20 @@ export const selectComments = (
             ? sql`
                 CASE 
                     WHEN ${CommentsTable.stageId} IS NULL THEN 
-                        CONCAT('/', ${CommentsTable.tripId}, '/#comment-', ${CommentsTable.id})
+                        CONCAT('/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
                     ELSE 
-                        CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#comment-', ${CommentsTable.id})
+                        CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
                 END`
             : sql`
                 CASE 
                     WHEN ${CommentsTable.stageId} IS NULL THEN 
-                        CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#comment-', ${CommentsTable.id})
+                        CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
                     ELSE 
-                        CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#comment-', ${CommentsTable.id})
+                        CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
                 END`,
-        lastModifiedAt:
-            sql`COALESCE(${CommentsTable.modifiedAt}, ${CommentsTable.createdAt})`.mapWith(
-                CommentsTable.modifiedAt
+        lastUpdatedAt:
+            sql`COALESCE(${CommentsTable.updatedAt}, ${CommentsTable.createdAt})`.mapWith(
+                CommentsTable.updatedAt
             )
     };
     const query = db
@@ -43,7 +43,7 @@ export const selectComments = (
         .from(CommentsTable)
         .orderBy(
             desc(
-                sql`COALESCE(${CommentsTable.modifiedAt}, ${CommentsTable.createdAt})`
+                sql`COALESCE(${CommentsTable.updatedAt}, ${CommentsTable.createdAt})`
             )
         );
 

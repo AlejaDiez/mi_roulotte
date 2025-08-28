@@ -5,7 +5,7 @@ import type { DrizzleD1Database } from "drizzle-orm/d1";
 
 export const selectCommentReplies = (
     db: DrizzleD1Database,
-    parentCommentId: number,
+    parentCommentId: string,
     config?: {
         fields?: string[];
         relative?: boolean;
@@ -21,19 +21,19 @@ export const selectCommentReplies = (
             ? sql`
                     CASE 
                         WHEN ${CommentsTable.stageId} IS NULL THEN 
-                            CONCAT('/', ${CommentsTable.tripId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT('/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
                         ELSE 
-                            CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
                     END`
             : sql`
                     CASE 
                         WHEN ${CommentsTable.stageId} IS NULL THEN 
-                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
                         ELSE 
-                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
                     END`,
         createdAt: CommentsTable.createdAt,
-        modifiedAt: CommentsTable.modifiedAt
+        updatedAt: CommentsTable.updatedAt
     };
     const query = db
         .select(filterObjectColumns(columns, config?.fields))
@@ -41,7 +41,7 @@ export const selectCommentReplies = (
         .where(eq(CommentsTable.repliedTo, parentCommentId))
         .orderBy(
             desc(
-                sql`COALESCE(${CommentsTable.modifiedAt}, ${CommentsTable.createdAt})`
+                sql`COALESCE(${CommentsTable.updatedAt}, ${CommentsTable.createdAt})`
             )
         );
 

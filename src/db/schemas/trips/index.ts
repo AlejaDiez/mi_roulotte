@@ -20,5 +20,5 @@ export const TripsTable = table("trips", {
     createdAt: integer("created_at", { mode: "timestamp" })
         .notNull()
         .default(sql`(unixepoch())`),
-    modifiedAt: integer("modified_at", { mode: "timestamp" })
+    updatedAt: integer("updated_at", { mode: "timestamp" })
 });

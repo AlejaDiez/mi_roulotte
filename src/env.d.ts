@@ -1,7 +1,11 @@
 type Runtime = import("@astrojs/cloudflare").Runtime<Env>;
 
 declare namespace App {
-    interface Locals extends Runtime {}
+    interface Locals extends Runtime {
+        uid: string;
+        username: string;
+        role: string;
+    }
 }
 
 interface ImportMetaEnv {
@@ -18,6 +22,9 @@ interface ImportMetaEnv {
 
     // mi roulotte
     UNSUBSCRIBE_SECRET: string;
+    VERIFY_EMAIL_SECRET: string;
+    AUTH_SECRET: string;
+    REFRESH_AUTH_SECRET: string;
 }
 
 interface ImportMeta {

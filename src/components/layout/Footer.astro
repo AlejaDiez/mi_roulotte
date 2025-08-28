@@ -3,11 +3,12 @@ import type { BaseProps } from "@utils/props";
 
 export type Props = BaseProps;
 
-const { id, class: cls } = Astro.props;
+const { id, style, class: cls } = Astro.props;
 ---
 
 <footer
     {id}
+    {style}
     class:list={cls}
     class="footer flex h-32 w-full cursor-default flex-col items-start justify-start px-(--space-x) select-none max-sm:h-40 max-sm:pb-2">
     <div
@@ -24,7 +25,7 @@ const { id, class: cls } = Astro.props;
         <nav class="social-links flex flex-row">
             <a
                 title="Correo electrónico"
-                href="mailto:miroulotte@gmail.com?subject=Contactar%20con%20Mi%20Roulotte"
+                href="mailto:contacto@miroulotte.es?subject=Contactar%20con%20Mi%20Roulotte"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-muted-foreground-variant hover:text-primary-hover inline-flex h-10 w-10 flex-row items-center justify-center transition-colors">

@@ -3,11 +3,12 @@ import type { BaseProps } from "@utils/props";
 
 export type Props = BaseProps;
 
-const { id, class: cls } = Astro.props;
+const { id, style, class: cls } = Astro.props;
 ---
 
 <header
     {id}
+    {style}
     class:list={cls}
     class="header group bg-background sticky top-0 left-0 z-[80] flex h-(--space-y) w-full flex-row items-center px-(--space-x) select-none">
     <a
@@ -98,12 +99,19 @@ const { id, class: cls } = Astro.props;
 </style>
 
 <script>
+    let responsive = false;
     const header = document.body.querySelector(".header")!;
     const links = header.querySelectorAll<HTMLAnchorElement>(".menu a");
     const toggleButton =
         header.querySelector<HTMLButtonElement>(".menu-toggle")!;
 
-    window.addEventListener("hashchange", () => {
+    const clickCallbackLinks = () => {
+        header.removeAttribute("data-expanded");
+    };
+    const clickCallbackToggle = () => {
+        header.toggleAttribute("data-expanded");
+    };
+    const hashchangeCallback = () => {
         for (const link of links) {
             if (window.location.href.includes(link.href)) {
                 link.classList.replace("button-muted", "button-primary");
@@ -111,14 +119,26 @@ const { id, class: cls } = Astro.props;
                 link.classList.replace("button-primary", "button-muted");
             }
         }
-    });
-    window.dispatchEvent(new Event("hashchange"));
-    toggleButton.addEventListener("click", () => {
-        header.toggleAttribute("data-expanded");
-    });
-    window.addEventListener("resize", () => {
-        if (window.innerWidth >= 48 * 16) {
+    };
+    const resizeCallback = () => {
+        if (window.innerWidth >= 48 * 16 && responsive) {
             header.removeAttribute("data-expanded");
+            links.forEach((e) =>
+                e.removeEventListener("click", clickCallbackLinks)
+            );
+            toggleButton.removeEventListener("click", clickCallbackToggle);
+            responsive = false;
+        } else if (window.innerWidth < 48 * 16 && !responsive) {
+            links.forEach((e) =>
+                e.addEventListener("click", clickCallbackLinks)
+            );
+            toggleButton.addEventListener("click", clickCallbackToggle);
+            responsive = true;
         }
-    });
+    };
+
+    window.addEventListener("hashchange", hashchangeCallback);
+    hashchangeCallback();
+    window.addEventListener("resize", resizeCallback);
+    resizeCallback();
 </script>

@@ -9,7 +9,7 @@ export interface Props extends BaseProps {
     }[];
 }
 
-const { stages, id, class: cls } = Astro.props;
+const { stages, id, style, class: cls } = Astro.props;
 const currentStage = stages.findIndex(({ url }) =>
     Astro.url.href.includes(url)
 );
@@ -17,69 +17,89 @@ const currentStage = stages.findIndex(({ url }) =>
 
 {
     currentStage === -1 ? (
-        <section
-            {id}
-            class:list={cls}
-            class="stage-section animation-delay-[375ms] animate-fade flex w-full flex-col items-start justify-start gap-[calc(var(--space)*4)]">
-            <div class="scroll scrollbar-hidden relative -left-(--space-x) w-[calc(var(--space-x)*2+100%)] snap-x snap-mandatory scroll-p-(--space-x) overflow-x-auto scroll-smooth">
-                <div class="stages flex w-max flex-row items-start justify-start gap-[calc(var(--space)*4)] px-(--space-x)">
-                    {stages.map(({ title, image, url }) => (
-                        <a href={url} class="card snap-start">
-                            <div class="image">
-                                <img src={image} alt={title} decoding="async" class="img" />
-                            </div>
-                            <span class="caption">{title}</span>
-                        </a>
-                    ))}
+        <>
+            <section
+                {id}
+                {style}
+                class:list={cls}
+                class="stage-section animation-delay-[375ms] animate-fade flex w-full flex-col items-start justify-start gap-[calc(var(--space)*4)]">
+                <div class="scroll scrollbar-hidden relative -left-(--space-x) w-[calc(var(--space-x)*2+100%)] snap-x snap-mandatory scroll-px-(--space-x) overflow-x-scroll scroll-smooth">
+                    <div class="stages flex w-max flex-row items-start justify-start gap-[calc(var(--space)*4)] px-(--space-x)">
+                        {stages.map(({ title, image, url }) => (
+                            <a href={url} class="card snap-start">
+                                <div class="image">
+                                    <img
+                                        src={image}
+                                        alt={title}
+                                        decoding="async"
+                                        class="img"
+                                    />
+                                </div>
+                                <span class="caption">{title}</span>
+                            </a>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div class="controls flex w-full flex-row items-center justify-end max-md:justify-start">
-                <button class="button prev button-fill-primary">
-                    <i class="ibm-chevron-left" />
-                </button>
-                <button class="button next button-fill-primary">
-                    <i class="ibm-chevron-right" />
-                </button>
-            </div>       
-        </section>
-        <script>
-            const container = document.body.querySelector<HTMLDivElement>(".scroll")!;
-            const cards = [...container.querySelectorAll<HTMLDivElement>(".card")];
-            const prevButton = document.body.querySelector<HTMLButtonElement>(".controls .button.prev")!;
-            const nextButton = document.body.querySelector<HTMLButtonElement>(".controls .button.next")!;
+                <div class="controls flex w-full flex-row items-center justify-end max-md:justify-start">
+                    <button class="button prev button-fill-primary">
+                        <i class="ibm-chevron-left" />
+                    </button>
+                    <button class="button next button-fill-primary">
+                        <i class="ibm-chevron-right" />
+                    </button>
+                </div>
+            </section>
+            <script>
+                const container = document.body.querySelector<HTMLDivElement>(
+                    ".stage-section > .scroll"
+                )!;
+                const cards = [...container.querySelectorAll<HTMLDivElement>(".card")];
 
-            prevButton.addEventListener("click", () => {
-                const scrollPadding = Math.trunc(
-                    parseFloat(getComputedStyle(container).scrollPaddingLeft)
-                );
-                const prevCard = [...cards]
-                    .reverse()
-                    .find((e) => e.getBoundingClientRect().x - scrollPadding < -2);
-                const prevScroll = prevCard?.getBoundingClientRect().x ?? 0;
+                const clickCallbackPrev = () => {
+                    const scrollLeft = container.scrollLeft;
+                    const scrollPadding = parseFloat(
+                        getComputedStyle(container).scrollPaddingInline
+                    );
+                    const prevCard = cards.findLast(
+                        ({ offsetLeft }) => offsetLeft - scrollLeft < scrollPadding - 2
+                    );
 
-                container.scrollBy({
-                    left: prevScroll - scrollPadding,
-                    behavior: "smooth"
-                });
-            });
-            nextButton.addEventListener("click", () => {
-                const scrollPadding = parseFloat(
-                    getComputedStyle(container).scrollPaddingLeft
-                );
-                const nextCard = [...cards].find(
-                    (e) => e.getBoundingClientRect().x - scrollPadding > 2
-                );
-                const nextScroll = nextCard?.getBoundingClientRect().x ?? 0;
+                    if (prevCard) {
+                        container.scrollTo({
+                            left: prevCard.offsetLeft - scrollPadding,
+                            behavior: "smooth"
+                        });
+                    }
+                };
+                const clickCallbackNext = () => {
+                    const scrollLeft = container.scrollLeft;
+                    const scrollPadding = parseFloat(
+                        getComputedStyle(container).scrollPaddingInline
+                    );
+                    const nextCard = cards.find(
+                        ({ offsetLeft }) => offsetLeft - scrollLeft > scrollPadding + 2
+                    );
 
-                container.scrollBy({
-                    left: nextScroll - scrollPadding,
-                    behavior: "smooth"
-                });
-            });
-        </script>
+                    if (nextCard) {
+                        container.scrollTo({
+                            left: nextCard.offsetLeft - scrollPadding,
+                            behavior: "smooth"
+                        });
+                    }
+                };
+
+                document.body
+                    .querySelector<HTMLButtonElement>(".stage-section > .controls .prev")!
+                    .addEventListener("click", clickCallbackPrev);
+                document.body
+                    .querySelector<HTMLButtonElement>(".stage-section > .controls .next")!
+                    .addEventListener("click", clickCallbackNext);
+            </script>
+        </>
     ) : (
         <section
             {id}
+            {style}
             class:list={cls}
             class="stage-section animation-delay-[375ms] animate-fade flex w-full flex-row items-center justify-between max-md:justify-start">
             {currentStage > 0 ? (
@@ -122,4 +142,3 @@ const currentStage = stages.findIndex(({ url }) =>
         </section>
     )
 }
-

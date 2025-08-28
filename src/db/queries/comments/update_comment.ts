@@ -5,7 +5,7 @@ import type { DrizzleD1Database } from "drizzle-orm/d1";
 
 export const updateComment = (
     db: DrizzleD1Database,
-    commentId: number,
+    commentId: string,
     value: {
         username?: string;
         email?: string | null;
@@ -27,20 +27,22 @@ export const updateComment = (
             ? sql`
                     CASE 
                         WHEN ${CommentsTable.stageId} IS NULL THEN 
-                            CONCAT('/', ${CommentsTable.tripId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT('/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
                         ELSE 
-                            CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
                     END`
             : sql`
                     CASE 
                         WHEN ${CommentsTable.stageId} IS NULL THEN 
-                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
                         ELSE 
-                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#comment-', ${CommentsTable.id})
+                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
                     END`,
         repliedTo: CommentsTable.repliedTo,
+        userAgent: CommentsTable.userAgent,
+        ipAddress: CommentsTable.ipAddress,
         createdAt: CommentsTable.createdAt,
-        modifiedAt: CommentsTable.modifiedAt
+        updatedAt: CommentsTable.updatedAt
     };
     const query = db
         .update(CommentsTable)

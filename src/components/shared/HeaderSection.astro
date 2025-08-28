@@ -7,11 +7,12 @@ export interface Props extends BaseProps {
     image: string;
 }
 
-const { title, subtitle, image, id, class: cls } = Astro.props;
+const { title, subtitle, image, id, style, class: cls } = Astro.props;
 ---
 
 <section
     {id}
+    {style}
     class:list={cls}
     class="header-section max-md:aspect-portrait relative aspect-video w-full cursor-default select-none md:max-h-[48rem] md:min-h-96">
     {
@@ -24,19 +25,61 @@ const { title, subtitle, image, id, class: cls } = Astro.props;
         )
     }
     <div
-        class="title md:bg-muted animate-clip-right max-md:animate-float-right absolute z-10 flex h-64 w-[50vw] items-center justify-start overflow-hidden max-md:h-full max-md:w-[var(--space-y)] max-md:items-end max-md:justify-center max-md:mask-b-to-10 max-md:mask-exclude md:top-(--space-y) md:-left-(--space-x) md:pr-[calc(var(--space-x)/2)] md:pl-(--space-x)">
+        class="title md:bg-muted md:animate-clip-right animate-float-right absolute z-10 flex h-full w-(--space-y) items-end justify-center overflow-hidden max-md:mask-b-to-10 max-md:mask-exclude md:top-(--space-y) md:-left-(--space-x) md:h-64 md:w-[50vw] md:items-center md:justify-start md:pr-[calc(var(--space-x)/2)] md:pl-(--space-x)">
         <h1
             class="text-title max-md:text-vertical max-md:rotate-180 max-md:whitespace-nowrap md:line-clamp-2">
             {title}
         </h1>
     </div>
     <div
-        class="hero-image animate-clip-bottom animation-delay-500 absolute top-0 z-0 h-full overflow-hidden max-md:right-0 max-md:w-[calc(100%-var(--space-y))] md:left-0 md:w-full">
+        class="hero-image animate-clip-bottom animation-delay-500 group absolute top-0 z-0 h-full overflow-hidden max-md:right-0 max-md:w-[calc(100%-var(--space-y))] md:left-0 md:w-full">
         <img
             src={image}
             alt={subtitle}
             decoding="async"
-            class="h-full w-full object-cover object-center"
+            class="h-full w-full scale-105 object-cover object-center transition-transform duration-300 md:group-hover:scale-115 md:group-hover:transition-[scale]"
         />
     </div>
 </section>
+
+<script>
+    const heroImage = document.body.querySelector<HTMLDivElement>(
+        ".header-section .hero-image"
+    )!;
+    const image = heroImage.querySelector<HTMLImageElement>("img")!;
+    let ticking = false;
+    let responsive = false;
+
+    const mousemoveCallback = (e: MouseEvent) => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const rect = image.getBoundingClientRect();
+                const mousex = e.clientX - rect.left;
+                const mousey = e.clientY - rect.top;
+                const x = (mousex - rect.width / 2) / 40;
+                const y = (mousey - rect.height / 2) / 40;
+
+                image.style.transform = `translate(${x}px, ${y}px)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+    const mouseoutCallback = () => {
+        image.style.transform = "";
+    };
+    const resizeCallback = () => {
+        if (window.innerWidth >= 48 * 16 && !responsive) {
+            heroImage.addEventListener("mousemove", mousemoveCallback);
+            heroImage.addEventListener("mouseout", mouseoutCallback);
+            responsive = true;
+        } else if (window.innerWidth < 48 * 16 && responsive) {
+            heroImage.removeEventListener("mousemove", mousemoveCallback);
+            heroImage.removeEventListener("mouseout", mouseoutCallback);
+            responsive = false;
+        }
+    };
+
+    window.addEventListener("resize", resizeCallback);
+    resizeCallback();
+</script>

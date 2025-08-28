@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const generateToken = (
@@ -29,3 +30,8 @@ export const generateHash = (length: number = 6): string => {
         () => chars[Math.floor(Math.random() * chars.length)]
     ).join("");
 };
+
+export const hash = async (data: string) => await bcrypt.hash(data, 12);
+
+export const compareHash = async (data: string, encrypted: string) =>
+    await bcrypt.compare(data, encrypted);

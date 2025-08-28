@@ -1,15 +1,15 @@
 ---
+import IMG_20200825_185010 from "@assets/images/IMG_20200825_185010.jpg";
+import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
 import Main from "@components/layout/Main.astro";
-import { getImage, Image } from "astro:assets";
-import IMG_20200825_185010 from "@assets/images/IMG_20200825_185010.jpg";
-import Footer from "@components/layout/Footer.astro";
-import { actions } from "astro:actions";
+import Video from "@components/ui/Video.astro";
 import type { PartialTripPreview } from "@models/trip";
 import { tripDate } from "@utils/date";
 import { YouTube } from "@utils/video";
-import Video from "@components/ui/Video.astro";
+import { actions } from "astro:actions";
+import { getImage, Image } from "astro:assets";
 
 const IMG_20200825_185010_MASK = await getImage({
     src: import("@assets/images/IMG_20200825_185010_MASK.png"),

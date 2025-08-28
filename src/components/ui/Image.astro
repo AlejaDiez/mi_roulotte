@@ -6,11 +6,12 @@ export interface Props extends BaseProps {
     caption: string;
 }
 
-const { url, caption, id, class: cls } = Astro.props;
+const { url, caption, id, style, class: cls } = Astro.props;
 ---
 
 <figure
     {id}
+    {style}
     class:list={cls}
     class="image bg-muted aspect-landscape group relative h-auto w-auto cursor-pointer overflow-hidden select-none">
     <img
@@ -33,9 +34,7 @@ const { url, caption, id, class: cls } = Astro.props;
 </style>
 
 <script>
-    const images = [
-        ...document.body.querySelectorAll<HTMLDivElement>(".image")
-    ];
+    const images = document.body.querySelectorAll<HTMLDivElement>(".image");
 
     const buildLightbox = (img: string, caption: string) => {
         const lightboxContainer = document.createElement("div");
@@ -66,9 +65,9 @@ const { url, caption, id, class: cls } = Astro.props;
 
         closeButton.innerHTML = `<i class="ibm-close"></i>`;
         closeButton.classList.add("button", "button-fill-primary");
-        closeButton.addEventListener("click", () =>
-            document.body.removeChild(lightboxContainer)
-        );
+        closeButton.onclick = () => {
+            document.body.removeChild(lightboxContainer);
+        };
         lightboxContainer.appendChild(closeButton);
 
         return lightboxContainer;
@@ -78,14 +77,17 @@ const { url, caption, id, class: cls } = Astro.props;
         const img = image.querySelector<HTMLImageElement>(".img")!.src;
         const caption = image.querySelector<HTMLElement>(".caption")!.innerText;
 
-        image.addEventListener("click", () => {
-            let lightbox = document.body.querySelector(".lightbox");
+        const clickCallback = () => {
+            let lightbox =
+                document.body.querySelector<HTMLDivElement>(".lightbox");
 
             if (lightbox) {
                 document.body.removeChild(lightbox);
             }
             lightbox = buildLightbox(img, caption);
             document.body.appendChild(lightbox);
-        });
+        };
+
+        image.addEventListener("click", clickCallback);
     }
 </script>

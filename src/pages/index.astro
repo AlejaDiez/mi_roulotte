@@ -1,5 +1,4 @@
 ---
-import IMG_20200825_185010 from "@assets/images/IMG_20200825_185010.jpg";
 import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import Layout from "@components/layout/Layout.astro";
@@ -9,32 +8,19 @@ import type { PartialTripPreview } from "@models/trip";
 import { tripDate } from "@utils/date";
 import { YouTube } from "@utils/video";
 import { actions } from "astro:actions";
-import { getImage, Image } from "astro:assets";
-
-const IMG_20200825_185010_MASK = await getImage({
-    src: import("@assets/images/IMG_20200825_185010_MASK.png"),
-    quality: 60
-});
 
 // Get trips data
-const { data, error } = await Astro.callAction(actions.getTrips, {
+const data: PartialTripPreview[] = await Astro.callAction(actions.getTrips, {
     relative: true
-}).then(({ data, ...rest }) => ({
-    data: data as PartialTripPreview[] | undefined,
-    ...rest
-}));
-
-data?.reverse();
+}).then(({ data }) => ((data as PartialTripPreview[]) ?? []).reverse());
 
 // Get youtube data
-const videos: string[] = [];
 const youtubeId = YouTube.getId(
     "https://www.youtube.com/playlist?list=PLMZqxy7ks8derwsZceqoWvkNhZDsp8TF9"
 );
-
-if (youtubeId) {
-    (await YouTube.getPlaylistVideos(youtubeId)).forEach((e) => videos.push(e));
-}
+const videos: string[] = youtubeId
+    ? await YouTube.getPlaylistVideos(youtubeId)
+    : [];
 ---
 
 <Layout
@@ -86,22 +72,22 @@ if (youtubeId) {
         <section
             id="inicio"
             class="max-md:bg-muted max-md:animate-clip-right md:**:animation-paused relative w-[calc(var(--space-x)+100%)] overflow-hidden select-none max-md:-left-(--space-x) max-md:scroll-mt-(--space-y) max-md:px-(--space-x) max-md:py-8 md:h-screen md:w-screen md:snap-start">
-            <Image
-                src={IMG_20200825_185010}
+            <img
+                src="/images/IMG_20200825_185010.avif"
                 alt="Ponta da Piedade"
-                quality={60}
                 class="absolute top-0 left-0 h-full w-full object-cover max-md:hidden"
+                decoding="async"
             />
             <h1
                 class="text-title max-md:!translate-0 md:absolute md:top-[26%] md:left-1/2 md:-translate-x-1/2 md:animate-[500ms_cubic-bezier(0.4,0,0.2,1)_backwards_float-top] md:text-[8vw] md:text-white">
                 Mi Roulotte
             </h1>
-            <Image
-                src={IMG_20200825_185010}
+            <img
+                src="/images/IMG_20200825_185010.avif"
                 alt="Ponta da Piedade"
-                quality={60}
-                style=`mask-image: url("${IMG_20200825_185010_MASK.src}")`
+                style="mask-image: url('/images/IMG_20200825_185010_MASK.avif')"
                 class="absolute top-0 left-0 h-full w-full mask-cover mask-center object-cover max-md:hidden"
+                decoding="async"
             />
             <div
                 class="absolute right-(--space-x) bottom-(--space-y) flex flex-row max-md:hidden md:animate-[500ms_cubic-bezier(0.4,0,0.2,1)_500ms_backwards_fade]">
@@ -273,13 +259,15 @@ if (youtubeId) {
             opacity: 0;
         }
 
-        > span.selected ~ span,
-        &:has(> span:last-of-type.selected) > span:first-of-type {
+        > span.selected ~ span:not(:only-of-type),
+        &:has(> span:last-of-type.selected)
+            > span:not(:only-of-type):first-of-type {
             translate: 0 -1rem;
         }
 
-        > span:has(~ span.selected),
-        &:has(> span:first-of-type.selected) > span:last-of-type {
+        > span:has(~ span.selected):not(:only-of-type),
+        &:has(> span:first-of-type.selected)
+            > span:not(:only-of-type):last-of-type {
             translate: 0 0.5rem;
         }
     }
@@ -304,13 +292,15 @@ if (youtubeId) {
             opacity: 0;
         }
 
-        > h1.selected ~ h1,
-        &:has(> h1:last-of-type.selected) > h1:first-of-type {
+        > h1.selected ~ h1:not(:only-of-type),
+        &:has(> h1:last-of-type.selected)
+            > h1:not(:only-of-type):first-of-type {
             translate: -1rem 0;
         }
 
-        > h1:has(~ h1.selected),
-        &:has(> h1:first-of-type.selected) > h1:last-of-type {
+        > h1:has(~ h1.selected):not(:only-of-type),
+        &:has(> h1:first-of-type.selected)
+            > h1:not(:only-of-type):last-of-type {
             translate: 0.5rem 0;
         }
     }
@@ -327,13 +317,15 @@ if (youtubeId) {
             transition-delay: 300ms;
         }
 
-        > div.selected ~ div,
-        &:has(> div:last-of-type.selected) > div:first-of-type {
+        > div.selected ~ div:not(:only-of-type),
+        &:has(> div:last-of-type.selected)
+            > div:not(:only-of-type):first-of-type {
             clip-path: inset(0 0 100% 0);
         }
 
-        > div:has(~ div.selected),
-        &:has(> div:first-of-type.selected) > div:last-of-type {
+        > div:has(~ div.selected):not(:only-of-type),
+        &:has(> div:first-of-type.selected)
+            > div:not(:only-of-type):last-of-type {
             clip-path: inset(100% 0 0 0);
         }
     }

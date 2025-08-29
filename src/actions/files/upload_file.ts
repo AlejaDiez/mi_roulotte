@@ -1,5 +1,6 @@
 import { generateHash } from "@utils/crypto";
 import {
+    arrayBufferToStream,
     AudioTypes,
     DocumentTypes,
     ExtensionTypes,
@@ -92,8 +93,8 @@ export const uploadFile = defineAction({
         const { file, transform, fields } = input;
         const bucket = ctx.locals.runtime.env.BUCKET;
         const imageService = ctx.locals.runtime.env.IMAGES;
-        let filePath = `${file.name}_${generateHash()}`;
-        let fileType = file.type;
+        let filePath: string = `${file.name}_${generateHash()}`;
+        let fileType: string = file.type;
         let fileBuffer: ArrayBuffer = file.buffer;
 
         if (ImageTypes.includes(file.type)) {
@@ -102,9 +103,8 @@ export const uploadFile = defineAction({
                 Object.values(transform).some((e) => e !== undefined)
             ) {
                 try {
-                    const blob = new Blob([file.buffer], { type: fileType });
-                    const res = await imageService
-                        .input(blob.stream())
+                    const img = await imageService
+                        .input(arrayBufferToStream(fileBuffer))
                         .transform({
                             width: transform.width,
                             height: transform.height,
@@ -116,8 +116,8 @@ export const uploadFile = defineAction({
                             quality: transform.quality ?? 100
                         });
 
-                    fileType = res.contentType();
-                    fileBuffer = await streamToArrayBuffer(res.image());
+                    fileBuffer = await streamToArrayBuffer(img.image());
+                    fileType = img.contentType();
                 } catch (err) {
                     throw new ActionError({
                         code: "UNPROCESSABLE_CONTENT",

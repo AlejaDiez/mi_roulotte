@@ -118,7 +118,7 @@ export const replyComment = defineAction({
         // Send email
         if (data && comment.email) {
             // Generate unsubscribe token
-            const token = generateToken(
+            const token = await generateToken(
                 { id: comment.id },
                 import.meta.env.UNSUBSCRIBE_SECRET,
                 60 * 60 * 24 * 7 // 7 days

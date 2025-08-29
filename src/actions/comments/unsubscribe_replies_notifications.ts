@@ -18,7 +18,10 @@ export const unsubscribeRepliesNotifications = defineAction({
         const db = drizzle(ctx.locals.runtime.env.DB);
 
         // Validate token
-        const data = validateToken(token, import.meta.env.UNSUBSCRIBE_SECRET);
+        const data = await validateToken(
+            token,
+            import.meta.env.UNSUBSCRIBE_SECRET
+        );
 
         if (!data) {
             throw new ActionError({

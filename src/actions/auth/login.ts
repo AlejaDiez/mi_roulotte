@@ -128,7 +128,7 @@ export const loginUser = defineAction({
         );
 
         // Create token
-        const token = generateToken(
+        const token = await generateToken(
             {
                 id: data.id,
                 username: data.username,
@@ -139,7 +139,7 @@ export const loginUser = defineAction({
         );
 
         // Create refresh token
-        const refreshToken = generateToken(
+        const refreshToken = await generateToken(
             {
                 id: sessionData.id,
                 uid: sessionData.uid,

@@ -3,9 +3,10 @@
     "name": "mi-roulotte",
     "compatibility_date": "2025-06-01",
     "compatibility_flags": ["nodejs_compat"],
-    "pages_build_output_dir": "./build",
-    "observability": {
-        "enabled": true
+    "main": "./build/_worker.js/index.js",
+    "assets": {
+        "binding": "ASSETS",
+        "directory": "./build"
     },
     "d1_databases": [
         {
@@ -23,5 +24,8 @@
     ],
     "images": {
         "binding": "IMAGES"
+    },
+    "observability": {
+        "enabled": true
     }
 }

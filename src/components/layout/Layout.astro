@@ -18,7 +18,6 @@ const {
     style,
     class: cls
 } = Astro.props;
-const url: string = "https://miroulotte.es";
 const name: string = "Mi Roulotte";
 const lang: string = "es";
 const author: string = "Alejandro Diez Bermejo";
@@ -34,7 +33,10 @@ const author: string = "Alejandro Diez Bermejo";
         <title>{title === name ? name : `${title} | ${name}`}</title>
         {description && <meta name="description" content={description} />}
         <meta name="author" content={author} />
-        <link rel="canonical" href={url} />
+        <link
+            rel="canonical"
+            href={Astro.locals.runtime.env.SITE ?? import.meta.env.SITE}
+        />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="mi-roulotte" href="/apple-touch-icon.png" />
         <link

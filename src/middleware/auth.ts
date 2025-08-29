@@ -10,9 +10,9 @@ import type {
 import { ActionError } from "astro:actions";
 
 const routes: RegExp[] = [
-    /^\/api\/comments(?:\/[\w-]*)*$/,
-    /^\/api\/files(?:\/[\w-]*)*$/,
-    /^\/api\/trips(?:\/[\w-]*)*$/
+    /^\/api\/comments(?:\/[\w-.]*)*$/,
+    /^\/api\/files(?:\/[\w-.]*)*$/,
+    /^\/api\/trips(?:\/[\w-.]*)*$/
 ];
 
 export const auth: MiddlewareHandler = async (
@@ -39,7 +39,7 @@ export const auth: MiddlewareHandler = async (
 
         const data = await validateToken(
             authorization.replace("Bearer ", ""),
-            import.meta.env.AUTH_SECRET
+            ctx.locals.runtime.env.AUTH_SECRET
         );
 
         // Validate token

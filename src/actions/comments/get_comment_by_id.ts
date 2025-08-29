@@ -26,7 +26,9 @@ export const getCommentById = defineAction({
         const db = drizzle(ctx.locals.runtime.env.DB);
         const data: DataType = await selectComment(db, commentId, {
             fields,
-            relative
+            site: !relative
+                ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                : undefined
         });
 
         // Comment exists???
@@ -43,7 +45,9 @@ export const getCommentById = defineAction({
         if (!fields || fields?.length === 0 || fields?.includes("replies")) {
             repliesData = await selectCommentReplies(db, commentId, {
                 fields,
-                relative
+                site: !relative
+                    ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                    : undefined
             });
         }
 

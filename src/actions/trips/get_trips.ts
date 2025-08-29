@@ -28,7 +28,9 @@ export const getTrips = defineAction({
             fields,
             page,
             limit,
-            relative
+            site: !relative
+                ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                : undefined
         }).then((e) => e.map(({ _, ...e }: any) => e));
 
         return paginateObject(

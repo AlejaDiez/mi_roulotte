@@ -149,7 +149,7 @@ export const uploadFile = defineAction({
                 name: res.key.split("/").pop()!,
                 type: res.httpMetadata?.contentType,
                 size: res.size,
-                url: `${import.meta.env.SITE}/${res.key}`,
+                url: `${ctx.locals.runtime.env.SITE ?? import.meta.env.SITE}/${res.key}`,
                 uploadedAt: res.uploaded
             },
             fields

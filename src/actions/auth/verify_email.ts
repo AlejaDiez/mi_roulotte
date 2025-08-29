@@ -20,7 +20,7 @@ export const verifyEmail = defineAction({
         // Validate token
         const data = await validateToken(
             token,
-            import.meta.env.VERIFY_EMAIL_SECRET
+            ctx.locals.runtime.env.VERIFY_EMAIL_SECRET
         );
 
         if (!data) {

@@ -8,7 +8,7 @@ export const selectComment = (
     commentId: string,
     config?: {
         fields?: string[];
-        relative?: boolean;
+        site?: string;
     }
 ) => {
     const columns = {
@@ -18,21 +18,13 @@ export const selectComment = (
         username: CommentsTable.username,
         email: CommentsTable.email,
         content: CommentsTable.content,
-        url: config?.relative
-            ? sql`
-                CASE 
-                    WHEN ${CommentsTable.stageId} IS NULL THEN 
-                        CONCAT('/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
-                    ELSE 
-                        CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
-                END`
-            : sql`
-                CASE 
-                    WHEN ${CommentsTable.stageId} IS NULL THEN 
-                        CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
-                    ELSE 
-                        CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
-                END`,
+        url: sql`
+            CASE 
+                WHEN ${CommentsTable.stageId} IS NULL THEN 
+                    CONCAT(${config?.site ?? ""}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
+                ELSE 
+                    CONCAT(${config?.site ?? ""}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
+            END`,
         repliedTo: CommentsTable.repliedTo,
         userAgent: CommentsTable.userAgent,
         ipAddress: CommentsTable.ipAddress,

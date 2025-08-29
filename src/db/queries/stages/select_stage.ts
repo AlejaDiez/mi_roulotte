@@ -9,7 +9,7 @@ export const selectStage = (
     stageId: string,
     config?: {
         fields?: string[];
-        relative?: boolean;
+        site?: string;
     }
 ) => {
     const columns = {
@@ -23,9 +23,7 @@ export const selectStage = (
         content: StagesTable.content,
         keywords: StagesTable.keywords,
         published: StagesTable.published,
-        url: config?.relative
-            ? sql`CONCAT('/', ${StagesTable.tripId}, '/', ${StagesTable.id})`
-            : sql`CONCAT(${import.meta.env.SITE}, '/', ${StagesTable.tripId}, '/', ${StagesTable.id})`,
+        url: sql`CONCAT(${config?.site ?? ""}, '/', ${StagesTable.tripId}, '/', ${StagesTable.id})`,
         allowComments: StagesTable.allowComments,
         createdAt: StagesTable.createdAt,
         updatedAt: StagesTable.updatedAt

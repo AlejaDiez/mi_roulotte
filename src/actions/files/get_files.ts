@@ -20,7 +20,7 @@ export const getFiles = defineAction({
                     name: e.key.split("/").pop()!,
                     type: e.httpMetadata?.contentType,
                     size: e.size,
-                    url: `${import.meta.env.SITE}/${e.key}`,
+                    url: `${ctx.locals.runtime.env.SITE ?? import.meta.env.SITE}/${e.key}`,
                     uploadedAt: e.uploaded
                 },
                 fields

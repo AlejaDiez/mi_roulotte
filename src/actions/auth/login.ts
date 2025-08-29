@@ -13,8 +13,6 @@ import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";
 import { Resend } from "resend";
 
-const resend = new Resend(import.meta.env.EMAIL_TOKEN);
-
 export const loginUser = defineAction({
     input: z.object({
         email: z
@@ -39,6 +37,7 @@ export const loginUser = defineAction({
     handler: async (input, ctx): Promise<UserCredentials> => {
         const { email, password, otp } = input;
         const db = drizzle(ctx.locals.runtime.env.DB);
+        const resend = new Resend(ctx.locals.runtime.env.EMAIL_TOKEN);
 
         // Register the user
         const data: DataType = await selectUserByEmail(db, email, {
@@ -95,7 +94,7 @@ export const loginUser = defineAction({
                         from: "Mi Roulotte <no-reply@miroulotte.es>",
                         to: [data.email],
                         subject: "Tu código de verificación",
-                        html: `<div style="max-width:600px;margin:0 auto;background-color:#fff;padding:1.75rem;font-family:Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:1rem;line-height:1.5;color:#525252"><h1 style="font-size:1.25rem;line-height:1.4;color:#161616;margin-bottom:1.25rem">Tu código de verificación</h1><p style="margin:0 0 1rem">Hola ${data.username},</p><p style="margin:0 0 1rem">Has solicitado un código de verificación para acceder a tu cuenta en <strong>Mi Roulotte</strong>.</p><p style="margin:0 0 1.5rem">Introduce este código en la aplicación para completar el inicio de sesión:</p><div style="display:flex;flex-direction:row;width:100%;gap:.5rem;align-items:center;justify-content:center;margin:0 0 1.5rem;font-size:1.25rem;font-weight:500;font-family:serif"><div style="display:inline-block;align-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[0]}</div><div style="display:inline-block;align-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[1]}</div><div style="display:inline-block;align-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[2]}</div><div style="display:inline-block;align-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[3]}</div><div style="display:inline-block;align-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[4]}</div><div style="display:inline-block;align-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[5]}</div></div><p style="margin:0 0 1rem">Este código caduca en <strong>7 minutos</strong>. Si no has solicitado este código, puedes ignorar este mensaje.</p><p style="font-size:.75rem;color:#a8a8a8;line-height:1.333;margin:2rem 0 0 0">Este correo se ha enviado automáticamente desde <a href="${import.meta.env.SITE}" rel="noopener noreferrer" style="color:currentColor;text-decoration:underline">Mi Roulotte</a>. Por tu seguridad, nunca compartas este código con nadie.</p></div>`
+                        html: `<div style="max-width:600px;margin:0 auto;background-color:#fff;padding:1.75rem;font-family:Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:1rem;line-height:1.5;color:#525252"><h1 style="font-size:1.25rem;line-height:1.4;color:#161616;margin-bottom:1.25rem">Tu código de verificación</h1><p style="margin:0 0 1rem">Hola ${data.username},</p><p style="margin:0 0 1rem">Has solicitado un código de verificación para acceder a tu cuenta en <strong>Mi Roulotte</strong>.</p><p style="margin:0 0 1.5rem">Introduce este código en la aplicación para completar el inicio de sesión:</p><div style="display:flex;flex-direction:row;width:100%;gap:.5rem;align-items:center;justify-content:center;margin:0 0 1.5rem;font-size:1.25rem;font-weight:500;font-family:serif"><div style="display:inline-flex;align-items:center;justify-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[0]}</div><div style="display:inline-flex;align-items:center;justify-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[1]}</div><div style="display:inline-flex;align-items:center;justify-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[2]}</div><div style="display:inline-flex;align-items:center;justify-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[3]}</div><div style="display:inline-flex;align-items:center;justify-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[4]}</div><div style="display:inline-flex;align-items:center;justify-content:center;padding:0 1rem;height:3.5rem;background-color:#f4f4f4">${otpData.code[5]}</div></div><p style="margin:0 0 1rem">Este código caduca en <strong>7 minutos</strong>. Si no has solicitado este código, puedes ignorar este mensaje.</p><p style="font-size:.75rem;color:#a8a8a8;line-height:1.333;margin:2rem 0 0 0">Este correo se ha enviado automáticamente desde <a href="${ctx.locals.runtime.env.SITE ?? import.meta.env.SITE}" rel="noopener noreferrer" style="color:currentColor;text-decoration:underline">Mi Roulotte</a>. Por tu seguridad, nunca compartas este código con nadie.</p></div>`
                     });
                 }
                 throw new ActionError({
@@ -134,7 +133,7 @@ export const loginUser = defineAction({
                 username: data.username,
                 role: data.role
             },
-            import.meta.env.AUTH_SECRET,
+            ctx.locals.runtime.env.AUTH_SECRET,
             60 * 15 // 15 min
         );
 
@@ -145,7 +144,7 @@ export const loginUser = defineAction({
                 uid: sessionData.uid,
                 refresh: sessionData.refresh
             },
-            import.meta.env.REFRESH_AUTH_SECRET,
+            ctx.locals.runtime.env.REFRESH_AUTH_SECRET,
             60 * 60 * 24 * 30 // 30 days
         );
 

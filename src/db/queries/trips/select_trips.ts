@@ -9,7 +9,7 @@ export const selectTrips = (
         fields?: string[];
         page?: number;
         limit?: number;
-        relative?: boolean;
+        site?: string | null;
     }
 ) => {
     const columns = {
@@ -19,9 +19,7 @@ export const selectTrips = (
         description: TripsTable.description,
         image: TripsTable.image,
         video: TripsTable.video,
-        url: config?.relative
-            ? sql`CONCAT('/', ${TripsTable.id})`
-            : sql`CONCAT(${import.meta.env.SITE}, '/', ${TripsTable.id})`
+        url: sql`CONCAT(${config?.site ?? ""}, '/', ${TripsTable.id})`
     };
     const query = db
         .select(filterObjectColumns(columns, config?.fields))

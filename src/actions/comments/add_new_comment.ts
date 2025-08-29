@@ -92,7 +92,9 @@ export const addNewComment = defineAction({
             },
             {
                 fields,
-                relative
+                site: !relative
+                    ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                    : undefined
             }
         );
 

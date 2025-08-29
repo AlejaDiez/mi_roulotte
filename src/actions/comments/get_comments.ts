@@ -22,7 +22,9 @@ export const getComments = defineAction({
             undefined,
             {
                 fields,
-                relative
+                site: !relative
+                    ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                    : undefined
             }
         ).then((e) =>
             buildRelatedComments(

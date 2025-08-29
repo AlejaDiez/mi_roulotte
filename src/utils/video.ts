@@ -36,9 +36,9 @@ export namespace YouTube {
             `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`
         ).then<any>((res) => res.json());
 
-    export const getPlaylistVideos = async (id: string) => {
+    export const getPlaylistVideos = async (id: string, api_key: string) => {
         const response: any = await fetch(
-            `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${id}&part=snippet&maxResults=50&key=${import.meta.env.YOUTUBE_TOKEN}`
+            `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${id}&part=snippet&maxResults=50&key=${api_key}`
         ).then(async (res) => await res.json());
 
         return (response.items as any[]).map<string>(

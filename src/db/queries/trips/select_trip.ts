@@ -8,7 +8,7 @@ export const selectTrip = (
     tripId: string,
     config?: {
         fields?: string[];
-        relative?: boolean;
+        site?: string;
     }
 ) => {
     const columns = {
@@ -23,9 +23,7 @@ export const selectTrip = (
         content: TripsTable.content,
         keywords: TripsTable.keywords,
         published: TripsTable.published,
-        url: config?.relative
-            ? sql`CONCAT('/', ${TripsTable.id})`
-            : sql`CONCAT(${import.meta.env.SITE}, '/', ${TripsTable.id})`,
+        url: sql`CONCAT(${config?.site ?? ""}, '/', ${TripsTable.id})`,
         allowComments: TripsTable.allowComments,
         createdAt: TripsTable.createdAt,
         updatedAt: TripsTable.updatedAt

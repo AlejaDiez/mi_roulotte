@@ -7,26 +7,3 @@ declare namespace App {
         role: string;
     }
 }
-
-interface ImportMetaEnv {
-    // cloudflare
-    CLOUDFLARE_ACCOUNT_ID: string;
-    D1_TOKEN: string;
-    R2_TOKEN: string;
-
-    // google
-    YOUTUBE_TOKEN: string;
-
-    // resend
-    EMAIL_TOKEN: string;
-
-    // mi roulotte
-    UNSUBSCRIBE_SECRET: string;
-    VERIFY_EMAIL_SECRET: string;
-    AUTH_SECRET: string;
-    REFRESH_AUTH_SECRET: string;
-}
-
-interface ImportMeta {
-    readonly env: ImportMetaEnv;
-}

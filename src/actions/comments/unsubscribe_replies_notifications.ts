@@ -20,7 +20,7 @@ export const unsubscribeRepliesNotifications = defineAction({
         // Validate token
         const data = await validateToken(
             token,
-            import.meta.env.UNSUBSCRIBE_SECRET
+            ctx.locals.runtime.env.UNSUBSCRIBE_SECRET
         );
 
         if (!data) {

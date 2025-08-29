@@ -28,7 +28,9 @@ export const getTripById = defineAction({
         const db = drizzle(ctx.locals.runtime.env.DB);
         const data: DataType = await selectTrip(db, tripId, {
             fields,
-            relative
+            site: !relative
+                ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                : undefined
         });
 
         // Trip exists???
@@ -47,7 +49,9 @@ export const getTripById = defineAction({
 
             stagesData = await selectStages(db, tripId, {
                 fields: subfields,
-                relative
+                site: !relative
+                    ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                    : undefined
             }).then((e) => e.map(({ _, ...e }: any) => e));
         }
 
@@ -59,7 +63,9 @@ export const getTripById = defineAction({
 
             commentsData = await selectComments(db, tripId, null, {
                 fields: subfields,
-                relative
+                site: !relative
+                    ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                    : undefined
             }).then((e) =>
                 buildRelatedComments(
                     e,

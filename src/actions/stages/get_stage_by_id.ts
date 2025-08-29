@@ -61,7 +61,9 @@ export const getStageById = defineAction({
 
             commentsData = await selectComments(db, tripId, stageId, {
                 fields: subfields,
-                relative
+                site: !relative
+                    ? (ctx.locals.runtime.env.SITE ?? import.meta.env.SITE)
+                    : undefined
             }).then((e) =>
                 buildRelatedComments(
                     e,

@@ -19,13 +19,17 @@ const youtubeId = YouTube.getId(
     "https://www.youtube.com/playlist?list=PLMZqxy7ks8derwsZceqoWvkNhZDsp8TF9"
 );
 const videos: string[] = youtubeId
-    ? await YouTube.getPlaylistVideos(youtubeId)
+    ? await YouTube.getPlaylistVideos(
+          youtubeId,
+          Astro.locals.runtime.env.YOUTUBE_TOKEN
+      )
     : [];
 ---
 
 <Layout
     title="Mi Roulotte"
     description="Disfruta de los emocionantes viajes en familia que hemos realizado con nuestra caravana. Explora nuevos lugares, crea recuerdos inolvidables y vive la libertad en la carretera. ¡Nos vemos en la carretera!"
+    image=`${Astro.locals.runtime.env.SITE ?? import.meta.env.SITE}/icons/1024.png`
     keywords={[
         "mi roulotte",
         "roulotte",

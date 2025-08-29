@@ -24,7 +24,7 @@ export const refreshToken = defineAction({
         const db = drizzle(ctx.locals.runtime.env.DB);
         const data = await validateToken(
             token,
-            import.meta.env.REFRESH_AUTH_SECRET
+            ctx.locals.runtime.env.REFRESH_AUTH_SECRET
         );
 
         // Validate token
@@ -73,7 +73,7 @@ export const refreshToken = defineAction({
                 username: userData.username,
                 role: userData.role
             },
-            import.meta.env.AUTH_SECRET,
+            ctx.locals.runtime.env.AUTH_SECRET,
             60 * 15 // 15 min
         );
 
@@ -84,7 +84,7 @@ export const refreshToken = defineAction({
                 uid: sessionData.uid,
                 refresh: sessionData.refresh
             },
-            import.meta.env.REFRESH_AUTH_SECRET,
+            ctx.locals.runtime.env.REFRESH_AUTH_SECRET,
             60 * 60 * 24 * 30 // 30 days
         );
 

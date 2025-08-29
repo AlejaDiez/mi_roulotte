@@ -10,7 +10,7 @@ export const selectStages = (
         fields?: string[];
         page?: number;
         limit?: number;
-        relative?: boolean;
+        site?: string;
     }
 ) => {
     const columns = {
@@ -19,9 +19,7 @@ export const selectStages = (
         title: StagesTable.title,
         description: StagesTable.description,
         image: StagesTable.image,
-        url: config?.relative
-            ? sql`CONCAT('/', ${StagesTable.tripId}, '/', ${StagesTable.id})`
-            : sql`CONCAT(${import.meta.env.SITE}, '/', ${StagesTable.tripId}, '/', ${StagesTable.id})`
+        url: sql`CONCAT(${config?.site ?? ""}, '/', ${StagesTable.tripId}, '/', ${StagesTable.id})`
     };
     const query = db
         .select(filterObjectColumns(columns, config?.fields))

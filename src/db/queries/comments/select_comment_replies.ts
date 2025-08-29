@@ -8,7 +8,7 @@ export const selectCommentReplies = (
     parentCommentId: string,
     config?: {
         fields?: string[];
-        relative?: boolean;
+        site?: string;
     }
 ) => {
     const columns = {
@@ -17,21 +17,13 @@ export const selectCommentReplies = (
         stageId: CommentsTable.stageId,
         username: CommentsTable.username,
         content: CommentsTable.content,
-        url: config?.relative
-            ? sql`
-                    CASE 
-                        WHEN ${CommentsTable.stageId} IS NULL THEN 
-                            CONCAT('/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
-                        ELSE 
-                            CONCAT('/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
-                    END`
-            : sql`
-                    CASE 
-                        WHEN ${CommentsTable.stageId} IS NULL THEN 
-                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
-                        ELSE 
-                            CONCAT(${import.meta.env.SITE}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
-                    END`,
+        url: sql`
+            CASE 
+                WHEN ${CommentsTable.stageId} IS NULL THEN 
+                    CONCAT(${config?.site ?? ""}, '/', ${CommentsTable.tripId}, '/#', ${CommentsTable.id})
+                ELSE 
+                    CONCAT(${config?.site ?? ""}, '/', ${CommentsTable.tripId}, '/', ${CommentsTable.stageId}, '/#', ${CommentsTable.id})
+            END`,
         createdAt: CommentsTable.createdAt,
         updatedAt: CommentsTable.updatedAt
     };

@@ -1,18 +1,17 @@
 import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import path from "node:path";
-
-const style = /css/i;
-const images = /\.(png|jpe?g|webp|svg|gif|tiff?|bmp|ico)$/i;
-const audios = /\.(mp3|wav|ogg|flac|aac|m4a|wma)$/i;
-const videos = /\.(mp4|webm|mov|avi|mkv|flv|wmv)$/i;
 
 export default defineConfig({
     site: "https://miroulotte.es",
     trailingSlash: "ignore",
     output: "server",
-    adapter: cloudflare({ imageService: "cloudflare" }),
+    adapter: cloudflare({
+        platformProxy: {
+            enabled: true,
+            configPath: "./wrangler.jsonc"
+        }
+    }),
     outDir: "build",
     compressHTML: true,
     scopedStyleStrategy: "where",
@@ -20,22 +19,7 @@ export default defineConfig({
         build: {
             assetsDir: "../assets",
             cssMinify: true,
-            minify: true,
-            rollupOptions: {
-                output: {
-                    assetFileNames: ({ names }) => {
-                        const ext = names[0] ? path.extname(names[0]) : "";
-
-                        if (style.test(ext)) return "styles/style.[hash].css";
-                        if (images.test(ext)) return "images/[name][extname]";
-                        if (audios.test(ext)) return "audios/[name][extname]";
-                        if (videos.test(ext)) return "videos/[name][extname]";
-                        return "[name].[hash][extname]";
-                    },
-                    chunkFileNames: "scripts/script.[hash].js",
-                    entryFileNames: "scripts/script.[hash].js"
-                }
-            }
+            minify: true
         },
         css: { transformer: "lightningcss" },
         plugins: [tailwindcss()]

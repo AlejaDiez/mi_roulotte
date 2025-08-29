@@ -9,20 +9,17 @@ import type {
 } from "astro";
 import { ActionError } from "astro:actions";
 
-const routes: URLPattern[] = [
-    new URLPattern({ pathname: "/api/comments" }),
-    new URLPattern({ pathname: "/api/comments/*" }),
-    new URLPattern({ pathname: "/api/files" }),
-    new URLPattern({ pathname: "/api/files/*" }),
-    new URLPattern({ pathname: "/api/trips" }),
-    new URLPattern({ pathname: "/api/trips/*" })
+const routes: RegExp[] = [
+    /^\/api\/comments(?:\/[\w-]*)*$/,
+    /^\/api\/files(?:\/[\w-]*)*$/,
+    /^\/api\/trips(?:\/[\w-]*)*$/
 ];
 
 export const auth: MiddlewareHandler = async (
     ctx: APIContext,
     next: MiddlewareNext
 ) => {
-    if (routes.some((url) => url.test(ctx.request.url))) {
+    if (routes.some((url) => url.test(ctx.url.pathname))) {
         const { authorization } = headers(ctx.request);
 
         // Check if the request send authorization
@@ -40,7 +37,7 @@ export const auth: MiddlewareHandler = async (
             );
         }
 
-        const data = validateToken(
+        const data = await validateToken(
             authorization.replace("Bearer ", ""),
             import.meta.env.AUTH_SECRET
         );

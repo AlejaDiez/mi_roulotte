@@ -18,7 +18,10 @@ export const verifyEmail = defineAction({
         const db = drizzle(ctx.locals.runtime.env.DB);
 
         // Validate token
-        const data = validateToken(token, import.meta.env.VERIFY_EMAIL_SECRET);
+        const data = await validateToken(
+            token,
+            import.meta.env.VERIFY_EMAIL_SECRET
+        );
 
         if (!data) {
             throw new ActionError({

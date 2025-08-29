@@ -60,3 +60,16 @@ export const streamToArrayBuffer = async (
     }
     return result.buffer;
 };
+
+export const arrayBufferToStream = (
+    buffer: ArrayBuffer
+): ReadableStream<Uint8Array> => {
+    const uint8 = new Uint8Array(buffer);
+
+    return new ReadableStream({
+        start(controller) {
+            controller.enqueue(uint8);
+            controller.close();
+        }
+    });
+};

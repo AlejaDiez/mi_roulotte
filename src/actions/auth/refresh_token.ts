@@ -22,7 +22,10 @@ export const refreshToken = defineAction({
     handler: async (input, ctx): Promise<UserCredentials> => {
         const { token } = input;
         const db = drizzle(ctx.locals.runtime.env.DB);
-        const data = validateToken(token, import.meta.env.REFRESH_AUTH_SECRET);
+        const data = await validateToken(
+            token,
+            import.meta.env.REFRESH_AUTH_SECRET
+        );
 
         // Validate token
         if (!data) {
@@ -64,7 +67,7 @@ export const refreshToken = defineAction({
         const userData: DataType = (await selectUser(db, sessionData.uid, {
             fields: ["id", "username", "role"]
         }))!;
-        const newToken = generateToken(
+        const newToken = await generateToken(
             {
                 id: userData.id,
                 username: userData.username,
@@ -75,7 +78,7 @@ export const refreshToken = defineAction({
         );
 
         // Create refresh token
-        const newRefreshToken = generateToken(
+        const newRefreshToken = await generateToken(
             {
                 id: sessionData.id,
                 uid: sessionData.uid,

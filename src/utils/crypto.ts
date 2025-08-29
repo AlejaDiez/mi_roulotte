@@ -1,21 +1,29 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import bcryptjs from "bcryptjs";
+import { jwtVerify, SignJWT } from "jose";
 
-export const generateToken = (
+export const generateToken = async (
     payload: Record<string, any>,
     key: string,
-    expiresIn?: number
-) =>
-    jwt.sign(payload, key, {
-        expiresIn
-    });
+    expiresIn: number
+): Promise<string> => {
+    const now = Math.floor(Date.now() / 1000);
+    const secret = new TextEncoder().encode(key);
 
-export const validateToken = (
+    return await new SignJWT(payload)
+        .setProtectedHeader({ alg: "HS256" })
+        .setIssuedAt()
+        .setExpirationTime(now + expiresIn)
+        .sign(secret);
+};
+
+export const validateToken = async (
     token: string,
     key: string
-): Record<string, any> | null => {
+): Promise<Record<string, any> | null> => {
+    const secret = new TextEncoder().encode(key);
+
     try {
-        return jwt.verify(token, key) as Record<string, any>;
+        return (await jwtVerify(token, secret)).payload;
     } catch {
         return null;
     }
@@ -31,7 +39,13 @@ export const generateHash = (length: number = 6): string => {
     ).join("");
 };
 
-export const hash = async (data: string) => await bcrypt.hash(data, 12);
+export const hash = async (data: string): Promise<string> => {
+    return await bcryptjs.hash(data, 12);
+};
 
-export const compareHash = async (data: string, encrypted: string) =>
-    await bcrypt.compare(data, encrypted);
+export const compareHash = async (
+    data: string,
+    encrypted: string
+): Promise<boolean> => {
+    return await bcryptjs.compare(data, encrypted);
+};

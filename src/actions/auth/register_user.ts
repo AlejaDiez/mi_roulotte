@@ -68,7 +68,7 @@ export const registerUser = defineAction({
         // // Send verification email
         // if (data) {
         //     // Generate verification token
-        //     const token = generateToken(
+        //     const token = await generateToken(
         //         { id: data.id },
         //         import.meta.env.VERIFY_EMAIL_SECRET,
         //         60 * 30 // 30 mins

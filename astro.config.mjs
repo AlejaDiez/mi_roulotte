@@ -10,7 +10,8 @@ export default defineConfig({
         platformProxy: {
             enabled: true,
             configPath: "./wrangler.jsonc"
-        }
+        },
+        imageService: "cloudflare"
     }),
     outDir: "build",
     compressHTML: true,

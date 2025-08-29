@@ -1,6 +1,6 @@
 {
     "name": "mi-roulotte",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "A website dedicated to sharing my travel experiences with my family and our caravan.",
     "homepage": "https://miroulotte.es",
     "repository": {
@@ -15,7 +15,7 @@
         "dev": "astro dev",
         "build": "astro build",
         "preview": "astro build && wrangler dev",
-        "deploy": "wrangler deploy",
+        "deploy": "astro build && wrangler deploy",
         "cf-typegen": "wrangler types",
         "db:generate": "drizzle-kit generate --name=migration",
         "db:migrate:local": "wrangler d1 migrations apply mi-roulotte-db --local",

@@ -4,6 +4,9 @@
     "compatibility_date": "2025-06-01",
     "compatibility_flags": ["nodejs_compat"],
     "main": "./build/_worker.js/index.js",
+    "observability": {
+        "enabled": true
+    },
     "assets": {
         "binding": "ASSETS",
         "directory": "./build"
@@ -25,7 +28,7 @@
     "images": {
         "binding": "IMAGES"
     },
-    "observability": {
-        "enabled": true
+    "vars": {
+        "SITE": "https://mi-roulotte.miroulotte.workers.dev"
     }
 }

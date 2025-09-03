@@ -175,7 +175,7 @@
         @apply cursor-pointer appearance-none outline-0 select-none;
 
         &::before {
-            content: "\ea38";
+            content: "\ea70";
             @apply absolute top-1/2 left-1/2;
             @apply text-primary-foreground icon-alt;
             @apply opacity-0;

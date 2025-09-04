@@ -1,9 +1,9 @@
 ---
-import Image from '@components/ui/Image.astro';
-import Video from '@components/ui/Video.astro';
+import Image from "@components/ui/Image.astro";
+import Video from "@components/ui/Video.astro";
 
 export interface Props {
-    content: object | object[];
+    content: any | any[];
 }
 
 const { content } = Astro.props as any;
@@ -15,99 +15,65 @@ const { content } = Astro.props as any;
             return content.map((content) => <Astro.self {content} />);
         }
 
-        const { type, attributes = {}, children = [], data = "" } = content as any;
+        const { type, style = {}, data = [], ...params } = content as any;
 
         switch (type) {
-            case "title":
-                return <h3
-                    class="text-headline text-left"
-                    class:list={{
-                        [`align-${attributes.align}`]: !!attributes.align
-                    }}>
-                        <Astro.self content={children} />
-                    </h3>;
-            case "paragraph":
-                return <p
-                    class="text-normal text-justify"
-                    class:list={{
-                        [`align-${attributes.align}`]: !!attributes.align  
-                    }}>
-                        <Astro.self content={children} />
-                    </p>; 
-            case "list":
-                return <ul
-                    class="list-disc"
-                    class:list={{
-                        [`align-${attributes.align}`]: !!attributes.align  
-                    }}>
-                        <Astro.self content={children} />
-                    </ul>;
-            case "list-item":
-                return <li
-                    class="text-normal text-left ml-8"
-                    class:list={{
-                        [`align-${attributes.align}`]: !!attributes.align  
-                    }}>
-                        <Astro.self content={children} />
-                    </li>;  
-            case "text":
-                if (Object.keys(attributes).length > 0) {
-                    return <span
+            case "heading":
+                return (
+                    <h3
+                        class="text-headline text-left"
                         class:list={{
-                            "bold": attributes.bold,
-                            "italic": attributes.italic,
-                            "underline": attributes.underline,
-                            "strikethrough": attributes.strikethrough,
-                            [`color-${attributes.color}`]: !!attributes.color
+                            [`align-${style.align}`]: !!style.align
                         }}>
-                            {data}
-                        </span>;
-                }  else {
-                    return data;
-                }
-            case "link":
-                return <a
-                    href={attributes.url}
-                    target={attributes.self ? "_self" : "_blank"}
-                    class="link"
-                    class:list={{
-                        "bold": attributes.bold,
-                        "italic": attributes.italic,
-                        "underline": attributes.underline,
-                        "strikethrough": attributes.strikethrough,
-                        [`color-${attributes.color}`]: !!attributes.color
-                    }}>
-                        {data}
-                    </a>;
-            case "image":
-                return <Image
-                    url={attributes.url}
-                    caption={attributes.caption}
-                    class:list={{
-                        [`col-${attributes.cols}`]: !!attributes.cols,
-                        [`row-${attributes.rows}`]: !!attributes.rows,
-                        [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
-                    }} />;
-            case "video":
-                return <Video
-                    url={attributes.url}
-                    title={attributes.title}
-                    thumbnail={attributes.thumbnail}
-                    class:list={{
-                        [`col-${attributes.cols}`]: !!attributes.cols,
-                        [`row-${attributes.rows}`]: !!attributes.rows,
-                        [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
-                    }} />;
-            case "mosaic":
-                return <div 
-                    class="mosaic"
-                    class:list={{
-                        [`size-${attributes.size}`]: !!attributes.size
-                    }}>
-                        <Astro.self content={children} />
-                    </div>;
+                        <Astro.self content={data} />
+                    </h3>
+                );
+            case "paragraph":
+                return (
+                    <p
+                        class="text-normal text-justify"
+                        class:list={{
+                            [`align-${style.align}`]: !!style.align
+                        }}>
+                        <Astro.self content={data} />
+                    </p>
+                );
             default:
-                return <></>;
+                if (params.text.trim() === "/n") {
+                    return <br />;
+                } else if (params.url) {
+                    return (
+                        <a
+                            href={params.url}
+                            target={params.self !== false ? "_self" : "_blank"}
+                            class="link"
+                            class:list={{
+                                bold: style.bold,
+                                italic: style.italic,
+                                underline: style.underline,
+                                strikethrough: style.strikethrough,
+                                [`color-${style.color}`]: !!style.color
+                            }}>
+                            {params.text}
+                        </a>
+                    );
+                } else if (params.text) {
+                    if (Object.keys(style).length > 0) {
+                        return (
+                            <span
+                                class:list={{
+                                    bold: style.bold,
+                                    italic: style.italic,
+                                    underline: style.underline,
+                                    strikethrough: style.strikethrough,
+                                    [`color-${style.color}`]: !!style.color
+                                }}>
+                                {params.text}
+                            </span>
+                        );
+                    }
+                    return params.text;
+                }
         }
     }
 }
@@ -130,8 +96,8 @@ const { content } = Astro.props as any;
     }
 
     .bold {
-        font-weight: 600;
         color: var(--color-foreground-variant);
+        font-weight: 600;
     }
 
     .italic {
@@ -151,43 +117,43 @@ const { content } = Astro.props as any;
     }
 
     .color-red {
-        color: light-dark(var(--color-red-60), var(--color-red-50));
+        color: var(--color-red);
     }
 
     .color-orange {
-        color: light-dark(var(--color-orange-60), var(--color-orange-50));
+        color: var(--color-orange);
     }
 
     .color-yellow {
-        color: light-dark(var(--color-yellow-60), var(--color-yellow-50));
+        color: var(--color-yellow);
     }
 
     .color-green {
-        color: light-dark(var(--color-green-60), var(--color-green-50));
+        color: var(--color-green);
     }
 
     .color-teal {
-        color: light-dark(var(--color-teal-60), var(--color-teal-50));
+        color: var(--color-teal);
     }
 
     .color-cyan {
-        color: light-dark(var(--color-cyan-60), var(--color-cyan-50));
+        color: var(--color-cyan);
     }
 
     .color-blue {
-        color: light-dark(var(--color-blue-60), var(--color-blue-50));
+        color: var(--color-blue);
     }
 
     .color-purple {
-        color: light-dark(var(--color-purple-60), var(--color-purple-50));
+        color: var(--color-purple);
     }
 
     .color-magenta {
-        color: light-dark(var(--color-magenta-60), var(--color-magenta-50));
+        color: var(--color-magenta);
     }
 
     .color-gray {
-        color: light-dark(var(--color-gray-60), var(--color-gray-50));
+        color: var(--color-gray);
     }
 
     .aspect-ratio-1 {
@@ -218,3 +184,63 @@ const { content } = Astro.props as any;
         aspect-ratio: 16/9;
     }
 </style>
+
+<!-- 
+case "list":
+    return <ul
+        class="list-disc"
+        class:list={{
+            [`align-${attributes.align}`]: !!attributes.align  
+        }}>
+            <Astro.self content={children} />
+        </ul>;
+case "list-item":
+    return <li
+        class="text-normal text-left ml-8"
+        class:list={{
+            [`align-${attributes.align}`]: !!attributes.align  
+        }}>
+            <Astro.self content={children} />
+        </li>;  
+    
+case "link":
+    return <a
+        href={attributes.url}
+        target={attributes.self ? "_self" : "_blank"}
+        class="link"
+        class:list={{
+            "bold": attributes.bold,
+            "italic": attributes.italic,
+            "underline": attributes.underline,
+            "strikethrough": attributes.strikethrough,
+            [`color-${attributes.color}`]: !!attributes.color
+        }}>
+            {data}
+        </a>;
+case "image":
+    return <Image
+        url={attributes.url}
+        caption={attributes.caption}
+        class:list={{
+            [`col-${attributes.cols}`]: !!attributes.cols,
+            [`row-${attributes.rows}`]: !!attributes.rows,
+            [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
+        }} />;
+case "video":
+    return <Video
+        url={attributes.url}
+        title={attributes.title}
+        thumbnail={attributes.thumbnail}
+        class:list={{
+            [`col-${attributes.cols}`]: !!attributes.cols,
+            [`row-${attributes.rows}`]: !!attributes.rows,
+            [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
+        }} />;
+case "mosaic":
+    return <div 
+        class="mosaic"
+        class:list={{
+            [`size-${attributes.size}`]: !!attributes.size
+        }}>
+            <Astro.self content={children} />
+        </div>;-->

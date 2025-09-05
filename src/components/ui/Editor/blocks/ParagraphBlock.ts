@@ -3,24 +3,8 @@ import { keymap } from "prosemirror-keymap";
 import { MarkType, Schema } from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import type { Block } from "..";
-
-type ParagraphStyle = {
-    align?: "left" | "center" | "right" | "justify";
-};
-
-type ParagraphData = {
-    text: string;
-    url?: string;
-    self?: boolean;
-    style?: {
-        bold?: boolean;
-        italic?: boolean;
-        underline?: boolean;
-        strikethrough?: boolean;
-        color?: string;
-    };
-};
+import { Toolbar } from "../toolbar";
+import { Block } from "./Block";
 
 const schema: Schema = new Schema({
     nodes: {
@@ -68,24 +52,29 @@ const schema: Schema = new Schema({
     }
 });
 
-export default class ParagraphBlock implements Block {
-    private readonly initStyle: ParagraphStyle;
-    private readonly initData: ParagraphData[];
+export class ParagraphBlock extends Block {
     private readonly controller: EditorView;
 
-    static get info() {
+    static get info(): {
+        type: string;
+        title: string;
+        icon: string;
+    } {
         return {
+            type: "paragraph",
             title: "Párrafo",
             icon: "paragraph"
         };
     }
 
-    constructor({ style = {}, data = [] }: any) {
-        this.initStyle = style;
-        this.initData = Array.isArray(data) ? data : [data];
+    get type(): string {
+        return ParagraphBlock.info.type;
+    }
+
+    constructor() {
+        super();
         this.controller = new EditorView(null, {
             state: EditorState.create({ schema }),
-            attributes: { class: "paragraph-block" },
             plugins: [
                 keymap({
                     Enter: (state, dispatch) => {
@@ -108,69 +97,163 @@ export default class ParagraphBlock implements Block {
         });
     }
 
-    destroy() {
-        this.controller.destroy();
+    render(): HTMLElement {
+        const element = this.controller.dom;
+
+        element.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            this.editor.showToolbar(this);
+        });
+        element.addEventListener("input", () => this.editor.hideToolbar());
+        return element;
     }
 
-    render() {
-        // Add data
+    load(params: { style?: any; data?: any | any[] }): void {
+        const { style = {}, data = [] } = params;
+
+        // Load style
+        this.controller.dom!.style.textAlign = style.align ?? "";
+
+        // Load data
         const doc = schema.node(
             "doc",
             null,
-            this.initData.map((item) => {
-                const marks = [];
+            (Array.isArray(data) ? data : [data]).map(
+                ({ text, url, self, style }) => {
+                    const marks = [];
 
-                if (item.style?.bold) {
-                    marks.push(schema.marks.bold.create());
+                    if (style?.bold) {
+                        marks.push(schema.marks.bold.create());
+                    }
+                    if (style?.italic) {
+                        marks.push(schema.marks.italic.create());
+                    }
+                    if (style?.underline) {
+                        marks.push(schema.marks.underline.create());
+                    }
+                    if (style?.strikethrough) {
+                        marks.push(schema.marks.strikethrough.create());
+                    }
+                    if (style?.color) {
+                        marks.push(
+                            schema.marks.color.create({
+                                color: style.color
+                            })
+                        );
+                    }
+                    if (url) {
+                        marks.push(
+                            schema.marks.link.create({
+                                url: url,
+                                self: self !== false
+                            })
+                        );
+                    }
+                    if (text.trim() === "/n") {
+                        return schema.node("hard_break");
+                    }
+                    return schema.text(text, marks);
                 }
-                if (item.style?.italic) {
-                    marks.push(schema.marks.italic.create());
-                }
-                if (item.style?.underline) {
-                    marks.push(schema.marks.underline.create());
-                }
-                if (item.style?.strikethrough) {
-                    marks.push(schema.marks.strikethrough.create());
-                }
-                if (item.style?.color) {
-                    marks.push(
-                        schema.marks.color.create({
-                            color: item.style.color
-                        })
-                    );
-                }
-                if (item.url) {
-                    marks.push(
-                        schema.marks.link.create({
-                            url: item.url,
-                            self: item.self !== false
-                        })
-                    );
-                }
-                if (item.text.trim() === "/n") {
-                    return schema.node("hard_break");
-                }
-                return schema.text(item.text, marks);
-            })
+            )
         );
-        const state = EditorState.create({ schema, doc });
 
-        this.controller.updateState(state);
-
-        // Style
-        this.controller.dom.style.textAlign = this.initStyle.align ?? "";
-
-        // Return element
-        return this.controller.dom;
+        this.controller.updateState(EditorState.create({ schema, doc }));
     }
 
-    toolbar() {
+    save(): { style?: any; data?: any | any[] } {
+        const save = (node: Node, attrs: any = {}): any[] => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                return [
+                    {
+                        text: node.textContent,
+                        ...attrs
+                    }
+                ];
+            }
+
+            // Check attributes
+            const newAttrs: any = { ...attrs };
+
+            switch (node.nodeName.toLowerCase()) {
+                case "a":
+                    newAttrs.url = (node as HTMLAnchorElement).href;
+                    newAttrs.self =
+                        (node as HTMLAnchorElement).target === "_self";
+                    break;
+                case "b":
+                    newAttrs.style = {
+                        bold: true,
+                        ...newAttrs.style
+                    };
+                    break;
+                case "i":
+                    newAttrs.style = {
+                        italic: true,
+                        ...newAttrs.style
+                    };
+                    break;
+                case "u":
+                    newAttrs.style = {
+                        underline: true,
+                        ...newAttrs.style
+                    };
+                    break;
+                case "s":
+                    newAttrs.style = {
+                        strikethrough: true,
+                        ...newAttrs.style
+                    };
+                    break;
+                case "font":
+                    newAttrs.style = {
+                        color: (node as HTMLFontElement).style.color.replace(
+                            /^var\(--color-(.+)\)$/,
+                            "$1"
+                        ),
+                        ...newAttrs.style
+                    };
+                    break;
+                case "br":
+                    return [{ text: "/n" }];
+            }
+            return Array.from(node.childNodes).flatMap((e) =>
+                save(e, newAttrs)
+            );
+        };
+
+        const nodes = Array.from(this.element!.childNodes).flatMap(save);
+        const attrs: any = {};
+
+        while (nodes.length && nodes[nodes.length - 1].text === "\n") {
+            nodes.pop();
+        }
+        if ((this.element!.style.textAlign || "justify") !== "justify") {
+            attrs.align = this.element!.style.textAlign;
+        }
+        return {
+            style: Object.keys(attrs).length > 0 ? attrs : undefined,
+            data: nodes.length === 1 ? nodes[0] : nodes
+        };
+    }
+
+    override toolbar() {
+        const selection = window.getSelection();
+        const range = selection?.getRangeAt(0);
+
+        if (
+            !range ||
+            range.toString().length === 0 ||
+            !this.element?.contains(range.commonAncestorContainer)
+        ) {
+            return null;
+        }
+
         const hasAlign = (align: string) => {
-            return (this.controller.dom.style.textAlign || "justify") === align;
+            return (this.element!.style.textAlign || "justify") === align;
         };
 
         const setAlign = (align: string) => {
-            this.controller.dom.style.textAlign = align;
+            this.element!.style.textAlign = align;
         };
 
         const hasStyle = (style: MarkType) => {
@@ -272,12 +355,14 @@ export default class ParagraphBlock implements Block {
             this.controller.focus();
         };
 
-        return {
-            children: [
+        const rect = range.getBoundingClientRect();
+
+        return new Toolbar(
+            [
                 {
                     type: "group" as const,
                     icon: () =>
-                        `text-align-${this.controller.dom.style.textAlign || "justify"}`,
+                        `text-align-${this.element!.style.textAlign || "justify"}`,
                     children: ["left", "center", "right", "justify"].map(
                         (align) => ({
                             type: "button" as const,
@@ -356,7 +441,7 @@ export default class ParagraphBlock implements Block {
                             children: [
                                 {
                                     type: "custom" as const,
-                                    render: (_: any, update: any) => {
+                                    render: (update: any) => {
                                         const div =
                                             document.createElement("div");
                                         const resetButton =
@@ -405,105 +490,12 @@ export default class ParagraphBlock implements Block {
                     ]
                 }
             ],
-            position: (element: HTMLElement) => {
-                const selection = window.getSelection();
-
-                if (!selection || selection.rangeCount === 0) return null;
-
-                const range = selection.getRangeAt(0);
-
-                if (
-                    range.toString().length === 0 ||
-                    !element.contains(range.commonAncestorContainer)
-                ) {
-                    return null;
-                }
-
-                const rect = range.getBoundingClientRect();
-
-                return rect
-                    ? { left: rect.left + rect.width / 2, top: rect.top }
-                    : null;
-            }
-        };
+            { left: rect.left + rect.width / 2, top: rect.top }
+        );
     }
 
-    data(element: HTMLElement) {
-        const save = (node: Node, attrs: any = {}): any[] => {
-            if (node.nodeType === Node.TEXT_NODE) {
-                return [
-                    {
-                        text: node.textContent,
-                        ...attrs
-                    }
-                ];
-            }
-
-            // Check attributes
-            const newAttrs: any = { ...attrs };
-
-            switch (node.nodeName.toLowerCase()) {
-                case "a":
-                    newAttrs.url = (node as HTMLAnchorElement).href;
-                    newAttrs.self =
-                        (node as HTMLAnchorElement).target === "_self";
-                    break;
-                case "b":
-                    newAttrs.style = {
-                        bold: true,
-                        ...newAttrs.style
-                    };
-                    break;
-                case "i":
-                    newAttrs.style = {
-                        italic: true,
-                        ...newAttrs.style
-                    };
-                    break;
-                case "u":
-                    newAttrs.style = {
-                        underline: true,
-                        ...newAttrs.style
-                    };
-                    break;
-                case "s":
-                    newAttrs.style = {
-                        strikethrough: true,
-                        ...newAttrs.style
-                    };
-                    break;
-                case "font":
-                    newAttrs.style = {
-                        color: (node as HTMLFontElement).style.color.replace(
-                            /^var\(--color-(.+)\)$/,
-                            "$1"
-                        ),
-                        ...newAttrs.style
-                    };
-                    break;
-                case "br":
-                    return [{ text: "/n" }];
-            }
-            return Array.from(node.childNodes).flatMap((e) =>
-                save(e, newAttrs)
-            );
-        };
-
-        const nodes = Array.from(element.childNodes).flatMap(save);
-
-        // Remove last new lines
-        while (nodes.length && nodes[nodes.length - 1].text === "\n") {
-            nodes.pop();
-        }
-        return nodes.length === 1 ? nodes[0] : nodes;
-    }
-
-    style(element: HTMLElement) {
-        const res: any = {};
-
-        if ((element.style.textAlign || "justify") !== "justify") {
-            res.align = element.style.textAlign;
-        }
-        return Object.keys(res).length > 0 ? res : undefined;
+    override destroy(): void {
+        this.controller.destroy();
+        super.destroy();
     }
 }

@@ -2,22 +2,8 @@ import { toggleMark } from "prosemirror-commands";
 import { MarkType, Schema } from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import type { Block } from "..";
-
-type HeadingStyle = {
-    align?: "left" | "center" | "right";
-};
-
-type HeadingData = {
-    text: string;
-    style?: {
-        bold?: boolean;
-        italic?: boolean;
-        underline?: boolean;
-        strikethrough?: boolean;
-        color?: string;
-    };
-};
+import { Toolbar } from "../toolbar";
+import { Block } from "./Block";
 
 const schema: Schema = new Schema({
     nodes: {
@@ -48,236 +34,83 @@ const schema: Schema = new Schema({
     }
 });
 
-export default class HeadingBlock implements Block {
-    private readonly initStyle: HeadingStyle;
-    private readonly initData: HeadingData[];
+export class HeadingBlock extends Block {
     private readonly controller: EditorView;
 
-    static get info() {
+    static get info(): {
+        type: string;
+        title: string;
+        icon: string;
+    } {
         return {
+            type: "heading",
             title: "Título",
             icon: "heading"
         };
     }
 
-    constructor({ style = {}, data = [] }: any) {
-        this.initStyle = style;
-        this.initData = Array.isArray(data) ? data : [data];
+    get type(): string {
+        return HeadingBlock.info.type;
+    }
+
+    constructor() {
+        super();
         this.controller = new EditorView(null, {
-            state: EditorState.create({ schema }),
-            attributes: { class: "heading-block" }
+            state: EditorState.create({ schema })
         });
     }
 
-    destroy() {
-        this.controller.destroy();
+    render(): HTMLElement {
+        const element = this.controller.dom;
+
+        element.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            this.editor.showToolbar(this);
+        });
+        element.addEventListener("input", () => this.editor.hideToolbar());
+        return element;
     }
 
-    render() {
-        // Add data
+    load(params: { style?: any; data?: any | any[] }): void {
+        const { style = {}, data = [] } = params;
+
+        // Load style
+        this.controller.dom.style.textAlign = style.align ?? "";
+
+        // Load data
         const doc = schema.node(
             "doc",
             null,
-            this.initData.map((item) => {
+            (Array.isArray(data) ? data : [data]).map(({ text, style }) => {
                 const marks = [];
 
-                if (item.style?.bold) {
+                if (style?.bold) {
                     marks.push(schema.marks.bold.create());
                 }
-                if (item.style?.italic) {
+                if (style?.italic) {
                     marks.push(schema.marks.italic.create());
                 }
-                if (item.style?.underline) {
+                if (style?.underline) {
                     marks.push(schema.marks.underline.create());
                 }
-                if (item.style?.strikethrough) {
+                if (style?.strikethrough) {
                     marks.push(schema.marks.strikethrough.create());
                 }
-                if (item.style?.color) {
+                if (style?.color) {
                     marks.push(
                         schema.marks.color.create({
-                            color: item.style.color
+                            color: style.color
                         })
                     );
                 }
-                return schema.text(item.text, marks);
+                return schema.text(text, marks);
             })
         );
-        const state = EditorState.create({ schema, doc });
 
-        this.controller.updateState(state);
-
-        // Style
-        this.controller.dom.style.textAlign = this.initStyle.align ?? "";
-
-        // Return element
-        return this.controller.dom;
+        this.controller.updateState(EditorState.create({ schema, doc }));
     }
 
-    toolbar() {
-        const hasAlign = (align: string) => {
-            return (this.controller.dom.style.textAlign || "justify") === align;
-        };
-
-        const setAlign = (align: string) => {
-            this.controller.dom.style.textAlign = align;
-        };
-
-        const hasStyle = (style: MarkType) => {
-            const { from, $from, to, empty } = this.controller.state.selection;
-
-            return empty
-                ? !!style.isInSet(
-                      this.controller.state.storedMarks || $from.marks()
-                  )
-                : this.controller.state.doc.rangeHasMark(from, to, style);
-        };
-
-        const toggleStyle = (style: MarkType) => {
-            toggleMark(style)(this.controller.state, this.controller.dispatch);
-            this.controller.focus();
-        };
-
-        const applyMark = (mark: MarkType, attrs: Record<string, any>) => {
-            const { from, to } = this.controller.state.selection;
-
-            this.controller.dispatch(
-                this.controller.state.tr.addMark(from, to, mark.create(attrs))
-            );
-            this.controller.focus();
-        };
-
-        const removeMark = (mark: MarkType) => {
-            const { from, to } = this.controller.state.selection;
-
-            this.controller.dispatch(
-                this.controller.state.tr.removeMark(from, to, mark)
-            );
-            this.controller.focus();
-        };
-
-        const toggleColor = (color: string) => {
-            applyMark(schema.marks.color, { color });
-        };
-
-        const resetColor = () => {
-            removeMark(schema.marks.color);
-        };
-
-        return {
-            children: [
-                {
-                    type: "group" as const,
-                    icon: () =>
-                        `text-align-${this.controller.dom.style.textAlign || "justify"}`,
-                    children: ["left", "center", "right", "justify"].map(
-                        (align) => ({
-                            type: "button" as const,
-                            label: align,
-                            icon: `text-align-${align}`,
-                            variant: () => (hasAlign(align) ? "accent" : null),
-                            onClick: () => setAlign(align)
-                        })
-                    )
-                },
-                { type: "separator" as const },
-                {
-                    type: "button" as const,
-                    icon: "text-italic",
-                    variant: () =>
-                        hasStyle(schema.marks.italic) ? "accent" : null,
-                    onClick: () => toggleStyle(schema.marks.italic)
-                },
-                {
-                    type: "button" as const,
-                    icon: "text-underline",
-                    variant: () =>
-                        hasStyle(schema.marks.underline) ? "accent" : null,
-                    onClick: () => toggleStyle(schema.marks.underline)
-                },
-                {
-                    type: "button" as const,
-                    icon: "text-strikethrough",
-                    variant: () =>
-                        hasStyle(schema.marks.strikethrough) ? "accent" : null,
-                    onClick: () => toggleStyle(schema.marks.strikethrough)
-                },
-                {
-                    type: "group" as const,
-                    icon: "text-color",
-                    variant: () =>
-                        hasStyle(schema.marks.color) ? "accent" : null,
-                    children: [
-                        {
-                            type: "custom" as const,
-                            render: (_: any, update: any) => {
-                                const div = document.createElement("div");
-                                const resetButton =
-                                    document.createElement("button");
-
-                                [
-                                    "red",
-                                    "orange",
-                                    "yellow",
-                                    "green",
-                                    "teal",
-                                    "cyan",
-                                    "blue",
-                                    "purple",
-                                    "magenta",
-                                    "gray"
-                                ].forEach((e) => {
-                                    const button =
-                                        document.createElement("button");
-                                    button.style.backgroundColor = `var(--color-${e})`;
-                                    button.onclick = () => {
-                                        toggleColor(e);
-                                        update();
-                                    };
-                                    div.appendChild(button);
-                                });
-
-                                resetButton.style.background = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><line x1='32' y1='32' x2='0' y2='0' stroke='red' stroke-width='2'/></svg>") no-repeat center/cover`;
-                                resetButton.style.border =
-                                    "1px solid var(--color-foreground)";
-                                resetButton.onclick = () => {
-                                    resetColor();
-                                    update();
-                                    update();
-                                };
-                                div.appendChild(resetButton);
-
-                                div.classList.add("color-palette");
-                                return div;
-                            }
-                        }
-                    ]
-                }
-            ],
-            position: (element: HTMLElement) => {
-                const selection = window.getSelection();
-
-                if (!selection || selection.rangeCount === 0) return null;
-
-                const range = selection.getRangeAt(0);
-
-                if (
-                    range.toString().length === 0 ||
-                    !element.contains(range.commonAncestorContainer)
-                ) {
-                    return null;
-                }
-
-                const rect = range.getBoundingClientRect();
-
-                return rect
-                    ? { left: rect.left + rect.width / 2, top: rect.top }
-                    : null;
-            }
-        };
-    }
-
-    data(element: HTMLElement) {
+    save(): { style?: any; data?: any | any[] } {
         const save = (node: Node, attrs: any = {}): any[] => {
             if (node.nodeType === Node.TEXT_NODE) {
                 return [
@@ -331,17 +164,178 @@ export default class HeadingBlock implements Block {
             );
         };
 
-        const nodes = Array.from(element.childNodes).flatMap(save);
+        const nodes = Array.from(this.controller.dom.childNodes).flatMap(save);
+        const attrs: any = {};
 
-        return nodes.length === 1 ? nodes[0] : nodes;
+        if ((this.controller.dom.style.textAlign || "left") !== "left") {
+            attrs.align = this.controller.dom.style.textAlign;
+        }
+        return {
+            style: Object.keys(attrs).length > 0 ? attrs : undefined,
+            data: nodes.length === 1 ? nodes[0] : nodes
+        };
     }
 
-    style(element: HTMLElement) {
-        const res: any = {};
+    override toolbar() {
+        const selection = window.getSelection();
+        const range = selection?.getRangeAt(0);
 
-        if ((element.style.textAlign || "left") !== "left") {
-            res.align = element.style.textAlign;
+        if (
+            !range ||
+            range.toString().length === 0 ||
+            !this.element?.contains(range.commonAncestorContainer)
+        ) {
+            return null;
         }
-        return Object.keys(res).length > 0 ? res : undefined;
+
+        const hasAlign = (align: string) => {
+            return (this.controller.dom.style.textAlign || "left") === align;
+        };
+
+        const setAlign = (align: string) => {
+            this.controller.dom.style.textAlign = align;
+        };
+
+        const hasStyle = (style: MarkType) => {
+            const { from, $from, to, empty } = this.controller.state.selection;
+
+            return empty
+                ? !!style.isInSet(
+                      this.controller.state.storedMarks || $from.marks()
+                  )
+                : this.controller.state.doc.rangeHasMark(from, to, style);
+        };
+
+        const toggleStyle = (style: MarkType) => {
+            toggleMark(style)(this.controller.state, this.controller.dispatch);
+            this.controller.focus();
+        };
+
+        const applyMark = (mark: MarkType, attrs: Record<string, any>) => {
+            const { from, to } = this.controller.state.selection;
+
+            this.controller.dispatch(
+                this.controller.state.tr.addMark(from, to, mark.create(attrs))
+            );
+            this.controller.focus();
+        };
+
+        const removeMark = (mark: MarkType) => {
+            const { from, to } = this.controller.state.selection;
+
+            this.controller.dispatch(
+                this.controller.state.tr.removeMark(from, to, mark)
+            );
+            this.controller.focus();
+        };
+
+        const toggleColor = (color: string) => {
+            applyMark(schema.marks.color, { color });
+        };
+
+        const resetColor = () => {
+            removeMark(schema.marks.color);
+        };
+
+        const rect = range.getBoundingClientRect();
+
+        return new Toolbar(
+            [
+                {
+                    type: "group" as const,
+                    icon: () =>
+                        `text-align-${this.controller.dom.style.textAlign || "left"}`,
+                    children: ["left", "center", "right"].map((align) => ({
+                        type: "button" as const,
+                        label: align,
+                        icon: `text-align-${align}`,
+                        variant: () => (hasAlign(align) ? "accent" : null),
+                        onClick: () => setAlign(align)
+                    }))
+                },
+                { type: "separator" as const },
+                {
+                    type: "button" as const,
+                    icon: "text-italic",
+                    variant: () =>
+                        hasStyle(schema.marks.italic) ? "accent" : null,
+                    onClick: () => toggleStyle(schema.marks.italic)
+                },
+                {
+                    type: "button" as const,
+                    icon: "text-underline",
+                    variant: () =>
+                        hasStyle(schema.marks.underline) ? "accent" : null,
+                    onClick: () => toggleStyle(schema.marks.underline)
+                },
+                {
+                    type: "button" as const,
+                    icon: "text-strikethrough",
+                    variant: () =>
+                        hasStyle(schema.marks.strikethrough) ? "accent" : null,
+                    onClick: () => toggleStyle(schema.marks.strikethrough)
+                },
+                {
+                    type: "group" as const,
+                    icon: "text-color",
+                    variant: () =>
+                        hasStyle(schema.marks.color) ? "accent" : null,
+                    children: [
+                        {
+                            type: "custom" as const,
+                            render: (update: any) => {
+                                const div = document.createElement("div");
+                                const resetButton =
+                                    document.createElement("button");
+
+                                [
+                                    "red",
+                                    "orange",
+                                    "yellow",
+                                    "green",
+                                    "teal",
+                                    "cyan",
+                                    "blue",
+                                    "purple",
+                                    "magenta",
+                                    "gray"
+                                ].forEach((e) => {
+                                    const button =
+                                        document.createElement("button");
+                                    button.style.backgroundColor = `var(--color-${e})`;
+                                    button.onclick = () => {
+                                        toggleColor(e);
+                                        update();
+                                    };
+                                    div.appendChild(button);
+                                });
+
+                                resetButton.style.background = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><line x1='32' y1='32' x2='0' y2='0' stroke='red' stroke-width='2'/></svg>") no-repeat center/cover`;
+                                resetButton.style.border =
+                                    "1px solid var(--color-foreground)";
+                                resetButton.onclick = () => {
+                                    resetColor();
+                                    update();
+                                    update();
+                                };
+                                div.appendChild(resetButton);
+
+                                div.classList.add("color-palette");
+                                return div;
+                            }
+                        }
+                    ]
+                }
+            ],
+            {
+                left: rect.left + rect.width / 2,
+                top: rect.top
+            }
+        );
+    }
+
+    override destroy(): void {
+        this.controller.destroy();
+        super.destroy();
     }
 }

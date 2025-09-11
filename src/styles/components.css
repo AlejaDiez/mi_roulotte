@@ -11,11 +11,13 @@
             @apply icon text-current;
         }
 
-        &:has(i:first-child) {
+        &:has(i:first-child),
+        &:has(input[type="hidden"]:first-child) {
             @apply pl-4.5;
         }
 
-        &:has(i:last-child) {
+        &:has(i:last-child),
+        &:has(input[type="hidden"]:last-child) {
             @apply pr-4.5;
         }
 

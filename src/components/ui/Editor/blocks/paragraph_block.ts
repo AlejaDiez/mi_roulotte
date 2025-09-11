@@ -4,7 +4,7 @@ import { MarkType, Schema } from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { Toolbar } from "../toolbar";
-import { Block } from "./Block";
+import { Block } from "./block";
 
 const schema: Schema = new Schema({
     nodes: {
@@ -363,15 +363,18 @@ export class ParagraphBlock extends Block {
                     type: "group" as const,
                     icon: () =>
                         `text-align-${this.element!.style.textAlign || "justify"}`,
-                    children: ["left", "center", "right", "justify"].map(
-                        (align) => ({
-                            type: "button" as const,
-                            label: align,
-                            icon: `text-align-${align}`,
-                            variant: () => (hasAlign(align) ? "accent" : null),
-                            onClick: () => setAlign(align)
-                        })
-                    )
+                    children: [
+                        ["left", "Izquierda"],
+                        ["center", "Centrado"],
+                        ["right", "Derecha"],
+                        ["justify", "Justificado"]
+                    ].map(([align, label]) => ({
+                        type: "button" as const,
+                        label,
+                        icon: `text-align-${align}`,
+                        variant: () => (hasAlign(align) ? "accent" : null),
+                        onClick: () => setAlign(align)
+                    }))
                 },
                 { type: "separator" as const },
                 {

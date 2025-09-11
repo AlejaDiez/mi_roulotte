@@ -1,20 +1,20 @@
-<div class="flex w-full flex-row items-center justify-end gap-2">
-    <button class="load button button-fill-muted mr-auto">
-        <i class="ibm-launch"></i>
-    </button>
-    <button class="copy button button-fill-muted">
-        <i class="ibm-copy"></i>
-    </button>
-    <button class="add-block button button-fill-primary">
-        <i class="ibm-add"></i>
-        <span>Añadir un bloque</span>
-    </button>
-    <button class="save button button-fill-accent">
-        <i class="ibm-save"></i>
-        <span>Guardar</span>
-    </button>
-</div>
-<block-editor class="editor h-auto w-full"></block-editor>
+---
+import type { BaseProps } from "@utils/props";
+
+export interface Props extends BaseProps {
+    value?: any[];
+}
+
+const { value, id, style, class: cls } = Astro.props;
+---
+
+<block-editor
+    {id}
+    {style}
+    value={JSON.stringify(value)}
+    class:list={cls}
+    class="editor h-auto w-full">
+</block-editor>
 
 <style is:global>
     /* Editor */
@@ -301,98 +301,4 @@
     }
 </style>
 
-<script>
-    import { Editor } from "./editor";
-
-    document.querySelector(".load")!.addEventListener("click", () => {
-        (document.querySelector("block-editor") as Editor).load([
-            {
-                type: "paragraph",
-                data: {
-                    text: "Después de intentar el pasado año este viaje a Italia y cancelarle a última hora por causa de la pandemia, este año si... Teníamos muchas ganas y al final lo pudimos hacer. El pasado verano tres semanas antes de coger el barco con destino a Italia por algún cambio en las condiciones por parte de Grimaldi Lines, nos dieron la opción de la devolución del dinero de nuestros billetes y por la incertidumbre del viaje le cancelamos y nos fuimos a Portugal de relax."
-                }
-            },
-            {
-                type: "paragraph",
-                data: {
-                    text: "En el relato que hago de nuestras vacaciones cuento las cosas que más me llamaron la atención y algunas anécdotas que me parecen interesantes. También doy algunos datos sobre una cosa que a mí me gusta mucho y fue una de mis razones para hacer este viaje... La comida italiana. Al dar información sobre los campings, los precios son para una caravana + coche + electricidad + cuatro adultos, nos hemos hecho mayores y en casi todos los campings pagamos como adultos. Los precios de los carburantes varían mucho según donde repostes, lo más caro era en las autopistas y lo más económico en las gasolineras de los supermercados."
-                }
-            },
-            {
-                type: "paragraph",
-                data: [
-                    {
-                        text: "Hemos acampado en 9 campings distintos y desde estos campings visitábamos varios lugares. En años anteriores en nuestros viajes fuera de España, llevábamos el frigorífico lleno de comida, este año al coger el ferry y tener la caravana muchas horas sin electricidad el frigo fue vacío... Nos llevamos una "
-                    },
-                    {
-                        text: "nevera a compresor",
-                        url: "https://www.amazon.es/Alpicool-El%C3%A9ctrica-Frigor%C3%ADficos-Refrigerador-congelador/dp/B08HLJMK11?ref_=ast_sto_dp&th=1&psc=1&_encoding=UTF8&tag=miroulotte01-21&linkCode=ur2&linkId=a83a72cc899348ab4203503929a4008d&camp=3638&creative=24630",
-                        self: false
-                    },
-                    { text: "/n" },
-                    {
-                        text: " de 20 litros que nos vino genial, la subimos al camarote del barco con nuestra comida para el viaje y luego durante las vacaciones nos sirvió de frigorífico, pues nuestra nevera trivalente de la caravana nos falló por las altas temperaturas."
-                    }
-                ]
-            },
-            {
-                type: "paragraph",
-                data: {
-                    text: "Unos días antes de salir mi padre tenía todo listo, con todos lugares a visitar y los itinerarios. Es la primera vez que íbamos con reservas en la mayoría de los campings, al no cobrar reserva y poder anular y cambiar fechas por la pandemia."
-                }
-            },
-            {
-                type: "paragraph",
-                data: {
-                    text: "En este viaje metimos en el maletero nuestro pingüino que nos vino fenomenal en la primera parte del viaje."
-                }
-            },
-            {
-                type: "heading",
-                data: {
-                    text: "¿Ir a Italia en ferry o hacer el viaje por carretera?"
-                }
-            },
-            {
-                type: "paragraph",
-                data: {
-                    text: "Después de ver los gastos del viaje por carretera hasta Barcelona más el precio del ferry a la ida y los gastos en peajes, gasóleo y campings (a la vuelta pernoctamos en dos campings de Francia) podemos decir que económicamente sale parecido, pierdes un día si vas por carretera haciendo el viaje en tres etapas como fue nuestro caso, en ferry llegas con unos cuantos kilómetros menos a la espalda. Nosotros si repetimos el viaje alguna vez intentaríamos viajar en barco pese a lo aburrido que es."
-                }
-            },
-            {
-                type: "paragraph",
-                data: {
-                    text: "El precio de nuestro ferry fue de 394 euros. El gasto de la vuelta desde Deiva Marina (nuestra última parada en Italia) fueron 190 euros en combustible, 164 euros en peajes más el coste de los dos campings de Francia."
-                }
-            },
-            {
-                type: "paragraph",
-                data: {
-                    text: "Al final nuestro recorrido y nuestros campings-paradas fueron: Burgos, Barcelona (cogimos el ferry), Roma, Cerveteri, Sovicille, Firenze, Venezia, Alpo, Deiva Marina, Saint-Martin-de-Crau, Gardères y de vuelta a casa (Burgos)."
-                }
-            }
-        ]);
-    });
-    document.querySelector(".copy")!.addEventListener("click", () => {
-        navigator.clipboard.writeText(
-            JSON.stringify(
-                (document.querySelector("block-editor") as Editor).save()
-            )
-        );
-    });
-    document.querySelector(".add-block")!.addEventListener("click", () => {
-        (document.querySelector("block-editor") as Editor).addBlock(
-            "paragraph"
-        );
-    });
-    document.querySelector(".save")!.addEventListener("click", () => {
-        console.log(
-            JSON.stringify(
-                (document.querySelector("block-editor") as Editor).save(),
-                null,
-                4
-            )
-        );
-    });
-    document.querySelector(".load")!.dispatchEvent(new CustomEvent("click"));
-</script>
+<script src="./editor.ts"></script>

@@ -3,7 +3,7 @@ import { MarkType, Schema } from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { Toolbar } from "../toolbar";
-import { Block } from "./Block";
+import { Block } from "./block";
 
 const schema: Schema = new Schema({
     nodes: {
@@ -245,9 +245,13 @@ export class HeadingBlock extends Block {
                     type: "group" as const,
                     icon: () =>
                         `text-align-${this.controller.dom.style.textAlign || "left"}`,
-                    children: ["left", "center", "right"].map((align) => ({
+                    children: [
+                        ["left", "Izquierda"],
+                        ["center", "Centrado"],
+                        ["right", "Derecha"]
+                    ].map(([align, label]) => ({
                         type: "button" as const,
-                        label: align,
+                        label,
                         icon: `text-align-${align}`,
                         variant: () => (hasAlign(align) ? "accent" : null),
                         onClick: () => setAlign(align)

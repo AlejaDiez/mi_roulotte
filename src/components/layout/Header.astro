@@ -113,7 +113,12 @@ const { id, style, class: cls } = Astro.props;
     };
     const hashchangeCallback = () => {
         for (const link of links) {
-            if (window.location.href.includes(link.href)) {
+            const url = new URL(link.href);
+
+            if (
+                window.location.pathname === url.pathname &&
+                window.location.hash === url.hash
+            ) {
                 link.classList.replace("button-muted", "button-primary");
             } else {
                 link.classList.replace("button-primary", "button-muted");

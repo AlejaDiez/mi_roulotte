@@ -78,9 +78,7 @@ const author: string = "Alejandro Diez Bermejo";
         {image && <meta property="og:image" content={image} />}
         {image && <meta property="og:image:alt" content={title} />}
         <meta name="color-scheme" content="light dark" />
-        <script>
-            import "@utils/slider.ts";
-        </script>
+        <script src="@utils/slider.ts"></script>
     </head>
     <body {id} {style} class:list={cls}>
         <slot />

@@ -44,7 +44,7 @@ if (error) {
         <HeaderSection
             title={data.title!}
             subtitle=`${contextData.name} ${contextData.date!.getFullYear()}`
-            image={data.image!}
+            image={data.image ?? ""}
         />
         <ContentSection content={data.content!} />
         {data.allowComments && <CommentsSection comments={data.comments!} />}

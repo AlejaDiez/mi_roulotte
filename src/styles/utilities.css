@@ -1,3 +1,15 @@
+@utility w-fill {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+}
+
+@utility h-fill {
+    height: -webkit-fill-available;
+    height: -moz-available;
+    height: fill-available;
+}
+
 @utility text-title {
     @apply text-foreground font-sans text-5xl leading-[1.18] font-bold tracking-normal not-italic sm:text-6xl md:text-7xl;
 }

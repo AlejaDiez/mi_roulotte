@@ -1,7 +1,7 @@
 import Sortable from "sortablejs";
-import { Block } from "./blocks/Block";
-import { HeadingBlock } from "./blocks/HeadingBlock";
-import { ParagraphBlock } from "./blocks/ParagraphBlock";
+import { Block } from "./blocks/block";
+import { HeadingBlock } from "./blocks/heading_block";
+import { ParagraphBlock } from "./blocks/paragraph_block";
 import { Toolbar } from "./toolbar";
 
 const blocks = [HeadingBlock, ParagraphBlock];
@@ -37,6 +37,12 @@ export class Editor extends HTMLElement {
                 this.hideToolbar();
             }
         });
+        // Load data
+        if (this.hasAttribute("value")) {
+            this.load(JSON.parse(this.getAttribute("value")!));
+        } else {
+            this.addBlock("paragraph");
+        }
     }
 
     addBlock(
@@ -59,6 +65,9 @@ export class Editor extends HTMLElement {
         const block = this.blocks.removeChild(element);
 
         block.destroy();
+        if (this.blocks.children.length === 0) {
+            this.addBlock("paragraph");
+        }
     }
 
     load(data: any[]) {
@@ -71,8 +80,9 @@ export class Editor extends HTMLElement {
     save() {
         return [...this.blocks.children]
             .filter((e) => e instanceof Block)
-            .map(({ type, save }: Block) => {
-                const { style, data } = save();
+            .map((block: Block) => {
+                const { type } = block;
+                const { style, data } = block.save();
 
                 return { type, style, data };
             });

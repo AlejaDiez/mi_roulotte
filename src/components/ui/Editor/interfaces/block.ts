@@ -1,11 +1,13 @@
-import type { Editor } from "../editor";
+import type { Editor } from "./editor";
+
+export type BlockType = "heading" | "paragraph";
 
 export abstract class Block extends HTMLElement {
     private mounted = false;
     protected editor!: Editor;
     protected element!: HTMLElement;
 
-    abstract get type(): string;
+    abstract get type(): BlockType;
     protected abstract render(): HTMLElement;
     abstract load(params: { style?: any; data?: any | any[] }): void;
     abstract save(): {
@@ -26,7 +28,7 @@ export abstract class Block extends HTMLElement {
             return;
         } else {
             this.mounted = true;
-            this.editor = this.closest("block-editor") as Editor;
+            this.editor = this.closest("block-editor") as any;
         }
 
         const controlsLeft = document.createElement("div");

@@ -1,15 +1,14 @@
-import { generateHash } from "@utils/crypto";
 import {
-    arrayBufferToStream,
     AudioTypes,
     DocumentTypes,
     ExtensionTypes,
     ImageTypes,
-    streamToArrayBuffer,
-    VideoTypes,
-    type PartialUploadedFile
-} from "@utils/file";
-import { fields, filterObject } from "@utils/filter_object";
+    type PartialUploadedFile,
+    VideoTypes
+} from "@interfaces/files";
+import { generateHash } from "@utils/crypto";
+import { arrayBufferToStream, streamToArrayBuffer } from "@utils/file";
+import { filterObject } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 
@@ -87,7 +86,17 @@ export const uploadFile = defineAction({
                     .optional()
             })
             .optional(),
-        fields
+        fields: z
+            .string({
+                invalid_type_error: "fields must be a string"
+            })
+            .or(
+                z.array(z.string(), {
+                    invalid_type_error: "fields must be an array of strings"
+                })
+            )
+            .optional()
+            .transform((e) => (typeof e === "string" ? [e] : e))
     }),
     handler: async (input, ctx): Promise<PartialUploadedFile> => {
         const { file, transform, fields } = input;

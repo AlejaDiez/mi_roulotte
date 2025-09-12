@@ -1,0 +1,98 @@
+---
+import Layout from "@components/layout/Layout.astro";
+import Main from "@components/layout/Main.astro";
+import EditCommentsSection from "@components/shared/EditCommentsSection.astro";
+import EditContentSection from "@components/shared/EditContentSection.astro";
+import EditHeaderSection from "@components/shared/EditHeaderSection.astro";
+import { actions } from "astro:actions";
+
+const { trip } = Astro.params;
+const { data, error } = await Astro.callAction(actions.getTripById, {
+    tripId: trip as any,
+    relative: true
+});
+
+if (error) {
+    return Astro.redirect("/404");
+}
+---
+
+<Layout title={`Editar ${data!.name} ${data!.date!.getFullYear()}`}>
+    <header
+        class="header bg-background sticky top-0 left-0 z-[80] flex h-(--space-y) w-full flex-row items-center px-(--space-x) select-none">
+        <a href="/studio/posts" class="back button button-fill-muted mr-auto">
+            <i class="ibm-chevron-left"></i>
+        </a>
+        <nav class="menu flex flex-row items-center justify-end">
+            <span
+                class="text-label text-muted-foreground-variant mr-[calc(var(--space)*4)]"
+                >Última modificación: {
+                    (data!.updatedAt ?? data!.createdAt!).toLocaleDateString(
+                        "es-ES",
+                        {
+                            day: "numeric",
+                            month: "2-digit",
+                            year: "numeric"
+                        }
+                    )
+                }</span
+            >
+            <button class="publish button button-fill-muted">
+                {
+                    data!.published ? (
+                        <i class="ibm-wikis" />
+                    ) : (
+                        <i class="ibm-locked" />
+                    )
+                }
+            </button>
+            <button class="save button button-fill-accent">
+                <i class="ibm-save"></i>
+                <span>Guardar</span>
+            </button>
+        </nav>
+    </header>
+    <Main class="pb-(--space-y)">
+        <EditHeaderSection
+            title={data.title!}
+            description={data.description ?? ""}
+            image={data.image ?? ""}
+            video={data.video ?? ""}
+            keywords={data.keywords ?? []}
+        />
+        <EditContentSection content={data.content!} />
+        <EditCommentsSection comments={data.comments ?? null} />
+    </Main>
+</Layout>
+
+<script>
+    document.body.querySelector(".save")?.addEventListener("click", () => {
+        const data = {
+            title: document.body.querySelector<HTMLInputElement>(
+                ".edit-header-section .title"
+            )!.value,
+            description: document.body.querySelector<HTMLTextAreaElement>(
+                ".edit-header-section .description"
+            )!.value,
+            image: document.body.querySelector<HTMLInputElement>(
+                ".edit-header-section .hero-image .image > input"
+            )!.value,
+            video: document.body.querySelector<HTMLInputElement>(
+                ".edit-header-section .hero-image .video > input"
+            )!.value,
+            content: JSON.stringify(
+                document.body
+                    .querySelector<any>(".edit-content-section block-editor")
+                    .save()
+            ),
+            keywords: [
+                ...document.body.querySelectorAll<HTMLSpanElement>(
+                    ".edit-header-section .keywords > .keyword > span"
+                )
+            ].map(({ textContent }) => textContent),
+            published: true
+        };
+
+        console.log(data);
+    });
+</script>

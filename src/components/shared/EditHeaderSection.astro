@@ -1,0 +1,134 @@
+---
+import type { BaseProps } from "@interfaces/props";
+
+export interface Props extends BaseProps {
+    title: string;
+    description: string;
+    image: string;
+    video: string;
+    keywords: string[];
+}
+
+const {
+    title,
+    description,
+    image,
+    video,
+    keywords,
+    id,
+    style,
+    class: cls
+} = Astro.props;
+---
+
+<section
+    {id}
+    {style}
+    class:list={cls}
+    class="edit-header-section flex h-96 w-full flex-row gap-[calc(var(--space)*4)]">
+    <div
+        class="hero-image relative aspect-square h-full shrink-0 overflow-hidden">
+        <img
+            src={image}
+            decoding="async"
+            class="h-full w-full scale-105 object-cover object-center transition-[scale] duration-300 hover:scale-115"
+        />
+        <div class="absolute right-(--space) bottom-(--space) flex flex-row">
+            <button
+                class="image button button-fill-muted not-[:has(input[value]:not([value='']))]:text-muted-foreground-variant">
+                <i class="ibm-image"></i>
+                <input type="hidden" value={image} />
+            </button>
+            <button
+                class="video button button-fill-muted not-[:has(input[value]:not([value='']))]:text-muted-foreground-variant">
+                <i class="ibm-video-player"></i>
+                <input type="hidden" value={video} />
+            </button>
+        </div>
+    </div>
+    <div
+        class="content flex h-full grow flex-col items-start justify-start overflow-hidden">
+        <input
+            type="text"
+            value={title}
+            placeholder="Escribe el título aquí..."
+            class="title text-title placeholder:text-muted-foreground-variant mb-(--space) w-full appearance-none outline-none"
+        />
+        <textarea
+            placeholder="Escribe la descripción aquí..."
+            class="description text-normal placeholder:text-muted-foreground-variant my-(--space) h-full w-full resize-none appearance-none outline-none"
+            >{description}</textarea
+        >
+        <div
+            class="keywords mt-[calc(var(--space)*2)] flex h-full flex-row flex-wrap items-start justify-start gap-[calc(var(--space)*2)] overflow-y-auto">
+            {
+                keywords.map((e) => (
+                    <div class="keyword bg-muted inline-flex items-center gap-1 rounded-full py-0.5 pr-0.5 pl-2 text-nowrap">
+                        <span class="text-normal leading-0">{e}</span>
+                        <i class="remove-keyword icon ibm-close-filled text-muted-foreground-variant cursor-pointer" />
+                    </div>
+                ))
+            }
+            <input
+                type="text"
+                placeholder="Palabra clave"
+                class="keyword-input text-normal placeholder:text-muted-foreground-variant w-auto appearance-none outline-none"
+            />
+        </div>
+    </div>
+</section>
+
+<script>
+    const keywordsContainer = document.body.querySelector<HTMLDivElement>(
+        ".edit-header-section .keywords"
+    )!;
+    const keywordInput =
+        keywordsContainer.querySelector<HTMLInputElement>(".keyword-input")!;
+
+    const keyword = (data: string) => {
+        const wrapper = document.createElement("div");
+        const content = document.createElement("span");
+        const deleteButton = document.createElement("i");
+
+        content.textContent = data;
+        content.classList.add("text-normal", "leading-0");
+        deleteButton.onclick = () => wrapper.remove();
+        deleteButton.classList.add(
+            "remove-keyword",
+            "icon",
+            "ibm-close-filled",
+            "text-muted-foreground-variant",
+            "cursor-pointer"
+        );
+        wrapper.appendChild(content);
+        wrapper.appendChild(deleteButton);
+        wrapper.classList.add(
+            "keyword",
+            "bg-muted",
+            "inline-flex",
+            "items-center",
+            "gap-1",
+            "rounded-full",
+            "py-0.5",
+            "pr-0.5",
+            "pl-2",
+            "text-nowrap"
+        );
+        return wrapper;
+    };
+
+    keywordsContainer.querySelectorAll(".keyword").forEach((e) => {
+        e.querySelector<HTMLButtonElement>(".remove-keyword")!.onclick = () =>
+            e.remove();
+    });
+    keywordInput.addEventListener("keydown", ({ key }) => {
+        const { value } = keywordInput;
+
+        if (key === "Enter" && value.trim()) {
+            keywordsContainer.insertBefore(keyword(value.trim()), keywordInput);
+            keywordInput.value = "";
+        } else if (key === "Backspace" && !value) {
+            keywordsContainer.querySelector(".keyword:last-of-type")?.remove();
+        }
+    });
+</script>

@@ -3,14 +3,23 @@ import {
     type PartialCommentPreview
 } from "@models/comment";
 import { selectComments, type ListDataType } from "@queries";
-import { fields } from "@utils/filter_object";
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";
 
 export const getComments = defineAction({
     input: z.object({
-        fields,
+        fields: z
+            .string({
+                invalid_type_error: "fields must be a string"
+            })
+            .or(
+                z.array(z.string(), {
+                    invalid_type_error: "fields must be an array of strings"
+                })
+            )
+            .optional()
+            .transform((e) => (typeof e === "string" ? [e] : e)),
         relative: z.boolean().default(false)
     }),
     handler: async (input, ctx): Promise<PartialCommentPreview[]> => {

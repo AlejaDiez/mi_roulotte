@@ -1,11 +1,21 @@
-import type { PartialUploadedFile } from "@utils/file";
-import { fields, filterObject } from "@utils/filter_object";
+import type { PartialUploadedFile } from "@interfaces/files";
+import { filterObject } from "@utils/filter_object";
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 
 export const getFiles = defineAction({
     input: z.object({
-        fields
+        fields: z
+            .string({
+                invalid_type_error: "fields must be a string"
+            })
+            .or(
+                z.array(z.string(), {
+                    invalid_type_error: "fields must be an array of strings"
+                })
+            )
+            .optional()
+            .transform((e) => (typeof e === "string" ? [e] : e))
     }),
     handler: async (input, ctx): Promise<PartialUploadedFile[]> => {
         const { fields } = input;

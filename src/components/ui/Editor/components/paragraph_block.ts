@@ -3,8 +3,8 @@ import { keymap } from "prosemirror-keymap";
 import { MarkType, Schema } from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import { Toolbar } from "../toolbar";
-import { Block } from "./block";
+import { Block, type BlockType } from "../interfaces/block";
+import { Toolbar } from "./toolbar";
 
 const schema: Schema = new Schema({
     nodes: {
@@ -56,7 +56,7 @@ export class ParagraphBlock extends Block {
     private readonly controller: EditorView;
 
     static get info(): {
-        type: string;
+        type: BlockType;
         title: string;
         icon: string;
     } {
@@ -67,7 +67,7 @@ export class ParagraphBlock extends Block {
         };
     }
 
-    get type(): string {
+    get type(): BlockType {
         return ParagraphBlock.info.type;
     }
 

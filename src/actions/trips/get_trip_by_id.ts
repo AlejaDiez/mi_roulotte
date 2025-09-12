@@ -7,7 +7,7 @@ import {
     type DataType,
     type ListDataType
 } from "@queries";
-import { canFilter, fields, subFields } from "@utils/filter_object";
+import { canFilter, subFields } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";
@@ -20,7 +20,17 @@ export const getTripById = defineAction({
                 required_error: "tripId is required"
             })
             .nonempty("tripId must not be empty"),
-        fields,
+        fields: z
+            .string({
+                invalid_type_error: "fields must be a string"
+            })
+            .or(
+                z.array(z.string(), {
+                    invalid_type_error: "fields must be an array of strings"
+                })
+            )
+            .optional()
+            .transform((e) => (typeof e === "string" ? [e] : e)),
         relative: z.boolean().default(false)
     }),
     handler: async (input, ctx): Promise<PartialTrip> => {

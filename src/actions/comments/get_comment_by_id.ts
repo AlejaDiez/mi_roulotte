@@ -5,7 +5,6 @@ import {
     type DataType,
     type ListDataType
 } from "@queries";
-import { fields } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { drizzle } from "drizzle-orm/d1";
@@ -18,7 +17,17 @@ export const getCommentById = defineAction({
                 required_error: "commentId is required"
             })
             .nonempty("commentId cannot be empty"),
-        fields,
+        fields: z
+            .string({
+                invalid_type_error: "fields must be a string"
+            })
+            .or(
+                z.array(z.string(), {
+                    invalid_type_error: "fields must be an array of strings"
+                })
+            )
+            .optional()
+            .transform((e) => (typeof e === "string" ? [e] : e)),
         relative: z.boolean().default(false)
     }),
     handler: async (input, ctx): Promise<PartialComment> => {

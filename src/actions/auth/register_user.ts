@@ -1,7 +1,6 @@
 import type { PartialUser } from "@models/user";
 import { insertUser, type DataType } from "@queries";
 import { generateToken, hash } from "@utils/crypto";
-import { fields } from "@utils/filter_object";
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import type { DrizzleQueryError } from "drizzle-orm";
@@ -35,7 +34,17 @@ export const registerUser = defineAction({
                     "password must contain at least one uppercase letter, one lowercase letter, and one number"
                 )
         }),
-        fields
+        fields: z
+            .string({
+                invalid_type_error: "fields must be a string"
+            })
+            .or(
+                z.array(z.string(), {
+                    invalid_type_error: "fields must be an array of strings"
+                })
+            )
+            .optional()
+            .transform((e) => (typeof e === "string" ? [e] : e))
     }),
     handler: async (input, ctx): Promise<PartialUser> => {
         const { body, fields } = input;

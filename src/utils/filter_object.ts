@@ -1,17 +1,4 @@
-import { z } from "astro:schema";
 import { sql } from "drizzle-orm";
-
-export const fields = z
-    .string({
-        invalid_type_error: "fields must be a string"
-    })
-    .or(
-        z.array(z.string(), {
-            invalid_type_error: "fields must be an array of strings"
-        })
-    )
-    .optional()
-    .transform((e) => (typeof e === "string" ? [e] : e));
 
 export const filterObject = <T extends object>(
     obj: T,

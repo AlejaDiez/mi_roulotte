@@ -38,6 +38,19 @@ const { content } = Astro.props as any;
                         <Astro.self content={data} />
                     </p>
                 );
+            case "image":
+                return (
+                    <Image
+                        url={data.url}
+                        caption={data.caption}
+                        class:list={{
+                            [`col-${style.cols}`]: !!style.cols,
+                            [`row-${style.rows}`]: !!style.rows,
+                            [`aspect-ratio-${style["aspect-ratio"]}`]:
+                                !!style["aspect-ratio"]
+                        }}
+                    />
+                );
             default:
                 if (params.text.trim() === "/n") {
                     return <br />;
@@ -156,8 +169,8 @@ const { content } = Astro.props as any;
         color: var(--color-gray);
     }
 
-    .aspect-ratio-1 {
-        aspect-ratio: 1;
+    .aspect-ratio-1\/1 {
+        aspect-ratio: 1/1;
     }
 
     .aspect-ratio-2\/3 {
@@ -202,30 +215,7 @@ case "list-item":
         }}>
             <Astro.self content={children} />
         </li>;  
-    
-case "link":
-    return <a
-        href={attributes.url}
-        target={attributes.self ? "_self" : "_blank"}
-        class="link"
-        class:list={{
-            "bold": attributes.bold,
-            "italic": attributes.italic,
-            "underline": attributes.underline,
-            "strikethrough": attributes.strikethrough,
-            [`color-${attributes.color}`]: !!attributes.color
-        }}>
-            {data}
-        </a>;
-case "image":
-    return <Image
-        url={attributes.url}
-        caption={attributes.caption}
-        class:list={{
-            [`col-${attributes.cols}`]: !!attributes.cols,
-            [`row-${attributes.rows}`]: !!attributes.rows,
-            [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
-        }} />;
+
 case "video":
     return <Video
         url={attributes.url}

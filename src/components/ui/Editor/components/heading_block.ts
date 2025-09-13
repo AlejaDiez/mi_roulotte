@@ -35,7 +35,9 @@ const schema: Schema = new Schema({
 });
 
 export class HeadingBlock extends Block {
-    private readonly controller: EditorView;
+    private readonly controller: EditorView = new EditorView(null, {
+        state: EditorState.create({ schema })
+    });
 
     static get info(): {
         type: BlockType;
@@ -51,13 +53,6 @@ export class HeadingBlock extends Block {
 
     get type(): BlockType {
         return HeadingBlock.info.type;
-    }
-
-    constructor() {
-        super();
-        this.controller = new EditorView(null, {
-            state: EditorState.create({ schema })
-        });
     }
 
     render(): HTMLElement {
@@ -76,7 +71,6 @@ export class HeadingBlock extends Block {
 
         // Load style
         this.controller.dom.style.textAlign = style.align ?? "";
-
         // Load data
         const doc = schema.node(
             "doc",
@@ -164,11 +158,11 @@ export class HeadingBlock extends Block {
             );
         };
 
-        const nodes = Array.from(this.controller.dom.childNodes).flatMap(save);
+        const nodes = Array.from(this.element.childNodes).flatMap(save);
         const attrs: any = {};
 
-        if ((this.controller.dom.style.textAlign || "left") !== "left") {
-            attrs.align = this.controller.dom.style.textAlign;
+        if ((this.element.style.textAlign || "left") !== "left") {
+            attrs.align = this.element.style.textAlign;
         }
         return {
             style: Object.keys(attrs).length > 0 ? attrs : undefined,
@@ -189,11 +183,11 @@ export class HeadingBlock extends Block {
         }
 
         const hasAlign = (align: string) => {
-            return (this.controller.dom.style.textAlign || "left") === align;
+            return (this.element.style.textAlign || "left") === align;
         };
 
         const setAlign = (align: string) => {
-            this.controller.dom.style.textAlign = align;
+            this.element.style.textAlign = align;
         };
 
         const hasStyle = (style: MarkType) => {
@@ -244,7 +238,7 @@ export class HeadingBlock extends Block {
                 {
                     type: "group" as const,
                     icon: () =>
-                        `text-align-${this.controller.dom.style.textAlign || "left"}`,
+                        `text-align-${this.element.style.textAlign || "left"}`,
                     children: [
                         ["left", "Izquierda"],
                         ["center", "Centrado"],

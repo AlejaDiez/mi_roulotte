@@ -53,7 +53,28 @@ const schema: Schema = new Schema({
 });
 
 export class ParagraphBlock extends Block {
-    private readonly controller: EditorView;
+    private readonly controller: EditorView = new EditorView(null, {
+        state: EditorState.create({ schema }),
+        plugins: [
+            keymap({
+                Enter: (state, dispatch) => {
+                    const { hard_break } = state.schema.nodes;
+
+                    if (!hard_break) {
+                        return false;
+                    }
+                    if (dispatch) {
+                        dispatch(
+                            state.tr
+                                .replaceSelectionWith(hard_break.create())
+                                .scrollIntoView()
+                        );
+                    }
+                    return true;
+                }
+            })
+        ]
+    });
 
     static get info(): {
         type: BlockType;
@@ -71,32 +92,6 @@ export class ParagraphBlock extends Block {
         return ParagraphBlock.info.type;
     }
 
-    constructor() {
-        super();
-        this.controller = new EditorView(null, {
-            state: EditorState.create({ schema }),
-            plugins: [
-                keymap({
-                    Enter: (state, dispatch) => {
-                        const { hard_break } = state.schema.nodes;
-
-                        if (!hard_break) {
-                            return false;
-                        }
-                        if (dispatch) {
-                            dispatch(
-                                state.tr
-                                    .replaceSelectionWith(hard_break.create())
-                                    .scrollIntoView()
-                            );
-                        }
-                        return true;
-                    }
-                })
-            ]
-        });
-    }
-
     render(): HTMLElement {
         const element = this.controller.dom;
 
@@ -112,8 +107,7 @@ export class ParagraphBlock extends Block {
         const { style = {}, data = [] } = params;
 
         // Load style
-        this.controller.dom!.style.textAlign = style.align ?? "";
-
+        this.controller.dom.style.textAlign = style.align ?? "";
         // Load data
         const doc = schema.node(
             "doc",
@@ -221,14 +215,14 @@ export class ParagraphBlock extends Block {
             );
         };
 
-        const nodes = Array.from(this.element!.childNodes).flatMap(save);
+        const nodes = Array.from(this.element.childNodes).flatMap(save);
         const attrs: any = {};
 
         while (nodes.length && nodes[nodes.length - 1].text === "\n") {
             nodes.pop();
         }
-        if ((this.element!.style.textAlign || "justify") !== "justify") {
-            attrs.align = this.element!.style.textAlign;
+        if ((this.element.style.textAlign || "justify") !== "justify") {
+            attrs.align = this.element.style.textAlign;
         }
         return {
             style: Object.keys(attrs).length > 0 ? attrs : undefined,
@@ -249,11 +243,11 @@ export class ParagraphBlock extends Block {
         }
 
         const hasAlign = (align: string) => {
-            return (this.element!.style.textAlign || "justify") === align;
+            return (this.element.style.textAlign || "justify") === align;
         };
 
         const setAlign = (align: string) => {
-            this.element!.style.textAlign = align;
+            this.element.style.textAlign = align;
         };
 
         const hasStyle = (style: MarkType) => {
@@ -323,8 +317,9 @@ export class ParagraphBlock extends Block {
             }
         };
 
-        const toggleLink = (url: string) => {
-            if (url.trim()) {
+        const changeLink = (url: string) => {
+            url = url.trim();
+            if (url) {
                 applyMark(schema.marks.link, { url });
             } else {
                 removeMark(schema.marks.link);
@@ -362,7 +357,7 @@ export class ParagraphBlock extends Block {
                 {
                     type: "group" as const,
                     icon: () =>
-                        `text-align-${this.element!.style.textAlign || "justify"}`,
+                        `text-align-${this.element.style.textAlign || "justify"}`,
                     children: [
                         ["left", "Izquierda"],
                         ["center", "Centrado"],
@@ -393,14 +388,14 @@ export class ParagraphBlock extends Block {
                 },
                 {
                     type: "group" as const,
-                    icon: () => "link",
+                    icon: "link",
                     variant: () => (getLink() ? "accent" : null),
                     children: [
                         {
                             type: "input" as const,
-                            label: "Escribe la url",
+                            label: "URL del enlace",
                             value: () => getLink()?.url ?? "",
-                            onChange: (value: any) => toggleLink(value)
+                            onChange: (value: any) => changeLink(value)
                         },
                         {
                             type: "switch" as const,

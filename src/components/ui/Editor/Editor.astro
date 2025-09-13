@@ -196,7 +196,7 @@ const { value, id, style, class: cls } = Astro.props;
 
             > .content {
                 flex-grow: 1;
-                width: 100%;
+                width: 0;
                 min-height: 32px;
             }
 
@@ -299,6 +299,17 @@ const { value, id, style, class: cls } = Astro.props;
             }
         }
     }
+
+    image-block {
+        margin-top: calc(var(--space) * 2);
+        margin-bottom: calc(var(--space) * 2);
+
+        .content {
+            background-color: var(--color-muted);
+            aspect-ratio: auto;
+            object-fit: cover;
+        }
+    }
 </style>
 
 <script>
@@ -308,6 +319,7 @@ const { value, id, style, class: cls } = Astro.props;
     import type { Toolbar } from "./components/toolbar";
     import { Block, type BlockType } from "./interfaces/block";
     import type { Editor } from "./interfaces/editor";
+    import { ImageBlock } from "./components/image_block";
 
     class BlockEditor extends HTMLElement implements Editor {
         private readonly blocks: HTMLDivElement;
@@ -411,6 +423,7 @@ const { value, id, style, class: cls } = Astro.props;
     // Define Blocks
     customElements.define("heading-block", HeadingBlock);
     customElements.define("paragraph-block", ParagraphBlock);
+    customElements.define("image-block", ImageBlock);
     // Define Editor
     customElements.define("block-editor", BlockEditor);
 </script>

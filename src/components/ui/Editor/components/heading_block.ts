@@ -171,8 +171,7 @@ export class HeadingBlock extends Block {
     }
 
     override toolbar() {
-        const selection = window.getSelection();
-        const range = selection?.getRangeAt(0);
+        const range = window.getSelection()?.getRangeAt(0);
 
         if (
             !range ||
@@ -181,6 +180,8 @@ export class HeadingBlock extends Block {
         ) {
             return null;
         }
+
+        const rect = range.getBoundingClientRect();
 
         const hasAlign = (align: string) => {
             return (this.element.style.textAlign || "left") === align;
@@ -191,13 +192,9 @@ export class HeadingBlock extends Block {
         };
 
         const hasStyle = (style: MarkType) => {
-            const { from, $from, to, empty } = this.controller.state.selection;
+            const { from, to } = this.controller.state.selection;
 
-            return empty
-                ? !!style.isInSet(
-                      this.controller.state.storedMarks || $from.marks()
-                  )
-                : this.controller.state.doc.rangeHasMark(from, to, style);
+            return this.controller.state.doc.rangeHasMark(from, to, style);
         };
 
         const toggleStyle = (style: MarkType) => {
@@ -230,8 +227,6 @@ export class HeadingBlock extends Block {
         const resetColor = () => {
             removeMark(schema.marks.color);
         };
-
-        const rect = range.getBoundingClientRect();
 
         return new Toolbar(
             [

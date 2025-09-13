@@ -1,6 +1,6 @@
 import type { Editor } from "./editor";
 
-export type BlockType = "heading" | "paragraph" | "image";
+export type BlockType = "heading" | "paragraph" | "image" | "video";
 
 export abstract class Block extends HTMLElement {
     private mounted = false;

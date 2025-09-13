@@ -12,12 +12,13 @@ const { url, id, style, class: cls } = Astro.props;
 let { title, thumbnail } = Astro.props;
 const youtubeId = YouTube.getId(url);
 
-if (youtubeId) {
-    const { title: fetchedTitle, thumbnail_url: fetchedThumbnail } =
-        await YouTube.getData(youtubeId);
-
-    title = title ?? fetchedTitle;
-    thumbnail = thumbnail ?? fetchedThumbnail;
+if (youtubeId && (!title || !thumbnail)) {
+    await YouTube.getData(youtubeId).then(
+        ({ title: fetchedTitle, thumbnail_url: fetchedThumbnail }) => {
+            title = title ?? fetchedTitle;
+            thumbnail = thumbnail ?? fetchedThumbnail;
+        }
+    );
 }
 ---
 
@@ -42,9 +43,9 @@ if (youtubeId) {
         <button
             class="player-state button button-fill-primary absolute top-1/2 left-1/2 h-20 max-h-none w-20 -translate-1/2 rounded-full p-0 transition-[background-color,scale,opacity] group-data-hidden/alt:opacity-0 hover:scale-110">
             <i
-                class="ibm-filled-play-alt group-data-[state=buffering]:hidden group-data-[state=ended]:hidden group-data-[state=playing]:hidden">
+                class="ibm-play-filled-alt group-data-[state=buffering]:hidden group-data-[state=ended]:hidden group-data-[state=playing]:hidden">
             </i>
-            <i class="ibm-filled-pause group-not-data-[state=playing]:hidden">
+            <i class="ibm-pause-filled group-not-data-[state=playing]:hidden">
             </i>
             <i class="ibm-rotate-360 group-not-data-[state=ended]:hidden"></i>
             <span
@@ -74,9 +75,9 @@ if (youtubeId) {
         <button
             class="player-state button button-primary relative h-14 w-14 p-0">
             <i
-                class="ibm-filled-play-alt group-data-[state=buffering]:hidden group-data-[state=ended]:hidden group-data-[state=playing]:hidden">
+                class="ibm-play-filled-alt group-data-[state=buffering]:hidden group-data-[state=ended]:hidden group-data-[state=playing]:hidden">
             </i>
-            <i class="ibm-filled-pause group-not-data-[state=playing]:hidden">
+            <i class="ibm-pause-filled group-not-data-[state=playing]:hidden">
             </i>
             <i class="ibm-rotate-360 group-not-data-[state=ended]:hidden"></i>
             <span class="spinner-alt group-not-data-[state=buffering]:hidden">

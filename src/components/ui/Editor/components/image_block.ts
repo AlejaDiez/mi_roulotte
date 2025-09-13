@@ -46,12 +46,13 @@ export class ImageBlock extends Block {
         const { style = {}, data = {} } = params;
 
         if (this.element) {
+            const element = this.element as HTMLImageElement;
+
             // Load style
-            (this.element as HTMLImageElement).style.aspectRatio =
-                style["aspect-ratio"] ?? "";
+            element.style.aspectRatio = style["aspect-ratio"] ?? "";
             // Load data
-            (this.element as HTMLImageElement).src = data.url;
-            (this.element as HTMLImageElement).alt = data.caption;
+            element.src = data.url;
+            element.alt = data.caption;
         } else {
             this.controller = {
                 style,
@@ -62,10 +63,11 @@ export class ImageBlock extends Block {
     }
 
     save(): { style?: any; data?: any | any[] } {
+        const element = this.element;
         const attrs: any = {};
 
-        if (this.element.style.aspectRatio) {
-            attrs["aspect-ratio"] = this.element.style.aspectRatio.replace(
+        if (element.style.aspectRatio) {
+            attrs["aspect-ratio"] = element.style.aspectRatio.replace(
                 /\s/g,
                 ""
             );
@@ -73,41 +75,14 @@ export class ImageBlock extends Block {
         return {
             style: Object.keys(attrs).length > 0 ? attrs : undefined,
             data: {
-                url: this.element.getAttribute("src") ?? "",
-                caption: this.element.getAttribute("alt") ?? ""
+                url: element.getAttribute("src") ?? "",
+                caption: element.getAttribute("alt") ?? undefined
             }
         };
     }
 
     override toolbar() {
         const rect = this.element.getBoundingClientRect();
-
-        const getImage = () => {
-            return {
-                url: this.element.getAttribute("src") ?? "",
-                caption: this.element.getAttribute("alt") ?? ""
-            };
-        };
-
-        const changeImage = (url: string) => {
-            url = url.trim();
-
-            if (url) {
-                this.element.setAttribute("src", url);
-            } else {
-                this.element.removeAttribute("src");
-            }
-        };
-
-        const changeCaption = (caption: string) => {
-            caption = caption.trim();
-
-            if (caption) {
-                this.element.setAttribute("alt", caption);
-            } else {
-                this.element.removeAttribute("alt");
-            }
-        };
 
         const hasAspectRatio = (aspectRatio: string) => {
             return (
@@ -120,17 +95,43 @@ export class ImageBlock extends Block {
             this.element.style.aspectRatio = aspectRatio;
         };
 
+        const getImage = () => {
+            return this.element.getAttribute("src");
+        };
+
+        const changeImage = (url: string) => {
+            url = url.trim();
+            if (url) {
+                this.element.setAttribute("src", url);
+            } else {
+                this.element.removeAttribute("src");
+            }
+        };
+
+        const getCaption = () => {
+            return this.element.getAttribute("alt");
+        };
+
+        const changeCaption = (caption: string) => {
+            caption = caption.trim();
+            if (caption) {
+                this.element.setAttribute("alt", caption);
+            } else {
+                this.element.removeAttribute("alt");
+            }
+        };
+
         return new Toolbar(
             [
                 {
                     type: "group" as const,
                     icon: "image",
-                    variant: () => (getImage().url ? "accent" : null),
+                    variant: () => (getImage() ? "accent" : null),
                     children: [
                         {
                             type: "input" as const,
                             label: "URL de la imagen",
-                            value: () => getImage().url,
+                            value: () => getImage() ?? "",
                             onChange: (value: any) => changeImage(value)
                         }
                     ]
@@ -138,12 +139,12 @@ export class ImageBlock extends Block {
                 {
                     type: "group" as const,
                     icon: "label",
-                    variant: () => (getImage().caption ? "accent" : null),
+                    variant: () => (getCaption() ? "accent" : null),
                     children: [
                         {
                             type: "input" as const,
                             label: "Leyenda de la imagen",
-                            value: () => getImage().caption,
+                            value: () => getCaption() ?? "",
                             onChange: (value: any) => changeCaption(value)
                         }
                     ]

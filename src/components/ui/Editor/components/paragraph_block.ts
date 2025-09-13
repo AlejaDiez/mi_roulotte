@@ -231,8 +231,7 @@ export class ParagraphBlock extends Block {
     }
 
     override toolbar() {
-        const selection = window.getSelection();
-        const range = selection?.getRangeAt(0);
+        const range = window.getSelection()?.getRangeAt(0);
 
         if (
             !range ||
@@ -241,6 +240,8 @@ export class ParagraphBlock extends Block {
         ) {
             return null;
         }
+
+        const rect = range.getBoundingClientRect();
 
         const hasAlign = (align: string) => {
             return (this.element.style.textAlign || "justify") === align;
@@ -251,13 +252,9 @@ export class ParagraphBlock extends Block {
         };
 
         const hasStyle = (style: MarkType) => {
-            const { from, $from, to, empty } = this.controller.state.selection;
+            const { from, to } = this.controller.state.selection;
 
-            return empty
-                ? !!style.isInSet(
-                      this.controller.state.storedMarks || $from.marks()
-                  )
-                : this.controller.state.doc.rangeHasMark(from, to, style);
+            return this.controller.state.doc.rangeHasMark(from, to, style);
         };
 
         const toggleStyle = (style: MarkType) => {
@@ -291,33 +288,24 @@ export class ParagraphBlock extends Block {
             removeMark(schema.marks.color);
         };
 
-        const getLink = () => {
-            const { from, $from, to, empty } = this.controller.state.selection;
-            const findLink = (marks: readonly any[]) =>
-                marks.find((m) => m.type === schema.marks.link);
+        const getURL = (): string | null => {
+            const { from, to } = this.controller.state.selection;
+            let url: string | null = null;
 
-            if (empty) {
-                const link = findLink(
-                    this.controller.state.storedMarks || $from.marks()
+            this.controller.state.doc.nodesBetween(from, to, ({ marks }) => {
+                const mark = marks.find(
+                    ({ type }) => type === schema.marks.link
                 );
 
-                return link ? { ...link.attrs } : null;
-            } else {
-                let result: any = null;
-
-                this.controller.state.doc.nodesBetween(from, to, (node) => {
-                    const link = findLink(node.marks);
-
-                    if (link) {
-                        result = { ...link.attrs };
-                        return false;
-                    }
-                });
-                return result;
-            }
+                if (mark) {
+                    url = mark.attrs.url;
+                    return false;
+                }
+            });
+            return url;
         };
 
-        const changeLink = (url: string) => {
+        const changeURL = (url: string) => {
             url = url.trim();
             if (url) {
                 applyMark(schema.marks.link, { url });
@@ -326,31 +314,50 @@ export class ParagraphBlock extends Block {
             }
         };
 
+        const getSelf = () => {
+            const { from, to } = this.controller.state.selection;
+            let self: boolean = true;
+
+            this.controller.state.doc.nodesBetween(from, to, ({ marks }) => {
+                const mark = marks.find(
+                    ({ type }) => type === schema.marks.link
+                );
+
+                if (mark) {
+                    self = mark.attrs.self;
+                    return false;
+                }
+            });
+            return self;
+        };
+
         const toggleSelf = (self: boolean) => {
             const { from, to } = this.controller.state.selection;
 
-            this.controller.state.doc.nodesBetween(from, to, (node, pos) => {
-                const link = node.marks.find(
-                    (m) => m.type === schema.marks.link
-                );
-
-                if (link) {
-                    this.controller.dispatch(
-                        this.controller.state.tr.addMark(
-                            pos,
-                            pos + node.nodeSize,
-                            schema.marks.link.create({
-                                ...link.attrs,
-                                self
-                            })
-                        )
+            this.controller.state.doc.nodesBetween(
+                from,
+                to,
+                ({ marks, nodeSize }, pos) => {
+                    const link = marks.find(
+                        ({ type }) => type === schema.marks.link
                     );
+
+                    if (link) {
+                        this.controller.dispatch(
+                            this.controller.state.tr.addMark(
+                                pos,
+                                pos + nodeSize,
+                                schema.marks.link.create({
+                                    ...link.attrs,
+                                    self
+                                })
+                            )
+                        );
+                    }
                 }
-            });
+            );
             this.controller.focus();
         };
-
-        const rect = range.getBoundingClientRect();
 
         return new Toolbar(
             [
@@ -389,18 +396,18 @@ export class ParagraphBlock extends Block {
                 {
                     type: "group" as const,
                     icon: "link",
-                    variant: () => (getLink() ? "accent" : null),
+                    variant: () => (getURL() !== null ? "accent" : null),
                     children: [
                         {
                             type: "input" as const,
                             label: "URL del enlace",
-                            value: () => getLink()?.url ?? "",
-                            onChange: (value: any) => changeLink(value)
+                            value: () => getURL() ?? "",
+                            onChange: (value: any) => changeURL(value)
                         },
                         {
                             type: "switch" as const,
                             label: "Abrir en nueva pestaña",
-                            value: () => !(getLink()?.self ?? true),
+                            value: () => !getSelf(),
                             onChange: (value: any) => toggleSelf(!value)
                         }
                     ]

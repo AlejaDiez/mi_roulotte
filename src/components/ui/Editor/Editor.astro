@@ -1,6 +1,8 @@
 ---
 import type { BaseProps } from "@interfaces/props";
 
+import Image from "../Image.astro";
+
 export interface Props extends BaseProps {
     value?: any[];
 }
@@ -8,12 +10,16 @@ export interface Props extends BaseProps {
 const { value, id, style, class: cls } = Astro.props;
 ---
 
-<block-editor
-    {id}
-    {style}
-    value={JSON.stringify(value)}
-    class:list={cls}
-    class="editor h-auto w-full">
+<block-editor {id} {style} class:list={cls} class="editor h-auto w-full">
+    {
+        value && (
+            <script
+                is:inline
+                type="application/json"
+                set:html={JSON.stringify(value)}
+            />
+        )
+    }
 </block-editor>
 
 <style is:global>
@@ -308,6 +314,77 @@ const { value, id, style, class: cls } = Astro.props;
             background-color: var(--color-muted);
             aspect-ratio: auto;
             object-fit: cover;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    }
+
+    video-block {
+        margin-top: calc(var(--space) * 2);
+        margin-bottom: calc(var(--space) * 2);
+
+        .content {
+            position: relative;
+            background-color: var(--color-muted);
+            aspect-ratio: 16/9;
+            -webkit-user-select: none;
+            user-select: none;
+
+            > img {
+                outline: none;
+                border: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            > span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: linear-gradient(
+                    to bottom in oklab,
+                    rgba(0, 0, 0, 0.6) 0%,
+                    rgba(0, 0, 0, 0) 100%
+                );
+                padding: 1.5rem;
+                width: 100%;
+                height: 6rem;
+                color: var(--color-white);
+                font-style: normal;
+                font-weight: 600;
+                font-size: 1.25rem;
+                line-height: calc(1.75 / 1.25);
+                font-family: var(--font-sans);
+                letter-spacing: 0em;
+            }
+
+            > a {
+                display: inline-flex;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                justify-content: center;
+                align-items: center;
+                translate: -50% -50%;
+                border-radius: calc(infinity * 1px);
+                background-color: var(--color-primary);
+                width: 5rem;
+                height: 5rem;
+
+                &::before {
+                    content: "\efa0";
+                    color: var(--color-primary-foreground);
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 1.25rem;
+                    line-height: 1;
+                    font-family: var(--font-icon);
+                    text-transform: none;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+            }
         }
     }
 </style>
@@ -320,6 +397,7 @@ const { value, id, style, class: cls } = Astro.props;
     import { Block, type BlockType } from "./interfaces/block";
     import type { Editor } from "./interfaces/editor";
     import { ImageBlock } from "./components/image_block";
+    import { VideoBlock } from "./components/video_block";
 
     class BlockEditor extends HTMLElement implements Editor {
         private readonly blocks: HTMLDivElement;
@@ -346,12 +424,6 @@ const { value, id, style, class: cls } = Astro.props;
                     this.hideToolbar();
                 }
             });
-            // Load data
-            if (this.hasAttribute("value")) {
-                this.load(JSON.parse(this.getAttribute("value")!));
-            } else {
-                this.addBlock("paragraph");
-            }
         }
 
         addBlock(
@@ -418,12 +490,25 @@ const { value, id, style, class: cls } = Astro.props;
             }
             this.toolbar = null;
         }
+
+        connectedCallback() {
+            const data = this.querySelector<HTMLScriptElement>(
+                "script[type='application/json']"
+            );
+
+            if (data) {
+                data.remove();
+                this.load(JSON.parse(data.textContent));
+            } else {
+                this.addBlock("paragraph");
+            }
+        }
     }
 
-    // Define Blocks
+    // Define elements
     customElements.define("heading-block", HeadingBlock);
     customElements.define("paragraph-block", ParagraphBlock);
     customElements.define("image-block", ImageBlock);
-    // Define Editor
+    customElements.define("video-block", VideoBlock);
     customElements.define("block-editor", BlockEditor);
 </script>

@@ -51,6 +51,20 @@ const { content } = Astro.props as any;
                         }}
                     />
                 );
+            case "video":
+                return (
+                    <Video
+                        url={data.url}
+                        title={data.title}
+                        thumbnail={data.thumbnail}
+                        class:list={{
+                            [`col-${style.cols}`]: !!style.cols,
+                            [`row-${style.rows}`]: !!style.rows,
+                            [`aspect-ratio-${style["aspect-ratio"]}`]:
+                                !!style["aspect-ratio"]
+                        }}
+                    />
+                );
             default:
                 if (params.text.trim() === "/n") {
                     return <br />;
@@ -196,6 +210,14 @@ const { content } = Astro.props as any;
     .aspect-ratio-16\/9 {
         aspect-ratio: 16/9;
     }
+
+    .aspect-ratio-9\/21 {
+        aspect-ratio: 9/21;
+    }
+
+    .aspect-ratio-21\/9 {
+        aspect-ratio: 21/9;
+    }
 </style>
 
 <!-- 
@@ -215,17 +237,6 @@ case "list-item":
         }}>
             <Astro.self content={children} />
         </li>;  
-
-case "video":
-    return <Video
-        url={attributes.url}
-        title={attributes.title}
-        thumbnail={attributes.thumbnail}
-        class:list={{
-            [`col-${attributes.cols}`]: !!attributes.cols,
-            [`row-${attributes.rows}`]: !!attributes.rows,
-            [`aspect-ratio-${attributes["aspect-ratio"]}`]: !!attributes["aspect-ratio"]
-        }} />;
 case "mosaic":
     return <div 
         class="mosaic"

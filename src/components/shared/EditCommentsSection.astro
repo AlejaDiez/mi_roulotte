@@ -1,0 +1,239 @@
+---
+import type { PartialCommentPreview } from "@models/comment";
+import { timeAgo } from "@utils/date";
+import type { BaseProps } from "@interfaces/props";
+
+export interface Props extends BaseProps {
+    comments: PartialCommentPreview[] | null;
+}
+
+const { comments, id, style, class: cls } = Astro.props;
+---
+
+<section
+    {id}
+    {style}
+    class:list={cls}
+    class="comments-section flex w-full flex-col items-start justify-start">
+    <div
+        class="bg-muted flex h-14 w-full flex-row items-center justify-between px-6">
+        <span class="text-normal text-muted-foreground"
+            >Permitir comentarios</span
+        >
+        <input type="checkbox" class="switch" checked={comments !== null} />
+    </div>
+    {
+        comments && comments.length > 0 && (
+            <div class="comments-list my-[calc(var(--space)*2)] flex w-full flex-col items-start justify-start gap-[calc(var(--space)*4)]">
+                {comments.map((e) => (
+                    <div
+                        id={e.id}
+                        class="comment border-border group relative flex w-full scroll-m-(--space-y) flex-col items-start justify-start border-1">
+                        <div class="comment-header text-normal text-foreground w-full px-4 pt-3 pb-2 font-light select-none">
+                            <strong class="font-semibold">{e.username}</strong>
+                            {timeAgo(e.lastUpdatedAt!)}
+                            <div class="absolute top-2 right-2 flex flex-row gap-(--space) opacity-0 transition-opacity group-hover:opacity-100">
+                                <button
+                                    class="reply button button-fill-accent h-8 min-h-0 w-8 min-w-0 p-0"
+                                    data-reply-id={e.id}
+                                    data-reply-username={e.username}>
+                                    <i class="ibm-reply text-sm" />
+                                </button>
+                                <button
+                                    class="delete button button-fill-destructive h-8 min-h-0 w-8 min-w-0 p-0"
+                                    data-delete-id={e.id}>
+                                    <i class="ibm-trash-can text-sm" />
+                                </button>
+                            </div>
+                        </div>
+                        <p class="comment-content text-normal w-full px-4 pb-3 text-justify">
+                            {e.content}
+                        </p>
+                        {e.replies && e.replies.length > 0 && (
+                            <div class="comment-replies border-border flex w-full flex-col items-start justify-start gap-[calc(var(--space)*2)] border-t-1 px-4 py-3">
+                                {e.replies.map((e) => (
+                                    <div
+                                        id={e.id}
+                                        class="reply bg-muted group/alt relative flex w-full scroll-m-(--space-y) flex-col items-start justify-start">
+                                        <div class="reply-header text-normal text-muted-foreground w-full px-4 pt-3 pb-2 font-light select-none">
+                                            <strong class="font-semibold">
+                                                {e.username}
+                                            </strong>
+                                            {timeAgo(e.lastUpdatedAt!)}
+                                            <div class="absolute top-2 right-2 flex flex-row gap-(--space) opacity-0 transition-opacity group-hover/alt:opacity-100">
+                                                <button
+                                                    class="reply button button-fill-accent h-8 min-h-0 w-8 min-w-0 p-0"
+                                                    data-reply-id={e.id}
+                                                    data-reply-username={
+                                                        e.username
+                                                    }>
+                                                    <i class="ibm-reply text-sm" />
+                                                </button>
+                                                <button
+                                                    class="delete button button-fill-destructive h-8 min-h-0 w-8 min-w-0 p-0"
+                                                    data-delete-id={e.id}>
+                                                    <i class="ibm-trash-can text-sm" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p class="reply-content text-normal w-full px-4 pb-3 text-justify">
+                                            {e.content}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        )
+    }
+</section>
+
+<style is:global>
+    .comment-replies {
+        position: relative;
+        margin-top: 0.46875rem;
+        padding-top: calc(0.46875rem + 0.75rem);
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 8px;
+            translate: 0 -50%;
+            background-color: var(--color-background);
+            padding: 0 8px;
+            content: "Respuestas";
+            color: var(--color-muted-foreground-variant);
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.75rem;
+            line-height: calc(1 / 0.75);
+            font-family: "IBM Plex Sans", sans-serif;
+            letter-spacing: 0.1em;
+        }
+    }
+</style>
+
+<script>
+    import { actions } from "astro:actions";
+
+    let commentsList =
+        document.body.querySelector<HTMLDivElement>(".comments-list");
+    const replyButtons =
+        commentsList?.querySelectorAll<HTMLButtonElement>(
+            ".comment-header .reply.button, .reply-header .reply.button"
+        ) ?? [];
+    const deleteButtons =
+        commentsList?.querySelectorAll<HTMLButtonElement>(
+            ".comment-header .delete.button, .reply-header .delete.button"
+        ) ?? [];
+
+    const buildReply = (id: string, username: string, content: string) => {
+        const reply = document.createElement("div");
+
+        reply.id = id;
+        reply.classList.add(
+            "reply",
+            "bg-muted",
+            "flex",
+            "w-full",
+            "scroll-m-(--space-y)",
+            "flex-col",
+            "items-start",
+            "justify-start"
+        );
+
+        const header = document.createElement("div");
+        const strong = document.createElement("strong");
+
+        strong.classList.add("font-semibold");
+        strong.innerText = username;
+        header.classList.add(
+            "reply-header",
+            "text-normal",
+            "text-muted-foreground",
+            "w-full",
+            "px-4",
+            "pt-3",
+            "pb-2",
+            "font-light",
+            "select-none"
+        );
+        header.appendChild(strong);
+        header.innerHTML += " ahora";
+        reply.appendChild(header);
+
+        const paragraph = document.createElement("p");
+
+        paragraph.classList.add(
+            "reply-content",
+            "text-normal",
+            "w-full",
+            "px-4",
+            "pb-3",
+            "text-justify"
+        );
+        paragraph.innerText = content;
+        reply.appendChild(paragraph);
+        return reply;
+    };
+
+    const buildReplyForm = (username: string) => {
+        // <form class="comments-form mt-[calc(var(--space)*4)] flex w-full flex-col items-start justify-start gap-[calc(var(--space)*2)]">
+        //     <label class="mb-[calc(var(--space)*4)]">
+        //         Responder a
+        //         <textarea
+        //             name="content"
+        //             placeholder="Escribe aquí la respuesta"
+        //             class="input field-sizing-content min-h-56"></textarea>
+        //     </label>
+        //     <div class="flex flex-row gap-[calc(var(--space)*4)] self-end">
+        //         <input
+        //             class="cancel-reply button button-destructive"
+        //             type="button"
+        //             value="Cancelar"
+        //         />
+        //         <input
+        //             class="submit-reply button button-outline-primary"
+        //             type="submit"
+        //             value="Enviar respuesta"
+        //         />
+        //     </div>
+        // </form>;
+    };
+
+    const removeReplyForm = () => {};
+
+    // Reply comment
+    const clickCallbackReply = (e: PointerEvent) => {};
+
+    const clickCallbackDelete = async (e: PointerEvent) => {
+        const target = e.currentTarget as HTMLElement;
+
+        const { error } = await actions.deleteComment({
+            commentId: target.getAttribute("data-delete-id")!
+        });
+
+        if (!error) {
+            const parent = target.closest(".comment, .reply") as HTMLElement;
+
+            // Check if is the last reply
+            if (
+                parent.classList.contains("reply") &&
+                parent.parentElement!.children.length <= 1
+            ) {
+                parent.parentElement!.remove();
+            }
+            // Remove element
+            parent.remove();
+        }
+    };
+
+    replyButtons.forEach((e) =>
+        e.addEventListener("click", clickCallbackReply)
+    );
+    deleteButtons.forEach((e) =>
+        e.addEventListener("click", clickCallbackDelete)
+    );
+</script>

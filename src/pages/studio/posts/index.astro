@@ -1,0 +1,42 @@
+---
+import Layout from "@components/layout/Layout.astro";
+import Main from "@components/layout/Main.astro";
+import Sidebar from "@components/layout/Sidebar.astro";
+import type { PartialTripPreview } from "@models/trip";
+import { actions } from "astro:actions";
+
+const data: PartialTripPreview[] = await Astro.callAction(actions.getTrips, {
+    fields: ["name", "description", "image", "url"],
+    relative: true
+}).then(({ data }) => ((data as PartialTripPreview[]) ?? []).reverse());
+---
+
+<Layout title="Publicaciones">
+    <Sidebar />
+    <Main class="gap-[calc(var(--space)*4)]">
+        {
+            data.map((e) => (
+                <div class="horizontal-card flex h-56 w-full flex-row items-start justify-start gap-[calc(var(--space)*4)]">
+                    <div class="hero-image aspect-square h-full shrink-0 overflow-hidden">
+                        <img
+                            src={e.image}
+                            decoding="async"
+                            class="h-full w-full scale-105 object-cover object-center transition-[scale] duration-300 hover:scale-115"
+                        />
+                    </div>
+                    <div class="content flex h-full grow flex-col items-start justify-start">
+                        <h3 class="text-headline mb-(--space)">{e.name}</h3>
+                        <p class="text-normal my-(--space) overflow-y-auto">
+                            {e.description}
+                        </p>
+                        <a
+                            href={`/studio/posts${e.url}`}
+                            class="button button-outline-primary mt-[calc(var(--space)*2)]">
+                            Editar
+                        </a>
+                    </div>
+                </div>
+            ))
+        }
+    </Main>
+</Layout>

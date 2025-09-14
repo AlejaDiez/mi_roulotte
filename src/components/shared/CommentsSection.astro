@@ -1,7 +1,7 @@
 ---
 import type { PartialCommentPreview } from "@models/comment";
 import { timeAgo } from "@utils/date";
-import type { BaseProps } from "@utils/props";
+import type { BaseProps } from "@interfaces/props";
 
 export interface Props extends BaseProps {
     comments: PartialCommentPreview[];
@@ -42,13 +42,13 @@ const { trip, stage } = Astro.params;
                 {comments.map((e) => (
                     <div
                         id={e.id}
-                        class="comment border-border group flex w-full scroll-m-(--space-y) flex-col items-start justify-start border-1">
-                        <div class="comment-header text-normal text-foreground relative w-full px-4 pt-3 pb-2 font-light select-none">
+                        class="comment border-border group relative flex w-full scroll-m-(--space-y) flex-col items-start justify-start border-1">
+                        <div class="comment-header text-normal text-foreground w-full px-4 pt-3 pb-2 font-light select-none">
                             <strong class="font-semibold">{e.username}</strong>
                             {timeAgo(e.lastUpdatedAt!)}
                             <button
                                 title="Responder"
-                                class="button button-fill-accent absolute top-2 right-2 h-8 min-h-0 w-8 min-w-0 p-0 transition-[opacity,background-color] group-hover:opacity-100 md:opacity-0"
+                                class="reply button button-fill-accent absolute top-2 right-2 h-8 min-h-0 w-8 min-w-0 p-0 transition-[opacity,background-color] group-hover:opacity-100 md:opacity-0"
                                 data-reply-id={e.id}
                                 data-reply-username={e.username}>
                                 <i class="ibm-reply text-sm" />
@@ -160,7 +160,7 @@ const { trip, stage } = Astro.params;
         document.body.querySelector<HTMLDivElement>(".comments-list");
     const replyButtons =
         commentsList?.querySelectorAll<HTMLButtonElement>(
-            ".comment-header > .button"
+            ".comment-header > .reply.button"
         ) ?? [];
     const form =
         document.body.querySelector<HTMLFormElement>(".comments-form")!;
@@ -194,6 +194,7 @@ const { trip, stage } = Astro.params;
             "comment",
             "border-border",
             "group",
+            "relative",
             "flex",
             "w-full",
             "scroll-m-(--space-y)",
@@ -212,7 +213,6 @@ const { trip, stage } = Astro.params;
             "comment-header",
             "text-normal",
             "text-foreground",
-            "relative",
             "w-full",
             "px-4",
             "pt-3",
@@ -290,6 +290,7 @@ const { trip, stage } = Astro.params;
 
         return reply;
     };
+
     const buildReplyBanner = (username: string) => {
         const blockquote = document.createElement("blockquote");
         const closeButton = document.createElement("button");
@@ -320,6 +321,7 @@ const { trip, stage } = Astro.params;
         blockquote.appendChild(closeButton);
         return blockquote;
     };
+
     const removeReplyBanner = () => {
         const banner = form.querySelector(".reply-banner");
 
@@ -328,6 +330,7 @@ const { trip, stage } = Astro.params;
             form.removeChild(banner);
         }
     };
+
     const validateField = (field: HTMLInputElement) => {
         const value: any =
             field.type === "checkbox" ? field.checked : field.value.trim();
@@ -369,6 +372,7 @@ const { trip, stage } = Astro.params;
                 break;
         }
     };
+
     const setError = (field: HTMLInputElement, message: string) => {
         field.setCustomValidity(" ");
         if (field.parentElement instanceof HTMLLabelElement) {
@@ -376,6 +380,7 @@ const { trip, stage } = Astro.params;
         }
         field.reportValidity();
     };
+
     const clearError = (field: HTMLInputElement) => {
         field.setCustomValidity("");
         if (field.parentElement instanceof HTMLLabelElement) {
@@ -383,6 +388,7 @@ const { trip, stage } = Astro.params;
         }
         field.reportValidity();
     };
+
     const reset = () => {
         removeReplyBanner();
         form.reset();
@@ -393,12 +399,14 @@ const { trip, stage } = Astro.params;
     // Reply comment
     const clickCallback = (e: PointerEvent) => {
         removeReplyBanner();
-        fields.repliedTo.value = (e.target as HTMLElement).getAttribute(
+        fields.repliedTo.value = (e.currentTarget as HTMLElement).getAttribute(
             "data-reply-id"
         )!;
         form.insertBefore(
             buildReplyBanner(
-                (e.target as HTMLElement).getAttribute("data-reply-username")!
+                (e.currentTarget as HTMLElement).getAttribute(
+                    "data-reply-username"
+                )!
             ),
             form.firstChild
         );
@@ -410,13 +418,14 @@ const { trip, stage } = Astro.params;
     const touched = new WeakMap<HTMLElement, boolean>();
 
     const blurCallback = (e: FocusEvent) => {
-        const element: any = e.target;
+        const element: any = e.currentTarget;
 
         touched.set(element, true);
         validateField(element);
     };
+
     const inputCallback = (e: Event) => {
-        const element: any = e.target;
+        const element: any = e.currentTarget;
 
         validateField(element);
     };

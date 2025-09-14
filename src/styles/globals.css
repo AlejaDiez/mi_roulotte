@@ -16,6 +16,28 @@
         --space-y: 5rem;
         --space-between: 2.5rem;
         --space-overflow: 4rem;
+        --color-red: light-dark(var(--color-red-60), var(--color-red-50));
+        --color-orange: light-dark(
+            var(--color-orange-60),
+            var(--color-orange-50)
+        );
+        --color-yellow: light-dark(
+            var(--color-yellow-60),
+            var(--color-yellow-50)
+        );
+        --color-green: light-dark(var(--color-green-60), var(--color-green-50));
+        --color-teal: light-dark(var(--color-teal-60), var(--color-teal-50));
+        --color-cyan: light-dark(var(--color-cyan-60), var(--color-cyan-50));
+        --color-blue: light-dark(var(--color-blue-60), var(--color-blue-50));
+        --color-purple: light-dark(
+            var(--color-purple-60),
+            var(--color-purple-50)
+        );
+        --color-magenta: light-dark(
+            var(--color-magenta-60),
+            var(--color-magenta-50)
+        );
+        --color-gray: light-dark(var(--color-gray-60), var(--color-gray-50));
 
         /* sm */
         @media (width < 40rem) {

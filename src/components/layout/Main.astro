@@ -1,5 +1,5 @@
 ---
-import type { BaseProps } from "@utils/props";
+import type { BaseProps } from "@interfaces/props";
 
 export type Props = BaseProps;
 
@@ -13,3 +13,12 @@ const { id, style, class: cls } = Astro.props;
     class="main flex h-auto w-full flex-col items-start justify-start gap-(--space-between) px-(--space-x)">
     <slot />
 </main>
+
+<style is:global>
+    .sidebar ~ .main,
+    .main:has(~ .sidebar) {
+        margin-left: 256px;
+        padding: 1.75rem;
+        width: calc(100% - 256px);
+    }
+</style>

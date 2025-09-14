@@ -1,6 +1,6 @@
 ---
 import "@styles/globals.css";
-import type { BaseProps } from "@utils/props";
+import type { BaseProps } from "@interfaces/props";
 
 export interface Props extends BaseProps {
     title: string;
@@ -79,7 +79,37 @@ const author: string = "Alejandro Diez Bermejo";
         {image && <meta property="og:image:alt" content={title} />}
         <meta name="color-scheme" content="light dark" />
         <script>
-            import "@utils/slider.ts";
+            const sliders = document.body.querySelectorAll<HTMLInputElement>(
+                'input[type="range"].slider'
+            );
+
+            for (const slider of sliders) {
+                const valueCallback = (event: Event) => {
+                    const { detail } = event as CustomEvent;
+                    const value = Number(detail) || 0;
+                    const min = Number(slider.min) || 0;
+                    const max = Number(slider.max) || 100;
+
+                    slider.value = String(value);
+                    slider.style.setProperty(
+                        "--progress",
+                        `${((value - min) / (max - min)) * 100}%`
+                    );
+                };
+                const inputCallback = () => {
+                    slider.dispatchEvent(
+                        new CustomEvent("value", {
+                            detail: slider.value,
+                            bubbles: false,
+                            cancelable: false
+                        })
+                    );
+                };
+
+                slider.addEventListener("value", valueCallback);
+                slider.addEventListener("input", inputCallback);
+                inputCallback();
+            }
         </script>
     </head>
     <body {id} {style} class:list={cls}>

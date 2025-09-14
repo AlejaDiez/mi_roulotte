@@ -1,0 +1,18 @@
+---
+import Editor from "@components/ui/Editor/Editor.astro";
+import type { BaseProps } from "@interfaces/props";
+
+export interface Props extends BaseProps {
+    content: object[];
+}
+
+const { content, id, style, class: cls } = Astro.props;
+---
+
+<section
+    {id}
+    {style}
+    class:list={cls}
+    class="edit-content-section w-fill -mr-[calc(32px+0.375rem)] -ml-[calc(32px*2+0.375rem)]">
+    <Editor value={content} />
+</section>

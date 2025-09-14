@@ -10,6 +10,7 @@ import type {
 import { ActionError } from "astro:actions";
 
 const routes: RegExp[] = [
+    /^\/studio.*$/, // TO DO
     /^\/api\/comments(?:\/[\w-.]*)*$/,
     /^\/api\/files(?:\/[\w-.]*)*$/,
     /^\/api\/trips(?:\/[\w-.]*)*$/

@@ -10,7 +10,7 @@ const schema: Schema = new Schema({
     nodes: {
         doc: { content: "inline*" },
         text: { inline: true, group: "inline" },
-        hard_break: {
+        new_line: {
             inline: true,
             group: "inline",
             selectable: false,
@@ -58,15 +58,15 @@ export class ParagraphBlock extends Block {
         plugins: [
             keymap({
                 Enter: (state, dispatch) => {
-                    const { hard_break } = state.schema.nodes;
+                    const { new_line } = state.schema.nodes;
 
-                    if (!hard_break) {
+                    if (!new_line) {
                         return false;
                     }
                     if (dispatch) {
                         dispatch(
                             state.tr
-                                .replaceSelectionWith(hard_break.create())
+                                .replaceSelectionWith(new_line.create())
                                 .scrollIntoView()
                         );
                     }
@@ -144,7 +144,7 @@ export class ParagraphBlock extends Block {
                         );
                     }
                     if (text.trim() === "/n") {
-                        return schema.node("hard_break");
+                        return schema.node("new_line");
                     }
                     return schema.text(text, marks);
                 }

@@ -38,6 +38,16 @@ const { content } = Astro.props as any;
                         <Astro.self content={data} />
                     </p>
                 );
+            case "list":
+                return (
+                    <ul
+                        class="list-disc"
+                        class:list={{
+                            [`align-${style.align}`]: !!style.align
+                        }}>
+                        <Astro.self content={data} />
+                    </ul>
+                );
             case "image":
                 return (
                     <Image
@@ -76,9 +86,7 @@ const { content } = Astro.props as any;
                     </div>
                 );
             default:
-                if (params.text.trim() === "/n") {
-                    return <br />;
-                } else if (params.url) {
+                if (params.url) {
                     return (
                         <a
                             href={params.url}
@@ -94,6 +102,22 @@ const { content } = Astro.props as any;
                             {params.text}
                         </a>
                     );
+                } else if (params.item) {
+                    return (
+                        <li
+                            class="text-normal ml-8 text-left"
+                            class:list={{
+                                bold: style.bold,
+                                italic: style.italic,
+                                underline: style.underline,
+                                strikethrough: style.strikethrough,
+                                [`color-${style.color}`]: !!style.color
+                            }}>
+                            {params.item}
+                        </li>
+                    );
+                } else if (params.text && params.text.trim() === "/n") {
+                    return <br />;
                 } else if (params.text) {
                     if (Object.keys(style).length > 0) {
                         return (
@@ -229,21 +253,3 @@ const { content } = Astro.props as any;
         aspect-ratio: 21/9;
     }
 </style>
-
-<!-- 
-case "list":
-    return <ul
-        class="list-disc"
-        class:list={{
-            [`align-${attributes.align}`]: !!attributes.align  
-        }}>
-            <Astro.self content={children} />
-        </ul>;
-case "list-item":
-    return <li
-        class="text-normal text-left ml-8"
-        class:list={{
-            [`align-${attributes.align}`]: !!attributes.align  
-        }}>
-            <Astro.self content={children} />
-        </li>;-->

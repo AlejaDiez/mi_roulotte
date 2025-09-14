@@ -37,7 +37,10 @@ if (error) {
                     )
                 }</span
             >
-            <button class="publish button button-fill-muted">
+            <a
+                href={`/${trip}`}
+                target="_blank"
+                class="publish button button-fill-muted">
                 {
                     data!.published ? (
                         <i class="ibm-wikis" />
@@ -45,54 +48,68 @@ if (error) {
                         <i class="ibm-locked" />
                     )
                 }
-            </button>
+            </a>
             <button class="save button button-fill-accent">
                 <i class="ibm-save"></i>
                 <span>Guardar</span>
             </button>
         </nav>
     </header>
-    <Main class="pb-(--space-y)">
-        <EditHeaderSection
+    <Main class="py-(--space-y)">
+        <!-- <EditHeaderSection
             title={data.title!}
             description={data.description ?? ""}
             image={data.image ?? ""}
             video={data.video ?? ""}
             keywords={data.keywords ?? []}
-        />
+        /> -->
         <EditContentSection content={data.content!} />
-        <EditCommentsSection comments={data.comments ?? null} />
+        <!-- <EditCommentsSection comments={data.comments ?? null} /> -->
     </Main>
 </Layout>
 
 <script>
-    document.body.querySelector(".save")?.addEventListener("click", () => {
-        const data = {
-            title: document.body.querySelector<HTMLInputElement>(
-                ".edit-header-section .title"
-            )!.value,
-            description: document.body.querySelector<HTMLTextAreaElement>(
-                ".edit-header-section .description"
-            )!.value,
-            image: document.body.querySelector<HTMLInputElement>(
-                ".edit-header-section .hero-image .image > input"
-            )!.value,
-            video: document.body.querySelector<HTMLInputElement>(
-                ".edit-header-section .hero-image .video > input"
-            )!.value,
-            content: JSON.stringify(
-                document.body
-                    .querySelector<any>(".edit-content-section block-editor")
-                    .save()
-            ),
-            keywords: [
-                ...document.body.querySelectorAll<HTMLSpanElement>(
-                    ".edit-header-section .keywords > .keyword > span"
-                )
-            ].map(({ textContent }) => textContent),
-            published: true
-        };
+    document.body
+        .querySelector(".header > .menu > .save.button")
+        ?.addEventListener("click", () => {
+            // const data = {
+            //     title: document.body.querySelector<HTMLInputElement>(
+            //         ".edit-header-section .title"
+            //     )!.value,
+            //     description: document.body.querySelector<HTMLTextAreaElement>(
+            //         ".edit-header-section .description"
+            //     )!.value,
+            //     image: document.body.querySelector<HTMLInputElement>(
+            //         ".edit-header-section .hero-image .image > input"
+            //     )!.value,
+            //     video: document.body.querySelector<HTMLInputElement>(
+            //         ".edit-header-section .hero-image .video > input"
+            //     )!.value,
+            //     content: JSON.stringify(
+            //         document.body
+            //             .querySelector<any>(
+            //                 ".edit-content-section block-editor"
+            //             )
+            //             .save()
+            //     ),
+            //     keywords: [
+            //         ...document.body.querySelectorAll<HTMLSpanElement>(
+            //             ".edit-header-section .keywords > .keyword > span"
+            //         )
+            //     ].map(({ textContent }) => textContent),
+            //     published: true
+            // };
 
-        console.log(data);
-    });
+            console.log(
+                JSON.stringify(
+                    document.body
+                        .querySelector<any>(
+                            ".edit-content-section block-editor"
+                        )
+                        .save(),
+                    null,
+                    4
+                )
+            );
+        });
 </script>

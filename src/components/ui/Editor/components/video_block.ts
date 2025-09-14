@@ -42,6 +42,18 @@ export class VideoBlock extends Block {
             // Load style
             element.style.aspectRatio =
                 this.controller.style["aspect-ratio"] ?? "";
+            if (this.mosaic) {
+                const element = this;
+                const cols = Number(this.controller.style.cols);
+                const rows = Number(this.controller.style.rows);
+
+                element.style.gridColumn = Number.isFinite(cols)
+                    ? `span ${Math.min(Math.max(cols, 1), 24)} / span ${Math.min(Math.max(cols, 1), 24)}`
+                    : "";
+                element.style.gridRow = Number.isFinite(rows)
+                    ? `span ${Math.min(Math.max(rows, 1), 24)} / span ${Math.min(Math.max(rows, 1), 24)}`
+                    : "";
+            }
             // Load data
             url.href = this.controller.url;
             title.textContent = this.controller.title ?? "";
@@ -85,6 +97,18 @@ export class VideoBlock extends Block {
 
             // Load style
             element.style.aspectRatio = style["aspect-ratio"] ?? "";
+            if (this.mosaic) {
+                const element = this.element.parentElement!;
+                const cols = Number(style.cols);
+                const rows = Number(style.rows);
+
+                element.style.gridColumn = Number.isFinite(cols)
+                    ? `span ${Math.min(Math.max(cols, 1), 24)} / span ${Math.min(Math.max(cols, 1), 24)}`
+                    : "";
+                element.style.gridRow = Number.isFinite(rows)
+                    ? `span ${Math.min(Math.max(rows, 1), 24)} / span ${Math.min(Math.max(rows, 1), 24)}`
+                    : "";
+            }
             // Load data
             url.href = data.url;
             title.textContent = data.title ?? "";
@@ -130,10 +154,23 @@ export class VideoBlock extends Block {
         const thumbnail = element.querySelector<HTMLImageElement>("& > img")!;
 
         if (element.style.aspectRatio) {
-            attrs["aspect-ratio"] = element.style.aspectRatio.replace(
-                /\s/g,
-                ""
-            );
+            attrs["aspect-ratio"] = element.style.aspectRatio.replace(/ /g, "");
+        }
+        if (this.mosaic) {
+            attrs.cols =
+                Number(
+                    element.parentElement!.style.gridColumn.replace(
+                        /^span ([0-9]+) \/ span ([0-9]+)$/,
+                        "$1"
+                    )
+                ) || undefined;
+            attrs.rows =
+                Number(
+                    element.parentElement!.style.gridRow.replace(
+                        /^span ([0-9]+) \/ span ([0-9]+)$/,
+                        "$1"
+                    )
+                ) || undefined;
         }
         return {
             style: Object.keys(attrs).length > 0 ? attrs : undefined,
@@ -170,15 +207,13 @@ export class VideoBlock extends Block {
             return this.element.querySelector("& > a")!.getAttribute("href");
         };
 
-        const changeVideo = (url: string) => {
+        const changeVideo = (url: string | null) => {
             const element =
                 this.element.querySelector<HTMLAnchorElement>("& > a")!;
             const title =
                 this.element.querySelector<HTMLSpanElement>("& > span")!;
             const thumbnail =
                 this.element.querySelector<HTMLImageElement>("& > img")!;
-
-            url = url.trim();
 
             // Update fetched data
             if (url !== element.getAttribute("href")) {
@@ -234,10 +269,9 @@ export class VideoBlock extends Block {
                 : element.textContent;
         };
 
-        const changeTitle = (title: string) => {
+        const changeTitle = (title: string | null) => {
             const element = this.element.querySelector("& > span")!;
 
-            title = title.trim();
             if (title) {
                 element.textContent = title;
             } else {
@@ -255,10 +289,9 @@ export class VideoBlock extends Block {
                 : element.getAttribute("src");
         };
 
-        const changeThumbnail = (thumbnail: string) => {
+        const changeThumbnail = (thumbnail: string | null) => {
             const element = this.element.querySelector("& > img")!;
 
-            thumbnail = thumbnail.trim();
             if (thumbnail) {
                 element.setAttribute("src", thumbnail);
             } else if (element.hasAttribute("data-fetched")) {
@@ -271,6 +304,198 @@ export class VideoBlock extends Block {
             }
         };
 
+        const getColumn = () => {
+            return (
+                Number(
+                    this.element.parentElement!.style.gridColumn.replace(
+                        /^span ([0-9]+) \/ span ([0-9]+)$/,
+                        "$1"
+                    )
+                ) || null
+            );
+        };
+
+        const changeColumn = (col: number | null) => {
+            if (col !== null) {
+                col = Math.min(Math.max(col, 1), 24);
+                this.element.parentElement!.style.gridColumn = `span ${col} / span ${col}`;
+            } else {
+                this.element.parentElement!.style.gridColumn = "";
+            }
+        };
+
+        const getRow = () => {
+            return (
+                Number(
+                    this.element.parentElement!.style.gridRow.replace(
+                        /^span ([0-9]+) \/ span ([0-9]+)$/,
+                        "$1"
+                    )
+                ) || null
+            );
+        };
+
+        const changeRow = (row: number | null) => {
+            if (row !== null) {
+                row = Math.min(Math.max(row, 1), 24);
+                this.element.parentElement!.style.gridRow = `span ${row} / span ${row}`;
+            } else {
+                this.element.parentElement!.style.gridRow = "";
+            }
+        };
+
+        if (this.mosaic) {
+            return new Toolbar(
+                [
+                    {
+                        type: "group" as const,
+                        icon: "video-player",
+                        variant: () => (getVideo() ? "accent" : null),
+                        children: [
+                            {
+                                type: "text" as const,
+                                label: "URL del vídeo",
+                                value: () => getVideo(),
+                                onChange: (value: any) => changeVideo(value)
+                            }
+                        ]
+                    },
+                    {
+                        type: "group" as const,
+                        icon: "label",
+                        variant: () => (getTitle() ? "accent" : null),
+                        children: [
+                            {
+                                type: "text" as const,
+                                label: "Título del vídeo",
+                                value: () => getTitle(),
+                                onChange: (value: any) => changeTitle(value)
+                            }
+                        ]
+                    },
+                    {
+                        type: "group" as const,
+                        icon: "thumbnail-preview",
+                        variant: () => (getThumbnail() ? "accent" : null),
+                        children: [
+                            {
+                                type: "text" as const,
+                                label: "URL de la miniatura",
+                                value: () => getThumbnail(),
+                                onChange: (value: any) => changeThumbnail(value)
+                            }
+                        ]
+                    },
+                    { type: "separator" as const },
+                    {
+                        type: "group" as const,
+                        icon: "fit-to-screen",
+                        children: [
+                            {
+                                type: "button" as const,
+                                label: "Original",
+                                variant: () =>
+                                    hasAspectRatio("") ? "accent" : null,
+                                onClick: () => setAspectRatio("")
+                            },
+                            {
+                                type: "button" as const,
+                                label: "Cuadrado (1:1)",
+                                variant: () =>
+                                    hasAspectRatio("1/1") ? "accent" : null,
+                                onClick: () => setAspectRatio("1/1")
+                            },
+                            { type: "separator" as const },
+                            {
+                                type: "button" as const,
+                                label: "Estándar (4:3)",
+                                variant: () =>
+                                    hasAspectRatio("4/3") ? "accent" : null,
+                                onClick: () => setAspectRatio("4/3")
+                            },
+                            {
+                                type: "button" as const,
+                                label: "Clásico (3:2)",
+                                variant: () =>
+                                    hasAspectRatio("3/2") ? "accent" : null,
+                                onClick: () => setAspectRatio("3/2")
+                            },
+                            {
+                                type: "button" as const,
+                                label: "Panorámico (16:9)",
+                                variant: () =>
+                                    hasAspectRatio("16/9") ? "accent" : null,
+                                onClick: () => setAspectRatio("16/9")
+                            },
+                            { type: "separator" as const },
+                            {
+                                type: "button" as const,
+                                label: "Retrato (3:4)",
+                                variant: () =>
+                                    hasAspectRatio("3/4") ? "accent" : null,
+                                onClick: () => setAspectRatio("3/4")
+                            },
+                            {
+                                type: "button" as const,
+                                label: "Retrato fotográfico (2:3)",
+                                variant: () =>
+                                    hasAspectRatio("2/3") ? "accent" : null,
+                                onClick: () => setAspectRatio("2/3")
+                            },
+                            {
+                                type: "button" as const,
+                                label: "Vertical (9:16)",
+                                variant: () =>
+                                    hasAspectRatio("9/16") ? "accent" : null,
+                                onClick: () => setAspectRatio("9/16")
+                            }
+                        ]
+                    },
+                    { type: "separator" as const },
+                    {
+                        type: "group" as const,
+                        icon: "column",
+                        variant: () => (getColumn() ? "accent" : null),
+                        children: [
+                            {
+                                type: "number" as const,
+                                label: "Columnas",
+                                value: () => getColumn(),
+                                onChange: (value: any) => changeColumn(value)
+                            }
+                        ]
+                    },
+                    {
+                        type: "group" as const,
+                        icon: "row",
+                        variant: () => (getRow() ? "accent" : null),
+                        children: [
+                            {
+                                type: "number" as const,
+                                label: "Filas",
+                                value: () => getRow(),
+                                onChange: (value: any) => changeRow(value)
+                            }
+                        ]
+                    },
+                    {
+                        type: "button" as const,
+                        icon: "trash-can",
+                        variant: () => "destructive",
+                        onClick: () => this.mosaic!.removeBlock(this)
+                    }
+                ],
+                () => {
+                    const rect = this.element.getBoundingClientRect();
+
+                    return {
+                        left: rect.left + rect.width / 2,
+                        top: rect.top
+                    };
+                }
+            );
+        }
+
         return new Toolbar(
             [
                 {
@@ -279,9 +504,9 @@ export class VideoBlock extends Block {
                     variant: () => (getVideo() ? "accent" : null),
                     children: [
                         {
-                            type: "input" as const,
+                            type: "text" as const,
                             label: "URL del vídeo",
-                            value: () => getVideo() ?? "",
+                            value: () => getVideo(),
                             onChange: (value: any) => changeVideo(value)
                         }
                     ]
@@ -292,9 +517,9 @@ export class VideoBlock extends Block {
                     variant: () => (getTitle() ? "accent" : null),
                     children: [
                         {
-                            type: "input" as const,
+                            type: "text" as const,
                             label: "Título del vídeo",
-                            value: () => getTitle() ?? "",
+                            value: () => getTitle(),
                             onChange: (value: any) => changeTitle(value)
                         }
                     ]
@@ -305,9 +530,9 @@ export class VideoBlock extends Block {
                     variant: () => (getThumbnail() ? "accent" : null),
                     children: [
                         {
-                            type: "input" as const,
+                            type: "text" as const,
                             label: "URL de la miniatura",
-                            value: () => getThumbnail() ?? "",
+                            value: () => getThumbnail(),
                             onChange: (value: any) => changeThumbnail(value)
                         }
                     ]

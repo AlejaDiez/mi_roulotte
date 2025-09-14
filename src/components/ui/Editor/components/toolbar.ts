@@ -12,7 +12,9 @@ export class Toolbar {
 
     constructor(
         private readonly elements: ToolbarElement[],
-        private readonly position: { top: number; left: number }
+        private readonly position:
+            | (() => { top: number; left: number })
+            | { top: number; left: number }
     ) {
         this.element = document.createElement("div");
         this.build();
@@ -47,17 +49,29 @@ export class Toolbar {
         const item = document.createElement("input");
 
         (e as any)["element"] = item;
-        item.type = "text";
+        item.type = e.type;
         if (e.label) {
             item.placeholder =
                 typeof e.label === "string" ? e.label : e.label();
         }
         if (e.value) {
-            item.value = e.value().toString();
+            item.value = (e.value() ?? "").toString();
         }
         item.classList.add("input");
-        item.onchange = ({ target }) => {
-            e.onChange((target as any).value);
+        item.onchange = ({ currentTarget }) => {
+            const value = (currentTarget as HTMLInputElement).value.trim();
+
+            if (value === "") {
+                e.onChange(null);
+            } else if (e.type === "number") {
+                const num = Number(value);
+
+                if (!isNaN(num)) {
+                    e.onChange(num);
+                }
+            } else {
+                e.onChange(value);
+            }
             this.update();
         };
         return item;
@@ -77,11 +91,13 @@ export class Toolbar {
         }
         input.type = "checkbox";
         if (e.value) {
-            input.checked = e.value() as boolean;
+            input.checked = (e.value() ?? false) as boolean;
         }
         input.classList.add("switch");
-        input.onchange = ({ target }) => {
-            e.onChange((target as any).checked);
+        input.onchange = ({ currentTarget }) => {
+            const { checked } = currentTarget as HTMLInputElement;
+
+            e.onChange(checked);
             this.update();
         };
         item.appendChild(input);
@@ -138,7 +154,8 @@ export class Toolbar {
         switch (e.type) {
             case "button":
                 return this.buildButton(e);
-            case "input":
+            case "text":
+            case "number":
                 return this.buildInput(e);
             case "switch":
                 return this.buildSwitch(e);
@@ -155,8 +172,13 @@ export class Toolbar {
         this.elements.forEach((e) =>
             this.element.appendChild(this.buildElement(e))
         );
-        this.element.style.top = `${this.position.top + window.scrollY}px`;
-        this.element.style.left = `${this.position.left}px`;
+        if (typeof this.position === "function") {
+            this.element.style.top = `${this.position().top + window.scrollY}px`;
+            this.element.style.left = `${this.position().left}px`;
+        } else {
+            this.element.style.top = `${this.position.top + window.scrollY}px`;
+            this.element.style.left = `${this.position.left}px`;
+        }
         this.element.classList.add("toolbar");
     }
 
@@ -191,7 +213,7 @@ export class Toolbar {
             item.placeholder = e.label();
         }
         if (e.value) {
-            item.value = e.value().toString();
+            item.value = (e.value() ?? "").toString();
         }
     }
 
@@ -204,7 +226,7 @@ export class Toolbar {
             span.textContent = e.label();
         }
         if (e.value) {
-            input.checked = e.value() as boolean;
+            input.checked = (e.value() ?? false) as boolean;
         }
     }
 
@@ -242,7 +264,8 @@ export class Toolbar {
             case "button":
                 this.updateButton(e);
                 break;
-            case "input":
+            case "text":
+            case "number":
                 this.updateInput(e);
                 break;
             case "switch":
@@ -259,5 +282,9 @@ export class Toolbar {
 
     private update() {
         this.elements.forEach((e) => this.updateElement(e));
+        if (typeof this.position === "function") {
+            this.element.style.top = `${this.position().top + window.scrollY}px`;
+            this.element.style.left = `${this.position().left}px`;
+        }
     }
 }

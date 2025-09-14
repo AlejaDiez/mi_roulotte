@@ -7,10 +7,10 @@ export interface ToolbarButton {
 }
 
 export interface ToolbarInput {
-    type: "input" | "switch";
+    type: "text" | "number" | "switch";
     label?: (() => string) | string;
-    value?: () => string | boolean;
-    onChange: (value: string | boolean) => void;
+    value?: () => string | number | boolean | null;
+    onChange: (value: string | number | boolean | null) => void;
 }
 
 export interface ToolbarGroup {

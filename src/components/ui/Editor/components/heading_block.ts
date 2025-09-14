@@ -309,7 +309,6 @@ export class HeadingBlock extends Block {
                                 resetButton.onclick = () => {
                                     resetColor();
                                     update();
-                                    update();
                                 };
                                 div.appendChild(resetButton);
 

@@ -305,8 +305,7 @@ export class ParagraphBlock extends Block {
             return url;
         };
 
-        const changeURL = (url: string) => {
-            url = url.trim();
+        const changeURL = (url: string | null) => {
             if (url) {
                 applyMark(schema.marks.link, { url });
             } else {
@@ -399,9 +398,9 @@ export class ParagraphBlock extends Block {
                     variant: () => (getURL() !== null ? "accent" : null),
                     children: [
                         {
-                            type: "input" as const,
+                            type: "text" as const,
                             label: "URL del enlace",
-                            value: () => getURL() ?? "",
+                            value: () => getURL(),
                             onChange: (value: any) => changeURL(value)
                         },
                         {
@@ -481,7 +480,6 @@ export class ParagraphBlock extends Block {
                                             "1px solid var(--color-foreground)";
                                         resetButton.onclick = () => {
                                             resetColor();
-                                            update();
                                             update();
                                         };
                                         div.appendChild(resetButton);

@@ -44,10 +44,10 @@ const { content } = Astro.props as any;
                         url={data.url}
                         caption={data.caption}
                         class:list={{
-                            [`col-${style.cols}`]: !!style.cols,
-                            [`row-${style.rows}`]: !!style.rows,
                             [`aspect-ratio-${style["aspect-ratio"]}`]:
-                                !!style["aspect-ratio"]
+                                !!style["aspect-ratio"],
+                            [`col-${style.cols}`]: !!style.cols,
+                            [`row-${style.rows}`]: !!style.rows
                         }}
                     />
                 );
@@ -58,12 +58,22 @@ const { content } = Astro.props as any;
                         title={data.title}
                         thumbnail={data.thumbnail}
                         class:list={{
-                            [`col-${style.cols}`]: !!style.cols,
-                            [`row-${style.rows}`]: !!style.rows,
                             [`aspect-ratio-${style["aspect-ratio"]}`]:
-                                !!style["aspect-ratio"]
+                                !!style["aspect-ratio"],
+                            [`col-${style.cols}`]: !!style.cols,
+                            [`row-${style.rows}`]: !!style.rows
                         }}
                     />
+                );
+            case "mosaic":
+                return (
+                    <div
+                        class="mosaic"
+                        class:list={{
+                            [`template-${style.template}`]: !!style.template
+                        }}>
+                        <Astro.self content={data} />
+                    </div>
                 );
             default:
                 if (params.text.trim() === "/n") {
@@ -236,12 +246,4 @@ case "list-item":
             [`align-${attributes.align}`]: !!attributes.align  
         }}>
             <Astro.self content={children} />
-        </li>;  
-case "mosaic":
-    return <div 
-        class="mosaic"
-        class:list={{
-            [`size-${attributes.size}`]: !!attributes.size
-        }}>
-            <Astro.self content={children} />
-        </div>;-->
+        </li>;-->

@@ -73,6 +73,21 @@ const { value, id, style, class: cls } = Astro.props;
                     }
                 }
 
+                &.button-fill-destructive {
+                    background-color: light-dark(
+                        var(--color-red-10),
+                        var(--color-red-90)
+                    );
+                    color: var(--color-error);
+
+                    &:hover {
+                        background-color: light-dark(
+                            var(--color-red-10-hover),
+                            var(--color-red-90-hover)
+                        );
+                    }
+                }
+
                 &:has(i:first-child) {
                     padding-left: 10px;
                 }
@@ -82,13 +97,18 @@ const { value, id, style, class: cls } = Astro.props;
                 }
             }
 
-            input[type="text"].input {
+            input[type="text"].input,
+            input[type="number"].input {
                 border: none;
                 padding: 0 calc(10px * 24 / 18);
                 min-width: 16rem;
                 height: 2.5rem;
                 min-height: 2.5rem;
                 max-height: 2.5rem;
+
+                &[type="number"] {
+                    min-width: 8rem;
+                }
             }
 
             label:has(input[type="checkbox"].switch) {
@@ -241,7 +261,7 @@ const { value, id, style, class: cls } = Astro.props;
         margin-top: calc(var(--space) * 3);
         margin-bottom: var(--space);
 
-        .content {
+        > .content {
             outline: none;
             padding-top: 0.125rem;
             color: var(--color-foreground);
@@ -266,7 +286,7 @@ const { value, id, style, class: cls } = Astro.props;
         margin-top: var(--space);
         margin-bottom: var(--space);
 
-        .content {
+        > .content {
             cursor: text;
             outline: none;
             padding-top: 0.25rem;
@@ -310,7 +330,7 @@ const { value, id, style, class: cls } = Astro.props;
         margin-top: calc(var(--space) * 2);
         margin-bottom: calc(var(--space) * 2);
 
-        .content {
+        > .content {
             background-color: var(--color-muted);
             aspect-ratio: auto;
             object-fit: cover;
@@ -323,7 +343,7 @@ const { value, id, style, class: cls } = Astro.props;
         margin-top: calc(var(--space) * 2);
         margin-bottom: calc(var(--space) * 2);
 
-        .content {
+        > .content {
             position: relative;
             background-color: var(--color-muted);
             aspect-ratio: 16/9;
@@ -387,6 +407,32 @@ const { value, id, style, class: cls } = Astro.props;
             }
         }
     }
+
+    mosaic-block {
+        margin-top: calc(var(--space) * 2);
+        margin-bottom: calc(var(--space) * 2);
+
+        > .content {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            gap: calc(var(--space) * 4);
+
+            > .block {
+                grid-row: auto;
+                grid-column: auto;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+
+                > .content {
+                    aspect-ratio: auto !important;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
 </style>
 
 <script>
@@ -398,6 +444,7 @@ const { value, id, style, class: cls } = Astro.props;
     import type { Editor } from "./interfaces/editor";
     import { ImageBlock } from "./components/image_block";
     import { VideoBlock } from "./components/video_block";
+    import { MosaicBlock } from "./components/mosaic_block";
 
     class BlockEditor extends HTMLElement implements Editor {
         private readonly blocks: HTMLDivElement;
@@ -510,5 +557,6 @@ const { value, id, style, class: cls } = Astro.props;
     customElements.define("paragraph-block", ParagraphBlock);
     customElements.define("image-block", ImageBlock);
     customElements.define("video-block", VideoBlock);
+    customElements.define("mosaic-block", MosaicBlock);
     customElements.define("block-editor", BlockEditor);
 </script>
